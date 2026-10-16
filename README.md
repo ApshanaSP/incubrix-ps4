@@ -64,7 +64,14 @@ docker compose up --build         # api :8080, Lemmy UI :1236, Ghost :2368, S3 (
 
 The `bootstrap` container creates the Lemmy community and the Ghost integration, registers both and certifies every destination. Its log ends with one PASS or FAIL line per destination.
 
-Without Docker (simulation mode, Python 3.11+):
+Light mode, without Docker (simulation mode, Python 3.11+). One process, SQLite and files under `./data`, mock platforms in-process; about 75 MB of RAM measured:
+
+```bash
+powershell -ExecutionPolicy Bypass -File start-light.ps1          # http://localhost:8080/docs
+powershell -ExecutionPolicy Bypass -File start-light.ps1 -Test    # all tests
+```
+
+Or by hand:
 
 ```bash
 python -m venv .venv && .venv/Scripts/activate        # Windows; use .venv/bin/activate elsewhere

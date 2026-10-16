@@ -7,3 +7,4 @@ data/
 outputs/batch-*/
 .venv/
 catalogue/.ai_cache.json
+.pip-cache/

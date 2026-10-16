@@ -73,10 +73,31 @@ def load_inputs(path: Path) -> list[tuple[str, dict[str, Any]]]:
     return out
 
 
+def send(client: httpx.Client, method: str, path: str, **kwargs: Any) -> httpx.Response:
+    """One request; waits and repeats when the service's own rate limit answers 429 SERVICE_RATE_LIMIT
+    (that request was refused before any work, so repeating it is safe)."""
+    for _ in range(10):
+        resp = client.request(method, path, **kwargs)
+        if resp.status_code != 429:
+            return resp
+        try:
+            err = resp.json()["error"]
+        except (ValueError, KeyError, TypeError):
+            return resp
+        if err.get("code") != "SERVICE_RATE_LIMIT":
+            return resp  # a platform 429 is a result the input may expect
+        time.sleep(float((err.get("details") or {}).get("retry_after_s") or 5))
+    return resp
+
+
 def wait_job(client: httpx.Client, job_id: str, timeout: float) -> dict[str, Any]:
     deadline = time.time() + timeout
     while time.time() < deadline:
-        job = client.get(f"/api/v1/jobs/{job_id}").json()
+        try:
+            job = send(client, "GET", f"/api/v1/jobs/{job_id}").json()
+        except httpx.TransportError:  # a dropped keep-alive connection; reading a job is safe to repeat
+            time.sleep(0.5)
+            continue
         if job.get("status") in ("succeeded", "failed"):
             return job
         time.sleep(0.25)
@@ -107,11 +128,11 @@ def run_case(client: httpx.Client, name: str, case: dict[str, Any], timeout: flo
         if step.get("upload"):
             fpath = (base_dir or Path(".")) / step["upload"]
             with open(fpath, "rb") as fh:
-                resp = client.request(method, step["path"], files={"file": (fpath.name, fh.read())},
+                resp = send(client, method, step["path"], files={"file": (fpath.name, fh.read())},
                                       data={k: str(v) for k, v in (step.get("form") or {}).items()},
                                       headers=step.get("headers") or {})
         else:
-            resp = client.request(method, step["path"], json=step.get("body"), params=step.get("params"),
+            resp = send(client, method, step["path"], json=step.get("body"), params=step.get("params"),
                                   headers=step.get("headers") or {})
         try:
             body: Any = resp.json()
