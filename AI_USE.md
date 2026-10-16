@@ -8,6 +8,10 @@
 
 Commits made in that session carry a `Co-Authored-By: Claude` line, so the history shows which changes were AI-assisted.
 
+Also drafted with Claude Code: the content items in `catalogue/recommender_eval_items.json` and the first draft of the relevance labels in `catalogue/recommender_labels.csv`. <!-- Candidate: say here that you reviewed and corrected the labels, and how many you changed, before quoting the precision@10 number. -->
+
+Light mode (`start-light.ps1`, no Docker) and the batch runner's handling of the service's own rate limit were added in a later Claude Code session.
+
 <!-- Candidate: add anything else you used (ChatGPT, Copilot...) and what you changed by hand. -->
 
 ## AI inside the product

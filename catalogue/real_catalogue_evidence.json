@@ -1,0 +1,4990 @@
+{
+  "generated_at": "2026-10-16T23:43:11",
+  "provider": {
+    "provider": "groq",
+    "model": "openai/gpt-oss-20b",
+    "calls": 72,
+    "input_tokens": 61181,
+    "output_tokens": 68842,
+    "seconds": 935.81,
+    "cost_usd": 0.025241,
+    "errors": [
+      "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+      "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+      "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+      "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+      "HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}"
+    ]
+  },
+  "destinations": {
+    "OpenAI Developer Community": {
+      "url": "https://community.openai.com",
+      "rules_read_from": "https://community.openai.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Hugging Face Forums": {
+      "url": "https://discuss.huggingface.co",
+      "rules_read_from": "https://discuss.huggingface.co/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Google AI Developers Forum": {
+      "url": "https://discuss.ai.google.dev",
+      "rules_read_from": "https://discuss.ai.google.dev/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "DeepLearning.AI Community": {
+      "url": "https://community.deeplearning.ai",
+      "rules_read_from": "https://community.deeplearning.ai/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Cursor Community Forum": {
+      "url": "https://forum.cursor.com",
+      "rules_read_from": "https://forum.cursor.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "n8n Community": {
+      "url": "https://community.n8n.io",
+      "rules_read_from": "https://community.n8n.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Streamlit Community": {
+      "url": "https://discuss.streamlit.io",
+      "rules_read_from": "https://discuss.streamlit.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "PyTorch Forums": {
+      "url": "https://discuss.pytorch.org",
+      "rules_read_from": "https://discuss.pytorch.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy_one_link",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy_no_shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "fast.ai Forums": {
+      "url": "https://forums.fast.ai",
+      "rules_read_from": "https://forums.fast.ai/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Weights & Biases Community": {
+      "url": "https://community.wandb.ai",
+      "rules_read_from": "https://community.wandb.ai/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Figma Forum": {
+      "url": "https://forum.figma.com",
+      "rules_read_from": "https://forum.figma.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Bubble Forum": {
+      "url": "https://forum.bubble.io",
+      "rules_read_from": "https://forum.bubble.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Retool Community": {
+      "url": "https://community.retool.com",
+      "rules_read_from": "https://community.retool.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Make Community": {
+      "url": "https://community.make.com",
+      "rules_read_from": "https://community.make.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "FlutterFlow Community": {
+      "url": "https://community.flutterflow.io",
+      "rules_read_from": "https://community.flutterflow.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Softr Community": {
+      "url": "https://community.softr.io",
+      "rules_read_from": "https://community.softr.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Adalo Forum": {
+      "url": "https://forum.adalo.com",
+      "rules_read_from": "https://forum.adalo.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Ghost Forum": {
+      "url": "https://forum.ghost.org",
+      "rules_read_from": "https://forum.ghost.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Blender Artists": {
+      "url": "https://blenderartists.org",
+      "rules_read_from": "https://blenderartists.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Shotcut Forum": {
+      "url": "https://forum.shotcut.org",
+      "rules_read_from": "https://forum.shotcut.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "KDE Discuss (Kdenlive)": {
+      "url": "https://discuss.kde.org",
+      "rules_read_from": "https://discuss.kde.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Krita Artists": {
+      "url": "https://krita-artists.org",
+      "rules_read_from": "https://krita-artists.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Penpot Community": {
+      "url": "https://community.penpot.app",
+      "rules_read_from": "https://community.penpot.app/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self-promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "no shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "AI disclosure",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "freeCodeCamp Forum": {
+      "url": "https://forum.freecodecamp.org",
+      "rules_read_from": "https://forum.freecodecamp.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Fly.io Community": {
+      "url": "https://community.fly.io",
+      "rules_read_from": "https://community.fly.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Render Community": {
+      "url": "https://community.render.com",
+      "rules_read_from": "https://community.render.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "No self-promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "Link posting limit",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No URL shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "AI content disclosure",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Vercel Community": {
+      "url": "https://community.vercel.com",
+      "rules_read_from": "https://community.vercel.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self-promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link-post-frequency",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "url-shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai-labeling",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Cloudflare Community": {
+      "url": "https://community.cloudflare.com",
+      "rules_read_from": "https://community.cloudflare.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Unity Discussions": {
+      "url": "https://discussions.unity.com",
+      "rules_read_from": "https://discussions.unity.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Pixls.us": {
+      "url": "https://discuss.pixls.us",
+      "rules_read_from": "https://discuss.pixls.us/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Obsidian Forum": {
+      "url": "https://forum.obsidian.md",
+      "rules_read_from": "https://forum.obsidian.md/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Lemmy.world c/technology": {
+      "url": "https://lemmy.world/c/technology",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=technology (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": true
+      },
+      "evidence": [
+        {
+          "rule": "4",
+          "quote": "Mod approved content bots can post up to 10 articles per day."
+        },
+        {
+          "rule": "8",
+          "quote": "Only approved bots from the list below, this includes using AI responses and summaries. To ask if your bot can be added please contact a mod."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Lemmy.world c/youtube": {
+      "url": "https://lemmy.world/c/youtube",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=youtube (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Lemmy.world c/videos": {
+      "url": "https://lemmy.world/c/videos",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=videos (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "canonical_only",
+        "disclosure_required": true,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "4",
+          "quote": "No advertising"
+        },
+        {
+          "rule": "7",
+          "quote": "Link directly to the video source and not for example an embedded video in an article or tracked sharing link"
+        },
+        {
+          "rule": "9",
+          "quote": "AI generated content must be tagged with \"[AI] …\""
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Lemmy.world c/startups": {
+      "url": "https://lemmy.world/c/startups",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=startups (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Lemmy.ml c/technology": {
+      "url": "https://lemmy.ml/c/technology",
+      "rules_read_from": "https://lemmy.ml/api/v3/community?name=technology (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": "any",
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "Ask in DM before posting product reviews or ads. All such posts otherwise are subject to removal.",
+          "quote": "Ask in DM before posting product reviews or ads. All such posts otherwise are subject to removal."
+        },
+        {
+          "rule": "Always post article URLs or their archived version URLs as sources, NOT screenshots.",
+          "quote": "Always post article URLs or their archived version URLs as sources, NOT screenshots."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Lemmy.ml c/machinelearning": {
+      "url": "https://lemmy.ml/c/machinelearning",
+      "rules_read_from": "https://lemmy.ml/api/v3/community?name=machinelearning (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "No Ads / Spamming",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "programming.dev c/programming": {
+      "url": "https://programming.dev/c/programming",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=programming (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "programming.dev c/machine_learning": {
+      "url": "https://programming.dev/c/machine_learning",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=machine_learning (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "programming.dev c/webdev": {
+      "url": "https://programming.dev/c/webdev",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=webdev (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.dbzer0.com c/stable_diffusion": {
+      "url": "https://lemmy.dbzer0.com/c/stable_diffusion",
+      "rules_read_from": "https://lemmy.dbzer0.com/api/v3/community?name=stable_diffusion (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "sh.itjust.works c/technology": {
+      "url": "https://sh.itjust.works/c/technology",
+      "rules_read_from": "https://sh.itjust.works/api/v3/community?name=technology (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "No Ads / Spamming",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "feddit.org c/technik": {
+      "url": "https://feddit.org/c/technik",
+      "rules_read_from": "https://feddit.org/api/v3/community?name=technik (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Keine Werbung und Eigenwerbung"
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Links zu archive.today, archive.fo, archive.is, archive.li, archive.md, archive.ph, archive.vn sind nicht gestattet und werden gelöscht"
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Dev.to #ai": {
+      "url": "https://dev.to/t/ai",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #machinelearning": {
+      "url": "https://dev.to/t/machinelearning",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #saas": {
+      "url": "https://dev.to/t/saas",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #startup": {
+      "url": "https://dev.to/t/startup",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #productivity": {
+      "url": "https://dev.to/t/productivity",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #marketing": {
+      "url": "https://dev.to/t/marketing",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hashnode AI tag": {
+      "url": "https://hashnode.com/n/ai",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hashnode SaaS tag": {
+      "url": "https://hashnode.com/n/saas",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hashnode startups tag": {
+      "url": "https://hashnode.com/n/startups",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Towards AI (Medium)": {
+      "url": "https://pub.towardsai.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "The Startup (Medium)": {
+      "url": "https://medium.com/swlh",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "UX Collective": {
+      "url": "https://uxdesign.cc",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Level Up Coding": {
+      "url": "https://levelup.gitconnected.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Entrepreneur's Handbook": {
+      "url": "https://medium.com/entrepreneurs-handbook",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Better Marketing": {
+      "url": "https://bettermarketing.pub",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Generative AI publication": {
+      "url": "https://generativeai.pub",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hacker News": {
+      "url": "https://news.ycombinator.com",
+      "rules_read_from": "https://news.ycombinator.com/newsguidelines.html",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Product Hunt": {
+      "url": "https://www.producthunt.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Indie Hackers": {
+      "url": "https://www.indiehackers.com",
+      "rules_read_from": "https://www.indiehackers.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "BetaList": {
+      "url": "https://betalist.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Lobsters": {
+      "url": "https://lobste.rs",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "SaaSHub": {
+      "url": "https://www.saashub.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "AlternativeTo": {
+      "url": "https://alternativeto.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "There's An AI For That": {
+      "url": "https://theresanaiforthat.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Futurepedia": {
+      "url": "https://www.futurepedia.io",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Future Tools": {
+      "url": "https://www.futuretools.io",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Toolify": {
+      "url": "https://www.toolify.ai",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "TopAI.tools": {
+      "url": "https://topai.tools",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Video Production Stack Exchange": {
+      "url": "https://video.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Artificial Intelligence Stack Exchange": {
+      "url": "https://ai.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Creative COW": {
+      "url": "https://creativecow.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "VideoHelp Forum": {
+      "url": "https://forum.videohelp.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Adobe Community Premiere Pro": {
+      "url": "https://community.adobe.com/t5/premiere-pro/ct-p/ct-premiere-pro",
+      "rules_read_from": "https://community.adobe.com/t5/using-the-community/community-guidelines/ba-p/12224451",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "OBS Forums": {
+      "url": "https://obsproject.com/forum/",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Blackmagic Forum (DaVinci Resolve)": {
+      "url": "https://forum.blackmagicdesign.com",
+      "rules_read_from": "https://forum.blackmagicdesign.com/app.php/rules",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "GoPro Community": {
+      "url": "https://community.gopro.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "HubSpot Community": {
+      "url": "https://community.hubspot.com",
+      "rules_read_from": "https://community.hubspot.com/t5/Community-Guidelines/bg-p/community_guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_post_limit",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "no_url_shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai_labeling",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "no_bots",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Shopify Community": {
+      "url": "https://community.shopify.com",
+      "rules_read_from": "https://community.shopify.com/c/community-guidelines/",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Zapier Community": {
+      "url": "https://community.zapier.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Airtable Community": {
+      "url": "https://community.airtable.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Squarespace Forum": {
+      "url": "https://forum.squarespace.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "TilVids (PeerTube)": {
+      "url": "https://tilvids.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Framatube (PeerTube)": {
+      "url": "https://framatube.org",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Superpath Community (Slack)": {
+      "url": "https://www.superpath.co/community",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Online Geniuses (Slack)": {
+      "url": "https://onlinegeniuses.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "MLOps Community (Slack)": {
+      "url": "https://mlops.community",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "DataTalks.Club (Slack)": {
+      "url": "https://datatalks.club/slack.html",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "RevGenius (Slack)": {
+      "url": "https://www.revgenius.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hugging Face Discord": {
+      "url": "https://huggingface.co/join/discord",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Midjourney Discord": {
+      "url": "https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Runway Discord": {
+      "url": "https://runwayml.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/NewTubers": {
+      "url": "https://www.reddit.com/r/NewTubers",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/youtubers": {
+      "url": "https://www.reddit.com/r/youtubers",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/PartneredYoutube": {
+      "url": "https://www.reddit.com/r/PartneredYoutube",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/SmallYTChannel": {
+      "url": "https://www.reddit.com/r/SmallYTChannel",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/youtube": {
+      "url": "https://www.reddit.com/r/youtube",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/VideoEditing": {
+      "url": "https://www.reddit.com/r/VideoEditing",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/editors": {
+      "url": "https://www.reddit.com/r/editors",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/premiere": {
+      "url": "https://www.reddit.com/r/premiere",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/davinciresolve": {
+      "url": "https://www.reddit.com/r/davinciresolve",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/Filmmakers": {
+      "url": "https://www.reddit.com/r/Filmmakers",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/videography": {
+      "url": "https://www.reddit.com/r/videography",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/podcasting": {
+      "url": "https://www.reddit.com/r/podcasting",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/Twitch": {
+      "url": "https://www.reddit.com/r/Twitch",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/socialmedia": {
+      "url": "https://www.reddit.com/r/socialmedia",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/marketing": {
+      "url": "https://www.reddit.com/r/marketing",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/digital_marketing": {
+      "url": "https://www.reddit.com/r/digital_marketing",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/content_marketing": {
+      "url": "https://www.reddit.com/r/content_marketing",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/SEO": {
+      "url": "https://www.reddit.com/r/SEO",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/growthhacking": {
+      "url": "https://www.reddit.com/r/growthhacking",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/advertising": {
+      "url": "https://www.reddit.com/r/advertising",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/copywriting": {
+      "url": "https://www.reddit.com/r/copywriting",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/emailmarketing": {
+      "url": "https://www.reddit.com/r/emailmarketing",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/InstagramMarketing": {
+      "url": "https://www.reddit.com/r/InstagramMarketing",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/Blogging": {
+      "url": "https://www.reddit.com/r/Blogging",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/juststart": {
+      "url": "https://www.reddit.com/r/juststart",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/SaaS": {
+      "url": "https://www.reddit.com/r/SaaS",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/microsaas": {
+      "url": "https://www.reddit.com/r/microsaas",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/startups": {
+      "url": "https://www.reddit.com/r/startups",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/Entrepreneur": {
+      "url": "https://www.reddit.com/r/Entrepreneur",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/EntrepreneurRideAlong": {
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/smallbusiness": {
+      "url": "https://www.reddit.com/r/smallbusiness",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/sideproject": {
+      "url": "https://www.reddit.com/r/SideProject",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/indiehackers": {
+      "url": "https://www.reddit.com/r/indiehackers",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/ProductManagement": {
+      "url": "https://www.reddit.com/r/ProductManagement",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/nocode": {
+      "url": "https://www.reddit.com/r/nocode",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/automation": {
+      "url": "https://www.reddit.com/r/automation",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/artificial": {
+      "url": "https://www.reddit.com/r/artificial",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/ArtificialInteligence": {
+      "url": "https://www.reddit.com/r/ArtificialInteligence",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/ChatGPT": {
+      "url": "https://www.reddit.com/r/ChatGPT",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/ChatGPTPro": {
+      "url": "https://www.reddit.com/r/ChatGPTPro",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/OpenAI": {
+      "url": "https://www.reddit.com/r/OpenAI",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/LocalLLaMA": {
+      "url": "https://www.reddit.com/r/LocalLLaMA",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/MachineLearning": {
+      "url": "https://www.reddit.com/r/MachineLearning",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/learnmachinelearning": {
+      "url": "https://www.reddit.com/r/learnmachinelearning",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/StableDiffusion": {
+      "url": "https://www.reddit.com/r/StableDiffusion",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/aivideo": {
+      "url": "https://www.reddit.com/r/aivideo",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/midjourney": {
+      "url": "https://www.reddit.com/r/midjourney",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/PromptEngineering": {
+      "url": "https://www.reddit.com/r/PromptEngineering",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/generativeAI": {
+      "url": "https://www.reddit.com/r/generativeAI",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/AI_Agents": {
+      "url": "https://www.reddit.com/r/AI_Agents",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/datascience": {
+      "url": "https://www.reddit.com/r/datascience",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/webdev": {
+      "url": "https://www.reddit.com/r/webdev",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/emprendedores": {
+      "url": "https://www.reddit.com/r/emprendedores",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/empreendedorismo": {
+      "url": "https://www.reddit.com/r/empreendedorismo",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/de_EDV": {
+      "url": "https://www.reddit.com/r/de_EDV",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/IndianStartups": {
+      "url": "https://www.reddit.com/r/IndianStartups",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/YoutubeCreators": {
+      "url": "https://www.reddit.com/r/YouTubeCreators",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/TikTokHelp": {
+      "url": "https://www.reddit.com/r/TikTokHelp",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/ContentCreators": {
+      "url": "https://www.reddit.com/r/ContentCreators",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/CreatorsAdvice": {
+      "url": "https://www.reddit.com/r/CreatorsAdvice",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/animation": {
+      "url": "https://www.reddit.com/r/animation",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/MotionDesign": {
+      "url": "https://www.reddit.com/r/MotionDesign",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/AfterEffects": {
+      "url": "https://www.reddit.com/r/AfterEffects",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/finalcutpro": {
+      "url": "https://www.reddit.com/r/finalcutpro",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/CapCut": {
+      "url": "https://www.reddit.com/r/CapCut",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/vlogging": {
+      "url": "https://www.reddit.com/r/vlogging",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/Substack": {
+      "url": "https://www.reddit.com/r/Substack",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/Newsletters": {
+      "url": "https://www.reddit.com/r/Newsletters",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/startup": {
+      "url": "https://www.reddit.com/r/startup",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "reddit r/growmybusiness": {
+      "url": "https://www.reddit.com/r/growmybusiness",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Discourse Meta": {
+      "url": "https://meta.discourse.org",
+      "rules_read_from": "https://meta.discourse.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Blender Developer Forum": {
+      "url": "https://devtalk.blender.org",
+      "rules_read_from": "https://devtalk.blender.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Python Discuss": {
+      "url": "https://discuss.python.org",
+      "rules_read_from": "https://discuss.python.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Grafana Community": {
+      "url": "https://community.grafana.com",
+      "rules_read_from": "https://community.grafana.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_post_limit",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "url_shortener",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai_labeling",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Ray Forum": {
+      "url": "https://discuss.ray.io",
+      "rules_read_from": "https://discuss.ray.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Jupyter Community Forum": {
+      "url": "https://discourse.jupyter.org",
+      "rules_read_from": "https://discourse.jupyter.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_post",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai_disclosure",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "NVIDIA Developer Forums": {
+      "url": "https://forums.developer.nvidia.com",
+      "rules_read_from": "https://forums.developer.nvidia.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_limit",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "no_shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Mattermost Forum": {
+      "url": "https://forum.mattermost.com",
+      "rules_read_from": "https://forum.mattermost.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Rocket.Chat Forums": {
+      "url": "https://forums.rocket.chat",
+      "rules_read_from": "https://forums.rocket.chat/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Baserow Community": {
+      "url": "https://community.baserow.io",
+      "rules_read_from": "https://community.baserow.io/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self-promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link-post-frequency",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link-shortener",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "AI-disclosure",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Appsmith Community": {
+      "url": "https://community.appsmith.com",
+      "rules_read_from": "https://community.appsmith.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Matomo Forum": {
+      "url": "https://forum.matomo.org",
+      "rules_read_from": "https://forum.matomo.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "No self-promotion. Do not advertise your product, service or company.",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "Members may post at most one link post per week.",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "No URL shorteners.",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "Posts made with AI must be labelled 'AI-generated'.",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "No bots or automated posting without moderator approval.",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Mautic Community Forum": {
+      "url": "https://forum.mautic.org",
+      "rules_read_from": "https://forum.mautic.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Plex Forum": {
+      "url": "https://forums.plex.tv",
+      "rules_read_from": "https://forums.plex.tv/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Ardour Discourse": {
+      "url": "https://discourse.ardour.org",
+      "rules_read_from": "https://discourse.ardour.org/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_post_limit",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "no_url_shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai_disclosure",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Glide Community": {
+      "url": "https://community.glideapps.com",
+      "rules_read_from": "https://community.glideapps.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Netlify Support Forums": {
+      "url": "https://answers.netlify.com",
+      "rules_read_from": "https://answers.netlify.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Webflow Forum": {
+      "url": "https://forum.webflow.com",
+      "rules_read_from": "https://forum.webflow.com/guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Kodi Forum": {
+      "url": "https://forum.kodi.tv",
+      "rules_read_from": "https://kodi.wiki/view/Official:Forum_rules",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self-promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link-post-frequency",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "url-shorteners",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai-labeling",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Emby Community": {
+      "url": "https://emby.media/community",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Audacity Forum": {
+      "url": "https://forum.audacityteam.org",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Jellyfin Forum": {
+      "url": "https://forum.jellyfin.org",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Civitai": {
+      "url": "https://civitai.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Kaggle Discussions": {
+      "url": "https://www.kaggle.com/discussions",
+      "rules_read_from": "https://www.kaggle.com/community-guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "LessWrong": {
+      "url": "https://www.lesswrong.com",
+      "rules_read_from": "https://www.lesswrong.com/faq",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self-promotion",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link-post-limit",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "url-shortener",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "ai-labeling",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Data Science Stack Exchange": {
+      "url": "https://datascience.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Webmasters Stack Exchange": {
+      "url": "https://webmasters.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Sound Design Stack Exchange": {
+      "url": "https://sound.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Photography Stack Exchange": {
+      "url": "https://photo.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Graphic Design Stack Exchange": {
+      "url": "https://graphicdesign.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Cross Validated": {
+      "url": "https://stats.stackexchange.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "lemmy.world c/fediverse": {
+      "url": "https://lemmy.world/c/fediverse",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=fediverse (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.world c/selfhosted": {
+      "url": "https://lemmy.world/c/selfhosted",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=selfhosted (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": "any",
+        "disclosure_required": true,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "4",
+          "quote": "Don't duplicate the full text of your blog or readme if you're providing a link."
+        },
+        {
+          "rule": "7",
+          "quote": "Promotion posts require active participation, with an account that is at least 30 days old. F/LOSS without a paywall has exceptions, with requirements."
+        },
+        {
+          "rule": "8",
+          "quote": "AI-related discussions and AI-involved promotional posts have additional requirements for tagging, as noted in Rule 7 and the [AI & Promotional Post Expanded Rules](https://lemmy.world/post/49151085) post, and find [example disclosures here](https://lemmy.world/post/49320548)."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.world c/futurology": {
+      "url": "https://lemmy.world/c/futurology",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=futurology (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "Respect the Community.",
+          "quote": "Respect the Community."
+        },
+        {
+          "rule": "Respect one another.",
+          "quote": "Respect one another."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.world c/movies": {
+      "url": "https://lemmy.world/c/movies",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=movies (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Spam, self promotion, trolling, and bots are not allowed"
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "Spam, self promotion, trolling, and bots are not allowed"
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.world c/photography": {
+      "url": "https://lemmy.world/c/photography",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=photography (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.world c/podcasts": {
+      "url": "https://lemmy.world/c/podcasts",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=podcasts (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.world c/chatgpt": {
+      "url": "https://lemmy.world/c/chatgpt",
+      "rules_read_from": "https://lemmy.world/api/v3/community?name=chatgpt (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "beehaw.org c/technology": {
+      "url": "https://beehaw.org/c/technology",
+      "rules_read_from": "https://beehaw.org/api/v3/community?name=technology (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.zip c/technology": {
+      "url": "https://lemmy.zip/c/technology",
+      "rules_read_from": "https://lemmy.zip/api/v3/community?name=technology (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "lemmy.ml c/opensource": {
+      "url": "https://lemmy.ml/c/opensource",
+      "rules_read_from": "https://lemmy.ml/api/v3/community?name=opensource (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "No Ads / Spamming",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "programming.dev c/python": {
+      "url": "https://programming.dev/c/python",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=python (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "sh.itjust.works c/localllama": {
+      "url": "https://sh.itjust.works/c/localllama",
+      "rules_read_from": "https://sh.itjust.works/api/v3/community?name=localllama (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": "AI provider call failed: HTTP 400: {\"error\":{\"message\":\"Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.\",\"type\":\"invalid_request_error\",\"code\":\"json_validate_failed\",\"failed_generation\":\"\"}",
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "Blender Video (PeerTube)": {
+      "url": "https://video.blender.org",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Diode Zone (PeerTube)": {
+      "url": "https://diode.zone",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "MakerTube (PeerTube)": {
+      "url": "https://makertube.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Spectra Video (PeerTube)": {
+      "url": "https://spectra.video",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Locally Optimistic (Slack)": {
+      "url": "https://locallyoptimistic.com/community/",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Indie Worldwide (Slack)": {
+      "url": "https://www.indieworldwide.co",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Mind the Product (Slack)": {
+      "url": "https://www.mindtheproduct.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Uneed": {
+      "url": "https://www.uneed.best",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Peerlist Launchpad": {
+      "url": "https://peerlist.io/launchpad",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Microlaunch": {
+      "url": "https://microlaunch.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "DevHunt": {
+      "url": "https://devhunt.org",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Fazier": {
+      "url": "https://fazier.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Launching Next": {
+      "url": "https://www.launchingnext.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "SideProjectors": {
+      "url": "https://www.sideprojectors.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "OpenAlternative": {
+      "url": "https://openalternative.co",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Tildes": {
+      "url": "https://tildes.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Slashdot": {
+      "url": "https://slashdot.org",
+      "rules_read_from": "https://slashdot.org/faq",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "HackerNoon": {
+      "url": "https://hackernoon.com",
+      "rules_read_from": "https://hackernoon.com/editorial-guidelines",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners",
+        "disclosure_required": true,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No self-promotion. Do not advertise your product, service or company."
+        },
+        {
+          "rule": "frequency_cap",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "Members may post at most one link post per week."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "No URL shorteners."
+        },
+        {
+          "rule": "disclosure_required",
+          "quote": "Posts made with AI must be labelled 'AI-generated'."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "No bots or automated posting without moderator approval."
+        }
+      ],
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-20b"
+    },
+    "daily.dev Squads": {
+      "url": "https://daily.dev",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #llm": {
+      "url": "https://dev.to/t/llm",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #openai": {
+      "url": "https://dev.to/t/openai",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #opensource": {
+      "url": "https://dev.to/t/opensource",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Dev.to #webdev": {
+      "url": "https://dev.to/t/webdev",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hashnode machine-learning tag": {
+      "url": "https://hashnode.com/n/machine-learning",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Hashnode generative-ai tag": {
+      "url": "https://hashnode.com/n/generative-ai",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Qiita": {
+      "url": "https://qiita.com",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Zenn": {
+      "url": "https://zenn.dev",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "TabNews": {
+      "url": "https://www.tabnews.com.br",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Journal du Hacker": {
+      "url": "https://www.journalduhacker.net",
+      "rules_read_from": null,
+      "rules_note": "rules page has too little text (rendered by JavaScript)",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "velog": {
+      "url": "https://velog.io",
+      "rules_read_from": null,
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    }
+  }
+}

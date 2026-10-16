@@ -1602,6 +1602,13 @@ components:
             type: string
           type: array
           title: Audience Tags
+        translations:
+          additionalProperties:
+            $ref: '#/components/schemas/Translation'
+          type: object
+          title: Translations
+          description: Versions in other languages, keyed by language code; used for
+            communities in that language
       type: object
       required:
       - title
@@ -2253,6 +2260,26 @@ components:
       - content
       - destination_ids
       title: TailorIn
+    Translation:
+      properties:
+        title:
+          type: string
+          title: Title
+        body:
+          type: string
+          title: Body
+          default: ''
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+      type: object
+      required:
+      - title
+      title: Translation
+      description: The creator's own version of the item in another language (never
+        machine-written here).
     ValidationError:
       properties:
         loc:

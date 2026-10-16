@@ -7,7 +7,9 @@ For each researched destination:
   3. rules: read the rules page (or the Lemmy API); the AI proposes posting rules with a quote for
      each. Where no rules text could be read, strict conservative defaults are used and the row is
      marked rules_source=conservative_default (a person must check it before any posting)
-  4. relevance: the AI scores 1-5 against IncuBrix's audience with a one-line reason
+  4. relevance: the AI scores 1-5 against IncuBrix's audience with a one-line reason. Rows whose rules
+     could not be read make no AI call (there is nothing to extract): their relevance comes from the
+     keyword heuristic over the researched name, notes and tags, and the evidence says so
 Nothing is posted anywhere. Output rows use the importer's CSV format, so the file can be imported
 with POST /api/v1/catalogue/imports/upload.
 
@@ -196,10 +198,16 @@ async def main() -> int:
         infos = await asyncio.gather(*(one(r) for r in seed))
     print(f"fetched {len(infos)} rows in {time.time() - started:.0f}s; asking {provider.name}/{provider.model}", flush=True)
     rows_out, evidence = [], {}
-    ai_sem = asyncio.Semaphore(2)
+    ai_sem = asyncio.Semaphore(1)  # free-tier token-per-minute limits: one call at a time
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
 
     async def judge(info):
+        if not info["rules_text"]:
+            r = info["row"]
+            h = heuristic_relevance(f"{r['name']} {r['notes']} {r['category']} {r['audience_tags'].replace(';', ' ')}")
+            return info, {**{k: None for k in CONSERVATIVE}, "evidence": [], "relevance": h["score"],
+                          "relevance_reason": h["reason"], "audience_tags": h["audience_tags"] or None,
+                          "_model": "heuristic (no rules text, no AI call)"}
         key = f"{info['row']['name']}|{len(info['rules_text'])}"
         if key in cache and not cache[key].get("ai_error"):
             return info, cache[key]
@@ -221,7 +229,7 @@ async def main() -> int:
                  "link_policy": clean(ai.get("link_policy"), "links"),
                  "disclosure_required": clean(ai.get("disclosure_required"), "bool"),
                  "automation_allowed": clean(ai.get("automation_allowed"), "bool")}
-        if info["rules_text"]:
+        if info["rules_text"] and not ai.get("ai_error"):
             source = "ai_from_rules_page"
             # rules the page does not mention stay strict; a person confirms them
             filled = {k: (v if v is not None else CONSERVATIVE[k]) for k, v in rules.items()}

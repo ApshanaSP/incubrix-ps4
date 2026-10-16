@@ -171,14 +171,14 @@ def build() -> dict[str, dict]:
                                               pub("w", save="p", **{"result.results.0.error.code": "CONNECTION_AUTH_EXPIRED"}),
                                               get_dest("w", status="paused")]}
     cases["14_non_english_community"] = {
-        "description": "Hard case 7a: a German community gets a German disclosure line and a language warning; a strict "
-                       "Tamil community blocks an English post.",
+        "description": "Hard case 7a: a German community gets the creator's German translation with a German "
+                       "disclosure line; a Tamil community with no Tamil version holds the English post with the reason.",
         "steps": new_dest("lemmy", "de", language="de", disclosure_required=True) + [
-            pub("de", content={**CONTENT, "ai_generated": True, "language": "en"}, save="p",
-                **{"result.results.0.state": "published"})]
-        + new_dest("lemmy", "ta", language="ta",
-                   config={"base_url": f"https://lemmy-ta-{ref('run')}.mock", "community": "incubrix_test",
-                           "language_strict": True})
+            pub("de", content={**CONTENT, "ai_generated": True, "language": "en", "translations": {"de": {
+                "title": "Wie wir mit KI-Untertiteln Schnittzeit gespart haben",
+                "body": "Wir haben drei Untertitel-Abläufe für kurze Videos getestet und die gesparte Zeit gemessen."}}},
+                save="p", **{"result.results.0.state": "published", "result.results.0.rendition.language": "de"})]
+        + new_dest("lemmy", "ta", language="ta")
         + [pub("ta", content={**CONTENT, "language": "en"}, save="p2", **{"result.results.0.state": "blocked"})]}
     cases["15_ai_disclosure_required"] = {
         "description": "Hard case 7b: AI content to a destination that requires disclosure gets the disclosure line; "

@@ -21,7 +21,7 @@ from typing import Any
 from app import rules
 from app.catalogue import store
 from app.connectors import registry
-from app.connectors.base import Connection, Destination, Rendition, fingerprint
+from app.connectors.base import Connection, Destination, Rendition, collect_notes, fingerprint
 from app.db import get_db, new_id, now_iso
 from app.errors import ApiError, ConnectorError
 from app.logs import log
@@ -141,6 +141,7 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
         db.insert("posts", {"id": post_id, "idempotency_key": key, "attempts": 1, "created_at": now_iso(), **row})
 
     # 6. publish
+    call_notes = collect_notes()
     try:
         result = await connector.publish(rendition, destination, connection, key)
     except ConnectorError as exc:
@@ -152,7 +153,7 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
     out["status"] = result.get("status")
     if result.get("assist_pack"):
         out["assist_pack"] = result["assist_pack"]
-    out["warnings"] = warnings
+    out["warnings"] = warnings + call_notes
     log(logger, logging.INFO, "published", destination=destination.name, post_id=post_id, live_url=result.get("live_url"),
         test=is_test)
     return out

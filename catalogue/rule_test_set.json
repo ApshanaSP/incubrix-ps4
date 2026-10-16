@@ -633,7 +633,13 @@
       "id": "lang_loose_mismatch",
       "why": "English post to a German community that accepts English (warning only)",
       "destination": {
-        "language": "de"
+        "language": "de",
+        "config": {
+          "accepted_languages": [
+            "de",
+            "en"
+          ]
+        }
       },
       "content": {
         "title": "English title here please",
@@ -642,6 +648,20 @@
       },
       "prior_posts": [],
       "expect_violation": false
+    },
+    {
+      "id": "lang_default_mismatch",
+      "why": "English post to a Japanese community with no translation",
+      "destination": {
+        "language": "ja"
+      },
+      "content": {
+        "title": "English title here please",
+        "body": "A body with enough words to be a real post.",
+        "language": "en"
+      },
+      "prior_posts": [],
+      "expect_violation": true
     },
     {
       "id": "combo_cap_and_promo",

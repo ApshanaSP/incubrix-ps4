@@ -168,3 +168,79 @@ reddit r/Substack,https://www.reddit.com/r/Substack,reddit,assisted,community,cr
 reddit r/Newsletters,https://www.reddit.com/r/Newsletters,reddit,assisted,community,creators;marketing,en,https://www.reddit.com/r/Newsletters/about/rules,,
 reddit r/startup,https://www.reddit.com/r/startup,reddit,assisted,community,founders,en,https://www.reddit.com/r/startup/about/rules,,
 reddit r/growmybusiness,https://www.reddit.com/r/growmybusiness,reddit,assisted,community,founders;marketing,en,https://www.reddit.com/r/growmybusiness/about/rules,,
+Discourse Meta,https://meta.discourse.org,discourse,discourse,forum,saas;founders,en,https://meta.discourse.org/guidelines,,Discourse's own community; product and community-building talk
+Blender Developer Forum,https://devtalk.blender.org,discourse,discourse,forum,video;creators,en,https://devtalk.blender.org/guidelines,,"Blender development, including video sequencer and VFX"
+Python Discuss,https://discuss.python.org,discourse,discourse,forum,ai,en,https://discuss.python.org/guidelines,,Official Python community; ML library authors
+Grafana Community,https://community.grafana.com,discourse,discourse,forum,saas,en,https://community.grafana.com/guidelines,,Observability SaaS users
+Ray Forum,https://discuss.ray.io,discourse,discourse,forum,ai,en,https://discuss.ray.io/guidelines,,Distributed ML and LLM serving
+Jupyter Community Forum,https://discourse.jupyter.org,discourse,discourse,forum,ai,en,https://discourse.jupyter.org/guidelines,,Data science and notebook users
+NVIDIA Developer Forums,https://forums.developer.nvidia.com,discourse,discourse,forum,ai;video,en,https://forums.developer.nvidia.com/guidelines,,"GPU, AI and video SDK developers"
+Mattermost Forum,https://forum.mattermost.com,discourse,discourse,forum,saas,en,https://forum.mattermost.com/guidelines,,Open-source team chat
+Rocket.Chat Forums,https://forums.rocket.chat,discourse,discourse,forum,saas,en,https://forums.rocket.chat/guidelines,,Open-source team chat
+Baserow Community,https://community.baserow.io,discourse,discourse,forum,saas;founders,en,https://community.baserow.io/guidelines,,No-code database builders
+Appsmith Community,https://community.appsmith.com,discourse,discourse,forum,saas,en,https://community.appsmith.com/guidelines,,Internal-tool builders
+Strapi Forum,https://forum.strapi.io,discourse,discourse,forum,saas;creators,en,https://forum.strapi.io/guidelines,,Headless CMS for content sites
+Matomo Forum,https://forum.matomo.org,discourse,discourse,forum,marketing;saas,en,https://forum.matomo.org/guidelines,,Web analytics for marketers
+Mautic Community Forum,https://forum.mautic.org,discourse,discourse,forum,marketing;saas,en,https://forum.mautic.org/guidelines,,Open-source marketing automation
+Plex Forum,https://forums.plex.tv,discourse,discourse,forum,video,en,https://forums.plex.tv/guidelines,,Media server users
+Ardour Discourse,https://discourse.ardour.org,discourse,discourse,forum,creators,en,https://discourse.ardour.org/guidelines,,Audio recording and podcast production
+Glide Community,https://community.glideapps.com,discourse,discourse,forum,saas;founders,en,https://community.glideapps.com/guidelines,,No-code app makers
+Netlify Support Forums,https://answers.netlify.com,discourse,discourse,forum,saas,en,https://answers.netlify.com/guidelines,,Web developers deploying sites
+Webflow Forum,https://forum.webflow.com,discourse,discourse,forum,marketing;saas;creators,en,https://forum.webflow.com/guidelines,,Website builders and marketers
+Kodi Forum,https://forum.kodi.tv,forum,assisted,forum,video,en,https://kodi.wiki/view/Official:Forum_rules,,Media centre users (MyBB)
+Emby Community,https://emby.media/community,forum,assisted,forum,video,en,,,Media server users (Invision)
+Audacity Forum,https://forum.audacityteam.org,forum,assisted,forum,creators,en,,,Audio editing for podcasters
+Jellyfin Forum,https://forum.jellyfin.org,forum,assisted,forum,video,en,,,Open-source media server
+Civitai,https://civitai.com,forum,assisted,forum,ai;creators,en,https://civitai.com/content/tos,,Generative image and video model sharing
+Kaggle Discussions,https://www.kaggle.com/discussions,forum,assisted,forum,ai,en,https://www.kaggle.com/community-guidelines,,Data science competitions
+LessWrong,https://www.lesswrong.com,forum,assisted,forum,ai,en,https://www.lesswrong.com/faq,,AI and rationality essays; strict quality bar
+Data Science Stack Exchange,https://datascience.stackexchange.com,stackexchange,assisted,qa,ai,en,https://datascience.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+Webmasters Stack Exchange,https://webmasters.stackexchange.com,stackexchange,assisted,qa,marketing,en,https://webmasters.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+Sound Design Stack Exchange,https://sound.stackexchange.com,stackexchange,assisted,qa,creators;video,en,https://sound.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+Photography Stack Exchange,https://photo.stackexchange.com,stackexchange,assisted,qa,creators,en,https://photo.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+Graphic Design Stack Exchange,https://graphicdesign.stackexchange.com,stackexchange,assisted,qa,creators,en,https://graphicdesign.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+Cross Validated,https://stats.stackexchange.com,stackexchange,assisted,qa,ai,en,https://stats.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+lemmy.world c/fediverse,https://lemmy.world/c/fediverse,lemmy,lemmy,community,creators;saas,en,,fediverse,Fediverse news and tools
+lemmy.world c/selfhosted,https://lemmy.world/c/selfhosted,lemmy,lemmy,community,saas,en,,selfhosted,Self-hosting software
+lemmy.world c/futurology,https://lemmy.world/c/futurology,lemmy,lemmy,community,ai,en,,futurology,Future technology including AI
+lemmy.world c/movies,https://lemmy.world/c/movies,lemmy,lemmy,community,video,en,,movies,Film discussion
+lemmy.world c/photography,https://lemmy.world/c/photography,lemmy,lemmy,community,creators,en,,photography,Photographers
+lemmy.world c/podcasts,https://lemmy.world/c/podcasts,lemmy,lemmy,community,creators,en,,podcasts,Podcast listeners and makers
+lemmy.world c/chatgpt,https://lemmy.world/c/chatgpt,lemmy,lemmy,community,ai,en,,chatgpt,ChatGPT users
+beehaw.org c/technology,https://beehaw.org/c/technology,lemmy,lemmy,community,ai;saas,en,,technology,Beehaw technology community; strict civility rules
+lemmy.ca c/technology,https://lemmy.ca/c/technology,lemmy,lemmy,community,ai;saas,en,,technology,Canadian Lemmy instance technology community
+lemmy.zip c/technology,https://lemmy.zip/c/technology,lemmy,lemmy,community,ai;saas,en,,technology,Technology community
+lemmy.ml c/opensource,https://lemmy.ml/c/opensource,lemmy,lemmy,community,saas,en,,opensource,Open-source software
+programming.dev c/python,https://programming.dev/c/python,lemmy,lemmy,community,ai,en,,python,Python programmers
+sh.itjust.works c/localllama,https://sh.itjust.works/c/localllama,lemmy,lemmy,community,ai,en,,localllama,Running LLMs locally
+Blender Video (PeerTube),https://video.blender.org,peertube,assisted,video_platform,video;creators,en,https://video.blender.org/about/instance,,Blender's own PeerTube
+Diode Zone (PeerTube),https://diode.zone,peertube,assisted,video_platform,video;creators,en,https://diode.zone/about/instance,,Electronics and maker videos
+MakerTube (PeerTube),https://makertube.net,peertube,assisted,video_platform,video;creators,en,https://makertube.net/about/instance,,Maker and DIY videos
+Spectra Video (PeerTube),https://spectra.video,peertube,assisted,video_platform,video;creators,en,https://spectra.video/about/instance,,General PeerTube instance
+Locally Optimistic (Slack),https://locallyoptimistic.com/community/,slack_community,slack,chat_community,ai;saas,en,https://locallyoptimistic.com/community/,,Data and analytics leaders; needs workspace admin to approve the IncuBrix app
+Indie Worldwide (Slack),https://www.indieworldwide.co,slack_community,slack,chat_community,founders;saas,en,https://www.indieworldwide.co,,Bootstrapped founders; needs workspace admin to approve the IncuBrix app
+Mind the Product (Slack),https://www.mindtheproduct.com,slack_community,slack,chat_community,saas;founders,en,https://www.mindtheproduct.com,,Product managers; needs workspace admin to approve the IncuBrix app
+Uneed,https://www.uneed.best,directory,assisted,launch,founders;saas,en,https://www.uneed.best,,Launch or listing directory; a person submits
+Peerlist Launchpad,https://peerlist.io/launchpad,directory,assisted,launch,founders;saas,en,https://peerlist.io/launchpad,,Launch or listing directory; a person submits
+Microlaunch,https://microlaunch.net,directory,assisted,launch,founders;saas,en,https://microlaunch.net,,Launch or listing directory; a person submits
+DevHunt,https://devhunt.org,directory,assisted,launch,saas;founders,en,https://devhunt.org,,Launch or listing directory; a person submits
+Fazier,https://fazier.com,directory,assisted,launch,founders;saas,en,https://fazier.com,,Launch or listing directory; a person submits
+Launching Next,https://www.launchingnext.com,directory,assisted,launch,founders;saas,en,https://www.launchingnext.com,,Launch or listing directory; a person submits
+SideProjectors,https://www.sideprojectors.com,directory,assisted,launch,founders;saas,en,https://www.sideprojectors.com,,Launch or listing directory; a person submits
+OpenAlternative,https://openalternative.co,directory,assisted,launch,saas,en,https://openalternative.co,,Launch or listing directory; a person submits
+Tildes,https://tildes.net,news_aggregator,assisted,news_aggregator,ai;saas,en,https://docs.tildes.net/policies/code-of-conduct,,Invite-only discussion site
+Slashdot,https://slashdot.org,news_aggregator,assisted,news_aggregator,ai;saas,en,https://slashdot.org/faq,,Tech news; story submissions
+HackerNoon,https://hackernoon.com,news_aggregator,assisted,news_aggregator,ai;saas;founders;creators,en,https://hackernoon.com/editorial-guidelines,,Tech publication; editorial review
+daily.dev Squads,https://daily.dev,news_aggregator,assisted,news_aggregator,ai;saas,en,,,Developer news feed; squads
+Designer News,https://www.designernews.co,news_aggregator,assisted,news_aggregator,creators;saas,en,,,Design and product news
+Dev.to #llm,https://dev.to/t/llm,devto,devto,developer_blog,ai,en,https://dev.to/code-of-conduct,,Posting via IncuBrix's Dev.to account with tag llm
+Dev.to #openai,https://dev.to/t/openai,devto,devto,developer_blog,ai,en,https://dev.to/code-of-conduct,,Posting via IncuBrix's Dev.to account with tag openai
+Dev.to #opensource,https://dev.to/t/opensource,devto,devto,developer_blog,saas,en,https://dev.to/code-of-conduct,,Posting via IncuBrix's Dev.to account with tag opensource
+Dev.to #webdev,https://dev.to/t/webdev,devto,devto,developer_blog,saas,en,https://dev.to/code-of-conduct,,Posting via IncuBrix's Dev.to account with tag webdev
+Hashnode machine-learning tag,https://hashnode.com/n/machine-learning,hashnode,hashnode,developer_blog,ai,en,https://hashnode.com/terms,,Via IncuBrix's Hashnode publication with tag machine-learning
+Hashnode generative-ai tag,https://hashnode.com/n/generative-ai,hashnode,hashnode,developer_blog,ai;creators,en,https://hashnode.com/terms,,Via IncuBrix's Hashnode publication with tag generative-ai
+Qiita,https://qiita.com,devblog,assisted,developer_blog,ai;saas,ja,https://qiita.com/terms,,Japanese developer articles
+Zenn,https://zenn.dev,devblog,assisted,developer_blog,ai;saas,ja,https://zenn.dev/terms,,Japanese developer articles and books
+TabNews,https://www.tabnews.com.br,devblog,assisted,developer_blog,ai;saas,pt,https://www.tabnews.com.br/termos-de-uso,,Brazilian developer and founder news
+Journal du Hacker,https://www.journalduhacker.net,devblog,assisted,developer_blog,ai;saas,fr,https://www.journalduhacker.net/about,,French tech link aggregator
+velog,https://velog.io,devblog,assisted,developer_blog,ai;saas,ko,,,Korean developer blogs

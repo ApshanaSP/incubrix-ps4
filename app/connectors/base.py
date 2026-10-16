@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+from contextvars import ContextVar
 from pathlib import Path
 from typing import Any, Literal
 
@@ -18,6 +19,22 @@ from app.connectors.http import PlatformHTTP
 from app.errors import ConnectorError
 
 MANIFEST_DIR = Path(__file__).parent / "manifests"
+_call_notes: ContextVar[list[str] | None] = ContextVar("connector_call_notes", default=None)
+
+
+def note(message: str) -> None:
+    """Record something a connector did on its own (for example a re-login), so the caller can
+    report it as a warning instead of it happening silently."""
+    notes = _call_notes.get()
+    if notes is not None:
+        notes.append(message)
+
+
+def collect_notes() -> list[str]:
+    """Start collecting notes for the current call; returns the list that note() appends to."""
+    notes: list[str] = []
+    _call_notes.set(notes)
+    return notes
 
 
 class Media(BaseModel):

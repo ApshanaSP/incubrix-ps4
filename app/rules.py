@@ -193,12 +193,16 @@ def check(
     # language
     dest_lang = (destination.language or "").lower()[:2]
     content_lang = (rendition.language or "").lower()[:2]
+    accepted = {str(x).lower()[:2] for x in destination.config.get("accepted_languages") or []}
     if dest_lang and content_lang and dest_lang != content_lang:
-        if destination.config.get("language_strict"):
-            block("language", f"this community posts only in '{dest_lang}' and the post is '{content_lang}'")
+        if content_lang in accepted or destination.config.get("language_strict") is False:
+            warnings.append(f"community language is '{dest_lang}' and the post is '{content_lang}'; "
+                            "posted because this community accepts it (config.accepted_languages)")
         else:
-            warnings.append(f"community language is '{dest_lang}' but the post is '{content_lang}'; "
-                            "consider a translated rendition")
+            # default: posting in the wrong language is a common way to get banned, so hold it
+            block("language", f"this community's language is '{dest_lang}' and the post is '{content_lang}'; "
+                  f"add content.translations['{dest_lang}'], or list '{content_lang}' in the destination's "
+                  "config.accepted_languages if the community accepts it")
 
     return {"ok": not violations, "violations": violations, "warnings": warnings, "promotional": promotional,
             "promotional_reasons": promo_reasons}

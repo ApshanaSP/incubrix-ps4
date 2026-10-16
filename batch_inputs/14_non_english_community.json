@@ -1,6 +1,6 @@
 {
   "name": "14_non_english_community",
-  "description": "Hard case 7a: a German community gets a German disclosure line and a language warning; a strict Tamil community blocks an English post.",
+  "description": "Hard case 7a: a German community gets the creator's German translation with a German disclosure line; a Tamil community with no Tamil version holds the English post with the reason.",
   "steps": [
     {
       "method": "POST",
@@ -59,7 +59,13 @@
           ],
           "promotional": false,
           "ai_generated": true,
-          "language": "en"
+          "language": "en",
+          "translations": {
+            "de": {
+              "title": "Wie wir mit KI-Untertiteln Schnittzeit gespart haben",
+              "body": "Wir haben drei Untertitel-Abläufe für kurze Videos getestet und die gesparte Zeit gemessen."
+            }
+          }
         },
         "destination_ids": [
           "{{dest_de.id}}"
@@ -70,7 +76,8 @@
       },
       "save_as": "p",
       "expect": {
-        "result.results.0.state": "published"
+        "result.results.0.state": "published",
+        "result.results.0.rendition.language": "de"
       }
     },
     {
@@ -95,8 +102,7 @@
         "name": "batch lemmy ta",
         "config": {
           "base_url": "https://lemmy-ta-{{run}}.mock",
-          "community": "incubrix_test",
-          "language_strict": true
+          "community": "incubrix_test"
         },
         "audience_tags": [
           "ai",

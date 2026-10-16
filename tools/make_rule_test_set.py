@@ -89,7 +89,9 @@ def build() -> list[dict]:
     add("lang_strict_match", "Tamil post to a strict Tamil community",
         {"language": "ta", "config": {"language_strict": True}}, c("வீடியோ எடிட்டிங் குறிப்புகள் ஐந்து", "தமிழ் உரை இங்கே உள்ளது.", language="ta"), False)
     add("lang_loose_mismatch", "English post to a German community that accepts English (warning only)",
-        {"language": "de"}, c("English title here please", language="en"), False)
+        {"language": "de", "config": {"accepted_languages": ["de", "en"]}}, c("English title here please", language="en"), False)
+    add("lang_default_mismatch", "English post to a Japanese community with no translation",
+        {"language": "ja"}, c("English title here please", language="en"), True)
     # combinations
     add("combo_cap_and_promo", "promotional post to a capped no-promotion community with an earlier post",
         {"frequency_cap": "1/7d", "self_promo_allowed": "no"}, c("Try our free trial today", promotional=True), True,

@@ -130,7 +130,7 @@ The interactive API docs are at `/docs`. The contract is also served at `/connec
 | Renamed API field | Schema-drift check fails the call, certification fails, the destination is demoted and excluded, a ticket and alert are raised, and any orphan post is cleaned up |
 | CSV with duplicates, bad URLs, mixed languages | Row-by-row report: duplicate-of-row, error reasons, warnings, detected language |
 | Partner revokes permission | 403 → connection `revoked`, destination paused, ticket raised |
-| Non-English community; AI disclosure required | Disclosure line in the community's language, a language warning (or a block with `language_strict`); a missing disclosure is blocked |
+| Non-English community; AI disclosure required | The creator's translation is used when given (`content.translations`), with the disclosure line in the community's language; with no translation the post is held with the reason (unless the community lists the language in `config.accepted_languages`); a missing disclosure is blocked |
 
 Reproduce any of them on a mock-backed destination with `POST /api/v1/sim/faults` (`timeout_after_create`, `timeout`, `rate_limit`, `auth_expired`, `reject`, `rename_field`, `revoke`, `server_error`).
 
@@ -143,7 +143,7 @@ Reproduce any of them on a mock-backed destination with `POST /api/v1/sim/faults
 | `link_policy` | `;`-joined: `any`, `none`, `one_link`, `no_shorteners`, `allowlist:a.com,b.org`, `canonical_only` |
 | `disclosure_required` | `true`: AI-generated content must carry a disclosure line (tailoring adds one) |
 | `automation_allowed` | `false`: native posting is blocked; use the assisted connector |
-| `language` (+ `config.language_strict`) | the community's language; strict blocks posts in other languages |
+| `language` (+ `config.accepted_languages`) | the community's language; posts in other languages are held unless a translation is given or the language is accepted |
 
 Destinations get a level after certification: L0 catalogued only, L1 assisted, L2 bridged or feed, L3 native API (publish, status and delete tested), L4 native plus metrics.
 

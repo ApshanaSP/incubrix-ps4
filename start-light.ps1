@@ -9,6 +9,8 @@ Set-Location $PSScriptRoot
 $env:SIMULATION_MODE = "true"
 $env:DATA_DIR = Join-Path $PSScriptRoot "data"
 $env:PORT = "$Port"
+# download links, feed URLs and evidence links must point at this port
+if (-not $env:PUBLIC_BASE_URL) { $env:PUBLIC_BASE_URL = "http://localhost:$Port" }
 $env:PYTHONDONTWRITEBYTECODE = "1"
 # keep pip's cache next to the project instead of on C:
 $env:PIP_CACHE_DIR = Join-Path $PSScriptRoot ".pip-cache"

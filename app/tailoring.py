@@ -48,6 +48,14 @@ DISCUSSION_PROMPTS = {
 }
 
 
+class Translation(BaseModel):
+    """The creator's own version of the item in another language (never machine-written here)."""
+
+    title: str
+    body: str = ""
+    summary: str | None = None
+
+
 class ContentItem(BaseModel):
     """What a creator wants to distribute, before tailoring."""
 
@@ -64,6 +72,8 @@ class ContentItem(BaseModel):
     content_type: str = "article"
     content_id: str | None = None
     audience_tags: list[str] = Field(default_factory=list)
+    translations: dict[str, Translation] = Field(default_factory=dict, description="Versions in other languages, "
+                                                 "keyed by language code; used for communities in that language")
 
 
 def truncate_words(text: str, limit: int, ellipsis: str = "…") -> str:
@@ -100,6 +110,15 @@ def tailor(content: ContentItem, destination: Destination) -> tuple[Rendition, l
     title = content.title.strip()
     body = content.body.strip()
     summary = (content.summary or "").strip() or _first_paragraph(body)
+    content_lang = content.language
+    dest_lang = (destination.language or "")[:2].lower()
+    translated = {k.lower()[:2]: v for k, v in content.translations.items()}
+    if dest_lang and (content.language or "")[:2].lower() != dest_lang and dest_lang in translated:
+        t = translated[dest_lang]
+        title, body = t.title.strip(), t.body.strip()
+        summary = (t.summary or "").strip() or _first_paragraph(body)
+        content_lang = dest_lang
+        notes.append(f"used the creator's '{dest_lang}' translation for this {dest_lang} community")
     link = content.link
     tags = list(content.tags)
     canonical = None
@@ -187,14 +206,14 @@ def tailor(content: ContentItem, destination: Destination) -> tuple[Rendition, l
         media = media[: int(max_media)]
 
     lang_note = None
-    if destination.language and content.language and destination.language[:2] != content.language[:2]:
-        lang_note = f"community language is '{destination.language}', content is '{content.language}' (not translated)"
+    if destination.language and content_lang and destination.language[:2] != content_lang[:2]:
+        lang_note = f"community language is '{destination.language}', content is '{content_lang}' (no translation given)"
         notes.append(lang_note)
 
     rendition = Rendition(
         title=title, body=body, body_format="markdown", link=link, canonical_url=canonical, media=media, tags=tags,
         mentions=mentions, promotional=content.promotional, ai_generated=content.ai_generated,
-        language=content.language, content_id=content.content_id, surface=spec.get("surface"),
+        language=content_lang, content_id=content.content_id, surface=spec.get("surface"),
     )
     return rendition, notes
 

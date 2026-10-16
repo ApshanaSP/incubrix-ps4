@@ -64,14 +64,31 @@ def test_missing_disclosure_blocked_at_contract_validate(client):
     assert v["ok"] is False and v["violations"][0]["rule"] == "ai_disclosure"
 
 
-def test_non_english_community_gets_local_disclosure_and_warning(client):
+def test_non_english_community_holds_untranslated_post(client):
     res = publish(client, ["dst_lemmy_videomacher"], content={"title": "Five AI tricks for faster video edits",
-                                                              "body": "Short guide.", "ai_generated": True,
-                                                              "language": "en"}, key="de-1")
+                                                              "body": "Short guide.", "language": "en"}, key="de-0")
+    r = res["result"]["results"][0]
+    assert r["state"] == "blocked" and any(v["rule"] == "language" for v in r["violations"])
+    assert "translations['de']" in r["reason"]
+
+
+def test_non_english_community_uses_translation_and_local_disclosure(client):
+    res = publish(client, ["dst_lemmy_videomacher"], content={
+        "title": "Five AI tricks for faster video edits", "body": "Short guide.", "ai_generated": True, "language": "en",
+        "translations": {"de": {"title": "Fünf KI-Tricks für schnellere Videoschnitte", "body": "Kurze Anleitung."}}},
+        key="de-1")
     r = res["result"]["results"][0]
     assert r["state"] == "published"
+    assert r["rendition"]["title"].startswith("Fünf KI-Tricks") and r["rendition"]["language"] == "de"
     assert "Hinweis: Dieser Beitrag wurde mit Hilfe von KI erstellt" in r["rendition"]["body"]
-    assert any("community language is 'de'" in w for w in r["warnings"])
+    assert any("'de' translation" in n for n in r["tailoring_notes"])
+
+
+def test_accepted_language_posts_with_warning(client):
+    dest = make_destination(client, "lemmy", language="de", config={"accepted_languages": ["de", "en"]})
+    r = publish(client, [dest["id"]], content={"title": "English title for a bilingual community",
+                                               "body": "English body.", "language": "en"})["result"]["results"][0]
+    assert r["state"] == "published" and any("accepts it" in w for w in r["warnings"])
 
 
 def test_strict_language_blocks(client):

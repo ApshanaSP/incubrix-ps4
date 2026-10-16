@@ -5,7 +5,7 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from app.connectors.base import (Connection, Connector, Destination, Rendition, decode_post_id, empty_metrics,
+from app.connectors.base import (Connection, Connector, Destination, Rendition, decode_post_id, empty_metrics, note,
                                  encode_post_id, normalise_number)
 from app.connectors.http import require
 from app.errors import ConnectorError
@@ -47,6 +47,7 @@ class LemmyConnector(Connector):
             if exc.code != "CONNECTION_AUTH_EXPIRED" or connection.credentials.get("jwt"):
                 raise
             jwt = await self._jwt(base, connection, force=True)  # session expired: log in once more
+            note("Lemmy session token had expired; logged in again with the stored account and continued")
             return await self.http(base).request(method, url, headers={"Authorization": f"Bearer {jwt}"}, **kw)
 
     async def _community_id(self, base: str, destination: Destination) -> int:
