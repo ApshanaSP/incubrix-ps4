@@ -1,0 +1,324 @@
+{
+  "job": {
+    "job_id": "job_d4ed5905595f4d56",
+    "kind": "certification",
+    "status": "succeeded",
+    "progress": 100,
+    "result": {
+      "certification_id": "crt_237e6036f3784a6f",
+      "destination_id": "dst_50fa3aa8b88a4dd9",
+      "name": "Certification pack: lemmy",
+      "passed": true,
+      "level": "L4",
+      "duration_s": 0.016,
+      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_50fa3aa8b88a4dd9/crt_237e6036f3784a6f.json?expires=1792781159&sig=db678e7f2d3189a5900a52b12d66c364",
+      "error": null,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true
+        },
+        {
+          "step": "publish",
+          "ok": true
+        },
+        {
+          "step": "get_status",
+          "ok": true
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true
+        },
+        {
+          "step": "delete",
+          "ok": true
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true
+        }
+      ],
+      "links": {
+        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_50fa3aa8b88a4dd9/crt_237e6036f3784a6f.json?expires=1792781159&sig=db678e7f2d3189a5900a52b12d66c364"
+      },
+      "manifest": {
+        "manifest_version": "1.0",
+        "kind": "certification",
+        "service": {
+          "name": "incubrix-longtail",
+          "version": "1.0.0",
+          "python": "3.11.5"
+        },
+        "connectors": [
+          {
+            "key": "lemmy",
+            "version": "1.0.0",
+            "tier": "protocol"
+          }
+        ],
+        "models": [
+          {
+            "provider": "none",
+            "note": "no AI model used for this result"
+          }
+        ],
+        "settings": {
+          "simulation_mode": true,
+          "ai_provider": "mock"
+        },
+        "seed": 0,
+        "timings": {},
+        "cost_estimate_usd": {
+          "total": 0,
+          "per_unit": null,
+          "units": null
+        },
+        "warnings": [],
+        "ai_generated": false,
+        "rights": {
+          "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+          "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+          "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+        }
+      }
+    },
+    "error": null,
+    "links": {
+      "self": "http://localhost:8088/api/v1/jobs/job_d4ed5905595f4d56",
+      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_50fa3aa8b88a4dd9/crt_237e6036f3784a6f.json?expires=1792781159&sig=db678e7f2d3189a5900a52b12d66c364"
+    },
+    "created_at": "2026-10-16T18:45:59+00:00",
+    "updated_at": "2026-10-16T18:45:59+00:00"
+  },
+  "certification": {
+    "id": "crt_237e6036f3784a6f",
+    "destination_id": "dst_50fa3aa8b88a4dd9",
+    "status": "passed",
+    "started_at": "2026-10-16T18:45:59+00:00",
+    "finished_at": "2026-10-16T18:45:59+00:00",
+    "duration_s": 0.016,
+    "steps": [
+      {
+        "step": "probe",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "ok": true,
+          "members": 953
+        }
+      },
+      {
+        "step": "publish",
+        "ok": true,
+        "ms": 15,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "post_id": "pst_1908c399608645df",
+          "destination_id": "dst_50fa3aa8b88a4dd9",
+          "state": "published",
+          "platform_post_id": "1001|https://lemmy-pack-0227a2.mock",
+          "live_url": "https://lemmy-pack-0227a2.mock/post/1001",
+          "reason": null,
+          "reschedule_at": null,
+          "idempotency_key": "cert-dst_50fa3aa8b88a4dd9-31f70a37",
+          "status": "live",
+          "warnings": []
+        }
+      },
+      {
+        "step": "get_status",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "status": "live",
+          "live_url": "https://lemmy-pack-0227a2.mock/post/1001"
+        }
+      },
+      {
+        "step": "confirm_live_url",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "live_url": "https://lemmy-pack-0227a2.mock/post/1001",
+          "checked": "platform status (simulated host)"
+        }
+      },
+      {
+        "step": "fetch_metrics",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "views": 0,
+          "likes": 3,
+          "comments": 2,
+          "shares": 0,
+          "saves": 0,
+          "watch_time_s": 0,
+          "clicks": 0
+        }
+      },
+      {
+        "step": "delete",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "deleted": true
+        }
+      },
+      {
+        "step": "confirm_deleted",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "status": "deleted",
+          "live_url": null
+        }
+      }
+    ],
+    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_50fa3aa8b88a4dd9/crt_237e6036f3784a6f.json?expires=1792781159&sig=db678e7f2d3189a5900a52b12d66c364",
+    "error": null
+  },
+  "run": {
+    "certification_id": "crt_237e6036f3784a6f",
+    "destination": {
+      "id": "dst_50fa3aa8b88a4dd9",
+      "name": "Certification pack: lemmy",
+      "url": "https://lemmy-pack-0227a2.mock",
+      "normalized_url": "https://lemmy-pack-0227a2.mock#community=incubrix_test",
+      "platform_key": "lemmy",
+      "connector_key": "lemmy",
+      "surface": null,
+      "category": null,
+      "audience_tags": [
+        "ai",
+        "video"
+      ],
+      "language": "en",
+      "geo": null,
+      "est_audience": null,
+      "rules_url": null,
+      "frequency_cap": null,
+      "self_promo_allowed": null,
+      "link_policy": null,
+      "disclosure_required": false,
+      "automation_allowed": true,
+      "relevance_score": null,
+      "relevance_reason": null,
+      "level": "L0",
+      "last_certified_at": null,
+      "status": "uncertified",
+      "rules_status": "confirmed",
+      "config": {
+        "base_url": "https://lemmy-pack-0227a2.mock",
+        "community": "incubrix_test"
+      },
+      "connection_id": "con_c8c29b900bb24924",
+      "created_at": "2026-10-16T18:45:59+00:00",
+      "updated_at": "2026-10-16T18:45:59+00:00"
+    },
+    "connector": "lemmy",
+    "connector_version": "1.0.0",
+    "simulated": true,
+    "started_at": "2026-10-16T18:45:59+00:00",
+    "finished_at": "2026-10-16T18:45:59+00:00",
+    "duration_s": 0.016,
+    "passed": true,
+    "level": "L4",
+    "steps": [
+      {
+        "step": "probe",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "ok": true,
+          "members": 953
+        }
+      },
+      {
+        "step": "publish",
+        "ok": true,
+        "ms": 15,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "post_id": "pst_1908c399608645df",
+          "destination_id": "dst_50fa3aa8b88a4dd9",
+          "state": "published",
+          "platform_post_id": "1001|https://lemmy-pack-0227a2.mock",
+          "live_url": "https://lemmy-pack-0227a2.mock/post/1001",
+          "reason": null,
+          "reschedule_at": null,
+          "idempotency_key": "cert-dst_50fa3aa8b88a4dd9-31f70a37",
+          "status": "live",
+          "warnings": []
+        }
+      },
+      {
+        "step": "get_status",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "status": "live",
+          "live_url": "https://lemmy-pack-0227a2.mock/post/1001"
+        }
+      },
+      {
+        "step": "confirm_live_url",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "live_url": "https://lemmy-pack-0227a2.mock/post/1001",
+          "checked": "platform status (simulated host)"
+        }
+      },
+      {
+        "step": "fetch_metrics",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "views": 0,
+          "likes": 3,
+          "comments": 2,
+          "shares": 0,
+          "saves": 0,
+          "watch_time_s": 0,
+          "clicks": 0
+        }
+      },
+      {
+        "step": "delete",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "deleted": true
+        }
+      },
+      {
+        "step": "confirm_deleted",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:45:59+00:00",
+        "result": {
+          "status": "deleted",
+          "live_url": null
+        }
+      }
+    ],
+    "error": null
+  }
+}

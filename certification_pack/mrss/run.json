@@ -1,0 +1,289 @@
+{
+  "job": {
+    "job_id": "job_62e78f54c7c546d2",
+    "kind": "certification",
+    "status": "succeeded",
+    "progress": 100,
+    "result": {
+      "certification_id": "crt_a2cc2b6dbb38437f",
+      "destination_id": "dst_58d31364f0c64b39",
+      "name": "Certification pack: mrss",
+      "passed": true,
+      "level": "L2",
+      "duration_s": 0.0,
+      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_58d31364f0c64b39/crt_a2cc2b6dbb38437f.json?expires=1792781180&sig=45ef333ba81598217e880dd54c4cc2d8",
+      "error": null,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true
+        },
+        {
+          "step": "publish",
+          "ok": true
+        },
+        {
+          "step": "get_status",
+          "ok": true
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true
+        },
+        {
+          "step": "delete",
+          "ok": true
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true
+        }
+      ],
+      "links": {
+        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_58d31364f0c64b39/crt_a2cc2b6dbb38437f.json?expires=1792781180&sig=45ef333ba81598217e880dd54c4cc2d8"
+      },
+      "manifest": {
+        "manifest_version": "1.0",
+        "kind": "certification",
+        "service": {
+          "name": "incubrix-longtail",
+          "version": "1.0.0",
+          "python": "3.11.5"
+        },
+        "connectors": [
+          {
+            "key": "mrss",
+            "version": "1.0.0",
+            "tier": "feed"
+          }
+        ],
+        "models": [
+          {
+            "provider": "none",
+            "note": "no AI model used for this result"
+          }
+        ],
+        "settings": {
+          "simulation_mode": true,
+          "ai_provider": "mock"
+        },
+        "seed": 0,
+        "timings": {},
+        "cost_estimate_usd": {
+          "total": 0,
+          "per_unit": null,
+          "units": null
+        },
+        "warnings": [],
+        "ai_generated": false,
+        "rights": {
+          "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+          "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+          "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+        }
+      }
+    },
+    "error": null,
+    "links": {
+      "self": "http://localhost:8088/api/v1/jobs/job_62e78f54c7c546d2",
+      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_58d31364f0c64b39/crt_a2cc2b6dbb38437f.json?expires=1792781180&sig=45ef333ba81598217e880dd54c4cc2d8"
+    },
+    "created_at": "2026-10-16T18:46:20+00:00",
+    "updated_at": "2026-10-16T18:46:20+00:00"
+  },
+  "certification": {
+    "id": "crt_a2cc2b6dbb38437f",
+    "destination_id": "dst_58d31364f0c64b39",
+    "status": "passed",
+    "started_at": "2026-10-16T18:46:20+00:00",
+    "finished_at": "2026-10-16T18:46:20+00:00",
+    "duration_s": 0.0,
+    "steps": [
+      {
+        "step": "probe",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "ok": true
+        }
+      },
+      {
+        "step": "publish",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "post_id": "pst_96e45db3d0124ed2",
+          "destination_id": "dst_58d31364f0c64b39",
+          "state": "published",
+          "platform_post_id": "ibx-07b2ed1c65cd|cert-815543",
+          "live_url": "http://localhost:8088/api/v1/feeds/cert-815543.xml#ibx-07b2ed1c65cd",
+          "reason": null,
+          "reschedule_at": null,
+          "idempotency_key": "cert-dst_58d31364f0c64b39-2c9afed8",
+          "status": "live",
+          "warnings": []
+        }
+      },
+      {
+        "step": "get_status",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "status": "live",
+          "live_url": "http://localhost:8088/api/v1/feeds/cert-815543.xml#ibx-07b2ed1c65cd"
+        }
+      },
+      {
+        "step": "confirm_live_url",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "live_url": "http://localhost:8088/api/v1/feeds/cert-815543.xml#ibx-07b2ed1c65cd",
+          "checked": "platform status (simulated host)"
+        }
+      },
+      {
+        "step": "delete",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "deleted": true,
+          "already_gone": false
+        }
+      },
+      {
+        "step": "confirm_deleted",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "status": "deleted",
+          "live_url": null
+        }
+      }
+    ],
+    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_58d31364f0c64b39/crt_a2cc2b6dbb38437f.json?expires=1792781180&sig=45ef333ba81598217e880dd54c4cc2d8",
+    "error": null
+  },
+  "run": {
+    "certification_id": "crt_a2cc2b6dbb38437f",
+    "destination": {
+      "id": "dst_58d31364f0c64b39",
+      "name": "Certification pack: mrss",
+      "url": "https://mrss-pack-0227a2.mock",
+      "normalized_url": "https://mrss-pack-0227a2.mock#feed_key=cert-815543",
+      "platform_key": "mrss",
+      "connector_key": "mrss",
+      "surface": null,
+      "category": null,
+      "audience_tags": [
+        "ai",
+        "video"
+      ],
+      "language": "en",
+      "geo": null,
+      "est_audience": null,
+      "rules_url": null,
+      "frequency_cap": null,
+      "self_promo_allowed": null,
+      "link_policy": null,
+      "disclosure_required": false,
+      "automation_allowed": true,
+      "relevance_score": null,
+      "relevance_reason": null,
+      "level": "L0",
+      "last_certified_at": null,
+      "status": "uncertified",
+      "rules_status": "confirmed",
+      "config": {
+        "feed_key": "cert-815543"
+      },
+      "connection_id": null,
+      "created_at": "2026-10-16T18:46:20+00:00",
+      "updated_at": "2026-10-16T18:46:20+00:00"
+    },
+    "connector": "mrss",
+    "connector_version": "1.0.0",
+    "simulated": true,
+    "started_at": "2026-10-16T18:46:20+00:00",
+    "finished_at": "2026-10-16T18:46:20+00:00",
+    "duration_s": 0.0,
+    "passed": true,
+    "level": "L2",
+    "steps": [
+      {
+        "step": "probe",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "ok": true
+        }
+      },
+      {
+        "step": "publish",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "post_id": "pst_96e45db3d0124ed2",
+          "destination_id": "dst_58d31364f0c64b39",
+          "state": "published",
+          "platform_post_id": "ibx-07b2ed1c65cd|cert-815543",
+          "live_url": "http://localhost:8088/api/v1/feeds/cert-815543.xml#ibx-07b2ed1c65cd",
+          "reason": null,
+          "reschedule_at": null,
+          "idempotency_key": "cert-dst_58d31364f0c64b39-2c9afed8",
+          "status": "live",
+          "warnings": []
+        }
+      },
+      {
+        "step": "get_status",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "status": "live",
+          "live_url": "http://localhost:8088/api/v1/feeds/cert-815543.xml#ibx-07b2ed1c65cd"
+        }
+      },
+      {
+        "step": "confirm_live_url",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "live_url": "http://localhost:8088/api/v1/feeds/cert-815543.xml#ibx-07b2ed1c65cd",
+          "checked": "platform status (simulated host)"
+        }
+      },
+      {
+        "step": "delete",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "deleted": true,
+          "already_gone": false
+        }
+      },
+      {
+        "step": "confirm_deleted",
+        "ok": true,
+        "ms": 0,
+        "at": "2026-10-16T18:46:20+00:00",
+        "result": {
+          "status": "deleted",
+          "live_url": null
+        }
+      }
+    ],
+    "error": null
+  }
+}
