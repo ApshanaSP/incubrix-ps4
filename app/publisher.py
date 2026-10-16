@@ -115,6 +115,16 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
     spec_check = await connector.validate(rendition, destination, connection)
     rule_check = rules.check(rendition, destination, use_ledger=not is_test,
                              native=destination.connector_key != "assisted", rules_status=dest_row.get("rules_status"))
+    hard = [v for v in rule_check["violations"] if v["action"] != "reschedule"]
+    if not is_test and destination.connector_key != "assisted" and hard and all(v["rule"] == "automation" for v in hard):
+        # automation is not allowed here: no bot posts. A person gets the ready-to-post pack instead, and every
+        # other rule (caps, promotion, links, disclosure, language) is still checked for that pack.
+        connector = registry.get("assisted")
+        spec_check = await connector.validate(rendition, destination, connection)
+        rule_check = rules.check(rendition, destination, use_ledger=True, native=False,
+                                 rules_status=dest_row.get("rules_status"))
+        warnings = warnings + ["automated posting is not allowed here, so nothing was posted by a bot: "
+                               "a ready-to-post pack was made for a person to post (assisted)"]
     violations = spec_check["violations"] + rule_check["violations"]
     warnings = warnings + rule_check["warnings"]
     if violations:
@@ -131,7 +141,7 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
 
     # 5. write the attempt before calling out
     post_id = existing["id"] if existing else new_id("pst")
-    row = {"destination_id": destination.id, "connector_key": destination.connector_key, "state": "in_flight",
+    row = {"destination_id": destination.id, "connector_key": connector.key, "state": "in_flight",
            "is_test": int(is_test), "promotional": int(rule_check["promotional"]), "title": rendition.title,
            "fingerprint": fingerprint(rendition.title, rendition.body), "rendition": rendition.model_dump(exclude_none=True),
            "publication_id": publication_id, "reason": None, "reschedule_at": None}

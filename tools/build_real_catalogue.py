@@ -239,6 +239,11 @@ async def main() -> int:
             filled, defaulted = dict(CONSERVATIVE), list(CONSERVATIVE)
         if r["connector_key"] == "assisted":
             filled["automation_allowed"] = False
+        if r["category"] in ("launch", "directory") and rules["self_promo_allowed"] is None:
+            # a launch or listing site exists for makers to post their own product
+            filled["self_promo_allowed"] = "yes"
+            if "self_promo_allowed" in defaulted:
+                defaulted.remove("self_promo_allowed")
         tags = [t for t in (ai.get("audience_tags") or r["audience_tags"].split(";")) if t in THEMES]
         try:
             score = max(1, min(5, int(ai.get("relevance"))))

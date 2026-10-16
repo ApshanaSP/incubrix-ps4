@@ -144,6 +144,8 @@ def validate_row(raw: dict[str, str]) -> tuple[dict[str, Any] | None, list[str],
         except ValueError:
             errors.append(f"relevance_score must be 1-5 (got '{raw['relevance_score']}')")
     cfg = {c: raw[c] for c in CONFIG_COLUMNS if raw.get(c)}
+    if raw.get("notes") and "description" not in cfg:
+        cfg["description"] = str(raw["notes"])[:400]
     if connector in ("discourse", "lemmy", "ghost", "webhook") and "base_url" not in cfg and not err:
         parts = urlsplit(data["url"])
         cfg["base_url"] = f"{parts.scheme}://{parts.netloc}"

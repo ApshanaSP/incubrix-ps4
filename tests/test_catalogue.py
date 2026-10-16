@@ -113,6 +113,30 @@ def test_recommender_ranks_with_reasons_and_excludes_rule_breakers(client):
     assert "dst_forum_founders" in excluded  # no-promotion forum
 
 
+def test_recommender_matches_the_topic(client):
+    n8n = make_destination(client, "discourse", name="n8n Community",
+                           config={"description": "Workflow automation with n8n: nodes, webhooks and self-hosting"})
+    knit = make_destination(client, "discourse", name="Knitting Circle",
+                            config={"description": "Knitting patterns, yarn and needles"})
+    content = {"title": "Automating video uploads with n8n and a publishing API",
+               "body": "An n8n workflow that takes a finished video and posts it everywhere.", "tags": ["automation"]}
+    recs = client.post("/api/v1/recommendations", json={"content": content, "top_k": 50}).json()["recommendations"]
+    order = [r["destination_id"] for r in recs]
+    assert order.index(n8n["id"]) < order.index(knit["id"])
+    top = next(r for r in recs if r["destination_id"] == n8n["id"])
+    assert "topic match: n8n" in top["reason"] and top["components"]["topic"] > 0.5
+
+
+def test_recommender_routes_no_automation_places_to_a_person(client):
+    dest = make_destination(client, "discourse", name="Video editors forum",
+                            config={"description": "Video editing and captions"})
+    client.patch(f"/api/v1/destinations/{dest['id']}", json={"automation_allowed": False})
+    content = {"title": "Captions for short videos", "body": "How we edit captions faster.", "tags": ["video"]}
+    res = client.post("/api/v1/recommendations", json={"content": content, "top_k": 50}).json()
+    rec = next(r for r in res["recommendations"] if r["destination_id"] == dest["id"])
+    assert rec["route"] == "assisted" and "a person posts" in rec["reason"]
+
+
 def test_fetch_metrics_on_three_or_more_connectors(client):
     ids = []
     for key in ("discourse", "lemmy", "devto", "hashnode", "slack", "webhook"):

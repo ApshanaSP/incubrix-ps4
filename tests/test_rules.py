@@ -98,11 +98,22 @@ def test_strict_language_blocks(client):
     assert r["state"] == "blocked" and any(v["rule"] == "language" for v in r["violations"])
 
 
-def test_automation_not_allowed_blocks_native(client):
+def test_automation_not_allowed_makes_a_pack_for_a_person(client):
     dest = make_destination(client, "discourse")
     client.patch(f"/api/v1/destinations/{dest['id']}", json={"automation_allowed": False})
     r = publish(client, [dest["id"]])["result"]["results"][0]
-    assert r["state"] == "blocked" and any(v["rule"] == "automation" for v in r["violations"])
+    assert r["state"] == "awaiting_human" and r["assist_pack"]["checklist"]
+    assert any("nothing was posted by a bot" in w for w in r["warnings"])
+    state = client.get("/api/v1/sim/state", params={"destination_id": dest["id"]}).json()
+    assert state["posts_live"] == 0
+
+
+def test_automation_not_allowed_still_checks_other_rules(client):
+    dest = make_destination(client, "discourse")
+    client.patch(f"/api/v1/destinations/{dest['id']}", json={"automation_allowed": False, "self_promo_allowed": "no"})
+    r = publish(client, [dest["id"]], content={"title": "Try our tool free today", "body": "Sign up now, 50% off.",
+                                               "promotional": True})["result"]["results"][0]
+    assert r["state"] == "blocked" and any(v["rule"] == "self_promotion" for v in r["violations"])
 
 
 def test_too_long_title_is_cut_at_word_boundary(client):
