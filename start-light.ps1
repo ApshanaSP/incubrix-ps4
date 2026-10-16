@@ -12,6 +12,8 @@ $env:PORT = "$Port"
 # download links, feed URLs and evidence links must point at this port
 if (-not $env:PUBLIC_BASE_URL) { $env:PUBLIC_BASE_URL = "http://localhost:$Port" }
 $env:PYTHONDONTWRITEBYTECODE = "1"
+# use the Windows certificate store, so HTTPS checks work behind antivirus that re-signs HTTPS (Avast and others)
+if (-not $env:USE_SYSTEM_CERTS) { $env:USE_SYSTEM_CERTS = "true" }
 # keep pip's cache next to the project instead of on C:
 $env:PIP_CACHE_DIR = Join-Path $PSScriptRoot ".pip-cache"
 

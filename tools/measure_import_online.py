@@ -16,6 +16,7 @@ import csv
 import io
 import json
 import os
+import threading
 import time
 from pathlib import Path
 
@@ -25,18 +26,44 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def run_import(c: httpx.Client, name: str, data: bytes) -> dict:
+    """Runs one import job; meanwhile /health is called every 0.5 s to show the API stays responsive."""
+    lags: list[float] = []
+    stop = threading.Event()
+
+    def ping() -> None:
+        with httpx.Client(base_url=str(c.base_url), headers=c.headers, timeout=60) as p:
+            while not stop.is_set():
+                t = time.time()
+                try:
+                    p.get("/health")
+                    lags.append(time.time() - t)
+                except httpx.HTTPError:
+                    lags.append(60.0)
+                stop.wait(0.5)
+
+    pinger = threading.Thread(target=ping, daemon=True)
+    pinger.start()
     t0 = time.time()
     r = c.post("/api/v1/catalogue/imports/upload", files={"file": (name, data, "text/csv")}, data={"commit": "false"},
                headers={"Idempotency-Key": f"measure-{name}-{time.time()}"})
     r.raise_for_status()
     job_id = r.json()["job_id"]
     while True:
-        job = c.get(f"/api/v1/jobs/{job_id}").json()
+        try:
+            job = c.get(f"/api/v1/jobs/{job_id}").json()
+        except httpx.TransportError:
+            time.sleep(1)
+            continue
         if job["status"] in ("succeeded", "failed"):
             break
         time.sleep(1)
+    stop.set()
+    pinger.join(5)
     res = job.get("result") or {}
+    lags.sort()
     return {"file": name, "status": job["status"], "seconds": round(time.time() - t0, 1),
+            "health_during_import": {"calls": len(lags), "max_s": round(lags[-1], 3) if lags else None,
+                                     "p95_s": round(lags[int(0.95 * (len(lags) - 1))], 3) if lags else None},
             **{k: v for k, v in res.items() if k not in ("rows", "manifest")}}
 
 

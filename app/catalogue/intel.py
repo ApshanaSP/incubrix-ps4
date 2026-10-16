@@ -63,15 +63,20 @@ async def fetch_page_text(url: str, max_chars: int = 12000) -> tuple[str, str]:
 _robots_cache: dict[str, urllib.robotparser.RobotFileParser | None] = {}
 
 
-async def robots_allows(url: str) -> bool:
+async def robots_allows(url: str, client: httpx.AsyncClient | None = None) -> bool:
+    """Whether robots.txt lets our user agent fetch this URL. Pass the caller's client when checking many
+    hosts: a new client per host builds a new TLS context each time, which is slow and blocks the event loop."""
     parts = urlsplit(url)
     root = f"{parts.scheme}://{parts.netloc}"
     if root not in _robots_cache:
         rp = urllib.robotparser.RobotFileParser()
         try:
-            async with httpx.AsyncClient(timeout=8, follow_redirects=True,
-                                         headers={"User-Agent": get_settings().user_agent}) as client:
+            if client is not None:
                 resp = await client.get(root + "/robots.txt")
+            else:
+                async with httpx.AsyncClient(timeout=8, follow_redirects=True,
+                                             headers={"User-Agent": get_settings().user_agent}) as own:
+                    resp = await own.get(root + "/robots.txt")
             if resp.status_code == 200:
                 rp.parse(resp.text.splitlines())
                 _robots_cache[root] = rp

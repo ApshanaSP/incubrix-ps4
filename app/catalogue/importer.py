@@ -172,7 +172,7 @@ async def check_reachability(client: httpx.AsyncClient, url: str) -> dict[str, A
     target, transport_client = url, client
     if _mock_host(url):
         return {"reachable": True, "http_status": 200, "note": "simulated host", "title": "", "description": ""}
-    if not await intel.robots_allows(url):
+    if not await intel.robots_allows(url, client):
         return {"reachable": None, "note": "not checked: the site's robots.txt disallows automated access"}
     t0 = time.monotonic()
     try:
@@ -282,6 +282,7 @@ async def import_catalogue(data: bytes, *, source: str, progress=lambda p: None,
                     data_row["audience_tags"] = rel["audience_tags"]
             done["n"] += 1
             progress(10 + int(80 * done["n"] / max(1, len(candidates))))
+            await asyncio.sleep(0)  # let waiting API requests run between rows
 
         await asyncio.gather(*(work(idx, d, w) for idx, d, w in candidates))
 

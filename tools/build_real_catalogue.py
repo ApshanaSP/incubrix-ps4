@@ -90,7 +90,7 @@ async def lemmy_info(client: httpx.AsyncClient, url: str, community: str) -> dic
 
 async def discourse_members(client: httpx.AsyncClient, url: str) -> int | None:
     about = url.rstrip("/") + "/about.json"
-    if not await robots_allows(about):
+    if not await robots_allows(about, client):
         return None
     try:
         r = await client.get(about)
@@ -117,7 +117,7 @@ async def gather_row(client: httpx.AsyncClient, row: dict[str, str]) -> dict[str
                 if li.get("posting_restricted"):
                     info["rules_text"] += "\nOnly moderators may post in this community."
             return info
-        if not await robots_allows(url):
+        if not await robots_allows(url, client):
             info["reachable"] = "not checked: robots.txt disallows"
         else:
             r = await client.get(url)

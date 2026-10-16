@@ -9,3 +9,4 @@ cryptography==45.0.5
 boto3==1.43.108
 beautifulsoup4==4.13.4
 langdetect==1.0.9
+truststore==0.10.4
