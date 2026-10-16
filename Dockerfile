@@ -13,7 +13,7 @@ COPY tools ./tools
 COPY tests ./tests
 COPY batch_inputs ./batch_inputs
 COPY catalogue ./catalogue
-COPY pytest.ini ./
+COPY pytest.ini openapi.yaml ./
 
 RUN useradd --create-home --uid 10001 app && mkdir -p /data && chown app /data
 USER app

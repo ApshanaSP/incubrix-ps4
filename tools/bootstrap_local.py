@@ -92,7 +92,8 @@ def setup_ghost() -> str:
             integ = r.json()["integrations"][0]
             say("created the Ghost IncuBrix integration")
         key = next(k for k in integ["api_keys"] if k["type"] == "admin")
-        return f"{key['id']}:{key['secret']}"
+        # some Ghost versions return the full "<id>:<secret>" in secret
+        return key["secret"] if ":" in key["secret"] else f"{key['id']}:{key['secret']}"
 
 
 # ---------------------------------------------------------------- register in the api

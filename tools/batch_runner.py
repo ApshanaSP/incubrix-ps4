@@ -92,7 +92,13 @@ def run_case(client: httpx.Client, name: str, case: dict[str, Any], timeout: flo
     started = time.time()
     ok = True
     for i, step in enumerate(case.get("steps", [case])):
-        step = fill(step, ctx)
+        try:
+            step = fill(step, ctx)
+        except (KeyError, IndexError, TypeError, ValueError) as exc:
+            # an earlier step did not return what this one needs: record it and stop this input
+            steps_out.append({"step": i + 1, "error": f"cannot fill placeholders from earlier steps: {exc!r}"})
+            ok = False
+            break
         if step.get("sleep"):
             time.sleep(float(step["sleep"]))
             continue

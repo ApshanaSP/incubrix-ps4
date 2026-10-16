@@ -37,6 +37,7 @@ ROOT = Path(__file__).resolve().parent.parent / "catalogue"
 SEED = ROOT / "research_seed.csv"
 OUT_CSV = ROOT / "real_catalogue.csv"
 OUT_EVIDENCE = ROOT / "real_catalogue_evidence.json"
+CACHE = ROOT / ".ai_cache.json"
 
 CONSERVATIVE = {"frequency_cap": "1/30d", "self_promo_allowed": "no", "link_policy": "one_link;no_shorteners",
                 "disclosure_required": True, "automation_allowed": False}
@@ -118,7 +119,13 @@ async def gather_row(client: httpx.AsyncClient, row: dict[str, str]) -> dict[str
             info["reachable"] = "not checked: robots.txt disallows"
         else:
             r = await client.get(url)
-            info["reachable"] = "yes" if r.status_code < 400 else f"no: HTTP {r.status_code}"
+            if r.status_code < 400:
+                info["reachable"] = "yes"
+            elif r.status_code in (401, 403, 429, 503):
+                # the site answers but blocks automated clients (bot protection); it exists
+                info["reachable"] = f"blocked for bots: HTTP {r.status_code}"
+            else:
+                info["reachable"] = f"no: HTTP {r.status_code}"
         if row["platform_key"] == "discourse":
             info["members"] = await discourse_members(client, url)
         rules_url = row.get("rules_url")
@@ -190,15 +197,22 @@ async def main() -> int:
     print(f"fetched {len(infos)} rows in {time.time() - started:.0f}s; asking {provider.name}/{provider.model}", flush=True)
     rows_out, evidence = [], {}
     ai_sem = asyncio.Semaphore(2)
+    cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
 
     async def judge(info):
+        key = f"{info['row']['name']}|{len(info['rules_text'])}"
+        if key in cache and not cache[key].get("ai_error"):
+            return info, cache[key]
         async with ai_sem:
-            return info, await assess(provider, info)
+            res = await assess(provider, info)
+        cache[key] = res
+        CACHE.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+        return info, res
 
     results = await asyncio.gather(*(judge(i) for i in infos))
     for info, ai in results:
         r = info["row"]
-        if str(info["reachable"]).startswith("no"):
+        if str(info["reachable"]).startswith("no:"):
             print(f"  skip (unreachable): {r['name']} - {info['reachable']}")
             continue
         rules = {"frequency_cap": clean(ai.get("frequency_cap"), "freq"),

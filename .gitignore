@@ -6,3 +6,4 @@ data/
 *.sqlite3*
 outputs/batch-*/
 .venv/
+catalogue/.ai_cache.json

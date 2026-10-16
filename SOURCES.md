@@ -29,7 +29,7 @@ Everything in the default path, and everything it outputs, may be used commercia
 | dessalines/lemmy 0.19.5, dessalines/lemmy-ui 0.19.5 | AGPL-3.0 | local Lemmy test instance (separate process, reached over HTTP) |
 | postgres:16-alpine | PostgreSQL Licence | Lemmy's database |
 | ghost:5-alpine | MIT | local Ghost test instance |
-| minio/minio | AGPL-3.0 | local S3-compatible storage for development. Production points `S3_ENDPOINT` at any S3 service (for example AWS S3). |
+| chrislusf/seaweedfs | Apache-2.0 | local S3-compatible storage for development (MinIO no longer publishes Docker Hub images). Production points `S3_ENDPOINT` at any S3 service, for example AWS S3. |
 
 ## AI models and APIs
 

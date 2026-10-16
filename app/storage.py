@@ -1,6 +1,6 @@
 """Files out (Integration Standard point 7).
 
-Outputs go to S3-compatible storage (MinIO in the compose file) and come back
+Outputs go to S3-compatible storage (SeaweedFS in the compose file, or AWS S3) and come back
 as presigned download links. Without S3_ENDPOINT, files are written under
 DATA_DIR/files and served by the API through HMAC-signed links, so the service
 also runs with no external storage.

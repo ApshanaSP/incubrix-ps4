@@ -35,7 +35,7 @@ flowchart LR
   J --> CA["catalogue import, AI rules capture, relevance"]
   CA --> AI["AI adapters: mock / Groq / Gemini"]
   P & CE & CA --> DB[("SQLite: catalogue, posts ledger, jobs, evidence index")]
-  J --> S3[("S3 / MinIO: evidence, reports, packs, feeds, manifests")]
+  J --> S3[("S3-compatible storage: evidence, reports, packs, feeds, manifests")]
 ```
 
 A request travels like this: `POST /api/v1/publications` → the middleware stores the Idempotency-Key → a job tailors the content for each destination (`app/tailoring.py`) → `app/publisher.py` checks the ledger, certification, connection, format limits and rules (`app/rules.py`), writes the attempt as `in_flight`, then calls the connector (`app/connectors/*.py`) through `app/connectors/http.py` → the result, its manifest and a download link come back on `GET /api/v1/jobs/{id}`.
@@ -59,7 +59,7 @@ With Docker:
 ```bash
 git clone <repo-url> incubrix-ps4 && cd incubrix-ps4
 cp .env.example .env              # optional; works without it
-docker compose up --build         # api :8080, Lemmy UI :1236, Ghost :2368, MinIO console :9001
+docker compose up --build         # api :8080, Lemmy UI :1236, Ghost :2368, S3 (SeaweedFS) :8333
 ```
 
 The `bootstrap` container creates the Lemmy community and the Ghost integration, registers both and certifies every destination. Its log ends with one PASS or FAIL line per destination.

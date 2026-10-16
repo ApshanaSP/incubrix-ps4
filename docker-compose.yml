@@ -1,9 +1,10 @@
 # docker compose up
+# (MinIO no longer publishes Docker Hub images; SeaweedFS provides the same S3 API, Apache-2.0.)
 #   api        the IncuBrix long-tail service            http://localhost:8080/docs
 #   mocks      mock Discourse, Dev.to, webhook partner, Hashnode, Slack (no real accounts)
 #   lemmy      a real local Lemmy 0.19 (+ lemmy-ui, + Postgres) http://localhost:1236
 #   ghost      a real local Ghost 5                       http://localhost:2368
-#   minio      S3-compatible storage for outputs          http://localhost:9001 (console)
+#   s3         S3-compatible storage for outputs (SeaweedFS S3 gateway) http://localhost:8333
 #   bootstrap  one-shot: creates the Lemmy community and the Ghost integration, registers both as
 #              destinations in the api and certifies every destination
 # Run all tests (no keys):  docker compose run --rm api python -m pytest
@@ -20,13 +21,15 @@ x-app: &app
     SIMULATION_MODE: ${SIMULATION_MODE:-false}
     SEED_DEMO: "true"
     MOCK_BASE_URL: http://mocks:9000
-    S3_ENDPOINT: http://minio:9000
-    S3_PUBLIC_ENDPOINT: ${S3_PUBLIC_ENDPOINT:-http://localhost:9000}
+    S3_ENDPOINT: http://s3:8333
+    S3_PUBLIC_ENDPOINT: ${S3_PUBLIC_ENDPOINT:-http://localhost:8333}
     S3_BUCKET: incubrix-longtail
-    S3_ACCESS_KEY: ${MINIO_ROOT_USER:-incubrix}
-    S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-incubrix-local-only}
+    S3_ACCESS_KEY: ${S3_ACCESS_KEY:-incubrix}
+    S3_SECRET_KEY: ${S3_SECRET_KEY:-incubrix-local-only}
     SECRET_KEY: ${SECRET_KEY:-change-me-local-only}
     AI_PROVIDER: ${AI_PROVIDER:-mock}
+    RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-1200}
+    API_TOKEN: ${API_TOKEN:-}
 
 services:
   api:
@@ -35,7 +38,7 @@ services:
     volumes: ["api-data:/data"]
     depends_on:
       mocks: {condition: service_healthy}
-      minio: {condition: service_healthy}
+      s3: {condition: service_healthy}
 
   mocks:
     <<: *app
@@ -49,18 +52,15 @@ services:
       interval: 5s
       retries: 20
 
-  minio:
-    image: minio/minio:latest
-    command: ["server", "/data", "--console-address", ":9001"]
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-incubrix}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-incubrix-local-only}
-    ports: ["9000:9000", "9001:9001"]
-    volumes: ["minio-data:/data"]
+  s3:
+    image: chrislusf/seaweedfs:latest
+    command: ["server", "-dir=/data", "-s3", "-s3.port=8333", "-master.volumeSizeLimitMB=256", "-volume.max=8"]
+    ports: ["8333:8333"]
+    volumes: ["s3-data:/data"]
     healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:9333/cluster/status || exit 1"]
       interval: 5s
-      retries: 20
+      retries: 30
 
   lemmy-db:
     image: postgres:16-alpine
@@ -104,6 +104,8 @@ services:
       mail__options__host: localhost
       privacy__useUpdateCheck: "false"
       privacy__useGravatar: "false"
+      # no mail server locally, so skip emailed new-device codes for staff logins
+      security__staffDeviceVerification: "false"
     ports: ["2368:2368"]
     volumes: ["ghost-content:/var/lib/ghost/content"]
 
@@ -118,7 +120,7 @@ services:
       LEMMY_ADMIN_PASSWORD: local-lemmy-admin-only
       GHOST_URL: http://ghost:2368
       GHOST_ADMIN_EMAIL: ${GHOST_ADMIN_EMAIL:-admin@incubrix.local}
-      GHOST_ADMIN_PASSWORD: ${GHOST_ADMIN_PASSWORD:-local-ghost-admin-only-1}
+      GHOST_ADMIN_PASSWORD: ${GHOST_ADMIN_PASSWORD:-Ibx7-qRm2-Wz9k-Lp4v-local}
     restart: "no"
     depends_on:
       api: {condition: service_healthy}
@@ -127,6 +129,6 @@ services:
 
 volumes:
   api-data:
-  minio-data:
+  s3-data:
   lemmy-db:
   ghost-content:
