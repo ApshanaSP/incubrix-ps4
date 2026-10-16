@@ -1,0 +1,684 @@
+{
+  "description": "Writes catalogue/rule_test_set.json: labelled cases for measuring rule safety.",
+  "cases": [
+    {
+      "id": "freq_1_7d_1",
+      "why": "cap 1/7d with 1 earlier post(s)",
+      "destination": {
+        "frequency_cap": "1/7d"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "freq_1_7d_0",
+      "why": "cap 1/7d with 0 earlier post(s)",
+      "destination": {
+        "frequency_cap": "1/7d"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "freq_2_7d_1",
+      "why": "cap 2/7d with 1 earlier post(s)",
+      "destination": {
+        "frequency_cap": "2/7d"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": false
+    },
+    {
+      "id": "freq_2_7d_2",
+      "why": "cap 2/7d with 2 earlier post(s)",
+      "destination": {
+        "frequency_cap": "2/7d"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        },
+        {
+          "title": "Earlier post number 1 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "freq_1_day_1",
+      "why": "cap 1/day with 1 earlier post(s)",
+      "destination": {
+        "frequency_cap": "1/day"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "freq_3_30d_2",
+      "why": "cap 3/30d with 2 earlier post(s)",
+      "destination": {
+        "frequency_cap": "3/30d"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        },
+        {
+          "title": "Earlier post number 1 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": false
+    },
+    {
+      "id": "freq_3_30d_3",
+      "why": "cap 3/30d with 3 earlier post(s)",
+      "destination": {
+        "frequency_cap": "3/30d"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        },
+        {
+          "title": "Earlier post number 1 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        },
+        {
+          "title": "Earlier post number 2 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "freq_1_week_1",
+      "why": "cap 1/week with 1 earlier post(s)",
+      "destination": {
+        "frequency_cap": "1/week"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [
+        {
+          "title": "Earlier post number 0 about video editing",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_flag_no",
+      "why": "promotional flag to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "Our launch announcement this week",
+        "body": "A body with enough words to be a real post.",
+        "promotional": true
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_flag_yes",
+      "why": "promotional flag where promotion is allowed",
+      "destination": {
+        "self_promo_allowed": "yes"
+      },
+      "content": {
+        "title": "Our launch announcement this week",
+        "body": "A body with enough words to be a real post.",
+        "promotional": true
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_neutral_no",
+      "why": "non-promotional post to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": false
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_text_0",
+      "why": "call to action 'Sign up today and get 30% off' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Sign up today and get 30% off. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_1",
+      "why": "call to action 'Start your free trial now' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Start your free trial now. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_2",
+      "why": "call to action 'Use code CREATOR20 at checkout' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Use code CREATOR20 at checkout. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_3",
+      "why": "call to action 'Book a demo with our team' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Book a demo with our team. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_4",
+      "why": "call to action 'Check out our new tool for editors' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Check out our new tool for editors. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_5",
+      "why": "call to action 'Join our waitlist for early access' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Join our waitlist for early access. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_6",
+      "why": "call to action 'Buy now while the discount lasts' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Buy now while the discount lasts. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_text_7",
+      "why": "call to action 'Upgrade now to unlock everything' to a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A post about our video tool",
+        "body": "Upgrade now to unlock everything. More inside."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_own_link_no",
+      "why": "link to incubrix.com in a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A walkthrough of caption timing",
+        "body": "Details at https://incubrix.com/blog/captions"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_other_link_no",
+      "why": "link to a neutral site in a no-promotion community",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "A walkthrough of caption timing",
+        "body": "Background reading: https://en.wikipedia.org/wiki/Closed_captioning"
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_limited_first",
+      "why": "first promotional post where promotion is limited",
+      "destination": {
+        "self_promo_allowed": "limited"
+      },
+      "content": {
+        "title": "Our launch announcement this week",
+        "body": "A body with enough words to be a real post.",
+        "promotional": true
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_limited_second",
+      "why": "second promotional post inside the limited window",
+      "destination": {
+        "self_promo_allowed": "limited"
+      },
+      "content": {
+        "title": "Another launch announcement here",
+        "body": "A body with enough words to be a real post.",
+        "promotional": true
+      },
+      "prior_posts": [
+        {
+          "title": "Our launch announcement last week",
+          "body": "A body with enough words to be a real post.",
+          "promotional": true
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "links_none_with_link",
+      "why": "link where links are banned",
+      "destination": {
+        "link_policy": "none"
+      },
+      "content": {
+        "title": "Five editing tips we use daily",
+        "body": "See https://example.org/tips for the list."
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_none_without",
+      "why": "no link where links are banned",
+      "destination": {
+        "link_policy": "none"
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "links_one_two",
+      "why": "two links where one is allowed",
+      "destination": {
+        "link_policy": "one_link"
+      },
+      "content": {
+        "title": "Two resources on caption timing",
+        "body": "https://example.org/a and https://example.net/b"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_one_one",
+      "why": "one link where one is allowed",
+      "destination": {
+        "link_policy": "one_link"
+      },
+      "content": {
+        "title": "One resource on caption timing",
+        "body": "https://example.org/a"
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "links_short_bit.ly",
+      "why": "shortener bit.ly where shorteners are banned",
+      "destination": {
+        "link_policy": "no_shorteners"
+      },
+      "content": {
+        "title": "A useful guide for editors here",
+        "body": "Read it: https://bit.ly/3xYz"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_short_tinyurl.com",
+      "why": "shortener tinyurl.com where shorteners are banned",
+      "destination": {
+        "link_policy": "no_shorteners"
+      },
+      "content": {
+        "title": "A useful guide for editors here",
+        "body": "Read it: https://tinyurl.com/abc123"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_short_t.co",
+      "why": "shortener t.co where shorteners are banned",
+      "destination": {
+        "link_policy": "no_shorteners"
+      },
+      "content": {
+        "title": "A useful guide for editors here",
+        "body": "Read it: https://t.co/xyz"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_short_buff.ly",
+      "why": "shortener buff.ly where shorteners are banned",
+      "destination": {
+        "link_policy": "no_shorteners"
+      },
+      "content": {
+        "title": "A useful guide for editors here",
+        "body": "Read it: https://buff.ly/9q"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_short_full_url",
+      "why": "full URL where shorteners are banned",
+      "destination": {
+        "link_policy": "no_shorteners"
+      },
+      "content": {
+        "title": "A useful guide for editors here",
+        "body": "Read it: https://example.org/guide"
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "links_allowlist_bad",
+      "why": "link outside the allowlist",
+      "destination": {
+        "link_policy": "allowlist:github.com"
+      },
+      "content": {
+        "title": "Our open-source caption aligner",
+        "body": "Code: https://gitlab.com/x/y"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "links_allowlist_ok",
+      "why": "link inside the allowlist",
+      "destination": {
+        "link_policy": "allowlist:github.com"
+      },
+      "content": {
+        "title": "Our open-source caption aligner",
+        "body": "Code: https://github.com/x/y"
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "links_link_field",
+      "why": "link given in the link field where links are banned",
+      "destination": {
+        "link_policy": "none"
+      },
+      "content": {
+        "title": "Five editing tips we use daily",
+        "body": "No link in the text.",
+        "link": "https://example.org/tips"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "ai_disclosure_required",
+      "why": "AI-generated post where disclosure is required (tailoring adds the label)",
+      "destination": {
+        "disclosure_required": true
+      },
+      "content": {
+        "title": "Five AI editing tips",
+        "body": "A body with enough words to be a real post.",
+        "ai_generated": true
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "ai_disclosure_not_required",
+      "why": "AI-generated post where disclosure is not required",
+      "destination": {
+        "disclosure_required": false
+      },
+      "content": {
+        "title": "Five AI editing tips",
+        "body": "A body with enough words to be a real post.",
+        "ai_generated": true
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "automation_banned",
+      "why": "native posting where automation is banned",
+      "destination": {
+        "automation_allowed": false
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "automation_allowed",
+      "why": "native posting where automation is allowed",
+      "destination": {
+        "automation_allowed": true
+      },
+      "content": {
+        "title": "What we learned testing three caption workflows",
+        "body": "We compared three ways to caption short videos and timed each one.",
+        "promotional": null
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "lang_strict_mismatch",
+      "why": "English post to a strict Tamil community",
+      "destination": {
+        "language": "ta",
+        "config": {
+          "language_strict": true
+        }
+      },
+      "content": {
+        "title": "English title here please",
+        "body": "A body with enough words to be a real post.",
+        "language": "en"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "lang_strict_match",
+      "why": "Tamil post to a strict Tamil community",
+      "destination": {
+        "language": "ta",
+        "config": {
+          "language_strict": true
+        }
+      },
+      "content": {
+        "title": "வீடியோ எடிட்டிங் குறிப்புகள் ஐந்து",
+        "body": "தமிழ் உரை இங்கே உள்ளது.",
+        "language": "ta"
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "lang_loose_mismatch",
+      "why": "English post to a German community that accepts English (warning only)",
+      "destination": {
+        "language": "de"
+      },
+      "content": {
+        "title": "English title here please",
+        "body": "A body with enough words to be a real post.",
+        "language": "en"
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "combo_cap_and_promo",
+      "why": "promotional post to a capped no-promotion community with an earlier post",
+      "destination": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "Try our free trial today",
+        "body": "A body with enough words to be a real post.",
+        "promotional": true
+      },
+      "prior_posts": [
+        {
+          "title": "An earlier neutral post here",
+          "body": "A body with enough words to be a real post.",
+          "promotional": false
+        }
+      ],
+      "expect_violation": true
+    },
+    {
+      "id": "combo_all_ok",
+      "why": "neutral post with one full link to a strict community",
+      "destination": {
+        "frequency_cap": "1/7d",
+        "self_promo_allowed": "no",
+        "link_policy": "one_link;no_shorteners"
+      },
+      "content": {
+        "title": "How we time captions for short videos",
+        "body": "Method: https://example.org/method",
+        "promotional": false
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+name,url,platform_key,connector_key,category,audience_tags,language,rules_url,community,notes
+OpenAI Developer Community,https://community.openai.com,discourse,discourse,forum,ai;saas,en,https://community.openai.com/guidelines,,Developers building on OpenAI APIs
+Hugging Face Forums,https://discuss.huggingface.co,discourse,discourse,forum,ai,en,https://discuss.huggingface.co/guidelines,,ML practitioners and model builders
+Google AI Developers Forum,https://discuss.ai.google.dev,discourse,discourse,forum,ai;saas,en,https://discuss.ai.google.dev/guidelines,,Gemini API developers
+DeepLearning.AI Community,https://community.deeplearning.ai,discourse,discourse,forum,ai,en,https://community.deeplearning.ai/guidelines,,AI learners
+Cursor Community Forum,https://forum.cursor.com,discourse,discourse,forum,ai;saas,en,https://forum.cursor.com/guidelines,,AI coding tool users
+n8n Community,https://community.n8n.io,discourse,discourse,forum,ai;saas;founders,en,https://community.n8n.io/guidelines,,Automation builders
+Streamlit Community,https://discuss.streamlit.io,discourse,discourse,forum,ai;saas,en,https://discuss.streamlit.io/guidelines,,Data and AI app builders
+PyTorch Forums,https://discuss.pytorch.org,discourse,discourse,forum,ai,en,https://discuss.pytorch.org/guidelines,,Deep learning practitioners
+fast.ai Forums,https://forums.fast.ai,discourse,discourse,forum,ai,en,https://forums.fast.ai/guidelines,,Practical deep learning community
+Weights & Biases Community,https://community.wandb.ai,discourse,discourse,forum,ai,en,https://community.wandb.ai/guidelines,,ML ops users
+Figma Forum,https://forum.figma.com,discourse,discourse,forum,saas;creators,en,https://forum.figma.com/guidelines,,Designers
+Bubble Forum,https://forum.bubble.io,discourse,discourse,forum,saas;founders,en,https://forum.bubble.io/guidelines,,No-code founders
+Retool Community,https://community.retool.com,discourse,discourse,forum,saas,en,https://community.retool.com/guidelines,,Internal tool builders
+Make Community,https://community.make.com,discourse,discourse,forum,saas;marketing,en,https://community.make.com/guidelines,,Automation and marketing ops
+FlutterFlow Community,https://community.flutterflow.io,discourse,discourse,forum,saas;founders,en,https://community.flutterflow.io/guidelines,,No-code app founders
+Softr Community,https://community.softr.io,discourse,discourse,forum,saas;founders,en,https://community.softr.io/guidelines,,No-code founders
+Adalo Forum,https://forum.adalo.com,discourse,discourse,forum,saas;founders,en,https://forum.adalo.com/guidelines,,No-code app makers
+Ghost Forum,https://forum.ghost.org,discourse,discourse,forum,creators;marketing,en,https://forum.ghost.org/guidelines,,Publishers and newsletter creators
+Blender Artists,https://blenderartists.org,discourse,discourse,forum,video;creators,en,https://blenderartists.org/guidelines,,3D and animation creators
+Shotcut Forum,https://forum.shotcut.org,discourse,discourse,forum,video;creators,en,https://forum.shotcut.org/guidelines,,Video editors (open-source editor)
+KDE Discuss (Kdenlive),https://discuss.kde.org,discourse,discourse,forum,video;creators,en,https://discuss.kde.org/guidelines,,Kdenlive video editing users
+Krita Artists,https://krita-artists.org,discourse,discourse,forum,creators,en,https://krita-artists.org/guidelines,,Digital artists
+Penpot Community,https://community.penpot.app,discourse,discourse,forum,saas;creators,en,https://community.penpot.app/guidelines,,Open-source design tool users
+freeCodeCamp Forum,https://forum.freecodecamp.org,discourse,discourse,forum,saas;creators,en,https://forum.freecodecamp.org/guidelines,,Learners building projects
+Fly.io Community,https://community.fly.io,discourse,discourse,forum,saas,en,https://community.fly.io/guidelines,,Developers shipping apps
+Render Community,https://community.render.com,discourse,discourse,forum,saas,en,https://community.render.com/guidelines,,Developers shipping apps
+Vercel Community,https://community.vercel.com,discourse,discourse,forum,saas;ai,en,https://community.vercel.com/guidelines,,Web and AI app developers
+Cloudflare Community,https://community.cloudflare.com,discourse,discourse,forum,saas,en,https://community.cloudflare.com/guidelines,,Developers and site owners
+Unity Discussions,https://discussions.unity.com,discourse,discourse,forum,video;creators,en,https://discussions.unity.com/guidelines,,Real-time 3D creators
+Pixls.us,https://discuss.pixls.us,discourse,discourse,forum,creators,en,https://discuss.pixls.us/guidelines,,Photographers using open tools
+Descript Community,https://community.descript.com,discourse,discourse,forum,video;creators;ai,en,https://community.descript.com/guidelines,,AI video and podcast editing users
+Obsidian Forum,https://forum.obsidian.md,discourse,discourse,forum,creators,en,https://forum.obsidian.md/guidelines,,Writers and knowledge creators
+Lemmy.world c/technology,https://lemmy.world/c/technology,lemmy,lemmy,community,ai;saas,en,,technology,Largest Lemmy tech community
+Lemmy.world c/youtube,https://lemmy.world/c/youtube,lemmy,lemmy,community,video;creators,en,,youtube,
+Lemmy.world c/videos,https://lemmy.world/c/videos,lemmy,lemmy,community,video,en,,videos,
+Lemmy.world c/marketing,https://lemmy.world/c/marketing,lemmy,lemmy,community,marketing,en,,marketing,
+Lemmy.world c/startups,https://lemmy.world/c/startups,lemmy,lemmy,community,founders;saas,en,,startups,
+Lemmy.world c/artificial_intel,https://lemmy.world/c/artificial_intel,lemmy,lemmy,community,ai,en,,artificial_intel,
+Lemmy.ml c/technology,https://lemmy.ml/c/technology,lemmy,lemmy,community,ai;saas,en,,technology,
+Lemmy.ml c/machinelearning,https://lemmy.ml/c/machinelearning,lemmy,lemmy,community,ai,en,,machinelearning,
+programming.dev c/programming,https://programming.dev/c/programming,lemmy,lemmy,community,saas;ai,en,,programming,
+programming.dev c/machine_learning,https://programming.dev/c/machine_learning,lemmy,lemmy,community,ai,en,,machine_learning,
+programming.dev c/webdev,https://programming.dev/c/webdev,lemmy,lemmy,community,saas,en,,webdev,
+lemmy.dbzer0.com c/stable_diffusion,https://lemmy.dbzer0.com/c/stable_diffusion,lemmy,lemmy,community,ai;creators,en,,stable_diffusion,AI art community
+sh.itjust.works c/technology,https://sh.itjust.works/c/technology,lemmy,lemmy,community,ai;saas,en,,technology,
+feddit.org c/technik,https://feddit.org/c/technik,lemmy,lemmy,community,ai;saas,de,,technik,German tech community
+feddit.org c/kuenstliche_intelligenz,https://feddit.org/c/kuenstliche_intelligenz,lemmy,lemmy,community,ai,de,,kuenstliche_intelligenz,German AI community
+Dev.to #ai,https://dev.to/t/ai,devto,devto,developer_blog,ai,en,https://dev.to/code-of-conduct,,Posting via IncuBrix's Dev.to account with tag ai
+Dev.to #machinelearning,https://dev.to/t/machinelearning,devto,devto,developer_blog,ai,en,https://dev.to/code-of-conduct,,Tag machinelearning
+Dev.to #saas,https://dev.to/t/saas,devto,devto,developer_blog,saas;founders,en,https://dev.to/code-of-conduct,,Tag saas
+Dev.to #startup,https://dev.to/t/startup,devto,devto,developer_blog,founders,en,https://dev.to/code-of-conduct,,Tag startup
+Dev.to #productivity,https://dev.to/t/productivity,devto,devto,developer_blog,creators;saas,en,https://dev.to/code-of-conduct,,Tag productivity
+Dev.to #marketing,https://dev.to/t/marketing,devto,devto,developer_blog,marketing,en,https://dev.to/code-of-conduct,,Tag marketing
+CodeNewbie Community (Forem),https://community.codenewbie.org,forem,devto,developer_blog,creators;saas,en,https://community.codenewbie.org/code-of-conduct,,Forem instance
+Hashnode AI tag,https://hashnode.com/n/ai,hashnode,hashnode,developer_blog,ai,en,https://hashnode.com/terms,,Via IncuBrix's Hashnode publication with tag ai
+Hashnode SaaS tag,https://hashnode.com/n/saas,hashnode,hashnode,developer_blog,saas;founders,en,https://hashnode.com/terms,,Tag saas
+Hashnode startups tag,https://hashnode.com/n/startups,hashnode,hashnode,developer_blog,founders,en,https://hashnode.com/terms,,Tag startups
+Towards AI (Medium),https://pub.towardsai.net,medium,assisted,publication,ai,en,https://pub.towardsai.net/submit-your-story-to-towards-ai-bae5a2a43e1b,,Medium publication; submission by a person
+The Startup (Medium),https://medium.com/swlh,medium,assisted,publication,founders;saas,en,https://medium.com/swlh,,Medium publication
+UX Collective,https://uxdesign.cc,medium,assisted,publication,saas;creators,en,https://uxdesign.cc,,Medium publication
+Level Up Coding,https://levelup.gitconnected.com,medium,assisted,publication,saas;ai,en,https://levelup.gitconnected.com,,Medium publication
+Entrepreneur's Handbook,https://medium.com/entrepreneurs-handbook,medium,assisted,publication,founders,en,https://medium.com/entrepreneurs-handbook,,Medium publication
+Better Marketing,https://bettermarketing.pub,medium,assisted,publication,marketing,en,https://bettermarketing.pub,,Medium publication
+Generative AI publication,https://generativeai.pub,medium,assisted,publication,ai;creators,en,https://generativeai.pub,,Medium publication
+Hacker News,https://news.ycombinator.com,hackernews,assisted,news_aggregator,founders;saas;ai,en,https://news.ycombinator.com/newsguidelines.html,,Automated posting not allowed
+Product Hunt,https://www.producthunt.com,producthunt,assisted,launch,founders;saas;ai,en,https://help.producthunt.com/en/articles/479557-how-to-post-a-product,,Launch platform
+Indie Hackers,https://www.indiehackers.com,indiehackers,assisted,community,founders;saas,en,https://www.indiehackers.com/guidelines,,Founder community
+BetaList,https://betalist.com,betalist,assisted,launch,founders;saas,en,https://betalist.com/submit,,Startup launch list
+Lobsters,https://lobste.rs,lobsters,assisted,news_aggregator,saas;ai,en,https://lobste.rs/about,,Invite-only; strict self-promotion rules
+SaaSHub,https://www.saashub.com,directory,assisted,directory,saas;founders,en,https://www.saashub.com/submit,,Software alternatives directory
+AlternativeTo,https://alternativeto.net,directory,assisted,directory,saas,en,https://alternativeto.net/faq/,,Software alternatives directory
+There's An AI For That,https://theresanaiforthat.com,directory,assisted,directory,ai;creators,en,https://theresanaiforthat.com/submit/,,AI tools directory
+Futurepedia,https://www.futurepedia.io,directory,assisted,directory,ai;creators,en,https://www.futurepedia.io/submit-tool,,AI tools directory
+Future Tools,https://www.futuretools.io,directory,assisted,directory,ai;creators,en,https://www.futuretools.io/submit-a-tool,,AI tools directory
+Toolify,https://www.toolify.ai,directory,assisted,directory,ai,en,https://www.toolify.ai/submit,,AI tools directory
+TopAI.tools,https://topai.tools,directory,assisted,directory,ai,en,https://topai.tools/submit,,AI tools directory
+Video Production Stack Exchange,https://video.stackexchange.com,stackexchange,assisted,qa,video;creators,en,https://video.stackexchange.com/help/promotion,,Q&A; answers only; strict promotion rules
+Artificial Intelligence Stack Exchange,https://ai.stackexchange.com,stackexchange,assisted,qa,ai,en,https://ai.stackexchange.com/help/promotion,,Q&A
+Creative COW,https://creativecow.net,forum,assisted,forum,video;creators,en,https://creativecow.net/terms-of-service/,,Video professionals forum
+VideoHelp Forum,https://forum.videohelp.com,forum,assisted,forum,video,en,https://forum.videohelp.com/faq.php,,Video encoding and editing
+Adobe Community Premiere Pro,https://community.adobe.com/t5/premiere-pro/ct-p/ct-premiere-pro,forum,assisted,forum,video;creators,en,https://community.adobe.com/t5/using-the-community/community-guidelines/ba-p/12224451,,Premiere Pro users
+OBS Forums,https://obsproject.com/forum/,forum,assisted,forum,video;creators,en,https://obsproject.com/forum/help/terms/,,Streamers and recorders
+Blackmagic Forum (DaVinci Resolve),https://forum.blackmagicdesign.com,forum,assisted,forum,video;creators,en,https://forum.blackmagicdesign.com/app.php/rules,,DaVinci Resolve users
+GoPro Community,https://community.gopro.com,forum,assisted,forum,video;creators,en,https://community.gopro.com/s/,,Action video creators
+HubSpot Community,https://community.hubspot.com,forum,assisted,forum,marketing;saas,en,https://community.hubspot.com/t5/Community-Guidelines/bg-p/community_guidelines,,Marketers
+Shopify Community,https://community.shopify.com,forum,assisted,forum,founders;marketing,en,https://community.shopify.com/c/community-guidelines/,,Store founders
+Zapier Community,https://community.zapier.com,forum,assisted,forum,saas;marketing,en,https://community.zapier.com/,,Automation users
+Airtable Community,https://community.airtable.com,forum,assisted,forum,saas,en,https://community.airtable.com/,,No-code builders
+Squarespace Forum,https://forum.squarespace.com,forum,assisted,forum,founders;creators,en,https://forum.squarespace.com/,,Website owners
+TilVids (PeerTube),https://tilvids.com,peertube,assisted,video_platform,video;creators,en,https://tilvids.com/about/instance,,Educational PeerTube instance
+Framatube (PeerTube),https://framatube.org,peertube,assisted,video_platform,video;creators,fr,https://framatube.org/about/instance,,French PeerTube instance
+Superpath Community (Slack),https://www.superpath.co/community,slack_community,slack,chat_community,marketing;creators,en,https://www.superpath.co/community,,Content marketing Slack; needs workspace admin to approve the IncuBrix app
+Online Geniuses (Slack),https://onlinegeniuses.com,slack_community,slack,chat_community,marketing,en,https://onlinegeniuses.com,,Marketing Slack
+MLOps Community (Slack),https://mlops.community,slack_community,slack,chat_community,ai,en,https://mlops.community,,ML practitioners Slack
+DataTalks.Club (Slack),https://datatalks.club/slack.html,slack_community,slack,chat_community,ai,en,https://datatalks.club/slack.html,,Data and ML Slack
+RevGenius (Slack),https://www.revgenius.com,slack_community,slack,chat_community,marketing;saas,en,https://www.revgenius.com,,Revenue and marketing Slack
+Hugging Face Discord,https://huggingface.co/join/discord,discord,assisted,chat_community,ai,en,https://huggingface.co/code-of-conduct,,Discord: a person shares in showcase channels
+Midjourney Discord,https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines,discord,assisted,chat_community,ai;creators,en,https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines,,AI art creators
+Runway Discord,https://runwayml.com,discord,assisted,chat_community,ai;video;creators,en,https://runwayml.com,,AI video creators
+reddit r/NewTubers,https://www.reddit.com/r/NewTubers,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/NewTubers/about/rules,,
+reddit r/youtubers,https://www.reddit.com/r/youtubers,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/youtubers/about/rules,,
+reddit r/PartneredYoutube,https://www.reddit.com/r/PartneredYoutube,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/PartneredYoutube/about/rules,,
+reddit r/SmallYTChannel,https://www.reddit.com/r/SmallYTChannel,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/SmallYTChannel/about/rules,,
+reddit r/youtube,https://www.reddit.com/r/youtube,reddit,assisted,community,video,en,https://www.reddit.com/r/youtube/about/rules,,
+reddit r/VideoEditing,https://www.reddit.com/r/VideoEditing,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/VideoEditing/about/rules,,
+reddit r/editors,https://www.reddit.com/r/editors,reddit,assisted,community,video,en,https://www.reddit.com/r/editors/about/rules,,Professional editors; strict
+reddit r/premiere,https://www.reddit.com/r/premiere,reddit,assisted,community,video,en,https://www.reddit.com/r/premiere/about/rules,,
+reddit r/davinciresolve,https://www.reddit.com/r/davinciresolve,reddit,assisted,community,video,en,https://www.reddit.com/r/davinciresolve/about/rules,,
+reddit r/Filmmakers,https://www.reddit.com/r/Filmmakers,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/Filmmakers/about/rules,,
+reddit r/videography,https://www.reddit.com/r/videography,reddit,assisted,community,video,en,https://www.reddit.com/r/videography/about/rules,,
+reddit r/podcasting,https://www.reddit.com/r/podcasting,reddit,assisted,community,creators,en,https://www.reddit.com/r/podcasting/about/rules,,
+reddit r/Twitch,https://www.reddit.com/r/Twitch,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/Twitch/about/rules,,
+reddit r/socialmedia,https://www.reddit.com/r/socialmedia,reddit,assisted,community,marketing,en,https://www.reddit.com/r/socialmedia/about/rules,,
+reddit r/marketing,https://www.reddit.com/r/marketing,reddit,assisted,community,marketing,en,https://www.reddit.com/r/marketing/about/rules,,
+reddit r/digital_marketing,https://www.reddit.com/r/digital_marketing,reddit,assisted,community,marketing,en,https://www.reddit.com/r/digital_marketing/about/rules,,
+reddit r/content_marketing,https://www.reddit.com/r/content_marketing,reddit,assisted,community,marketing;creators,en,https://www.reddit.com/r/content_marketing/about/rules,,
+reddit r/SEO,https://www.reddit.com/r/SEO,reddit,assisted,community,marketing,en,https://www.reddit.com/r/SEO/about/rules,,
+reddit r/growthhacking,https://www.reddit.com/r/growthhacking,reddit,assisted,community,marketing;founders,en,https://www.reddit.com/r/growthhacking/about/rules,,
+reddit r/advertising,https://www.reddit.com/r/advertising,reddit,assisted,community,marketing,en,https://www.reddit.com/r/advertising/about/rules,,
+reddit r/copywriting,https://www.reddit.com/r/copywriting,reddit,assisted,community,marketing;creators,en,https://www.reddit.com/r/copywriting/about/rules,,
+reddit r/emailmarketing,https://www.reddit.com/r/emailmarketing,reddit,assisted,community,marketing,en,https://www.reddit.com/r/emailmarketing/about/rules,,
+reddit r/InstagramMarketing,https://www.reddit.com/r/InstagramMarketing,reddit,assisted,community,marketing;creators,en,https://www.reddit.com/r/InstagramMarketing/about/rules,,
+reddit r/Blogging,https://www.reddit.com/r/Blogging,reddit,assisted,community,creators;marketing,en,https://www.reddit.com/r/Blogging/about/rules,,
+reddit r/juststart,https://www.reddit.com/r/juststart,reddit,assisted,community,founders;marketing,en,https://www.reddit.com/r/juststart/about/rules,,
+reddit r/SaaS,https://www.reddit.com/r/SaaS,reddit,assisted,community,saas;founders,en,https://www.reddit.com/r/SaaS/about/rules,,
+reddit r/microsaas,https://www.reddit.com/r/microsaas,reddit,assisted,community,saas;founders,en,https://www.reddit.com/r/microsaas/about/rules,,
+reddit r/startups,https://www.reddit.com/r/startups,reddit,assisted,community,founders,en,https://www.reddit.com/r/startups/about/rules,,Strict no-promotion
+reddit r/Entrepreneur,https://www.reddit.com/r/Entrepreneur,reddit,assisted,community,founders,en,https://www.reddit.com/r/Entrepreneur/about/rules,,
+reddit r/EntrepreneurRideAlong,https://www.reddit.com/r/EntrepreneurRideAlong,reddit,assisted,community,founders,en,https://www.reddit.com/r/EntrepreneurRideAlong/about/rules,,
+reddit r/smallbusiness,https://www.reddit.com/r/smallbusiness,reddit,assisted,community,founders;marketing,en,https://www.reddit.com/r/smallbusiness/about/rules,,
+reddit r/sideproject,https://www.reddit.com/r/SideProject,reddit,assisted,community,founders;saas,en,https://www.reddit.com/r/SideProject/about/rules,,Built to share projects
+reddit r/indiehackers,https://www.reddit.com/r/indiehackers,reddit,assisted,community,founders;saas,en,https://www.reddit.com/r/indiehackers/about/rules,,
+reddit r/ProductManagement,https://www.reddit.com/r/ProductManagement,reddit,assisted,community,saas,en,https://www.reddit.com/r/ProductManagement/about/rules,,
+reddit r/nocode,https://www.reddit.com/r/nocode,reddit,assisted,community,saas;founders,en,https://www.reddit.com/r/nocode/about/rules,,
+reddit r/automation,https://www.reddit.com/r/automation,reddit,assisted,community,saas;ai,en,https://www.reddit.com/r/automation/about/rules,,
+reddit r/artificial,https://www.reddit.com/r/artificial,reddit,assisted,community,ai,en,https://www.reddit.com/r/artificial/about/rules,,
+reddit r/ArtificialInteligence,https://www.reddit.com/r/ArtificialInteligence,reddit,assisted,community,ai,en,https://www.reddit.com/r/ArtificialInteligence/about/rules,,
+reddit r/ChatGPT,https://www.reddit.com/r/ChatGPT,reddit,assisted,community,ai,en,https://www.reddit.com/r/ChatGPT/about/rules,,
+reddit r/ChatGPTPro,https://www.reddit.com/r/ChatGPTPro,reddit,assisted,community,ai,en,https://www.reddit.com/r/ChatGPTPro/about/rules,,
+reddit r/OpenAI,https://www.reddit.com/r/OpenAI,reddit,assisted,community,ai,en,https://www.reddit.com/r/OpenAI/about/rules,,
+reddit r/LocalLLaMA,https://www.reddit.com/r/LocalLLaMA,reddit,assisted,community,ai,en,https://www.reddit.com/r/LocalLLaMA/about/rules,,
+reddit r/MachineLearning,https://www.reddit.com/r/MachineLearning,reddit,assisted,community,ai,en,https://www.reddit.com/r/MachineLearning/about/rules,,Research focus; strict
+reddit r/learnmachinelearning,https://www.reddit.com/r/learnmachinelearning,reddit,assisted,community,ai,en,https://www.reddit.com/r/learnmachinelearning/about/rules,,
+reddit r/StableDiffusion,https://www.reddit.com/r/StableDiffusion,reddit,assisted,community,ai;creators,en,https://www.reddit.com/r/StableDiffusion/about/rules,,
+reddit r/aivideo,https://www.reddit.com/r/aivideo,reddit,assisted,community,ai;video;creators,en,https://www.reddit.com/r/aivideo/about/rules,,
+reddit r/midjourney,https://www.reddit.com/r/midjourney,reddit,assisted,community,ai;creators,en,https://www.reddit.com/r/midjourney/about/rules,,
+reddit r/PromptEngineering,https://www.reddit.com/r/PromptEngineering,reddit,assisted,community,ai,en,https://www.reddit.com/r/PromptEngineering/about/rules,,
+reddit r/generativeAI,https://www.reddit.com/r/generativeAI,reddit,assisted,community,ai;creators,en,https://www.reddit.com/r/generativeAI/about/rules,,
+reddit r/AI_Agents,https://www.reddit.com/r/AI_Agents,reddit,assisted,community,ai;saas,en,https://www.reddit.com/r/AI_Agents/about/rules,,
+reddit r/datascience,https://www.reddit.com/r/datascience,reddit,assisted,community,ai,en,https://www.reddit.com/r/datascience/about/rules,,
+reddit r/webdev,https://www.reddit.com/r/webdev,reddit,assisted,community,saas,en,https://www.reddit.com/r/webdev/about/rules,,Showoff Saturday only for projects
+reddit r/emprendedores,https://www.reddit.com/r/emprendedores,reddit,assisted,community,founders,es,https://www.reddit.com/r/emprendedores/about/rules,,Spanish-speaking founders
+reddit r/empreendedorismo,https://www.reddit.com/r/empreendedorismo,reddit,assisted,community,founders,pt,https://www.reddit.com/r/empreendedorismo/about/rules,,Portuguese-speaking founders
+reddit r/de_EDV,https://www.reddit.com/r/de_EDV,reddit,assisted,community,saas,de,https://www.reddit.com/r/de_EDV/about/rules,,German IT community
+reddit r/IndianStartups,https://www.reddit.com/r/IndianStartups,reddit,assisted,community,founders,en,https://www.reddit.com/r/IndianStartups/about/rules,,Indian founders
+reddit r/YoutubeCreators,https://www.reddit.com/r/YouTubeCreators,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/YouTubeCreators/about/rules,,
+reddit r/TikTokHelp,https://www.reddit.com/r/TikTokHelp,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/TikTokHelp/about/rules,,
+reddit r/ContentCreators,https://www.reddit.com/r/ContentCreators,reddit,assisted,community,creators,en,https://www.reddit.com/r/ContentCreators/about/rules,,
+reddit r/CreatorsAdvice,https://www.reddit.com/r/CreatorsAdvice,reddit,assisted,community,creators,en,https://www.reddit.com/r/CreatorsAdvice/about/rules,,
+reddit r/animation,https://www.reddit.com/r/animation,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/animation/about/rules,,
+reddit r/MotionDesign,https://www.reddit.com/r/MotionDesign,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/MotionDesign/about/rules,,
+reddit r/AfterEffects,https://www.reddit.com/r/AfterEffects,reddit,assisted,community,video,en,https://www.reddit.com/r/AfterEffects/about/rules,,
+reddit r/finalcutpro,https://www.reddit.com/r/finalcutpro,reddit,assisted,community,video,en,https://www.reddit.com/r/finalcutpro/about/rules,,
+reddit r/CapCut,https://www.reddit.com/r/CapCut,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/CapCut/about/rules,,
+reddit r/vlogging,https://www.reddit.com/r/vlogging,reddit,assisted,community,video;creators,en,https://www.reddit.com/r/vlogging/about/rules,,
+reddit r/Substack,https://www.reddit.com/r/Substack,reddit,assisted,community,creators,en,https://www.reddit.com/r/Substack/about/rules,,
+reddit r/Newsletters,https://www.reddit.com/r/Newsletters,reddit,assisted,community,creators;marketing,en,https://www.reddit.com/r/Newsletters/about/rules,,
+reddit r/startup,https://www.reddit.com/r/startup,reddit,assisted,community,founders,en,https://www.reddit.com/r/startup/about/rules,,
+reddit r/growmybusiness,https://www.reddit.com/r/growmybusiness,reddit,assisted,community,founders;marketing,en,https://www.reddit.com/r/growmybusiness/about/rules,,

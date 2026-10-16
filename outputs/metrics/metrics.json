@@ -1,0 +1,123 @@
+{
+  "hardware": "Intel64 Family 6 Model 78 Stepping 3, GenuineIntel, 4 logical CPUs, Windows 10, Python 3.11.5",
+  "mode": "simulation (mock platforms in-process), AI provider: mock",
+  "certification": {
+    "discourse": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.028,
+      "max_s": 0.047
+    },
+    "lemmy": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.016,
+      "max_s": 0.016
+    },
+    "devto": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.012,
+      "max_s": 0.016
+    },
+    "ghost": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.012,
+      "max_s": 0.016
+    },
+    "webhook": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.013,
+      "max_s": 0.016
+    },
+    "assisted": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.009,
+      "max_s": 0.015
+    },
+    "hashnode": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.016,
+      "max_s": 0.016
+    },
+    "slack": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.022,
+      "max_s": 0.031
+    },
+    "mrss": {
+      "destinations_certified": 5,
+      "runs": 5,
+      "mean_s": 0.019,
+      "max_s": 0.031
+    }
+  },
+  "reliability": {
+    "publishes": 300,
+    "published": 250,
+    "rejected_by_platform_as_injected": 30,
+    "rescheduled_after_long_429": 20,
+    "success_rate_excluding_injected_rejections_and_reschedules": 1.0,
+    "duplicate_posts": 0,
+    "by_fault": {
+      "none": {
+        "published": 169
+      },
+      "reject": {
+        "failed": 30
+      },
+      "server_error": {
+        "published": 21
+      },
+      "timeout_after_create": {
+        "published": 22
+      },
+      "rate_limit": {
+        "published": 13,
+        "failed": 20
+      },
+      "timeout": {
+        "published": 25
+      }
+    }
+  },
+  "rule_safety": {
+    "cases": 44,
+    "violations": 27,
+    "caught": 27,
+    "missed": 0,
+    "missed_ids": [],
+    "allowed_cases": 17,
+    "false_blocks": 0,
+    "false_block_ids": []
+  },
+  "catalogue_import": {
+    "1000_rows": {
+      "seconds": 7.42,
+      "rows": 1002,
+      "created": 950,
+      "duplicates": 50,
+      "errors": 2,
+      "reachability": "offline (network checks skipped)"
+    },
+    "5000_rows": {
+      "seconds": 22.64,
+      "rows": 5002,
+      "created": 4750,
+      "duplicates": 250,
+      "errors": 2,
+      "reachability": "offline (network checks skipped)"
+    }
+  },
+  "cost": {
+    "publish_path_ai_calls": 0,
+    "usd_per_1000_publications": 0.0,
+    "note": "publishing, tailoring and rules checks use no paid API; see REPORT.md for AI rules capture cost"
+  },
+  "seconds_total": 103.4
+}
