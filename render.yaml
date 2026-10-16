@@ -1,0 +1,25 @@
+# Live demo on Render (free web service): New > Blueprint > pick this repository.
+# Simulation mode: mock platforms only, no real accounts, nothing posted anywhere real.
+services:
+  - type: web
+    name: incubrix-longtail-demo
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: SIMULATION_MODE
+        value: "true"
+      - key: API_TOKEN            # reviewers send "Authorization: Bearer <token>"; set it in the Render dashboard
+        sync: false
+      - key: SECRET_KEY           # encrypts stored test credentials
+        generateValue: true
+      - key: CALLBACK_SECRET
+        generateValue: true
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "300"
+      - key: AI_PROVIDER
+        value: mock
+      - key: LOG_LEVEL
+        value: INFO

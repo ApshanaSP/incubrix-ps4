@@ -176,10 +176,17 @@ async def check_reachability(client: httpx.AsyncClient, url: str) -> dict[str, A
         return {"reachable": None, "note": "not checked: the site's robots.txt disallows automated access"}
     t0 = time.monotonic()
     try:
-        resp = await transport_client.get(target)
+        # read only the start of the page (title and description are there); decoding a whole page with an
+        # unknown charset makes httpx guess the encoding over all of it, which is slow and blocks the event loop
+        async with transport_client.stream("GET", target) as resp:
+            raw = b""
+            async for part in resp.aiter_bytes():
+                raw += part
+                if len(raw) >= 65536:
+                    break
         title, desc = "", ""
         if "html" in resp.headers.get("content-type", ""):
-            head = resp.text[:60000]
+            head = raw[:65536].decode(resp.charset_encoding or "utf-8", errors="replace")
             m = re.search(r"<title[^>]*>(.*?)</title>", head, re.S | re.I)
             title = re.sub(r"\s+", " ", m.group(1)).strip()[:200] if m else ""
             m = re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)', head, re.I)
@@ -267,7 +274,8 @@ async def import_catalogue(data: bytes, *, source: str, progress=lambda p: None,
                                         data_row["config"].get("description")) if x)
             if desc:
                 data_row["config"]["description"] = desc[:400]
-            detected = detect_language(" ".join(x for x in (data_row.get("name") or "", desc) if x))
+            detected = await asyncio.to_thread(detect_language,  # CPU work, off the event loop
+                                               " ".join(x for x in (data_row.get("name") or "", desc) if x))
             declared = data_row.get("language")
             if detected and declared and detected[:2] != declared[:2]:
                 warnings.append(f"declared language '{declared}' but the page reads as '{detected}'")

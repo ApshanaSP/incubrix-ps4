@@ -48,7 +48,9 @@ def _float(name: str, default: float) -> float:
 class Settings:
     # service
     service_name: str = field(default_factory=lambda: os.getenv("SERVICE_NAME", "incubrix-longtail"))
-    public_base_url: str = field(default_factory=lambda: os.getenv("PUBLIC_BASE_URL", "http://localhost:8080"))
+    # on Render the platform sets RENDER_EXTERNAL_URL, so links work with no extra setting
+    public_base_url: str = field(default_factory=lambda: os.getenv("PUBLIC_BASE_URL") or os.getenv(
+        "RENDER_EXTERNAL_URL") or "http://localhost:8080")
     data_dir: Path = field(default_factory=lambda: Path(os.getenv("DATA_DIR", "./data")))
     db_path: str = field(default_factory=lambda: os.getenv("DB_PATH", ""))
     log_level: str = field(default_factory=lambda: os.getenv("LOG_LEVEL", "INFO"))

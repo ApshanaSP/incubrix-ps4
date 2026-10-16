@@ -2301,3 +2301,12 @@ components:
       - msg
       - type
       title: ValidationError
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: Needed only when API_TOKEN is set (the live demo); local runs need
+        no token.
+security:
+- {}
+- bearer: []

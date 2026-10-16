@@ -91,6 +91,24 @@ app.add_middleware(Idempotency)
 app.add_middleware(RequestContext)
 
 
+def _openapi_with_auth() -> dict[str, Any]:
+    """The spec declares the optional bearer token, so /docs shows an Authorize button on the live demo."""
+    if app.openapi_schema:
+        return app.openapi_schema
+    from fastapi.openapi.utils import get_openapi
+
+    schema = get_openapi(title=app.title, version=app.version, description=app.description, routes=app.routes)
+    schema.setdefault("components", {})["securitySchemes"] = {
+        "bearer": {"type": "http", "scheme": "bearer",
+                   "description": "Needed only when API_TOKEN is set (the live demo); local runs need no token."}}
+    schema["security"] = [{}, {"bearer": []}]
+    app.openapi_schema = schema
+    return schema
+
+
+app.openapi = _openapi_with_auth  # type: ignore[method-assign]
+
+
 # ---------------------------------------------------------------- errors
 @app.exception_handler(ApiError)
 async def api_error_handler(request: Request, exc: ApiError) -> JSONResponse:
