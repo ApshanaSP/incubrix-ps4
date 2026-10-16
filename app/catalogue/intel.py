@@ -140,13 +140,44 @@ def heuristic_rules(text: str) -> dict[str, Any]:
     return out
 
 
-async def capture_rules(dest_id: str, provider: Provider | None = None, rules_url: str | None = None) -> dict[str, Any]:
+async def lemmy_rules_text(row: dict[str, Any]) -> tuple[str, str]:
+    """Lemmy pages are rendered in the browser; the rules live in the API (community
+    description, instance sidebar and legal text)."""
+    cfg = row.get("config") or {}
+    base = (cfg.get("base_url") or "").rstrip("/")
+    parts: list[str] = []
+    async with httpx.AsyncClient(timeout=20, headers={"User-Agent": get_settings().user_agent}) as client:
+        if cfg.get("community"):
+            r = await client.get(f"{base}/api/v3/community", params={"name": cfg["community"]})
+            if r.status_code == 200:
+                c = r.json()["community_view"]["community"]
+                parts.append(f"Community {c.get('title')} rules and description:\n{c.get('description') or ''}")
+        r = await client.get(f"{base}/api/v3/site")
+        if r.status_code == 200:
+            site = r.json().get("site_view", {}).get("site", {})
+            parts.append(f"Instance sidebar:\n{site.get('sidebar') or ''}")
+            legal = r.json().get("site_view", {}).get("local_site", {}).get("legal_information")
+            if legal:
+                parts.append(f"Instance legal information:\n{legal}")
+    return f"{base} (Lemmy API)", "\n\n".join(parts)[:12000]
+
+
+async def capture_rules(dest_id: str, provider: Provider | None = None, rules_url: str | None = None,
+                        rules_text: str | None = None) -> dict[str, Any]:
+    """rules_text: rules pasted by a person, for sites whose robots.txt or login wall stops fetching."""
     row = store.get_destination(dest_id)
     url = rules_url or row.get("rules_url")
-    if not url:
-        raise ApiError("VALIDATION_ERROR", "destination has no rules_url; pass one", details={"field": "rules_url"})
     provider = provider or get_provider()
-    title, text = await fetch_page_text(url)
+    if rules_text:
+        title, text, url = "pasted by a person", rules_text[:12000], url or "pasted"
+    elif row["connector_key"] == "lemmy" and not rules_url and not is_simulated((row.get("config") or {}).get("base_url", "")):
+        title, text = await lemmy_rules_text(row)
+        url = url or title
+    elif not url:
+        raise ApiError("VALIDATION_ERROR", "destination has no rules_url; pass rules_url or rules_text",
+                       details={"field": "rules_url"})
+    else:
+        title, text = await fetch_page_text(url)
     fallback = heuristic_rules(text)
     try:
         proposed = await provider.json(RULES_SYSTEM, f"Community: {row['name']} ({row['url']})\nRules page {url}:\n\n{text}",

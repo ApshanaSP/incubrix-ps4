@@ -1,0 +1,2276 @@
+openapi: 3.1.0
+info:
+  title: IncuBrix Long-Tail Distribution
+  description: 'Connectors, posting rules, certification, catalogue tools, tailoring
+    and recommendations for long-tail destinations. Errors are always {"error": {code,
+    message, retryable, details}}.'
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      tags:
+      - ops
+      summary: Health
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Health Health Get
+  /ready:
+    get:
+      tags:
+      - ops
+      summary: Ready
+      operationId: ready_ready_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /connector/v1/{connector_key}/{method}:
+    post:
+      tags:
+      - connector contract
+      summary: Contract
+      description: 'The IncuBrix connector contract. Methods: validate, publish, get_status,
+        delete, fetch_metrics,
+
+        refresh_auth, build_assist_pack. Errors use the shared codes from Appendix
+        A.'
+      operationId: contract_connector_v1__connector_key___method__post
+      parameters:
+      - name: connector_key
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Connector Key
+      - name: method
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Method
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractCall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Contract Connector V1  Connector Key   Method  Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/connector/{connector_key}/{method}:
+    post:
+      tags:
+      - connector contract
+      summary: Contract Alias
+      description: Same as /connector/v1/{connector_key}/{method}, under /api/v1/.
+      operationId: contract_alias_api_v1_connector__connector_key___method__post
+      parameters:
+      - name: connector_key
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Connector Key
+      - name: method
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Method
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractCall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Contract Alias Api V1 Connector  Connector Key   Method  Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/connectors:
+    get:
+      tags:
+      - connectors
+      summary: List Connectors
+      operationId: list_connectors_api_v1_connectors_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response List Connectors Api V1 Connectors Get
+  /api/v1/connectors/{connector_key}:
+    get:
+      tags:
+      - connectors
+      summary: Get Connector
+      operationId: get_connector_api_v1_connectors__connector_key__get
+      parameters:
+      - name: connector_key
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Connector Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Get Connector Api V1 Connectors  Connector Key  Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/connectors/{connector_key}/kill-switch:
+    post:
+      tags:
+      - connectors
+      summary: Kill Switch
+      operationId: kill_switch_api_v1_connectors__connector_key__kill_switch_post
+      parameters:
+      - name: connector_key
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Connector Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KillSwitchIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Kill Switch Api V1 Connectors  Connector Key  Kill
+                  Switch Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/errors:
+    get:
+      tags:
+      - connectors
+      summary: List Errors
+      operationId: list_errors_api_v1_errors_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response List Errors Api V1 Errors Get
+  /api/v1/connections:
+    get:
+      tags:
+      - connections
+      summary: List Connections
+      operationId: list_connections_api_v1_connections_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response List Connections Api V1 Connections Get
+    post:
+      tags:
+      - connections
+      summary: Create Connection
+      operationId: create_connection_api_v1_connections_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionIn'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Create Connection Api V1 Connections Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/connections/{connection_id}:
+    get:
+      tags:
+      - connections
+      summary: Get Connection
+      operationId: get_connection_api_v1_connections__connection_id__get
+      parameters:
+      - name: connection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Connection Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Get Connection Api V1 Connections  Connection Id  Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+    patch:
+      tags:
+      - connections
+      summary: Reconnect
+      description: Replace credentials (reconnect after an expired or revoked token).
+        Paused destinations resume.
+      operationId: reconnect_api_v1_connections__connection_id__patch
+      parameters:
+      - name: connection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Connection Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionPatch'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Reconnect Api V1 Connections  Connection Id  Patch
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/destinations:
+    get:
+      tags:
+      - catalogue
+      summary: List Destinations
+      operationId: list_destinations_api_v1_destinations_get
+      parameters:
+      - name: connector_key
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Connector Key
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      - name: language
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response List Destinations Api V1 Destinations Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - catalogue
+      summary: Add Destination
+      description: 'Add one destination: one catalogue row, no code. It must be certified
+        before it is used.'
+      operationId: add_destination_api_v1_destinations_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationIn'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Add Destination Api V1 Destinations Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/destinations/{destination_id}:
+    get:
+      tags:
+      - catalogue
+      summary: Get Destination
+      operationId: get_destination_api_v1_destinations__destination_id__get
+      parameters:
+      - name: destination_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Get Destination Api V1 Destinations  Destination Id  Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+    patch:
+      tags:
+      - catalogue
+      summary: Patch Destination
+      operationId: patch_destination_api_v1_destinations__destination_id__patch
+      parameters:
+      - name: destination_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DestinationPatch'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Patch Destination Api V1 Destinations  Destination
+                  Id  Patch
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/destinations/{destination_id}/certify:
+    post:
+      tags:
+      - certification
+      summary: Certify One
+      operationId: certify_one_api_v1_destinations__destination_id__certify_post
+      parameters:
+      - name: destination_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_certify_one_api_v1_destinations__destination_id__certify_post'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/certifications:
+    post:
+      tags:
+      - certification
+      summary: Certify Many
+      operationId: certify_many_api_v1_certifications_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertifyIn'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+    get:
+      tags:
+      - certification
+      summary: List Certifications
+      operationId: list_certifications_api_v1_certifications_get
+      parameters:
+      - name: destination_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Destination Id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 500
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response List Certifications Api V1 Certifications Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/recertification/run:
+    post:
+      tags:
+      - certification
+      summary: Run Recertification
+      description: Re-test every certified destination last certified more than RECERT_AFTER_DAYS
+        ago (also runs on a schedule).
+      operationId: run_recertification_api_v1_recertification_run_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_run_recertification_api_v1_recertification_run_post'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/destinations/{destination_id}/rules/capture:
+    post:
+      tags:
+      - rules
+      summary: Capture Rules
+      description: 'An AI step reads the community''s rules page and proposes posting
+        rules. They are NOT used until a person
+
+        confirms them (POST .../rules/{proposal_id}/confirm); until then posting there
+        is blocked.'
+      operationId: capture_rules_api_v1_destinations__destination_id__rules_capture_post
+      parameters:
+      - name: destination_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RulesCaptureIn'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/destinations/{destination_id}/rules/proposals:
+    get:
+      tags:
+      - rules
+      summary: List Rule Proposals
+      operationId: list_rule_proposals_api_v1_destinations__destination_id__rules_proposals_get
+      parameters:
+      - name: destination_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response List Rule Proposals Api V1 Destinations  Destination
+                  Id  Rules Proposals Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/destinations/{destination_id}/rules/{proposal_id}/confirm:
+    post:
+      tags:
+      - rules
+      summary: Confirm Rules
+      description: A person confirms (optionally correcting with overrides) or rejects
+        the AI-proposed rules.
+      operationId: confirm_rules_api_v1_destinations__destination_id__rules__proposal_id__confirm_post
+      parameters:
+      - name: destination_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      - name: proposal_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Proposal Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RulesDecisionIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Confirm Rules Api V1 Destinations  Destination Id  Rules  Proposal
+                  Id  Confirm Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/relevance:
+    post:
+      tags:
+      - catalogue
+      summary: Relevance
+      description: Score destinations 1-5 against IncuBrix's audience with a short
+        reason each.
+      operationId: relevance_api_v1_relevance_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelevanceIn'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/catalogue/imports:
+    post:
+      tags:
+      - catalogue
+      summary: Import From Url
+      description: 'Import a destinations CSV from a URL. Validates, de-duplicates
+        (normalised URL + platform), checks
+
+        reachability, enriches, scores relevance and writes a row-by-row report.'
+      operationId: import_from_url_api_v1_catalogue_imports_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportUrlIn'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/catalogue/imports/upload:
+    post:
+      tags:
+      - catalogue
+      summary: Import Upload
+      description: Same as /catalogue/imports, with the CSV uploaded as multipart
+        form data.
+      operationId: import_upload_api_v1_catalogue_imports_upload_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_import_upload_api_v1_catalogue_imports_upload_post'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/catalogue/export.csv:
+    get:
+      tags:
+      - catalogue
+      summary: Export Csv
+      operationId: export_csv_api_v1_catalogue_export_csv_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /api/v1/tailor:
+    post:
+      tags:
+      - publishing
+      summary: Tailor Endpoint
+      description: Show the rendition each destination would get, with notes on every
+        change. Nothing is posted.
+      operationId: tailor_endpoint_api_v1_tailor_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TailorIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Tailor Endpoint Api V1 Tailor Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/recommendations:
+    post:
+      tags:
+      - publishing
+      summary: Recommend
+      description: Rank destinations for one content item by fit (audience, rules,
+        past results, format) with reasons.
+      operationId: recommend_api_v1_recommendations_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Recommend Api V1 Recommendations Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/publications:
+    post:
+      tags:
+      - publishing
+      summary: Create Publication
+      description: 'Tailor the content for each destination, check format limits and
+        posting rules, then publish.
+
+        Each destination''s post uses the key ''<Idempotency-Key>:<destination_id>'',
+        so retrying never posts twice.'
+      operationId: create_publication_api_v1_publications_post
+      parameters:
+      - name: idempotency-key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Idempotency-Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicationIn'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/posts:
+    get:
+      tags:
+      - publishing
+      summary: List Posts
+      operationId: list_posts_api_v1_posts_get
+      parameters:
+      - name: destination_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Destination Id
+      - name: state
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+      - name: include_tests
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Include Tests
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          default: 100
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response List Posts Api V1 Posts Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/posts/{post_id}:
+    get:
+      tags:
+      - publishing
+      summary: Get Post
+      operationId: get_post_api_v1_posts__post_id__get
+      parameters:
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Post Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Get Post Api V1 Posts  Post Id  Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/posts/{post_id}/delete:
+    post:
+      tags:
+      - publishing
+      summary: Delete Post
+      operationId: delete_post_api_v1_posts__post_id__delete_post
+      parameters:
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Post Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_delete_post_api_v1_posts__post_id__delete_post'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/posts/{post_id}/retry:
+    post:
+      tags:
+      - publishing
+      summary: Retry Post
+      description: 'Retry one post with its original idempotency key. If an earlier
+        attempt timed out, the platform is checked
+
+        first, so the retry returns the existing post instead of creating a second
+        one.'
+      operationId: retry_post_api_v1_posts__post_id__retry_post
+      parameters:
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Post Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_retry_post_api_v1_posts__post_id__retry_post'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/assist/{pack_id}/posted:
+    post:
+      tags:
+      - publishing
+      summary: Assist Posted
+      description: 'A person posted an assisted pack by hand: record its live URL.'
+      operationId: assist_posted_api_v1_assist__pack_id__posted_post
+      parameters:
+      - name: pack_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Pack Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssistPostedIn'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Assist Posted Api V1 Assist  Pack Id  Posted Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/metrics/refresh:
+    post:
+      tags:
+      - metrics
+      summary: Refresh Metrics
+      description: fetch_metrics for published posts, normalised to views, likes,
+        comments, shares, saves, watch_time_s, clicks.
+      operationId: refresh_metrics_api_v1_metrics_refresh_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsIn'
+        required: true
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/jobs/{job_id}:
+    get:
+      tags:
+      - jobs
+      summary: Get Job
+      operationId: get_job_api_v1_jobs__job_id__get
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobAccepted'
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/tickets:
+    get:
+      tags:
+      - ops
+      summary: List Tickets
+      operationId: list_tickets_api_v1_tickets_get
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: open
+          title: Status
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response List Tickets Api V1 Tickets Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/uploads:
+    post:
+      tags:
+      - files
+      summary: Upload
+      description: Upload a media file; use the returned URL as a media URL in content.
+      operationId: upload_api_v1_uploads_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_api_v1_uploads_post'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Upload Api V1 Uploads Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/feeds/{feed_key}.xml:
+    get:
+      tags:
+      - files
+      summary: Get Feed
+      description: The MRSS feed that CTV apps and aggregators poll.
+      operationId: get_feed_api_v1_feeds__feed_key__xml_get
+      parameters:
+      - name: feed_key
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Feed Key
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/sim/faults:
+    post:
+      tags:
+      - simulation
+      summary: Sim Fault
+      description: 'Inject a fault into a mock platform to reproduce a hard case (timeout,
+        429, expired token, rejected content,
+
+        renamed field, revoked permission). Works for mock-backed destinations.'
+      operationId: sim_fault_api_v1_sim_faults_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimFaultIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Sim Fault Api V1 Sim Faults Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/sim/restore:
+    post:
+      tags:
+      - simulation
+      summary: Sim Restore
+      operationId: sim_restore_api_v1_sim_restore_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimFaultIn'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Sim Restore Api V1 Sim Restore Post
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+  /api/v1/sim/state:
+    get:
+      tags:
+      - simulation
+      summary: Sim State
+      description: What the mock platform holds for this destination (to count posts,
+        e.g. after a retry test).
+      operationId: sim_state_api_v1_sim_state_get
+      parameters:
+      - name: destination_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Destination Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Sim State Api V1 Sim State Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
+components:
+  schemas:
+    AssistPostedIn:
+      properties:
+        live_url:
+          type: string
+          title: Live Url
+      type: object
+      required:
+      - live_url
+      title: AssistPostedIn
+    Body_certify_one_api_v1_destinations__destination_id__certify_post:
+      properties:
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: Body_certify_one_api_v1_destinations__destination_id__certify_post
+    Body_delete_post_api_v1_posts__post_id__delete_post:
+      properties:
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: Body_delete_post_api_v1_posts__post_id__delete_post
+    Body_import_upload_api_v1_catalogue_imports_upload_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+        score_with_ai:
+          type: boolean
+          title: Score With Ai
+          default: false
+        commit:
+          type: boolean
+          title: Commit
+          default: true
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      required:
+      - file
+      title: Body_import_upload_api_v1_catalogue_imports_upload_post
+    Body_retry_post_api_v1_posts__post_id__retry_post:
+      properties:
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: Body_retry_post_api_v1_posts__post_id__retry_post
+    Body_run_recertification_api_v1_recertification_run_post:
+      properties:
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: Body_run_recertification_api_v1_recertification_run_post
+    Body_upload_api_v1_uploads_post:
+      properties:
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - file
+      title: Body_upload_api_v1_uploads_post
+    CertifyIn:
+      properties:
+        destination_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Destination Ids
+        all:
+          type: boolean
+          title: All
+          default: false
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: CertifyIn
+    ConnectionIn:
+      properties:
+        connector_key:
+          type: string
+          title: Connector Key
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        credentials:
+          additionalProperties: true
+          type: object
+          title: Credentials
+          description: 'Inline secrets (stored encrypted) or references such as {"api_key_ref":
+            "env:DISCOURSE_API_KEY"}'
+        base_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Base Url
+        expires_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expires At
+      type: object
+      required:
+      - connector_key
+      title: ConnectionIn
+    ConnectionPatch:
+      properties:
+        credentials:
+          additionalProperties: true
+          type: object
+          title: Credentials
+      type: object
+      required:
+      - credentials
+      title: ConnectionPatch
+    ContentItem:
+      properties:
+        title:
+          type: string
+          title: Title
+        body:
+          type: string
+          title: Body
+          default: ''
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Summary
+        link:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Link
+          description: Canonical URL of the original
+        media:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+          title: Media
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        mentions:
+          items:
+            type: string
+          type: array
+          title: Mentions
+        promotional:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Promotional
+        ai_generated:
+          type: boolean
+          title: Ai Generated
+          default: false
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+          default: en
+        content_type:
+          type: string
+          title: Content Type
+          default: article
+        content_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content Id
+        audience_tags:
+          items:
+            type: string
+          type: array
+          title: Audience Tags
+      type: object
+      required:
+      - title
+      title: ContentItem
+      description: What a creator wants to distribute, before tailoring.
+    ContractCall:
+      properties:
+        rendition:
+          anyOf:
+          - $ref: '#/components/schemas/Rendition'
+          - type: 'null'
+        destination:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Destination
+        connection:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Connection
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Idempotency Key
+        platform_post_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Platform Post Id
+        since:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Since
+      type: object
+      title: ContractCall
+      description: 'Body of POST /connector/v1/{connector_key}/{method}. Which fields
+        are needed depends on the method.
+
+        `destination` and `connection` may be full objects or {"id": "..."} references
+        to stored ones.'
+    DestinationIn:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        url:
+          type: string
+          title: Url
+        connector_key:
+          type: string
+          title: Connector Key
+        platform_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Platform Key
+        surface:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Surface
+        category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category
+        audience_tags:
+          items:
+            type: string
+          type: array
+          title: Audience Tags
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+        geo:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Geo
+        est_audience:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Est Audience
+        rules_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Rules Url
+        frequency_cap:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Frequency Cap
+        self_promo_allowed:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Self Promo Allowed
+        link_policy:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Link Policy
+        disclosure_required:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disclosure Required
+        automation_allowed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Automation Allowed
+        relevance_score:
+          anyOf:
+          - type: integer
+            maximum: 5.0
+            minimum: 1.0
+          - type: 'null'
+          title: Relevance Score
+        relevance_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Relevance Reason
+        config:
+          additionalProperties: true
+          type: object
+          title: Config
+        connection_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Connection Id
+      type: object
+      required:
+      - url
+      - connector_key
+      title: DestinationIn
+    DestinationPatch:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        audience_tags:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Audience Tags
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+        rules_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Rules Url
+        frequency_cap:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Frequency Cap
+        self_promo_allowed:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Self Promo Allowed
+        link_policy:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Link Policy
+        disclosure_required:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Disclosure Required
+        automation_allowed:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Automation Allowed
+        relevance_score:
+          anyOf:
+          - type: integer
+            maximum: 5.0
+            minimum: 1.0
+          - type: 'null'
+          title: Relevance Score
+        relevance_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Relevance Reason
+        config:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Config
+        connection_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Connection Id
+        status:
+          anyOf:
+          - type: string
+            enum:
+            - uncertified
+            - certified
+            - demoted
+            - paused
+            - excluded
+          - type: 'null'
+          title: Status
+      type: object
+      title: DestinationPatch
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ImportUrlIn:
+      properties:
+        url:
+          type: string
+          title: Url
+        score_with_ai:
+          type: boolean
+          title: Score With Ai
+          default: false
+        commit:
+          type: boolean
+          title: Commit
+          default: true
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      required:
+      - url
+      title: ImportUrlIn
+    JobAccepted:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        kind:
+          type: string
+          title: Kind
+        status:
+          type: string
+          title: Status
+        progress:
+          type: integer
+          title: Progress
+        result:
+          title: Result
+        error:
+          title: Error
+        links:
+          additionalProperties:
+            type: string
+          type: object
+          title: Links
+        created_at:
+          type: string
+          title: Created At
+        updated_at:
+          type: string
+          title: Updated At
+      type: object
+      required:
+      - job_id
+      - kind
+      - status
+      - progress
+      - links
+      - created_at
+      - updated_at
+      title: JobAccepted
+    KillSwitchIn:
+      properties:
+        disabled:
+          type: boolean
+          title: Disabled
+        reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Reason
+      type: object
+      required:
+      - disabled
+      title: KillSwitchIn
+    Media:
+      properties:
+        url:
+          type: string
+          title: Url
+        type:
+          type: string
+          enum:
+          - image
+          - video
+          - audio
+          - file
+          title: Type
+          default: image
+        mime:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mime
+        alt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Alt
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        duration_s:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Duration S
+        licence:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Licence
+      type: object
+      required:
+      - url
+      title: Media
+    MetricsIn:
+      properties:
+        post_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Post Ids
+        since:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Since
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: MetricsIn
+    PublicationIn:
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentItem'
+        destination_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Destination Ids
+          description: Where to post; omit and set recommend_top_k to let the recommender
+            choose
+        recommend_top_k:
+          anyOf:
+          - type: integer
+            maximum: 50.0
+            minimum: 1.0
+          - type: 'null'
+          title: Recommend Top K
+        dry_run:
+          type: boolean
+          title: Dry Run
+          description: Tailor and check rules only; nothing is posted
+          default: false
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      required:
+      - content
+      title: PublicationIn
+    RecommendIn:
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentItem'
+        top_k:
+          type: integer
+          maximum: 100.0
+          minimum: 1.0
+          title: Top K
+          default: 10
+        include_uncertified:
+          type: boolean
+          title: Include Uncertified
+          default: false
+      type: object
+      required:
+      - content
+      title: RecommendIn
+    RelevanceIn:
+      properties:
+        destination_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Destination Ids
+        provider:
+          anyOf:
+          - type: string
+            enum:
+            - mock
+            - groq
+            - gemini
+          - type: 'null'
+          title: Provider
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: RelevanceIn
+    Rendition:
+      properties:
+        title:
+          type: string
+          title: Title
+          default: ''
+        body:
+          type: string
+          title: Body
+          default: ''
+        body_format:
+          type: string
+          enum:
+          - markdown
+          - html
+          - text
+          title: Body Format
+          default: markdown
+        link:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Link
+        canonical_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Canonical Url
+        media:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+          title: Media
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+        mentions:
+          items:
+            type: string
+          type: array
+          title: Mentions
+        promotional:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Promotional
+        ai_generated:
+          type: boolean
+          title: Ai Generated
+          default: false
+        disclosure:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Disclosure
+        language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Language
+        surface:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Surface
+        content_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Content Id
+      additionalProperties: true
+      type: object
+      title: Rendition
+      description: One piece of content, already shaped for one destination.
+    RulesCaptureIn:
+      properties:
+        rules_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Rules Url
+        rules_text:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Rules Text
+          description: Rules pasted by a person when the page cannot be fetched (robots.txt,
+            login wall)
+        provider:
+          anyOf:
+          - type: string
+            enum:
+            - mock
+            - groq
+            - gemini
+          - type: 'null'
+          title: Provider
+        callback_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Callback Url
+      type: object
+      title: RulesCaptureIn
+    RulesDecisionIn:
+      properties:
+        decided_by:
+          type: string
+          title: Decided By
+          description: Who reviewed the proposal
+        overrides:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Overrides
+        reject:
+          type: boolean
+          title: Reject
+          default: false
+      type: object
+      required:
+      - decided_by
+      title: RulesDecisionIn
+    SimFaultIn:
+      properties:
+        destination_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Destination Id
+          description: Use this destination's mock instance
+        platform:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Platform
+        host:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Host
+        kind:
+          type: string
+          enum:
+          - timeout_after_create
+          - timeout
+          - rate_limit
+          - auth_expired
+          - reject
+          - rename_field
+          - revoke
+          - server_error
+          title: Kind
+        op:
+          type: string
+          enum:
+          - publish
+          - status
+          - delete
+          - list
+          - any
+          title: Op
+          default: publish
+        count:
+          type: integer
+          title: Count
+          default: 1
+        retry_after:
+          type: number
+          title: Retry After
+          default: 2
+      type: object
+      required:
+      - kind
+      title: SimFaultIn
+    TailorIn:
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentItem'
+        destination_ids:
+          items:
+            type: string
+          type: array
+          title: Destination Ids
+      type: object
+      required:
+      - content
+      - destination_ids
+      title: TailorIn
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

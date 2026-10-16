@@ -214,6 +214,8 @@ class CertifyIn(BaseModel):
 
 class RulesCaptureIn(BaseModel):
     rules_url: str | None = None
+    rules_text: str | None = Field(None, description="Rules pasted by a person when the page cannot be fetched "
+                                                     "(robots.txt, login wall)")
     provider: Literal["mock", "groq", "gemini"] | None = None
     callback_url: str | None = None
 
@@ -544,7 +546,7 @@ async def capture_rules(destination_id: str, body: RulesCaptureIn) -> dict[str, 
 
         provider = get_provider(body.provider)
         timer = manifest.Timer()
-        res = await intel.capture_rules(destination_id, provider, body.rules_url)
+        res = await intel.capture_rules(destination_id, provider, body.rules_url, body.rules_text)
         res["manifest"] = manifest.build("rules_capture", timer=timer, ai_usage=[provider.usage.as_dict()],
                                          ai_generated=provider.name != "mock", units=1)
         res["links"] = {"proposal": get_storage().put_json(f"rules/{destination_id}/{res['proposal_id']}.json", res)}

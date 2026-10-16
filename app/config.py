@@ -16,6 +16,16 @@ try:  # .env is optional; real deployments use the environment directly
 except ImportError:  # pragma: no cover
     pass
 
+# Use the operating system's certificate store (for machines whose antivirus or proxy
+# re-signs HTTPS). Optional: needs the `truststore` package.
+if os.getenv("USE_SYSTEM_CERTS", "").lower() in ("1", "true", "yes"):
+    try:
+        import truststore
+
+        truststore.inject_into_ssl()
+    except ImportError:  # pragma: no cover
+        pass
+
 
 def _bool(name: str, default: bool) -> bool:
     raw = os.getenv(name)
@@ -72,7 +82,7 @@ class Settings:
     # AI provider adapters: mock | groq | gemini
     ai_provider: str = field(default_factory=lambda: os.getenv("AI_PROVIDER", "mock"))
     groq_api_key: str = field(default_factory=lambda: os.getenv("GROQ_API_KEY", ""))
-    groq_model: str = field(default_factory=lambda: os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"))
+    groq_model: str = field(default_factory=lambda: os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"))
     gemini_api_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""))
     gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
     # catalogue import

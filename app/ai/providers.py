@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 import re
 import time
 from dataclasses import dataclass, field
@@ -20,8 +21,9 @@ from app.errors import ApiError
 
 # USD per million tokens (input, output), list prices; free tiers cost 0
 PRICES = {
+    "openai/gpt-oss-120b": (0.15, 0.75),
+    "openai/gpt-oss-20b": (0.075, 0.30),
     "llama-3.3-70b-versatile": (0.59, 0.79),
-    "llama-3.1-8b-instant": (0.05, 0.08),
     "gemini-2.5-flash": (0.30, 2.50),
     "gemini-2.0-flash": (0.10, 0.40),
 }
@@ -40,6 +42,10 @@ class Usage:
     @property
     def cost_usd(self) -> float:
         pin, pout = PRICES.get(self.model, (0.0, 0.0))
+        if os.getenv("AI_PRICE_PER_M_INPUT"):
+            pin = float(os.environ["AI_PRICE_PER_M_INPUT"])
+        if os.getenv("AI_PRICE_PER_M_OUTPUT"):
+            pout = float(os.environ["AI_PRICE_PER_M_OUTPUT"])
         return round(self.input_tokens / 1e6 * pin + self.output_tokens / 1e6 * pout, 6)
 
     def as_dict(self) -> dict[str, Any]:

@@ -108,3 +108,11 @@ def test_api_token_and_rate_limit(client, monkeypatch):
     monkeypatch.setattr(s, "rate_limit_per_minute", 3)
     codes = [client.get("/api/v1/connectors", headers={"X-Forwarded-For": "9.9.9.9"}).status_code for _ in range(5)]
     assert codes[-1] == 429
+
+
+def test_openapi_file_matches_running_service(client):
+    from pathlib import Path
+
+    on_disk = yaml.safe_load(Path(__file__).resolve().parent.parent.joinpath("openapi.yaml").read_text(encoding="utf-8"))
+    served = yaml.safe_load(client.get("/openapi.yaml").text)
+    assert on_disk == served, "openapi.yaml is stale: run python -m tools.export_openapi"
