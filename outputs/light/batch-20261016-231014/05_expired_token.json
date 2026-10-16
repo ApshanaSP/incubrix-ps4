@@ -1,0 +1,410 @@
+{
+  "name": "05_expired_token",
+  "description": "Hard case 2b: an expired token pauses the destination and asks the owner to reconnect.",
+  "ok": true,
+  "seconds": 0.305,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "9351abdbf06f48519a2b7692861a2bb6",
+      "response": {
+        "id": "con_3f1d02a138564426",
+        "connector_key": "ghost",
+        "name": "ghost",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "admin_api_key": "<set>"
+        },
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00"
+      },
+      "seconds": 0.005
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "1204a58faebd441ca9accdef8238ecee",
+      "response": {
+        "id": "dst_c62ffac2f611427c",
+        "name": "batch ghost g",
+        "url": "https://ghost-g-8ba5ca6c.mock",
+        "normalized_url": "https://ghost-g-8ba5ca6c.mock",
+        "platform_key": "ghost",
+        "connector_key": "ghost",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://ghost-g-8ba5ca6c.mock"
+        },
+        "connection_id": "con_3f1d02a138564426",
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00",
+        "created": true
+      },
+      "seconds": 0.005
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_c62ffac2f611427c/certify",
+      "http_status": 202,
+      "correlation_id": "8ca47c63f1a04e3fa3af0c2c77ccec54",
+      "response": {
+        "job_id": "job_a9eeb5e0574b4f8d",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_a9eeb5e0574b4f8d"
+        },
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00"
+      },
+      "job": {
+        "job_id": "job_a9eeb5e0574b4f8d",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_e128880826e649c4",
+          "destination_id": "dst_c62ffac2f611427c",
+          "name": "batch ghost g",
+          "passed": true,
+          "level": "L3",
+          "duration_s": 0.016,
+          "evidence_url": "http://localhost:8080/api/v1/files/certifications/dst_c62ffac2f611427c/crt_e128880826e649c4.json?expires=1792777278&sig=3eabd446d973601139516086bafadfc3",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://localhost:8080/api/v1/files/certifications/dst_c62ffac2f611427c/crt_e128880826e649c4.json?expires=1792777278&sig=3eabd446d973601139516086bafadfc3"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "ghost",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_a9eeb5e0574b4f8d",
+          "evidence": "http://localhost:8080/api/v1/files/certifications/dst_c62ffac2f611427c/crt_e128880826e649c4.json?expires=1792777278&sig=3eabd446d973601139516086bafadfc3"
+        },
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00"
+      },
+      "seconds": 0.268,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "http_status": 200,
+      "correlation_id": "1a97912e4399420e99c9b0945223f2b6",
+      "response": {
+        "ok": true,
+        "instance": "ghost/ghost-g-8ba5ca6c.mock",
+        "pending_faults": [
+          {
+            "kind": "auth_expired",
+            "op": "publish",
+            "count": 1,
+            "retry_after": 2.0,
+            "status": null
+          }
+        ],
+        "revoked": false
+      },
+      "seconds": 0.004
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "3941a4e0a8974d7d9cd9d11f081b7d9b",
+      "response": {
+        "job_id": "job_12bf77dd48814d4e",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_12bf77dd48814d4e"
+        },
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00"
+      },
+      "job": {
+        "job_id": "job_12bf77dd48814d4e",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_b5c17798fc5a4668",
+          "summary": {
+            "failed": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_c62ffac2f611427c",
+              "name": "batch ghost g",
+              "connector_key": "ghost",
+              "tailoring_notes": [
+                "style: article"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [
+                  "ai",
+                  "video"
+                ],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "state": "failed",
+              "error": {
+                "code": "CONNECTION_AUTH_EXPIRED",
+                "message": "platform answered 401: Token expired",
+                "retryable": false,
+                "details": {
+                  "http_status": 401,
+                  "platform_message": "Token expired"
+                }
+              },
+              "idempotency_key": "p-8ba5ca6c:dst_c62ffac2f611427c",
+              "post_id": "pst_539d73ad72364093",
+              "post_state": "blocked",
+              "reschedule_at": null
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "ghost",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.0,
+              "total_s": 0.0
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://localhost:8080/api/v1/files/publications/pub_b5c17798fc5a4668.json?expires=1792777278&sig=249ab90c9784cea330b1374e6ee110ad"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_12bf77dd48814d4e",
+          "result": "http://localhost:8080/api/v1/files/publications/pub_b5c17798fc5a4668.json?expires=1792777278&sig=249ab90c9784cea330b1374e6ee110ad"
+        },
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00"
+      },
+      "seconds": 0.017,
+      "checks": [
+        {
+          "field": "result.results.0.error.code",
+          "expected": "CONNECTION_AUTH_EXPIRED",
+          "got": "CONNECTION_AUTH_EXPIRED",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "method": "GET",
+      "path": "/api/v1/destinations/dst_c62ffac2f611427c",
+      "http_status": 200,
+      "correlation_id": "3450ec9322a64a7e9728a24f130fa45f",
+      "response": {
+        "id": "dst_c62ffac2f611427c",
+        "name": "batch ghost g",
+        "url": "https://ghost-g-8ba5ca6c.mock",
+        "normalized_url": "https://ghost-g-8ba5ca6c.mock",
+        "platform_key": "ghost",
+        "connector_key": "ghost",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L3",
+        "last_certified_at": "2026-10-16T17:41:18+00:00",
+        "status": "paused",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://ghost-g-8ba5ca6c.mock"
+        },
+        "connection_id": "con_3f1d02a138564426",
+        "created_at": "2026-10-16T17:41:18+00:00",
+        "updated_at": "2026-10-16T17:41:18+00:00",
+        "recent_certifications": [
+          {
+            "id": "crt_e128880826e649c4",
+            "status": "passed",
+            "finished_at": "2026-10-16T17:41:18+00:00",
+            "duration_s": 0.016,
+            "evidence_url": "http://localhost:8080/api/v1/files/certifications/dst_c62ffac2f611427c/crt_e128880826e649c4.json?expires=1792777278&sig=3eabd446d973601139516086bafadfc3"
+          }
+        ]
+      },
+      "seconds": 0.005,
+      "checks": [
+        {
+          "field": "status",
+          "expected": "paused",
+          "got": "paused",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

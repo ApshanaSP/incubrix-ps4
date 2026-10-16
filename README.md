@@ -149,7 +149,61 @@ Destinations get a level after certification: L0 catalogued only, L1 assisted, L
 
 ## Settings
 
-Every setting is an environment variable, listed with its default in [`.env.example`](.env.example). The main ones are `SIMULATION_MODE`, `API_TOKEN`, `SECRET_KEY`, `S3_*`, `AI_PROVIDER` (`mock`, `groq` or `gemini`) with its key and model, `HTTP_TIMEOUT_S`, `MAX_BACKOFF_S`, `RECERT_AFTER_DAYS` and `ALERT_WEBHOOK_URL`. There are no hard-coded paths or keys.
+Every setting is an environment variable (or a line in `.env`); [`.env.example`](.env.example) lists each one with its default. There are no hard-coded paths or keys.
+
+| Group | Setting | Default | What it does |
+|---|---|---|---|
+| service | `SERVICE_NAME` | `incubrix-longtail` |  |
+| service | `PUBLIC_BASE_URL` | `http://localhost:8080` | base for download links and feed URLs |
+| service | `PORT` | `8080` |  |
+| service | `DATA_DIR` | `./data` | SQLite database and local files |
+| service | `DB_PATH` | (empty) | optional explicit SQLite path |
+| service | `LOG_LEVEL` | `INFO` |  |
+| service | `API_TOKEN` | (empty) | set for the live demo: send "Authorization: Bearer <token>" |
+| service | `RATE_LIMIT_PER_MINUTE` | `120` | per client IP; 0 = off |
+| secrets | `SECRET_KEY` | `change-me` | encrypts stored connection credentials and signs download links |
+| secrets | `CALLBACK_SECRET` | (empty) | signs job callbacks (X-IncuBrix-Signature); defaults to SECRET_KEY |
+| simulation | `SIMULATION_MODE` | `true` | all platform calls go to the built-in mock platforms |
+| simulation | `MOCK_BASE_URL` | (empty) | mock platforms as a separate service (compose: http://mocks:9000) |
+| simulation | `SEED_DEMO` | `false` | seed the demo catalogue even when SIMULATION_MODE=false |
+| simulation | `CERTIFY_ON_START` | `true` | certify newly seeded demo destinations at start-up |
+| outbound calls to platforms | `HTTP_TIMEOUT_S` | `15` |  |
+| outbound calls to platforms | `MAX_BACKOFF_S` | `60` | wait for a 429 reset up to this long, else reschedule |
+| outbound calls to platforms | `UNAVAILABLE_TRIP_AFTER` | `5` | stop calling a destination after N consecutive failures |
+| outbound calls to platforms | `USER_AGENT` | `IncuBrixLongTail/1.0 (+https://incubrix.com)` |  |
+| outbound calls to platforms | `USE_SYSTEM_CERTS` | `false` | true = trust the OS certificate store (needs the truststore package) |
+| outbound calls to platforms | `OWN_DOMAINS` | `incubrix.com,incubrix.ai` | links to these count as self-promotion |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `S3_ENDPOINT` | (empty) |  |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `S3_PUBLIC_ENDPOINT` | (empty) | host used in presigned links, if different |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `S3_BUCKET` | `incubrix-longtail` |  |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `S3_ACCESS_KEY` | (empty) |  |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `S3_SECRET_KEY` | (empty) |  |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `S3_REGION` | `us-east-1` |  |
+| storage (S3-compatible; empty S3_ENDPOINT = local files under DATA_DIR/files) | `LINK_TTL_S` | `604800` |  |
+| jobs | `JOB_WORKERS` | `4` |  |
+| AI providers (adapters; mock needs no key) | `AI_PROVIDER` | `mock` | `mock`, `groq` or `gemini` |
+| AI providers (adapters; mock needs no key) | `GROQ_API_KEY` | (empty) |  |
+| AI providers (adapters; mock needs no key) | `GROQ_MODEL` | `openai/gpt-oss-120b` | Apache-2.0 open-weight model |
+| AI providers (adapters; mock needs no key) | `AI_PRICE_PER_M_INPUT` | (empty) | override list prices (USD per million tokens) for cost reports |
+| AI providers (adapters; mock needs no key) | `AI_PRICE_PER_M_OUTPUT` | (empty) |  |
+| AI providers (adapters; mock needs no key) | `GEMINI_API_KEY` | (empty) |  |
+| AI providers (adapters; mock needs no key) | `GEMINI_MODEL` | `gemini-2.5-flash` |  |
+| catalogue import | `REACHABILITY_MODE` | `online` | `online`, or `offline` to skip network checks |
+| catalogue import | `REACHABILITY_CONCURRENCY` | `50` |  |
+| catalogue import | `REACHABILITY_TIMEOUT_S` | `6` |  |
+| catalogue import | `AUDIENCE_TAGS` | `ai,video,marketing,saas,creators,founders` |  |
+| certification | `CLEANUP_DEADLINE_S` | `600` | test posts must be gone within this |
+| certification | `RECERT_AFTER_DAYS` | `25` | re-test before 30 days |
+| certification | `RECERT_INTERVAL_S` | `3600` | how often the scheduler looks for due destinations |
+| certification | `SCHEDULER_ENABLED` | `true` |  |
+| certification | `ALERT_WEBHOOK_URL` | (empty) | receives destination_demoted alerts (tickets are always stored) |
+| docker compose only | `GHOST_ADMIN_EMAIL` | `admin@incubrix.local` |  |
+| docker compose only | `GHOST_ADMIN_PASSWORD` | `Ibx7-qRm2-Wz9k-Lp4v-local` | local test instance only; Ghost rejects simple passwords |
+| docker compose only | `LEMMY_ADMIN_USER` | `incubrix_admin` | local Lemmy admin from deploy/lemmy/lemmy.hjson |
+| docker compose only | `LEMMY_ADMIN_PASSWORD` | `local-lemmy-admin-only` | local test instance only |
+| command-line tools (batch runner, reviewer check, bootstrap) | `API_URL` | `http://localhost:8080` | the service the tools call |
+| command-line tools (batch runner, reviewer check, bootstrap) | `LEMMY_URL` | `http://localhost:8536` | local Lemmy for tools/bootstrap_local.py |
+| command-line tools (batch runner, reviewer check, bootstrap) | `GHOST_URL` | `http://localhost:2368` | local Ghost for tools/bootstrap_local.py |
 
 Connection credentials are stored encrypted with `SECRET_KEY`, or given as references such as `{"api_key_ref": "env:DISCOURSE_API_KEY"}`. They are never returned by the API and never logged: log lines are redacted.
 

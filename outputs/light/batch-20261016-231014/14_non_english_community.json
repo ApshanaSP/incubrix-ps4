@@ -1,0 +1,660 @@
+{
+  "name": "14_non_english_community",
+  "description": "Hard case 7a: a German community gets a German disclosure line and a language warning; a strict Tamil community blocks an English post.",
+  "ok": true,
+  "seconds": 3.464,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "15629826db9e42b7b0817a8c9a8e2c3c",
+      "response": {
+        "id": "con_cdef71f79a5048f5",
+        "connector_key": "lemmy",
+        "name": "lemmy",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "username": "<set>",
+          "password": "<set>"
+        },
+        "created_at": "2026-10-16T17:41:28+00:00",
+        "updated_at": "2026-10-16T17:41:28+00:00"
+      },
+      "seconds": 0.01
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "1ef02cc42e3542de8e95003eb42a94d0",
+      "response": {
+        "id": "dst_4b832adad24644fe",
+        "name": "batch lemmy de",
+        "url": "https://lemmy-de-0c6e6b5a.mock",
+        "normalized_url": "https://lemmy-de-0c6e6b5a.mock#community=incubrix_test",
+        "platform_key": "lemmy",
+        "connector_key": "lemmy",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "de",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": true,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://lemmy-de-0c6e6b5a.mock",
+          "community": "incubrix_test"
+        },
+        "connection_id": "con_cdef71f79a5048f5",
+        "created_at": "2026-10-16T17:41:29+00:00",
+        "updated_at": "2026-10-16T17:41:29+00:00",
+        "created": true
+      },
+      "seconds": 1.02
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_4b832adad24644fe/certify",
+      "http_status": 202,
+      "correlation_id": "809f41ee1bc84ebaad3eef7ed4aae736",
+      "response": {
+        "job_id": "job_dfbc82c88f3a4980",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_dfbc82c88f3a4980"
+        },
+        "created_at": "2026-10-16T17:41:29+00:00",
+        "updated_at": "2026-10-16T17:41:29+00:00"
+      },
+      "job": {
+        "job_id": "job_dfbc82c88f3a4980",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_340ed119e5ee4f74",
+          "destination_id": "dst_4b832adad24644fe",
+          "name": "batch lemmy de",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.031,
+          "evidence_url": "http://localhost:8080/api/v1/files/certifications/dst_4b832adad24644fe/crt_340ed119e5ee4f74.json?expires=1792777289&sig=294c0936365b7b8b4a535f005f749089",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://localhost:8080/api/v1/files/certifications/dst_4b832adad24644fe/crt_340ed119e5ee4f74.json?expires=1792777289&sig=294c0936365b7b8b4a535f005f749089"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_dfbc82c88f3a4980",
+          "evidence": "http://localhost:8080/api/v1/files/certifications/dst_4b832adad24644fe/crt_340ed119e5ee4f74.json?expires=1792777289&sig=294c0936365b7b8b4a535f005f749089"
+        },
+        "created_at": "2026-10-16T17:41:29+00:00",
+        "updated_at": "2026-10-16T17:41:29+00:00"
+      },
+      "seconds": 0.286,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "22bc2ff0fcc54449a676ae63c18dbd5d",
+      "response": {
+        "job_id": "job_47547f9c565e4492",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_47547f9c565e4492"
+        },
+        "created_at": "2026-10-16T17:41:29+00:00",
+        "updated_at": "2026-10-16T17:41:29+00:00"
+      },
+      "job": {
+        "job_id": "job_47547f9c565e4492",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_4f9842be852e470b",
+          "summary": {
+            "published": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_4b832adad24644fe",
+              "name": "batch lemmy de",
+              "connector_key": "lemmy",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community",
+                "added AI disclosure line (de)",
+                "community language is 'de', content is 'en' (not translated)"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nWelche Erfahrungen habt ihr damit gemacht?\n\n_Hinweis: Dieser Beitrag wurde mit Hilfe von KI erstellt (AI-generated)._",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": true,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_e48f989e37f74ae6",
+              "state": "published",
+              "platform_post_id": "1002|https://lemmy-de-0c6e6b5a.mock",
+              "live_url": "https://lemmy-de-0c6e6b5a.mock/post/1002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "p-0c6e6b5a:dst_4b832adad24644fe",
+              "status": "live",
+              "warnings": [
+                "community language is 'de' but the post is 'en'; consider a translated rendition"
+              ]
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.015,
+              "total_s": 0.015
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": true,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://localhost:8080/api/v1/files/publications/pub_4f9842be852e470b.json?expires=1792777289&sig=0231df4311336edf14cf3631d68abe1a"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_47547f9c565e4492",
+          "result": "http://localhost:8080/api/v1/files/publications/pub_4f9842be852e470b.json?expires=1792777289&sig=0231df4311336edf14cf3631d68abe1a"
+        },
+        "created_at": "2026-10-16T17:41:29+00:00",
+        "updated_at": "2026-10-16T17:41:29+00:00"
+      },
+      "seconds": 1.052,
+      "checks": [
+        {
+          "field": "result.results.0.state",
+          "expected": "published",
+          "got": "published",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "5ed0418e6326476bbd3884d07a4709a4",
+      "response": {
+        "id": "con_3bc8ead471084c33",
+        "connector_key": "lemmy",
+        "name": "lemmy",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "username": "<set>",
+          "password": "<set>"
+        },
+        "created_at": "2026-10-16T17:41:30+00:00",
+        "updated_at": "2026-10-16T17:41:30+00:00"
+      },
+      "seconds": 0.014
+    },
+    {
+      "step": 6,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "e5c6f36a25d347f78f0f358d601267af",
+      "response": {
+        "id": "dst_f53fc97ff3d04a1d",
+        "name": "batch lemmy ta",
+        "url": "https://lemmy-ta-0c6e6b5a.mock",
+        "normalized_url": "https://lemmy-ta-0c6e6b5a.mock#community=incubrix_test",
+        "platform_key": "lemmy",
+        "connector_key": "lemmy",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "ta",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://lemmy-ta-0c6e6b5a.mock",
+          "community": "incubrix_test",
+          "language_strict": true
+        },
+        "connection_id": "con_3bc8ead471084c33",
+        "created_at": "2026-10-16T17:41:30+00:00",
+        "updated_at": "2026-10-16T17:41:30+00:00",
+        "created": true
+      },
+      "seconds": 0.011
+    },
+    {
+      "step": 7,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_f53fc97ff3d04a1d/certify",
+      "http_status": 202,
+      "correlation_id": "fcf8717fb7c545038193130849b612ac",
+      "response": {
+        "job_id": "job_6e0e7ab5fc804f0f",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_6e0e7ab5fc804f0f"
+        },
+        "created_at": "2026-10-16T17:41:30+00:00",
+        "updated_at": "2026-10-16T17:41:30+00:00"
+      },
+      "job": {
+        "job_id": "job_6e0e7ab5fc804f0f",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_5ff970718b774ec6",
+          "destination_id": "dst_f53fc97ff3d04a1d",
+          "name": "batch lemmy ta",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.031,
+          "evidence_url": "http://localhost:8080/api/v1/files/certifications/dst_f53fc97ff3d04a1d/crt_5ff970718b774ec6.json?expires=1792777290&sig=b1ff893da95b139385fd680820402cac",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://localhost:8080/api/v1/files/certifications/dst_f53fc97ff3d04a1d/crt_5ff970718b774ec6.json?expires=1792777290&sig=b1ff893da95b139385fd680820402cac"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_6e0e7ab5fc804f0f",
+          "evidence": "http://localhost:8080/api/v1/files/certifications/dst_f53fc97ff3d04a1d/crt_5ff970718b774ec6.json?expires=1792777290&sig=b1ff893da95b139385fd680820402cac"
+        },
+        "created_at": "2026-10-16T17:41:30+00:00",
+        "updated_at": "2026-10-16T17:41:30+00:00"
+      },
+      "seconds": 1.039,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "2dfa9f1bb5104c6c91047976a31da708",
+      "response": {
+        "job_id": "job_5da1cfe1591746c3",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_5da1cfe1591746c3"
+        },
+        "created_at": "2026-10-16T17:41:31+00:00",
+        "updated_at": "2026-10-16T17:41:31+00:00"
+      },
+      "job": {
+        "job_id": "job_5da1cfe1591746c3",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_cd0366ae11054e0f",
+          "summary": {
+            "blocked": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_f53fc97ff3d04a1d",
+              "name": "batch lemmy ta",
+              "connector_key": "lemmy",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community",
+                "community language is 'ta', content is 'en' (not translated)"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nWhat has worked for you here? Curious how others in this community approach it.",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_4ce40b401aeb4b4d",
+              "state": "blocked",
+              "platform_post_id": null,
+              "live_url": null,
+              "reason": "this community posts only in 'ta' and the post is 'en'",
+              "reschedule_at": null,
+              "idempotency_key": "p2-0c6e6b5a:dst_f53fc97ff3d04a1d",
+              "code": "DEST_RULE_VIOLATION",
+              "violations": [
+                {
+                  "code": "DEST_RULE_VIOLATION",
+                  "rule": "language",
+                  "action": "block",
+                  "message": "this community posts only in 'ta' and the post is 'en'"
+                }
+              ],
+              "warnings": []
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.0,
+              "total_s": 0.0
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://localhost:8080/api/v1/files/publications/pub_cd0366ae11054e0f.json?expires=1792777291&sig=f6f32369282202c17a35dbc89b99a917"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_5da1cfe1591746c3",
+          "result": "http://localhost:8080/api/v1/files/publications/pub_cd0366ae11054e0f.json?expires=1792777291&sig=f6f32369282202c17a35dbc89b99a917"
+        },
+        "created_at": "2026-10-16T17:41:31+00:00",
+        "updated_at": "2026-10-16T17:41:31+00:00"
+      },
+      "seconds": 0.032,
+      "checks": [
+        {
+          "field": "result.results.0.state",
+          "expected": "blocked",
+          "got": "blocked",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

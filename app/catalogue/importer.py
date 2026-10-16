@@ -21,7 +21,6 @@ from langdetect import DetectorFactory, LangDetectException, detect
 
 from app.catalogue import intel, store
 from app.config import get_settings
-from app.connectors.http import is_simulated
 from app.db import get_db
 from app.errors import ApiError
 from app.rules import parse_window
@@ -158,13 +157,21 @@ def validate_row(raw: dict[str, str]) -> tuple[dict[str, Any] | None, list[str],
     return (None if errors else data), errors, warnings
 
 
+def _mock_host(url: str) -> bool:
+    # Reachability is a read, not a post: it checks real URLs even in simulation mode. Only .mock hosts
+    # (the built-in mock platforms) are answered without the network.
+    return (urlsplit(url).hostname or "").endswith(".mock")
+
+
 async def check_reachability(client: httpx.AsyncClient, url: str) -> dict[str, Any]:
     s = get_settings()
     if s.reachability_mode == "offline":
         return {"reachable": None, "note": "not checked (offline mode)"}
     target, transport_client = url, client
-    if is_simulated(url):
+    if _mock_host(url):
         return {"reachable": True, "http_status": 200, "note": "simulated host", "title": "", "description": ""}
+    if not await intel.robots_allows(url):
+        return {"reachable": None, "note": "not checked: the site's robots.txt disallows automated access"}
     t0 = time.monotonic()
     try:
         resp = await transport_client.get(target)
@@ -184,7 +191,7 @@ async def check_reachability(client: httpx.AsyncClient, url: str) -> dict[str, A
 async def enrich_members(client: httpx.AsyncClient, data: dict[str, Any]) -> int | None:
     """Member counts from public endpoints where the platform has one."""
     cfg = data["config"]
-    if get_settings().reachability_mode == "offline" or is_simulated(cfg.get("base_url", data["url"])):
+    if get_settings().reachability_mode == "offline" or _mock_host(cfg.get("base_url", data["url"])):
         return None
     try:
         if data["connector_key"] == "discourse":

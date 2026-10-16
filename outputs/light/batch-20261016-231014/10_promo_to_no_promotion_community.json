@@ -1,0 +1,427 @@
+{
+  "name": "10_promo_to_no_promotion_community",
+  "description": "Hard case 4b: a promotional post to a no-self-promotion community is blocked with the reason.",
+  "ok": true,
+  "seconds": 2.31,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "a36fefcee2ff42adb7a645597ab83173",
+      "response": {
+        "id": "con_ebeba5b2897c450f",
+        "connector_key": "lemmy",
+        "name": "lemmy",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "username": "<set>",
+          "password": "<set>"
+        },
+        "created_at": "2026-10-16T17:41:19+00:00",
+        "updated_at": "2026-10-16T17:41:19+00:00"
+      },
+      "seconds": 0.004
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "a1c4193153eb43b99bc6ef7d52f7a79f",
+      "response": {
+        "id": "dst_547270de7bec4f1b",
+        "name": "batch lemmy n",
+        "url": "https://lemmy-n-66512b5a.mock",
+        "normalized_url": "https://lemmy-n-66512b5a.mock#community=incubrix_test",
+        "platform_key": "lemmy",
+        "connector_key": "lemmy",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://lemmy-n-66512b5a.mock",
+          "community": "incubrix_test"
+        },
+        "connection_id": "con_ebeba5b2897c450f",
+        "created_at": "2026-10-16T17:41:19+00:00",
+        "updated_at": "2026-10-16T17:41:19+00:00",
+        "created": true
+      },
+      "seconds": 0.006
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_547270de7bec4f1b/certify",
+      "http_status": 202,
+      "correlation_id": "2a79a239f08e4bd58e0e010e3c6a810a",
+      "response": {
+        "job_id": "job_8f1a7c8720324fb1",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_8f1a7c8720324fb1"
+        },
+        "created_at": "2026-10-16T17:41:20+00:00",
+        "updated_at": "2026-10-16T17:41:20+00:00"
+      },
+      "job": {
+        "job_id": "job_8f1a7c8720324fb1",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_bfa2e97b77154214",
+          "destination_id": "dst_547270de7bec4f1b",
+          "name": "batch lemmy n",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.015,
+          "evidence_url": "http://localhost:8080/api/v1/files/certifications/dst_547270de7bec4f1b/crt_bfa2e97b77154214.json?expires=1792777280&sig=fdcaaaccdf2e90e32084a536706a689b",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://localhost:8080/api/v1/files/certifications/dst_547270de7bec4f1b/crt_bfa2e97b77154214.json?expires=1792777280&sig=fdcaaaccdf2e90e32084a536706a689b"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_8f1a7c8720324fb1",
+          "evidence": "http://localhost:8080/api/v1/files/certifications/dst_547270de7bec4f1b/crt_bfa2e97b77154214.json?expires=1792777280&sig=fdcaaaccdf2e90e32084a536706a689b"
+        },
+        "created_at": "2026-10-16T17:41:20+00:00",
+        "updated_at": "2026-10-16T17:41:20+00:00"
+      },
+      "seconds": 1.277,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "9db33afd50fe4217bc019a9a4473bad4",
+      "response": {
+        "job_id": "job_b7876154e8b34be1",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_b7876154e8b34be1"
+        },
+        "created_at": "2026-10-16T17:41:21+00:00",
+        "updated_at": "2026-10-16T17:41:21+00:00"
+      },
+      "job": {
+        "job_id": "job_b7876154e8b34be1",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_85aea1e1852a45e7",
+          "summary": {
+            "blocked": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_547270de7bec4f1b",
+              "name": "batch lemmy n",
+              "connector_key": "lemmy",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community",
+                "link moved to the end as 'more detail'"
+              ],
+              "rendition": {
+                "title": "Try IncuBrix free: sign up today",
+                "body": "Get started today with our new tool, 30% off.\n\nWhat has worked for you here? Curious how others in this community approach it.\n\nMore detail: https://incubrix.com/pricing",
+                "body_format": "markdown",
+                "link": "https://incubrix.com/pricing",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_e7f3b2601a9543e4",
+              "state": "blocked",
+              "platform_post_id": null,
+              "live_url": null,
+              "reason": "this community bans self-promotion and the post is promotional (phrase 'sign up', phrase '% off', phrase 'get started today')",
+              "reschedule_at": null,
+              "idempotency_key": "p-66512b5a:dst_547270de7bec4f1b",
+              "code": "DEST_RULE_VIOLATION",
+              "violations": [
+                {
+                  "code": "DEST_RULE_VIOLATION",
+                  "rule": "self_promotion",
+                  "action": "block",
+                  "message": "this community bans self-promotion and the post is promotional (phrase 'sign up', phrase '% off', phrase 'get started today')",
+                  "evidence": [
+                    "phrase 'sign up'",
+                    "phrase '% off'",
+                    "phrase 'get started today'",
+                    "phrase 'our new tool'",
+                    "phrase 'pricing'",
+                    "links to own site incubrix.com",
+                    "links to own site incubrix.com"
+                  ]
+                }
+              ],
+              "warnings": []
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.0,
+              "total_s": 0.0
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://localhost:8080/api/v1/files/publications/pub_85aea1e1852a45e7.json?expires=1792777281&sig=066d3d62cca63393e5811d8d2d27f90a"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_b7876154e8b34be1",
+          "result": "http://localhost:8080/api/v1/files/publications/pub_85aea1e1852a45e7.json?expires=1792777281&sig=066d3d62cca63393e5811d8d2d27f90a"
+        },
+        "created_at": "2026-10-16T17:41:21+00:00",
+        "updated_at": "2026-10-16T17:41:21+00:00"
+      },
+      "seconds": 0.015,
+      "checks": [
+        {
+          "field": "result.results.0.state",
+          "expected": "blocked",
+          "got": "blocked",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "method": "GET",
+      "path": "/api/v1/sim/state",
+      "http_status": 200,
+      "correlation_id": "dbfbeb2179e443c2968da93f4021cad5",
+      "response": {
+        "platform": "lemmy",
+        "host": "lemmy-n-66512b5a.mock",
+        "posts_total": 1,
+        "posts_live": 0,
+        "posts": [
+          {
+            "id": 1001,
+            "name": "IncuBrix connector certification 15d56bf3 please ignore",
+            "body": "Automated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "url": null,
+            "ap_id": "https://lemmy-n-66512b5a.mock/post/1001",
+            "deleted": true,
+            "removed": false,
+            "published": "2026-10-16T17:41:20Z",
+            "community_id": 3,
+            "score": 4,
+            "comments": 3,
+            "creator": "incubrix_bot"
+          }
+        ],
+        "faults": [],
+        "revoked": false,
+        "calls": [
+          {
+            "method": "GET",
+            "path": "/api/v3/community",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "GET",
+            "path": "/api/v3/community",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "POST",
+            "path": "/api/v3/user/login",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "POST",
+            "path": "/api/v3/post",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "GET",
+            "path": "/api/v3/post",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "GET",
+            "path": "/api/v3/post",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "POST",
+            "path": "/api/v3/post/delete",
+            "at": "2026-10-16T17:41:20Z"
+          },
+          {
+            "method": "GET",
+            "path": "/api/v3/post",
+            "at": "2026-10-16T17:41:20Z"
+          }
+        ]
+      },
+      "seconds": 1.008,
+      "checks": [
+        {
+          "field": "posts_live",
+          "expected": 0,
+          "got": 0,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

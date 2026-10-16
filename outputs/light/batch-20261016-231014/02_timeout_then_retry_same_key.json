@@ -1,0 +1,539 @@
+{
+  "name": "02_timeout_then_retry_same_key",
+  "description": "Hard case 1: the platform creates the post but the answer times out; the retry with the same key returns that post; exactly one post exists.",
+  "ok": true,
+  "seconds": 15.607,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "d813cf202c4b42a781510ace915a5da2",
+      "response": {
+        "id": "con_102e7c4fd77a4729",
+        "connector_key": "discourse",
+        "name": "discourse",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "api_key": "<set>",
+          "api_username": "<set>"
+        },
+        "created_at": "2026-10-16T17:40:17+00:00",
+        "updated_at": "2026-10-16T17:40:17+00:00"
+      },
+      "seconds": 0.007
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "7ef1fd9ebcab4fa3982d77c3cf9c3087",
+      "response": {
+        "id": "dst_6eee1ecadea94d18",
+        "name": "batch discourse t",
+        "url": "https://discourse-t-f26b0b2a.mock",
+        "normalized_url": "https://discourse-t-f26b0b2a.mock",
+        "platform_key": "discourse",
+        "connector_key": "discourse",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://discourse-t-f26b0b2a.mock"
+        },
+        "connection_id": "con_102e7c4fd77a4729",
+        "created_at": "2026-10-16T17:40:17+00:00",
+        "updated_at": "2026-10-16T17:40:17+00:00",
+        "created": true
+      },
+      "seconds": 0.007
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_6eee1ecadea94d18/certify",
+      "http_status": 202,
+      "correlation_id": "57b1a45a49544b098a3115fa8aaa8673",
+      "response": {
+        "job_id": "job_bed19aa24bb34c74",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_bed19aa24bb34c74"
+        },
+        "created_at": "2026-10-16T17:40:17+00:00",
+        "updated_at": "2026-10-16T17:40:17+00:00"
+      },
+      "job": {
+        "job_id": "job_bed19aa24bb34c74",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_f42a26b6849d4bbb",
+          "destination_id": "dst_6eee1ecadea94d18",
+          "name": "batch discourse t",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.016,
+          "evidence_url": "http://localhost:8080/api/v1/files/certifications/dst_6eee1ecadea94d18/crt_f42a26b6849d4bbb.json?expires=1792777217&sig=7d99c35e7b7f02b506d7dde7711cd24b",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://localhost:8080/api/v1/files/certifications/dst_6eee1ecadea94d18/crt_f42a26b6849d4bbb.json?expires=1792777217&sig=7d99c35e7b7f02b506d7dde7711cd24b"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "discourse",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_bed19aa24bb34c74",
+          "evidence": "http://localhost:8080/api/v1/files/certifications/dst_6eee1ecadea94d18/crt_f42a26b6849d4bbb.json?expires=1792777217&sig=7d99c35e7b7f02b506d7dde7711cd24b"
+        },
+        "created_at": "2026-10-16T17:40:17+00:00",
+        "updated_at": "2026-10-16T17:40:17+00:00"
+      },
+      "seconds": 0.281,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "http_status": 200,
+      "correlation_id": "569c4ded434b49e2909f3892aad36d6a",
+      "response": {
+        "ok": true,
+        "instance": "discourse/discourse-t-f26b0b2a.mock",
+        "pending_faults": [
+          {
+            "kind": "timeout_after_create",
+            "op": "publish",
+            "count": 1,
+            "retry_after": 2.0,
+            "status": null
+          }
+        ],
+        "revoked": false
+      },
+      "seconds": 0.012
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "ebc7593279ed42799139cd6941236de1",
+      "response": {
+        "job_id": "job_875b51ab608c4455",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_875b51ab608c4455"
+        },
+        "created_at": "2026-10-16T17:40:18+00:00",
+        "updated_at": "2026-10-16T17:40:18+00:00"
+      },
+      "job": {
+        "job_id": "job_875b51ab608c4455",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_960512b4cd8246c0",
+          "summary": {
+            "published": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_6eee1ecadea94d18",
+              "name": "batch discourse t",
+              "connector_key": "discourse",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nWhat has worked for you here? Curious how others in this community approach it.",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "topic"
+              },
+              "post_id": "pst_5f00477a901b43d4",
+              "state": "published",
+              "platform_post_id": "1002|https://discourse-t-f26b0b2a.mock",
+              "live_url": "https://discourse-t-f26b0b2a.mock/t/how-we-cut-video-editing-time-with-ai-captions/51002",
+              "reason": "call timed out but the post was created; recovered it",
+              "reschedule_at": null,
+              "idempotency_key": "timeout-f26b0b2a:dst_6eee1ecadea94d18",
+              "warnings": [
+                "publish call timed out; the post exists and was recovered (no duplicate)"
+              ]
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "discourse",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 15.016,
+              "total_s": 15.016
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://localhost:8080/api/v1/files/publications/pub_960512b4cd8246c0.json?expires=1792777233&sig=95c00143bd5be4a66c523ad73072bdf4"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_875b51ab608c4455",
+          "result": "http://localhost:8080/api/v1/files/publications/pub_960512b4cd8246c0.json?expires=1792777233&sig=95c00143bd5be4a66c523ad73072bdf4"
+        },
+        "created_at": "2026-10-16T17:40:18+00:00",
+        "updated_at": "2026-10-16T17:40:33+00:00"
+      },
+      "seconds": 15.267
+    },
+    {
+      "step": 6,
+      "method": "POST",
+      "path": "/api/v1/posts/pst_5f00477a901b43d4/retry",
+      "http_status": 202,
+      "correlation_id": "88e7a48d48554afdb25a3de65eb00f2f",
+      "response": {
+        "job_id": "job_63a5ebb0ae5c4ad1",
+        "kind": "retry",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_63a5ebb0ae5c4ad1"
+        },
+        "created_at": "2026-10-16T17:40:33+00:00",
+        "updated_at": "2026-10-16T17:40:33+00:00"
+      },
+      "job": {
+        "job_id": "job_63a5ebb0ae5c4ad1",
+        "kind": "retry",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "post_id": "pst_5f00477a901b43d4",
+          "destination_id": "dst_6eee1ecadea94d18",
+          "state": "published",
+          "platform_post_id": "1002|https://discourse-t-f26b0b2a.mock",
+          "live_url": "https://discourse-t-f26b0b2a.mock/t/how-we-cut-video-editing-time-with-ai-captions/51002",
+          "reason": "call timed out but the post was created; recovered it",
+          "reschedule_at": null,
+          "idempotency_key": "timeout-f26b0b2a:dst_6eee1ecadea94d18",
+          "replayed": true,
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "retry",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "discourse",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_63a5ebb0ae5c4ad1"
+        },
+        "created_at": "2026-10-16T17:40:33+00:00",
+        "updated_at": "2026-10-16T17:40:33+00:00"
+      },
+      "seconds": 0.022,
+      "checks": [
+        {
+          "field": "result.replayed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "method": "GET",
+      "path": "/api/v1/sim/state",
+      "http_status": 200,
+      "correlation_id": "7cd1fd8028674144aac593daf72797e3",
+      "response": {
+        "platform": "discourse",
+        "host": "discourse-t-f26b0b2a.mock",
+        "posts_total": 2,
+        "posts_live": 1,
+        "posts": [
+          {
+            "id": 1001,
+            "topic_id": 51001,
+            "topic_slug": "incubrix-connector-certification-a45b8bad-please-ignore",
+            "post_number": 1,
+            "username": "incubrix_bot",
+            "raw": "Automated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "title": "IncuBrix connector certification a45b8bad please ignore",
+            "created_at": "2026-10-16T17:40:17Z",
+            "deleted_at": "2026-10-16T17:40:17Z",
+            "hidden": false,
+            "category": null,
+            "views": 7,
+            "like_count": 0,
+            "reply_count": 0,
+            "deleted": true
+          },
+          {
+            "id": 1002,
+            "topic_id": 51002,
+            "topic_slug": "how-we-cut-video-editing-time-with-ai-captions",
+            "post_number": 1,
+            "username": "incubrix_bot",
+            "raw": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nWhat has worked for you here? Curious how others in this community approach it.",
+            "title": "How we cut video editing time with AI captions",
+            "created_at": "2026-10-16T17:40:18Z",
+            "deleted_at": null,
+            "hidden": false,
+            "category": null,
+            "views": 0,
+            "like_count": 0,
+            "reply_count": 0
+          }
+        ],
+        "faults": [],
+        "revoked": false,
+        "calls": [
+          {
+            "method": "GET",
+            "path": "/about.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "POST",
+            "path": "/posts.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "GET",
+            "path": "/posts/1001.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "GET",
+            "path": "/posts/1001.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "GET",
+            "path": "/t/51001.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "DELETE",
+            "path": "/posts/1001.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "GET",
+            "path": "/posts/1001.json",
+            "at": "2026-10-16T17:40:17Z"
+          },
+          {
+            "method": "POST",
+            "path": "/posts.json",
+            "at": "2026-10-16T17:40:18Z"
+          },
+          {
+            "method": "GET",
+            "path": "/topics/created-by/incubrix_bot.json",
+            "at": "2026-10-16T17:40:33Z"
+          }
+        ]
+      },
+      "seconds": 0.01,
+      "checks": [
+        {
+          "field": "posts_live",
+          "expected": 1,
+          "got": 1,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}
