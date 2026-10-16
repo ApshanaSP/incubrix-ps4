@@ -205,6 +205,7 @@ async def main() -> int:
             return info, cache[key]
         async with ai_sem:
             res = await assess(provider, info)
+        res["_model"] = f"{provider.name}/{provider.model}"
         cache[key] = res
         CACHE.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
         return info, res
@@ -251,7 +252,8 @@ async def main() -> int:
         })
         evidence[r["name"]] = {"url": r["url"], "rules_read_from": info.get("rules_from") or None,
                                "rules_note": info.get("rules_note"), "ai_rules": rules,
-                               "evidence": ai.get("evidence") or [], "ai_error": ai.get("ai_error")}
+                               "evidence": ai.get("evidence") or [], "ai_error": ai.get("ai_error"),
+                               "model": ai.get("_model", "groq/openai/gpt-oss-120b")}
     with open(OUT_CSV, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
         w.writeheader()

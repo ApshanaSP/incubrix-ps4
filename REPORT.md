@@ -35,7 +35,9 @@ This is what makes "the same key never creates a second post, even after a timeo
 | Contract (methods, manifest, error codes) | Done for all 9 connectors | `tests/test_contract.py`: manifest shape, methods, HTTP round trip per connector |
 | Core connectors: Discourse, Lemmy, Dev.to, Ghost, signed webhook, assisted | Certified in simulation (publish, confirm live URL, status, metrics, delete, confirm deletion) | `tests/test_certification.py`, batch input 01, evidence JSON per run |
 | Advanced connectors: Hashnode, Slack app, MRSS | Certified in simulation | the same |
-| Real local Lemmy 0.19 and Ghost 5 | Compose and bootstrap written; **see section 3** | `docker-compose.yml`, `tools/bootstrap_local.py` |
+| Real local Lemmy 0.19.5 and Ghost 5 | `docker compose up` brings up api, mocks, S3, Lemmy (+UI, Postgres) and Ghost; bootstrap certifies all 14 destinations: local Lemmy at L4, local Ghost at L3 | `docker compose logs bootstrap`, `outputs/metrics/local_instances.json` |
+| Tests in the container | 79/79 pass: `docker compose run --rm api python -m pytest` | `test_pack/tests/` |
+| Batch runner against the compose stack (mocks as a separate service) | 17/17 inputs as expected | `outputs/compose/batch-20261016-202242/` |
 | Rules before every post | Frequency cap, self-promotion (explicit and detected), link policy, AI disclosure, automation, language | `tests/test_rules.py`; rule test set below |
 | Safe retries | Timeout-after-create recovered with 0 duplicates; Idempotency-Key replay on every POST | `tests/test_failures.py`, batch input 02 |
 | Hard cases 1-7 | All handled with explicit codes and reasons | batch inputs 02-15, README table |
@@ -48,7 +50,7 @@ This is what makes "the same key never creates a second post, even after a timeo
 
 ## 3. What does not work yet, and why
 
-- **The real Lemmy and Ghost runs depend on Docker**, which was not installed on the development laptop until late. <!-- UPDATE after the compose run: results, or what failed. -->
+- **First compose runs failed, and the fixes are in the history.** MinIO no longer publishes Docker Hub images, so storage moved to SeaweedFS's S3 gateway. Ghost rejected the first local owner password as insecure, wanted to email new-device codes (there is no mail server locally), and returned its admin key in an unexpected form. The bootstrap's failed Ghost certification is kept in the certification history. A first batch run against compose hit the API's own rate limit (120 requests a minute), and its partial output is kept in `outputs/compose/batch-20261016-202108/`.
 - **Dev.to has no delete API.** `delete` unpublishes the article, which removes it from all public pages. This is reported as `method: unpublished`.
 - **Reddit, Hacker News and most large communities do not allow automated posting.** They are assisted destinations: the service builds the pack and a person posts it. Reddit's `robots.txt` also forbids automated reading, so its rules are never fetched. Those rows carry strict defaults until a person pastes the rules (`rules_text`).
 - **Lemmy-UI and many forums render their rules with JavaScript.** Lemmy rules are read through its API instead. Some Discourse forums disallow `/guidelines` in `robots.txt`; those rows fall back to strict defaults, marked `rules_source=conservative_default`.
@@ -74,7 +76,14 @@ Hardware: Dell Latitude E7470 laptop, Intel Core i7-6600U (2 cores, 4 threads, 2
 | slack | 5/5 | 0.025 s | 0.031 s |
 | mrss | 5/5 | 0.034 s | 0.110 s |
 
-Test posts are deleted in the same run, so the 10-minute cleanup limit is met with a wide margin. Real network times will be higher. <!-- UPDATE with the local Lemmy/Ghost times. -->
+Test posts are deleted in the same run, so the 10-minute cleanup limit is met with a wide margin.
+
+**Real local instances** (docker compose on the same laptop, Docker Desktop 29.8; `python -m tools.measure_local --n 10`, raw output in `outputs/metrics/local_instances.json`):
+
+| Destination | Certification run | Publishes | Published | Same key again returns the same post | Live URL answered 200 | Deleted afterwards | Mean publish job |
+|---|---|---|---|---|---|---|---|
+| Local Lemmy c/incubrix_test | 0.7-1.6 s, L4 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.41 s |
+| Local Ghost blog | 4.3 s, L3 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.39 s |
 
 **Reliability:** 300 publishes across the 7 native connectors with random injected faults. About 45% of calls had a fault: timeout after the post was created, timeout before, 429 with a 1-second or 10-minute reset, 500, and rejection. Each failure was retried through `/posts/{id}/retry` with the same idempotency key.
 
