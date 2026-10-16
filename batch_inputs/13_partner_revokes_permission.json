@@ -1,0 +1,89 @@
+{
+  "name": "13_partner_revokes_permission",
+  "description": "Hard case 6b: the partner revokes permission (403); the connection is marked revoked and the destination paused.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "webhook",
+        "credentials": {
+          "signing_secret": "whsec_simulation_only"
+        }
+      },
+      "save_as": "con_w",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://webhook-w-{{run}}.mock",
+        "connector_key": "webhook",
+        "name": "batch webhook w",
+        "config": {
+          "base_url": "https://webhook-w-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_w.id}}"
+      },
+      "save_as": "dest_w",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_w.id}}/certify",
+      "body": {},
+      "save_as": "cert_w",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "body": {
+        "destination_id": "{{dest_w.id}}",
+        "kind": "revoke",
+        "op": "publish"
+      },
+      "expect_status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_w.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.error.code": "CONNECTION_AUTH_EXPIRED"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/destinations/{{dest_w.id}}",
+      "expect": {
+        "status": "paused"
+      }
+    }
+  ]
+}

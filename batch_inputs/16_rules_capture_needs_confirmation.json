@@ -1,0 +1,96 @@
+{
+  "name": "16_rules_capture_needs_confirmation",
+  "description": "Advanced: an AI step reads the rules page and proposes rules; posting is blocked until a person confirms them.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "discourse",
+        "credentials": {
+          "api_key": "sim-discourse-key",
+          "api_username": "incubrix_bot"
+        }
+      },
+      "save_as": "con_rc",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://discourse-rc-{{run}}.mock",
+        "connector_key": "discourse",
+        "name": "batch discourse rc",
+        "config": {
+          "base_url": "https://discourse-rc-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "rules_url": "https://rules-{{run}}.mock/guidelines",
+        "connection_id": "{{con_rc.id}}"
+      },
+      "save_as": "dest_rc",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_rc.id}}/certify",
+      "body": {},
+      "save_as": "cert_rc",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_rc.id}}/rules/capture",
+      "body": {},
+      "save_as": "cap",
+      "expect": {
+        "result.proposed.self_promo_allowed": "no"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_rc.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.state": "blocked"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_rc.id}}/rules/{{cap.result.proposal_id}}/confirm",
+      "body": {
+        "decided_by": "batch-runner",
+        "overrides": {
+          "automation_allowed": true
+        }
+      },
+      "expect": {
+        "status": "confirmed"
+      }
+    }
+  ]
+}

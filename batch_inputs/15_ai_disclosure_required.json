@@ -1,0 +1,96 @@
+{
+  "name": "15_ai_disclosure_required",
+  "description": "Hard case 7b: AI content to a destination that requires disclosure gets the disclosure line; without it, contract validate blocks.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "ghost",
+        "credentials": {
+          "admin_api_key": "6489a6f2b8c1d2e3f4a5b6c7:cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+        }
+      },
+      "save_as": "con_ai",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://ghost-ai-{{run}}.mock",
+        "connector_key": "ghost",
+        "name": "batch ghost ai",
+        "config": {
+          "base_url": "https://ghost-ai-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "disclosure_required": true,
+        "connection_id": "{{con_ai.id}}"
+      },
+      "save_as": "dest_ai",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_ai.id}}/certify",
+      "body": {},
+      "save_as": "cert_ai",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false,
+          "ai_generated": true
+        },
+        "destination_ids": [
+          "{{dest_ai.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.state": "published"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/connector/v1/ghost/validate",
+      "body": {
+        "rendition": {
+          "title": "Five editing tricks",
+          "body": "No label.",
+          "ai_generated": true
+        },
+        "destination": {
+          "url": "https://x.mock",
+          "disclosure_required": true,
+          "config": {
+            "base_url": "https://x.mock"
+          }
+        }
+      },
+      "expect": {
+        "ok": false,
+        "violations.0.rule": "ai_disclosure"
+      }
+    }
+  ]
+}

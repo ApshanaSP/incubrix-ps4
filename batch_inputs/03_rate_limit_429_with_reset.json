@@ -1,0 +1,85 @@
+{
+  "name": "03_rate_limit_429_with_reset",
+  "description": "Hard case 2a: a 429 with a 15-minute reset is not retried blindly; the post is rescheduled to the reset time.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "discourse",
+        "credentials": {
+          "api_key": "sim-discourse-key",
+          "api_username": "incubrix_bot"
+        }
+      },
+      "save_as": "con_r",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://discourse-r-{{run}}.mock",
+        "connector_key": "discourse",
+        "name": "batch discourse r",
+        "config": {
+          "base_url": "https://discourse-r-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_r.id}}"
+      },
+      "save_as": "dest_r",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_r.id}}/certify",
+      "body": {},
+      "save_as": "cert_r",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "body": {
+        "destination_id": "{{dest_r.id}}",
+        "kind": "rate_limit",
+        "op": "publish",
+        "retry_after": 900
+      },
+      "expect_status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_r.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.error.code": "PLATFORM_RATE_LIMIT",
+        "result.results.0.post_state": "rescheduled"
+      }
+    }
+  ]
+}

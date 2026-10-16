@@ -1,0 +1,132 @@
+# docker compose up
+#   api        the IncuBrix long-tail service            http://localhost:8080/docs
+#   mocks      mock Discourse, Dev.to, webhook partner, Hashnode, Slack (no real accounts)
+#   lemmy      a real local Lemmy 0.19 (+ lemmy-ui, + Postgres) http://localhost:1236
+#   ghost      a real local Ghost 5                       http://localhost:2368
+#   minio      S3-compatible storage for outputs          http://localhost:9001 (console)
+#   bootstrap  one-shot: creates the Lemmy community and the Ghost integration, registers both as
+#              destinations in the api and certifies every destination
+# Run all tests (no keys):  docker compose run --rm api python -m pytest
+name: incubrix-longtail
+
+x-app: &app
+  build: .
+  image: incubrix-longtail:local
+  env_file:
+    - path: .env
+      required: false
+  environment: &app-env
+    PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:8080}
+    SIMULATION_MODE: ${SIMULATION_MODE:-false}
+    SEED_DEMO: "true"
+    MOCK_BASE_URL: http://mocks:9000
+    S3_ENDPOINT: http://minio:9000
+    S3_PUBLIC_ENDPOINT: ${S3_PUBLIC_ENDPOINT:-http://localhost:9000}
+    S3_BUCKET: incubrix-longtail
+    S3_ACCESS_KEY: ${MINIO_ROOT_USER:-incubrix}
+    S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-incubrix-local-only}
+    SECRET_KEY: ${SECRET_KEY:-change-me-local-only}
+    AI_PROVIDER: ${AI_PROVIDER:-mock}
+
+services:
+  api:
+    <<: *app
+    ports: ["8080:8080"]
+    volumes: ["api-data:/data"]
+    depends_on:
+      mocks: {condition: service_healthy}
+      minio: {condition: service_healthy}
+
+  mocks:
+    <<: *app
+    command: ["python", "-m", "app.serve", "mocks"]
+    environment:
+      <<: *app-env
+      PORT: "9000"
+    ports: ["9100:9000"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:9000/health"]
+      interval: 5s
+      retries: 20
+
+  minio:
+    image: minio/minio:latest
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-incubrix}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-incubrix-local-only}
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["minio-data:/data"]
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      retries: 20
+
+  lemmy-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: lemmy
+      POSTGRES_PASSWORD: lemmy
+      POSTGRES_DB: lemmy
+    volumes: ["lemmy-db:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lemmy"]
+      interval: 5s
+      retries: 20
+
+  lemmy:
+    image: dessalines/lemmy:0.19.5
+    environment:
+      RUST_LOG: warn
+      LEMMY_CONFIG_LOCATION: /config/config.hjson
+    volumes: ["./deploy/lemmy/lemmy.hjson:/config/config.hjson:ro"]
+    ports: ["8536:8536"]
+    depends_on:
+      lemmy-db: {condition: service_healthy}
+
+  lemmy-ui:
+    image: dessalines/lemmy-ui:0.19.5
+    environment:
+      LEMMY_UI_LEMMY_INTERNAL_HOST: lemmy:8536
+      LEMMY_UI_LEMMY_EXTERNAL_HOST: localhost:8536
+      LEMMY_UI_HTTPS: "false"
+    ports: ["1236:1234"]
+    depends_on: [lemmy]
+
+  ghost:
+    image: ghost:5-alpine
+    environment:
+      url: http://ghost:2368
+      NODE_ENV: development
+      database__client: sqlite3
+      database__connection__filename: /var/lib/ghost/content/data/ghost.db
+      mail__transport: SMTP
+      mail__options__host: localhost
+      privacy__useUpdateCheck: "false"
+      privacy__useGravatar: "false"
+    ports: ["2368:2368"]
+    volumes: ["ghost-content:/var/lib/ghost/content"]
+
+  bootstrap:
+    <<: *app
+    command: ["python", "-m", "tools.bootstrap_local"]
+    environment:
+      <<: *app-env
+      API_URL: http://api:8080
+      LEMMY_URL: http://lemmy:8536
+      LEMMY_ADMIN_USER: incubrix_admin
+      LEMMY_ADMIN_PASSWORD: local-lemmy-admin-only
+      GHOST_URL: http://ghost:2368
+      GHOST_ADMIN_EMAIL: ${GHOST_ADMIN_EMAIL:-admin@incubrix.local}
+      GHOST_ADMIN_PASSWORD: ${GHOST_ADMIN_PASSWORD:-local-ghost-admin-only-1}
+    restart: "no"
+    depends_on:
+      api: {condition: service_healthy}
+      lemmy: {condition: service_started}
+      ghost: {condition: service_started}
+
+volumes:
+  api-data:
+  minio-data:
+  lemmy-db:
+  ghost-content:

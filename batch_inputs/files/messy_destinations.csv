@@ -1,0 +1,12 @@
+name,url,platform_key,language,audience_tags,frequency_cap,self_promo_allowed,community
+AI Video Forum,https://forum.aivideo-batch.mock,discourse,en,ai;video,1/7d,limited,
+AI Video Forum again,HTTPS://www.forum.aivideo-batch.mock/?utm_source=x,discourse,en,ai,,,
+Bad one,not a url,discourse,en,,,,
+Spaces,https://exa mple.com,ghost,,,,,
+Lemmy KI,https://feddit-batch.mock/c/kuenstliche_intelligenz,lemmy,de,ai,,,
+Lemmy without community,https://lemmy-batch.mock,lemmy,,,,,
+Comunidad de creadores,https://creadores-batch.mock,discourse,es,creators,,maybe,
+Startup Gründer Forum,https://gruender-batch.mock,discourse,xx,founders,2 per week,no,
+தமிழ் படைப்பாளிகள் சமூகம்,https://tamil-creators-batch.mock,discourse,,creators;video,,,
+Reddit NewTubers,https://www.reddit.com/r/NewTubers,reddit,en,video;creators,1/7d,no,
+Mystery site,https://mystery-batch.mock,tumblr,en,,,,

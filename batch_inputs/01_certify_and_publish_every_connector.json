@@ -1,0 +1,394 @@
+{
+  "name": "01_certify_and_publish_every_connector",
+  "description": "Certify a fresh destination for each of the 9 connectors, then publish one item to all of them.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "discourse",
+        "credentials": {
+          "api_key": "sim-discourse-key",
+          "api_username": "incubrix_bot"
+        }
+      },
+      "save_as": "con_discourse",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://discourse-discourse-{{run}}.mock",
+        "connector_key": "discourse",
+        "name": "batch discourse discourse",
+        "config": {
+          "base_url": "https://discourse-discourse-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_discourse.id}}"
+      },
+      "save_as": "dest_discourse",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_discourse.id}}/certify",
+      "body": {},
+      "save_as": "cert_discourse",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "lemmy",
+        "credentials": {
+          "username": "incubrix_bot",
+          "password": "sim-password"
+        }
+      },
+      "save_as": "con_lemmy",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://lemmy-lemmy-{{run}}.mock",
+        "connector_key": "lemmy",
+        "name": "batch lemmy lemmy",
+        "config": {
+          "base_url": "https://lemmy-lemmy-{{run}}.mock",
+          "community": "incubrix_test"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_lemmy.id}}"
+      },
+      "save_as": "dest_lemmy",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_lemmy.id}}/certify",
+      "body": {},
+      "save_as": "cert_lemmy",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "devto",
+        "credentials": {
+          "api_key": "sim-devto-key"
+        }
+      },
+      "save_as": "con_devto",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://devto-devto-{{run}}.mock",
+        "connector_key": "devto",
+        "name": "batch devto devto",
+        "config": {
+          "api_base_url": "https://devto-devto-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_devto.id}}"
+      },
+      "save_as": "dest_devto",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_devto.id}}/certify",
+      "body": {},
+      "save_as": "cert_devto",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "ghost",
+        "credentials": {
+          "admin_api_key": "6489a6f2b8c1d2e3f4a5b6c7:cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+        }
+      },
+      "save_as": "con_ghost",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://ghost-ghost-{{run}}.mock",
+        "connector_key": "ghost",
+        "name": "batch ghost ghost",
+        "config": {
+          "base_url": "https://ghost-ghost-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_ghost.id}}"
+      },
+      "save_as": "dest_ghost",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_ghost.id}}/certify",
+      "body": {},
+      "save_as": "cert_ghost",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "webhook",
+        "credentials": {
+          "signing_secret": "whsec_simulation_only"
+        }
+      },
+      "save_as": "con_webhook",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://webhook-webhook-{{run}}.mock",
+        "connector_key": "webhook",
+        "name": "batch webhook webhook",
+        "config": {
+          "base_url": "https://webhook-webhook-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_webhook.id}}"
+      },
+      "save_as": "dest_webhook",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_webhook.id}}/certify",
+      "body": {},
+      "save_as": "cert_webhook",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://assisted-assisted-{{run}}.mock",
+        "connector_key": "assisted",
+        "name": "batch assisted assisted",
+        "config": {
+          "submit_url": "https://assisted-assisted-{{run}}.mock/submit"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en"
+      },
+      "save_as": "dest_assisted",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_assisted.id}}/certify",
+      "body": {},
+      "save_as": "cert_assisted",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "hashnode",
+        "credentials": {
+          "token": "sim-hashnode-token"
+        }
+      },
+      "save_as": "con_hashnode",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://hashnode-hashnode-{{run}}.mock",
+        "connector_key": "hashnode",
+        "name": "batch hashnode hashnode",
+        "config": {
+          "api_base_url": "https://hashnode-hashnode-{{run}}.mock",
+          "publication_id": "pub1"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_hashnode.id}}"
+      },
+      "save_as": "dest_hashnode",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_hashnode.id}}/certify",
+      "body": {},
+      "save_as": "cert_hashnode",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "slack",
+        "credentials": {
+          "bot_token": "xoxb-sim-1111-batch"
+        }
+      },
+      "save_as": "con_slack",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://slack-slack-{{run}}.mock",
+        "connector_key": "slack",
+        "name": "batch slack slack",
+        "config": {
+          "api_base_url": "https://slack-slack-{{run}}.mock",
+          "channel": "C0BATCH"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_slack.id}}"
+      },
+      "save_as": "dest_slack",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_slack.id}}/certify",
+      "body": {},
+      "save_as": "cert_slack",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://mrss-mrss-{{run}}.mock",
+        "connector_key": "mrss",
+        "name": "batch mrss mrss",
+        "config": {
+          "feed_key": "batch-{{run}}"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en"
+      },
+      "save_as": "dest_mrss",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_mrss.id}}/certify",
+      "body": {},
+      "save_as": "cert_mrss",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "headers": {
+        "Idempotency-Key": "all-{{run}}"
+      },
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false,
+          "media": [
+            {
+              "url": "https://cdn.example.com/ep.mp4",
+              "type": "video",
+              "mime": "video/mp4"
+            }
+          ]
+        },
+        "destination_ids": [
+          "{{dest_discourse.id}}",
+          "{{dest_lemmy.id}}",
+          "{{dest_devto.id}}",
+          "{{dest_ghost.id}}",
+          "{{dest_webhook.id}}",
+          "{{dest_assisted.id}}",
+          "{{dest_hashnode.id}}",
+          "{{dest_slack.id}}",
+          "{{dest_mrss.id}}"
+        ]
+      },
+      "save_as": "pub",
+      "expect": {
+        "status": "succeeded"
+      }
+    }
+  ]
+}

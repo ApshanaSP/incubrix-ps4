@@ -1,0 +1,23 @@
+{
+  # Local Lemmy instance for end-to-end tests. Not federated, not public.
+  # The hostname is the lemmy-ui service, so post URLs (ap_id) open in the UI.
+  hostname: "lemmy-ui:1234"
+  bind: "0.0.0.0"
+  port: 8536
+  tls_enabled: false
+  database: {
+    host: "lemmy-db"
+    port: 5432
+    user: "lemmy"
+    password: "lemmy"
+    database: "lemmy"
+  }
+  setup: {
+    admin_username: "incubrix_admin"
+    admin_password: "local-lemmy-admin-only"
+    site_name: "IncuBrix local Lemmy"
+  }
+  federation: {
+    enabled: false
+  }
+}

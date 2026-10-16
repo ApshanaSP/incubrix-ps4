@@ -1,0 +1,23 @@
+{
+  "name": "17_recommend_destinations",
+  "description": "Outstanding: rank destinations for one content item, with reasons; rule-breakers are excluded.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/recommendations",
+      "body": {
+        "content": {
+          "title": "Sign up for IncuBrix: AI video for creators",
+          "body": "Free trial.",
+          "promotional": true,
+          "content_type": "video",
+          "tags": [
+            "ai",
+            "video"
+          ]
+        },
+        "top_k": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "name": "04_rate_limit_short_backoff",
+  "description": "Hard case 2a': a 429 with a 2-second reset: the connector waits for the reset, then succeeds.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "slack",
+        "credentials": {
+          "bot_token": "xoxb-sim-1111-batch"
+        }
+      },
+      "save_as": "con_s",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://slack-s-{{run}}.mock",
+        "connector_key": "slack",
+        "name": "batch slack s",
+        "config": {
+          "api_base_url": "https://slack-s-{{run}}.mock",
+          "channel": "C0BATCH"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_s.id}}"
+      },
+      "save_as": "dest_s",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_s.id}}/certify",
+      "body": {},
+      "save_as": "cert_s",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "body": {
+        "destination_id": "{{dest_s.id}}",
+        "kind": "rate_limit",
+        "op": "publish",
+        "retry_after": 2
+      },
+      "expect_status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_s.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.state": "published"
+      }
+    }
+  ]
+}

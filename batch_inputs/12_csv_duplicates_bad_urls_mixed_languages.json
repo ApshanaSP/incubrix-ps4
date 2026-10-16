@@ -1,0 +1,20 @@
+{
+  "name": "12_csv_duplicates_bad_urls_mixed_languages",
+  "description": "Hard case 6a: a CSV with duplicates, bad URLs and mixed languages gives a row-by-row report.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/catalogue/imports/upload",
+      "upload": "files/messy_destinations.csv",
+      "form": {
+        "commit": "true"
+      },
+      "save_as": "imp",
+      "expect": {
+        "status": "succeeded",
+        "result.summary.duplicates": 1,
+        "result.summary.errors": 4
+      }
+    }
+  ]
+}

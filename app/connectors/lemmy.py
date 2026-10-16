@@ -75,7 +75,9 @@ class LemmyConnector(Connector):
         resp = await self._authed(base, connection, "POST", f"{base}/api/v3/post", json=payload)
         post = require(resp.json(), "post_view", "post")
         pid = require(post, "id")
-        return {"platform_post_id": encode_post_id(pid, base), "live_url": f"{base}/post/{pid}", "status": "live"}
+        # ap_id is the post's canonical public URL on its instance
+        return {"platform_post_id": encode_post_id(pid, base), "live_url": post.get("ap_id") or f"{base}/post/{pid}",
+                "status": "live"}
 
     async def get_status(self, platform_post_id: str, connection: Connection) -> dict[str, Any]:
         native, base = decode_post_id(platform_post_id, connection)
@@ -91,7 +93,7 @@ class LemmyConnector(Connector):
             return {"status": "deleted", "live_url": None}
         if post.get("removed"):
             return {"status": "removed_by_moderator", "live_url": None}
-        return {"status": "live", "live_url": f"{base}/post/{native}"}
+        return {"status": "live", "live_url": post.get("ap_id") or f"{base}/post/{native}"}
 
     async def delete(self, platform_post_id: str, connection: Connection) -> dict[str, Any]:
         native, base = decode_post_id(platform_post_id, connection)

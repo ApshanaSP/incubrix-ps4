@@ -1,0 +1,147 @@
+{
+  "name": "14_non_english_community",
+  "description": "Hard case 7a: a German community gets a German disclosure line and a language warning; a strict Tamil community blocks an English post.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "lemmy",
+        "credentials": {
+          "username": "incubrix_bot",
+          "password": "sim-password"
+        }
+      },
+      "save_as": "con_de",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://lemmy-de-{{run}}.mock",
+        "connector_key": "lemmy",
+        "name": "batch lemmy de",
+        "config": {
+          "base_url": "https://lemmy-de-{{run}}.mock",
+          "community": "incubrix_test"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "de",
+        "disclosure_required": true,
+        "connection_id": "{{con_de.id}}"
+      },
+      "save_as": "dest_de",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_de.id}}/certify",
+      "body": {},
+      "save_as": "cert_de",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false,
+          "ai_generated": true,
+          "language": "en"
+        },
+        "destination_ids": [
+          "{{dest_de.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.state": "published"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "lemmy",
+        "credentials": {
+          "username": "incubrix_bot",
+          "password": "sim-password"
+        }
+      },
+      "save_as": "con_ta",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://lemmy-ta-{{run}}.mock",
+        "connector_key": "lemmy",
+        "name": "batch lemmy ta",
+        "config": {
+          "base_url": "https://lemmy-ta-{{run}}.mock",
+          "community": "incubrix_test",
+          "language_strict": true
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "ta",
+        "connection_id": "{{con_ta.id}}"
+      },
+      "save_as": "dest_ta",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_ta.id}}/certify",
+      "body": {},
+      "save_as": "cert_ta",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false,
+          "language": "en"
+        },
+        "destination_ids": [
+          "{{dest_ta.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p2-{{run}}"
+      },
+      "save_as": "p2",
+      "expect": {
+        "result.results.0.state": "blocked"
+      }
+    }
+  ]
+}

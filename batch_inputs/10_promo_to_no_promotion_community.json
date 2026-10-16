@@ -1,0 +1,81 @@
+{
+  "name": "10_promo_to_no_promotion_community",
+  "description": "Hard case 4b: a promotional post to a no-self-promotion community is blocked with the reason.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "lemmy",
+        "credentials": {
+          "username": "incubrix_bot",
+          "password": "sim-password"
+        }
+      },
+      "save_as": "con_n",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://lemmy-n-{{run}}.mock",
+        "connector_key": "lemmy",
+        "name": "batch lemmy n",
+        "config": {
+          "base_url": "https://lemmy-n-{{run}}.mock",
+          "community": "incubrix_test"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "self_promo_allowed": "no",
+        "connection_id": "{{con_n.id}}"
+      },
+      "save_as": "dest_n",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_n.id}}/certify",
+      "body": {},
+      "save_as": "cert_n",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "Try IncuBrix free: sign up today",
+          "body": "Get started today with our new tool, 30% off.",
+          "link": "https://incubrix.com/pricing"
+        },
+        "destination_ids": [
+          "{{dest_n.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.state": "blocked"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sim/state",
+      "params": {
+        "destination_id": "{{dest_n.id}}"
+      },
+      "expect": {
+        "posts_live": 0
+      }
+    }
+  ]
+}

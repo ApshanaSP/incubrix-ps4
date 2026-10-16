@@ -1,0 +1,105 @@
+{
+  "name": "09_second_post_inside_weekly_cap",
+  "description": "Hard case 4a: the second post inside a 1/7d cap is rescheduled to when the window frees up.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "discourse",
+        "credentials": {
+          "api_key": "sim-discourse-key",
+          "api_username": "incubrix_bot"
+        }
+      },
+      "save_as": "con_c",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://discourse-c-{{run}}.mock",
+        "connector_key": "discourse",
+        "name": "batch discourse c",
+        "config": {
+          "base_url": "https://discourse-c-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "frequency_cap": "1/7d",
+        "connection_id": "{{con_c.id}}"
+      },
+      "save_as": "dest_c",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_c.id}}/certify",
+      "body": {},
+      "save_as": "cert_c",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_c.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p1-{{run}}"
+      },
+      "save_as": "p1",
+      "expect": {
+        "result.results.0.state": "published"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "A second, different post in the same week",
+          "body": "Different body text."
+        },
+        "destination_ids": [
+          "{{dest_c.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p2-{{run}}"
+      },
+      "save_as": "p2",
+      "expect": {
+        "result.results.0.state": "rescheduled",
+        "result.results.0.code": "DEST_RULE_FREQUENCY_CAP"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sim/state",
+      "params": {
+        "destination_id": "{{dest_c.id}}"
+      },
+      "expect": {
+        "posts_live": 1
+      }
+    }
+  ]
+}
