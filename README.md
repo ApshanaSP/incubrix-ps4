@@ -87,7 +87,7 @@ docker compose run --rm api python -m pytest              # the same inside the 
 python -m tools.batch_runner --api http://localhost:8080 --input batch_inputs --out outputs
 ```
 
-The 79 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
+The 84 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
 
 `batch_inputs/` holds 17 inputs: one for each hard case plus the Core and Advanced features. Each input creates its own destinations, so runs never collide. The runner writes one JSON file per input and a `summary.json` to `outputs/batch-<timestamp>/`. Regenerate the inputs with `python -m tools.make_batch_inputs`.
 
@@ -97,6 +97,10 @@ The 79 tests cover the contract for every connector, certification and recertifi
 python -m tools.measure --runs 5 --publishes 300     # certification, reliability under faults, rule safety, import speed
 python -m tools.eval_recommender                     # precision@10 on catalogue/recommender_labels.csv
 python -m tools.build_real_catalogue                 # rebuild catalogue/real_catalogue.csv (needs network + AI key)
+python -m tools.measure_import_online --api http://localhost:8080   # online import: real catalogue + 1,000 rows
+python -m tools.reviewer_check --api http://localhost:8080          # 38 reviewer-style checks over HTTP
+python -m tools.make_cert_pack --api http://localhost:8080          # certification_pack/: record + screenshot per connector
+python -m tools.make_test_pack                                      # test_pack/: tests, batch run, checks, logs, index
 ```
 
 Outputs go to `outputs/metrics/`. `catalogue/real_catalogue.csv` can be imported as is: `POST /api/v1/catalogue/imports/upload`.
