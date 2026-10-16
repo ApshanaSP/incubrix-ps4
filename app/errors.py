@@ -32,9 +32,8 @@ SERVICE_CODES: dict[str, tuple[int, bool | str, str]] = {
     "UNSUPPORTED_METHOD": (400, False, "The connector does not implement this method."),
     "UNKNOWN_CONNECTOR": (404, False, "No connector with this key."),
     "UPSTREAM_FETCH_FAILED": (502, True, "A URL given as input could not be fetched."),
-    "AI_PROVIDER_FAILED": (502, True, "The configured AI provider failed; the mock adapter is used as fallback only if enabled."),
+    "AI_PROVIDER_FAILED": (502, True, "The configured AI provider failed; where possible the heuristic result is used and marked."),
     "SERVICE_RATE_LIMIT": (429, True, "Too many requests to this service."),
-    "SIMULATION_ONLY": (403, False, "This endpoint is available only in simulation mode."),
     "INTERNAL_ERROR": (500, True, "Unexpected error; see logs with the correlation id."),
 }
 
