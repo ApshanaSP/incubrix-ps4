@@ -146,7 +146,7 @@ async def certify(dest_id: str) -> dict[str, Any]:
         _ticket(dest_id, "certification_failed", msg)
         await _alert({"event": "destination_demoted", "destination_id": dest_id, "name": destination.name,
                       "error": error, "evidence_url": evidence_url})
-    log(logger, logging.INFO, "certification finished", destination=destination.name, passed=passed, level=level,
+    log(logger, logging.INFO, "certification finished", destination=destination.name, passed=passed, cert_level=level,
         duration_s=duration)
     return {"certification_id": cert_id, "destination_id": dest_id, "name": destination.name, "passed": passed,
             "level": level, "duration_s": duration, "evidence_url": evidence_url, "error": error,

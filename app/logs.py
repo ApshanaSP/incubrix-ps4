@@ -58,7 +58,8 @@ class JsonFormatter(logging.Formatter):
         }
         extra = getattr(record, "fields", None)
         if extra:
-            payload.update(redact(extra))
+            for k, v in redact(extra).items():
+                payload[k if k not in payload else f"field_{k}"] = v
         if record.exc_info:
             payload["exception"] = redact_text(self.formatException(record.exc_info))
         return json.dumps(payload, default=str, ensure_ascii=False)

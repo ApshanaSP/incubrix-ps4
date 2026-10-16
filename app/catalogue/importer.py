@@ -39,7 +39,16 @@ ASSISTED_PLATFORMS = {"reddit", "hackernews", "producthunt", "linkedin_group", "
                       "whatsapp_community", "slack_community", "newsletter", "betalist", "kit", "mailchimp"}
 CONFIG_COLUMNS = ["base_url", "community", "channel", "feed_key", "publication_id", "submit_url", "submit_url_template",
                   "category_id", "api_base_url", "description"]
-ISO_LANG = re.compile(r"^[a-z]{2}(-[A-Za-z]{2})?$")
+ISO_639_1 = set("""aa ab ae af ak am an ar as av ay az ba be bg bh bi bm bn bo br bs ca ce ch co cr cs cu cv cy da de dv dz
+ee el en eo es et eu fa ff fi fj fo fr fy ga gd gl gn gu gv ha he hi ho hr ht hu hy hz ia id ie ig ii ik io is it iu ja jv
+ka kg ki kj kk kl km kn ko kr ks ku kv kw ky la lb lg li ln lo lt lu lv mg mh mi mk ml mn mr ms mt my na nb nd ne ng nl nn
+no nr nv ny oc oj om or os pa pi pl ps pt qu rm rn ro ru rw sa sc sd se sg si sk sl sm sn so sq sr ss st su sv sw ta te tg
+th ti tk tl tn to tr ts tt tw ty ug uk ur uz ve vi vo wa wo xh yi yo za zh zu""".split())
+
+
+def _iso_lang(code: str) -> bool:
+    base = code.lower().split("-")[0].split("_")[0]
+    return base in ISO_639_1
 
 
 def parse_csv(data: bytes) -> list[dict[str, str]]:
@@ -97,7 +106,7 @@ def validate_row(raw: dict[str, str]) -> tuple[dict[str, Any] | None, list[str],
     data["audience_tags"] = [t.strip().lower() for t in re.split(r"[;,|]", tags) if t.strip()]
     if raw.get("language"):
         lang = raw["language"].strip()
-        if ISO_LANG.match(lang.lower()):
+        if _iso_lang(lang):
             data["language"] = lang.lower()
         else:
             warnings.append(f"language '{lang}' is not an ISO code; detected instead")

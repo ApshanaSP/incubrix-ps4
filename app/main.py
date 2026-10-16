@@ -707,7 +707,12 @@ async def create_publication(body: PublicationIn, idempotency_key: str | None = 
                                                          publication_id=publication_id))
                 except ApiError as exc:
                     err = exc.to_dict()["error"]
-                    entry.update(state="failed", error=err)
+                    key = f"{base_key}:{dest_id}"
+                    post = get_db().one("SELECT id, state, reschedule_at FROM posts WHERE idempotency_key=?", [key])
+                    entry.update(state="failed", error=err, idempotency_key=key,
+                                 post_id=post["id"] if post else None,
+                                 post_state=post["state"] if post else None,
+                                 reschedule_at=post["reschedule_at"] if post else None)
             results.append(entry)
             progress(100 * (n + 1) / len(dest_ids))
         timer.mark("published")
@@ -764,6 +769,27 @@ async def delete_post(post_id: str, callback_url: str | None = Body(None, embed=
         return {**res, "manifest": manifest.build("delete")}
 
     return jobs.submit("delete", {"post_id": post_id}, run, callback_url)
+
+
+@app.post("/api/v1/posts/{post_id}/retry", tags=["publishing"], status_code=202, response_model=JobAccepted,
+          responses=ERRORS)
+async def retry_post(post_id: str, callback_url: str | None = Body(None, embed=True)) -> dict[str, Any]:
+    """Retry one post with its original idempotency key. If an earlier attempt timed out, the platform is checked
+    first, so the retry returns the existing post instead of creating a second one."""
+    post = get_db().one("SELECT * FROM posts WHERE id=?", [post_id])
+    if not post:
+        raise ApiError("NOT_FOUND", f"post {post_id} not found")
+
+    async def run(progress):
+        row = store.get_destination(post["destination_id"])
+        try:
+            res = await publisher.publish(Rendition(**(post["rendition"] or {})), row, post["idempotency_key"],
+                                          publication_id=post.get("publication_id"))
+        except ApiError as exc:
+            res = {"post_id": post_id, "state": "failed", "error": exc.to_dict()["error"]}
+        return {**res, "manifest": manifest.build("retry", connectors=[post["connector_key"]])}
+
+    return jobs.submit("retry", {"post_id": post_id}, run, callback_url)
 
 
 @app.post("/api/v1/assist/{pack_id}/posted", tags=["publishing"], responses=ERRORS)
