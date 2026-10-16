@@ -84,6 +84,16 @@ The 79 tests cover the contract for every connector, certification and recertifi
 
 `batch_inputs/` holds 17 inputs: one for each hard case plus the Core and Advanced features. Each input creates its own destinations, so runs never collide. The runner writes one JSON file per input and a `summary.json` to `outputs/batch-<timestamp>/`. Regenerate the inputs with `python -m tools.make_batch_inputs`.
 
+### Measurements and the real catalogue
+
+```bash
+python -m tools.measure --runs 5 --publishes 300     # certification, reliability under faults, rule safety, import speed
+python -m tools.eval_recommender                     # precision@10 on catalogue/recommender_labels.csv
+python -m tools.build_real_catalogue                 # rebuild catalogue/real_catalogue.csv (needs network + AI key)
+```
+
+Outputs go to `outputs/metrics/`. `catalogue/real_catalogue.csv` can be imported as is: `POST /api/v1/catalogue/imports/upload`.
+
 ## Using it
 
 ```bash
