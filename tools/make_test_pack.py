@@ -69,6 +69,9 @@ def main() -> int:
             out = PACK / "batch"
             subprocess.run([sys.executable, "-m", "tools.batch_runner", "--api", f"http://127.0.0.1:{port}",
                             "--input", "batch_inputs", "--out", str(out)], cwd=ROOT, env=env)
+            # independent reviewer-style checks; they also search this server's log for secrets
+            subprocess.run([sys.executable, "-m", "tools.reviewer_check", "--api", f"http://127.0.0.1:{port}",
+                            "--server-log", str(log_path), "--out", str(PACK / "reviewer_check")], cwd=ROOT, env=env)
             certs = httpx.get(f"http://127.0.0.1:{port}/api/v1/certifications", params={"limit": 500}).json()
             (PACK / "certifications.json").write_text(json.dumps(certs, indent=2), encoding="utf-8")
         finally:
@@ -87,6 +90,9 @@ def main() -> int:
                      f"[result](batch/{batch_dir.name}/{c['name']}.json) | [input](inputs/{c['name']}.json) |"
                      for c in summary["cases"])
     n_ev = len(list((PACK / "certification_evidence").rglob("*.json"))) if (PACK / "certification_evidence").exists() else 0
+    rc_file = next((PACK / "reviewer_check").rglob("reviewer_check.json"), None)
+    rc = json.loads(rc_file.read_text(encoding="utf-8")) if rc_file else {"passed": 0, "total": 0}
+    rc_link = rc_file.relative_to(PACK).as_posix() if rc_file else "reviewer_check/"
     (PACK / "INDEX.md").write_text(f"""# Test pack index
 
 Built {time.strftime('%Y-%m-%d %H:%M')} by `python -m tools.make_test_pack`, in simulation mode.
@@ -97,7 +103,11 @@ Built {time.strftime('%Y-%m-%d %H:%M')} by `python -m tools.make_test_pack`, in 
 | Every hard case and feature, run end to end over HTTP | the batch table below; [server.log](server.log) is the service's JSON log for the whole run |
 | Certification: publish, live URL, status, metrics, delete, confirm deletion | [certifications.json](certifications.json) and {n_ev} evidence files in [certification_evidence/](certification_evidence/) |
 | Measured numbers (REPORT.md section 4) | [metrics/metrics.json](metrics/metrics.json), [metrics/recommender.json](metrics/recommender.json) |
-| No secrets in logs | search [server.log](server.log) for the credential values in `tools/make_batch_inputs.py`: none appear |
+| No secrets in logs | search [server.log](server.log) for the credential values in `tools/make_batch_inputs.py`: none appear; the reviewer check stores a random token and searches this log for it |
+| Independent reviewer-style checks (every must-have, Integration point and hard case, other inputs than the batch) | {rc['passed']}/{rc['total']} passed: [{rc_link}]({rc_link}) |
+| Certification pack: run record, evidence page and screenshot per connector, real Lemmy and Ghost posts | [../certification_pack/INDEX.md](../certification_pack/INDEX.md) |
+| Online catalogue import (real catalogue and 1,000 rows, API latency during the import) | [metrics/catalogue_import_online.json](metrics/catalogue_import_online.json) |
+| Failed attempts, kept | first reviewer check (32/37 before fixes): [../outputs/reviewer_check/20261016-234023/](../outputs/reviewer_check/20261016-234023/reviewer_check.json); first compose batch run that hit the API's own rate limit: [../outputs/compose/batch-20261016-202108/](../outputs/compose/batch-20261016-202108/); REPORT.md section 3 |
 | Real catalogue (150+ destinations), rules evidence | [../catalogue/real_catalogue.csv](../catalogue/real_catalogue.csv), [../catalogue/real_catalogue_evidence.json](../catalogue/real_catalogue_evidence.json) |
 
 ## Batch runs

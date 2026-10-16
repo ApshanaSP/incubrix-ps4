@@ -1,0 +1,99 @@
+{
+  "name": "11_renamed_api_field",
+  "description": "Hard case 5: the platform renames a field; certification fails, the destination is demoted and excluded, and a ticket is opened.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "devto",
+        "credentials": {
+          "api_key": "sim-devto-key"
+        }
+      },
+      "save_as": "con_f",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://devto-f-{{run}}.mock",
+        "connector_key": "devto",
+        "name": "batch devto f",
+        "config": {
+          "api_base_url": "https://devto-f-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_f.id}}"
+      },
+      "save_as": "dest_f",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_f.id}}/certify",
+      "body": {},
+      "save_as": "cert_f",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "body": {
+        "destination_id": "{{dest_f.id}}",
+        "kind": "rename_field",
+        "op": "publish"
+      },
+      "expect_status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_f.id}}/certify",
+      "body": {},
+      "save_as": "recert",
+      "expect": {
+        "result.passed": false,
+        "result.error.details.cause": "SCHEMA_DRIFT"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/destinations/{{dest_f.id}}",
+      "expect": {
+        "status": "demoted"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_f.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.code": "DEST_NOT_CERTIFIED"
+      }
+    }
+  ]
+}

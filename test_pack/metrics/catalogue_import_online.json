@@ -1,0 +1,789 @@
+{
+  "api": "http://127.0.0.1:8088",
+  "measured_at": "2026-10-17T00:12:20",
+  "real_catalogue": {
+    "file": "real_catalogue.csv",
+    "status": "succeeded",
+    "seconds": 18.6,
+    "health_during_import": {
+      "calls": 30,
+      "max_s": 0.643,
+      "p95_s": 0.44
+    },
+    "summary": {
+      "source": "real_catalogue.csv",
+      "rows": 237,
+      "created": 0,
+      "updated": 0,
+      "duplicates": 0,
+      "errors": 0,
+      "with_warnings": 81,
+      "unreachable": 19,
+      "seconds": 18.36,
+      "rows_per_second": 12.9
+    },
+    "links": {
+      "report_csv": "http://localhost:8088/api/v1/files/imports/20261017-001239/report.csv?expires=1792780959&sig=c46b8b783c9d3ef38297076c8ea0a5b2",
+      "report_json": "http://localhost:8088/api/v1/files/imports/20261017-001239/report.json?expires=1792780959&sig=7071b590d702ac429c0caba8ac170dcc",
+      "catalogue_csv": "http://localhost:8088/api/v1/files/imports/20261017-001239/catalogue.csv?expires=1792780959&sig=98056b238c369cde2dbf2c5bfc465322",
+      "input": "http://localhost:8088/api/v1/files/imports/inputs/66a4c709.csv?expires=1792780941&sig=8471886e4414ddc333587adcc9fc0695"
+    },
+    "rows_preview": [
+      {
+        "row": 2,
+        "url": "https://community.openai.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.openai.com",
+          "ms": 1312
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community is focused on AI developers, overlapping with IncuBrix's AI audience.",
+        "language": "en",
+        "est_audience": 1040248
+      },
+      {
+        "row": 3,
+        "url": "https://discuss.huggingface.co",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.huggingface.co",
+          "ms": 1219
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on AI and machine learning, aligning with the AI audience of IncuBrix.",
+        "language": "en",
+        "est_audience": 104099
+      },
+      {
+        "row": 4,
+        "url": "https://discuss.ai.google.dev",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.ai.google.dev",
+          "ms": 1030
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The forum targets AI developers, aligning closely with the AI and creator segments of IncuBrix\u2019s audience.",
+        "language": "en",
+        "est_audience": 162428
+      },
+      {
+        "row": 5,
+        "url": "https://community.deeplearning.ai",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.deeplearning.ai",
+          "ms": 1842
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on AI learners, matching the AI audience segment of IncuBrix.",
+        "language": "en",
+        "est_audience": 784582
+      },
+      {
+        "row": 6,
+        "url": "https://forum.cursor.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.cursor.com",
+          "ms": 530
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The forum targets AI coding tool users, overlapping with IncuBrix's AI audience.",
+        "language": "en",
+        "est_audience": 130965
+      },
+      {
+        "row": 7,
+        "url": "https://community.n8n.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.n8n.io",
+          "ms": 937
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on automation (n8n) which aligns with AI, SaaS, creators and founders interested in workflow tools.",
+        "language": "en",
+        "est_audience": 181988
+      },
+      {
+        "row": 8,
+        "url": "https://discuss.streamlit.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.streamlit.io",
+          "ms": 1281
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on AI app builders, overlapping with IncuBrix's AI and creator audience.",
+        "language": "en",
+        "est_audience": 66037
+      },
+      {
+        "row": 9,
+        "url": "https://discuss.pytorch.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.pytorch.org",
+          "ms": 1297
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The forum\u2019s audience of deep learning practitioners aligns with the AI focus of IncuBrix.",
+        "language": "en",
+        "est_audience": 68039
+      },
+      {
+        "row": 10,
+        "url": "https://forums.fast.ai",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forums.fast.ai",
+          "ms": 1297
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community is focused on AI research and practice, overlapping with IncuBrix's AI audience.",
+        "language": "en",
+        "est_audience": 38299
+      },
+      {
+        "row": 11,
+        "url": "https://community.wandb.ai",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.wandb.ai",
+          "ms": 1328
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community focuses on AI/ML operations, overlapping with IncuBrix's AI audience but not directly with video, marketing, SaaS, creators, or founders.",
+        "language": "en",
+        "est_audience": 6662
+      },
+      {
+        "row": 12,
+        "url": "https://forum.figma.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [
+          "declared language 'en' but the page reads as 'da'"
+        ],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.figma.com",
+          "ms": 375
+        },
+        "relevance_score": 2,
+        "relevance_reason": "Figma Forum attracts designers, overlapping modestly with the creator audience.",
+        "language": "en",
+        "est_audience": null
+      },
+      {
+        "row": 13,
+        "url": "https://forum.bubble.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.bubble.io",
+          "ms": 1312
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The forum targets no\u2011code founders, overlapping with IncuBrix's founders and creator audience.",
+        "language": "en",
+        "est_audience": 72358
+      },
+      {
+        "row": 14,
+        "url": "https://community.retool.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.retool.com",
+          "ms": 1155
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community of internal tool builders aligns with SaaS and creator/founder audiences relevant to IncuBrix.",
+        "language": "en",
+        "est_audience": 17643
+      },
+      {
+        "row": 15,
+        "url": "https://community.make.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.make.com",
+          "ms": 1281
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on automation and marketing operations, aligning with marketers, SaaS founders, and creators interested in AI-driven workflows.",
+        "language": "en",
+        "est_audience": 62180
+      },
+      {
+        "row": 16,
+        "url": "https://community.flutterflow.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.flutterflow.io",
+          "ms": 1016
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community targets no-code app founders, overlapping with IncuBrix's founders and creator audience.",
+        "language": "en",
+        "est_audience": null
+      },
+      {
+        "row": 17,
+        "url": "https://community.softr.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.softr.io",
+          "ms": 1156
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community of no-code founders aligns with IncuBrix's target founders and SaaS audience.",
+        "language": "en",
+        "est_audience": 4694
+      },
+      {
+        "row": 18,
+        "url": "https://forum.adalo.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.adalo.com",
+          "ms": 1312
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The forum targets no\u2011code app makers, overlapping with creators and founders who may use IncuBrix, and touches SaaS development.",
+        "language": "en",
+        "est_audience": 15330
+      },
+      {
+        "row": 19,
+        "url": "https://forum.ghost.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.ghost.org",
+          "ms": 1485
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The forum targets publishers and newsletter creators, overlapping strongly with the creators and marketing segments of IncuBrix\u2019s audience.",
+        "language": "en",
+        "est_audience": 16947
+      },
+      {
+        "row": 20,
+        "url": "https://blenderartists.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://blenderartists.org",
+          "ms": 1031
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community consists of creators, aligning with IncuBrix's creator audience.",
+        "language": "en",
+        "est_audience": 192340
+      },
+      {
+        "row": 21,
+        "url": "https://forum.shotcut.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.shotcut.org",
+          "ms": 1265
+        },
+        "relevance_score": 4,
+        "relevance_reason": "Video editors and creators are core audience.",
+        "language": "en",
+        "est_audience": 14195
+      }
+    ]
+  },
+  "rows_1000": {
+    "file": "rows_1000.csv",
+    "status": "succeeded",
+    "seconds": 19.5,
+    "health_during_import": {
+      "calls": 30,
+      "max_s": 0.666,
+      "p95_s": 0.283
+    },
+    "summary": {
+      "source": "rows_1000.csv",
+      "rows": 1000,
+      "created": 0,
+      "updated": 0,
+      "duplicates": 50,
+      "errors": 10,
+      "with_warnings": 785,
+      "unreachable": 723,
+      "seconds": 19.39,
+      "rows_per_second": 51.6
+    },
+    "links": {
+      "report_csv": "http://localhost:8088/api/v1/files/imports/20261017-001259/report.csv?expires=1792780979&sig=59c1036343ae88241f9615d7e3cc359c",
+      "report_json": "http://localhost:8088/api/v1/files/imports/20261017-001259/report.json?expires=1792780979&sig=0d410e88ddbb201247cde27792e62c17",
+      "catalogue_csv": "http://localhost:8088/api/v1/files/imports/20261017-001259/catalogue.csv?expires=1792780979&sig=a34d2b2f8614acc512e868b4f46712f9",
+      "input": "http://localhost:8088/api/v1/files/imports/inputs/b4f5eeb3.csv?expires=1792780960&sig=ffc4324bc60b65142870e6c849e339dc"
+    },
+    "rows_preview": [
+      {
+        "row": 2,
+        "url": "https://community.openai.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.openai.com",
+          "ms": 1047
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community is focused on AI developers, overlapping with IncuBrix's AI audience.",
+        "language": "en",
+        "est_audience": 1040248
+      },
+      {
+        "row": 3,
+        "url": "https://discuss.huggingface.co",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.huggingface.co",
+          "ms": 1187
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on AI and machine learning, aligning with the AI audience of IncuBrix.",
+        "language": "en",
+        "est_audience": 104099
+      },
+      {
+        "row": 4,
+        "url": "https://discuss.ai.google.dev",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.ai.google.dev",
+          "ms": 1030
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The forum targets AI developers, aligning closely with the AI and creator segments of IncuBrix\u2019s audience.",
+        "language": "en",
+        "est_audience": 162428
+      },
+      {
+        "row": 5,
+        "url": "https://community.deeplearning.ai",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.deeplearning.ai",
+          "ms": 1750
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on AI learners, matching the AI audience segment of IncuBrix.",
+        "language": "en",
+        "est_audience": 784582
+      },
+      {
+        "row": 6,
+        "url": "https://forum.cursor.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.cursor.com",
+          "ms": 405
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The forum targets AI coding tool users, overlapping with IncuBrix's AI audience.",
+        "language": "en",
+        "est_audience": 130965
+      },
+      {
+        "row": 7,
+        "url": "https://community.n8n.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.n8n.io",
+          "ms": 640
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on automation (n8n) which aligns with AI, SaaS, creators and founders interested in workflow tools.",
+        "language": "en",
+        "est_audience": 181988
+      },
+      {
+        "row": 8,
+        "url": "https://discuss.streamlit.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.streamlit.io",
+          "ms": 1218
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on AI app builders, overlapping with IncuBrix's AI and creator audience.",
+        "language": "en",
+        "est_audience": 66037
+      },
+      {
+        "row": 9,
+        "url": "https://discuss.pytorch.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://discuss.pytorch.org",
+          "ms": 1155
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The forum\u2019s audience of deep learning practitioners aligns with the AI focus of IncuBrix.",
+        "language": "en",
+        "est_audience": 68039
+      },
+      {
+        "row": 10,
+        "url": "https://forums.fast.ai",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forums.fast.ai",
+          "ms": 1140
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community is focused on AI research and practice, overlapping with IncuBrix's AI audience.",
+        "language": "en",
+        "est_audience": 38299
+      },
+      {
+        "row": 11,
+        "url": "https://community.wandb.ai",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.wandb.ai",
+          "ms": 1234
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community focuses on AI/ML operations, overlapping with IncuBrix's AI audience but not directly with video, marketing, SaaS, creators, or founders.",
+        "language": "en",
+        "est_audience": 6662
+      },
+      {
+        "row": 12,
+        "url": "https://forum.figma.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [
+          "declared language 'en' but the page reads as 'da'"
+        ],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.figma.com",
+          "ms": 202
+        },
+        "relevance_score": 2,
+        "relevance_reason": "Figma Forum attracts designers, overlapping modestly with the creator audience.",
+        "language": "en",
+        "est_audience": null
+      },
+      {
+        "row": 13,
+        "url": "https://forum.bubble.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.bubble.io",
+          "ms": 1280
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The forum targets no\u2011code founders, overlapping with IncuBrix's founders and creator audience.",
+        "language": "en",
+        "est_audience": 72358
+      },
+      {
+        "row": 14,
+        "url": "https://community.retool.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.retool.com",
+          "ms": 1155
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The community of internal tool builders aligns with SaaS and creator/founder audiences relevant to IncuBrix.",
+        "language": "en",
+        "est_audience": 17643
+      },
+      {
+        "row": 15,
+        "url": "https://community.make.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.make.com",
+          "ms": 843
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community focuses on automation and marketing operations, aligning with marketers, SaaS founders, and creators interested in AI-driven workflows.",
+        "language": "en",
+        "est_audience": 62180
+      },
+      {
+        "row": 16,
+        "url": "https://community.flutterflow.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.flutterflow.io",
+          "ms": 890
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community targets no-code app founders, overlapping with IncuBrix's founders and creator audience.",
+        "language": "en",
+        "est_audience": null
+      },
+      {
+        "row": 17,
+        "url": "https://community.softr.io",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://community.softr.io",
+          "ms": 1265
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community of no-code founders aligns with IncuBrix's target founders and SaaS audience.",
+        "language": "en",
+        "est_audience": 4694
+      },
+      {
+        "row": 18,
+        "url": "https://forum.adalo.com",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.adalo.com",
+          "ms": 1265
+        },
+        "relevance_score": 3,
+        "relevance_reason": "The forum targets no\u2011code app makers, overlapping with creators and founders who may use IncuBrix, and touches SaaS development.",
+        "language": "en",
+        "est_audience": 15330
+      },
+      {
+        "row": 19,
+        "url": "https://forum.ghost.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.ghost.org",
+          "ms": 1375
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The forum targets publishers and newsletter creators, overlapping strongly with the creators and marketing segments of IncuBrix\u2019s audience.",
+        "language": "en",
+        "est_audience": 16947
+      },
+      {
+        "row": 20,
+        "url": "https://blenderartists.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://blenderartists.org",
+          "ms": 859
+        },
+        "relevance_score": 4,
+        "relevance_reason": "The community consists of creators, aligning with IncuBrix's creator audience.",
+        "language": "en",
+        "est_audience": 192340
+      },
+      {
+        "row": 21,
+        "url": "https://forum.shotcut.org",
+        "platform_key": "discourse",
+        "status": "valid",
+        "errors": [],
+        "warnings": [],
+        "reachability": {
+          "reachable": true,
+          "http_status": 200,
+          "final_url": "https://forum.shotcut.org",
+          "ms": 1030
+        },
+        "relevance_score": 4,
+        "relevance_reason": "Video editors and creators are core audience.",
+        "language": "en",
+        "est_audience": 14195
+      }
+    ],
+    "built_from": "237 real rows + 50 duplicates + 10 bad URLs + 703 rows on .invalid hosts"
+  }
+}

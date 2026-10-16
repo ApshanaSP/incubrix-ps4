@@ -1,0 +1,116 @@
+{
+  "certification_id": "crt_e5e7971ace194a96",
+  "destination": {
+    "id": "dst_2b95b8db12c74de1",
+    "name": "batch ghost g",
+    "url": "https://ghost-g-bcb2fa72.mock",
+    "normalized_url": "https://ghost-g-bcb2fa72.mock",
+    "platform_key": "ghost",
+    "connector_key": "ghost",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "ai",
+      "creators"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "base_url": "https://ghost-g-bcb2fa72.mock"
+    },
+    "connection_id": "con_21dff604cf8f4a55",
+    "created_at": "2026-10-16T18:48:39+00:00",
+    "updated_at": "2026-10-16T18:48:39+00:00"
+  },
+  "connector": "ghost",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-16T18:48:39+00:00",
+  "finished_at": "2026-10-16T18:48:39+00:00",
+  "duration_s": 0.015,
+  "passed": true,
+  "level": "L3",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-16T18:48:39+00:00",
+      "result": {
+        "ok": true,
+        "version": "5.96"
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-16T18:48:39+00:00",
+      "result": {
+        "post_id": "pst_09df6bb5c0ce4ef4",
+        "destination_id": "dst_2b95b8db12c74de1",
+        "state": "published",
+        "platform_post_id": "37af90d422574c54944f5d8b|https://ghost-g-bcb2fa72.mock",
+        "live_url": "https://ghost-g-bcb2fa72.mock/incubrix-connector-certification-3938e357-please-ignore/",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_2b95b8db12c74de1-3938e357",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-16T18:48:39+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://ghost-g-bcb2fa72.mock/incubrix-connector-certification-3938e357-please-ignore/"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-16T18:48:39+00:00",
+      "result": {
+        "live_url": "https://ghost-g-bcb2fa72.mock/incubrix-connector-certification-3938e357-please-ignore/",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 15,
+      "at": "2026-10-16T18:48:39+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-16T18:48:39+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

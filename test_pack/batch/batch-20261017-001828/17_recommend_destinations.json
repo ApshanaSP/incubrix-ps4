@@ -1,0 +1,289 @@
+{
+  "name": "17_recommend_destinations",
+  "description": "Outstanding: rank destinations for one content item, with reasons; rule-breakers are excluded.",
+  "ok": true,
+  "seconds": 0.023,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/recommendations",
+      "http_status": 200,
+      "correlation_id": "1a6a2ec59e5b4a1d95e4fd844cba905d",
+      "response": {
+        "content_themes": [
+          "ai",
+          "creators",
+          "video"
+        ],
+        "recommendations": [
+          {
+            "destination_id": "dst_forum_aicreators",
+            "name": "AI Creators Forum",
+            "connector_key": "discourse",
+            "route": "automated",
+            "score": 0.8284,
+            "components": {
+              "topic": 0.795,
+              "audience": 1.0,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.5
+            },
+            "reason": "topic match: ai, creator, video; audience overlap: ai, creators, video; relevance 5/5"
+          },
+          {
+            "destination_id": "dst_mrss_ctv",
+            "name": "IncuBrix CTV video feed (MRSS)",
+            "connector_key": "mrss",
+            "route": "automated",
+            "score": 0.6432,
+            "components": {
+              "topic": 0.326,
+              "audience": 0.717,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 1.0
+            },
+            "reason": "topic match: video; audience overlap: creators, video; relevance 4/5"
+          },
+          {
+            "destination_id": "dst_c1a7a54a85a64c1a",
+            "name": "batch ghost ai",
+            "connector_key": "ghost",
+            "route": "automated",
+            "score": 0.582,
+            "components": {
+              "topic": 0.401,
+              "audience": 0.567,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.5
+            },
+            "reason": "topic match: ai; audience overlap: ai, creators; relevance ?/5"
+          },
+          {
+            "destination_id": "dst_lemmy_test",
+            "name": "Lemmy c/incubrix_test",
+            "connector_key": "lemmy",
+            "route": "automated",
+            "score": 0.5702,
+            "components": {
+              "topic": 0.232,
+              "audience": 0.717,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.6
+            },
+            "reason": "topic match: ai, creator; audience overlap: ai, creators; relevance 4/5"
+          },
+          {
+            "destination_id": "dst_ghost_blog",
+            "name": "IncuBrix Ghost blog",
+            "connector_key": "ghost",
+            "route": "automated",
+            "score": 0.5167,
+            "components": {
+              "topic": 0.0,
+              "audience": 0.867,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.5
+            },
+            "reason": "audience overlap: ai, creators; relevance 5/5"
+          },
+          {
+            "destination_id": "dst_slack_creators",
+            "name": "Creators Guild Slack #show-and-tell",
+            "connector_key": "slack",
+            "route": "automated",
+            "score": 0.5164,
+            "components": {
+              "topic": 0.173,
+              "audience": 0.583,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.6
+            },
+            "reason": "topic match: creator; audience overlap: creators; relevance 4/5"
+          },
+          {
+            "destination_id": "dst_c8c6771c721b43ae",
+            "name": "batch mrss mrss",
+            "connector_key": "mrss",
+            "route": "automated",
+            "score": 0.4917,
+            "components": {
+              "topic": 0.0,
+              "audience": 0.567,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 1.0
+            },
+            "reason": "audience overlap: ai, creators; relevance ?/5"
+          },
+          {
+            "destination_id": "dst_partner_news",
+            "name": "CreatorNews partner site (signed webhook)",
+            "connector_key": "webhook",
+            "route": "automated",
+            "score": 0.4811,
+            "components": {
+              "topic": 0.044,
+              "audience": 0.583,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.7
+            },
+            "reason": "audience overlap: creators; relevance 4/5"
+          },
+          {
+            "destination_id": "dst_devto",
+            "name": "Dev.to (IncuBrix account)",
+            "connector_key": "devto",
+            "route": "automated",
+            "score": 0.4733,
+            "components": {
+              "topic": 0.136,
+              "audience": 0.583,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.3
+            },
+            "reason": "audience overlap: ai; relevance 4/5"
+          },
+          {
+            "destination_id": "dst_5a15657d6fc24d56",
+            "name": "batch webhook webhook",
+            "connector_key": "webhook",
+            "route": "automated",
+            "score": 0.4617,
+            "components": {
+              "topic": 0.0,
+              "audience": 0.567,
+              "rules": 1.0,
+              "past": 0.5,
+              "format": 0.7
+            },
+            "reason": "audience overlap: ai, creators; relevance ?/5"
+          }
+        ],
+        "considered": 26,
+        "excluded": [
+          {
+            "destination_id": "dst_lemmy_videomacher",
+            "name": "Feddit c/videomacher (German)",
+            "reason": "rules: this community's language is 'de' and the post is 'en'; add content.translations['de'], or list 'en' in the destination's config.accepted_languages if the community accepts it"
+          },
+          {
+            "destination_id": "dst_forum_founders",
+            "name": "Indie Founders Forum (no promotion)",
+            "reason": "rules: this community bans self-promotion and the post is promotional (marked promotional by the sender)"
+          },
+          {
+            "destination_id": "dst_assist_newtubers",
+            "name": "Reddit NewTubers",
+            "reason": "rules: this community bans self-promotion and the post is promotional (marked promotional by the sender)"
+          },
+          {
+            "destination_id": "dst_2b95b8db12c74de1",
+            "name": "batch ghost g",
+            "reason": "not eligible (status paused)"
+          },
+          {
+            "destination_id": "dst_f8d702305b41420c",
+            "name": "batch lemmy n",
+            "reason": "rules: this community bans self-promotion and the post is promotional (marked promotional by the sender)"
+          },
+          {
+            "destination_id": "dst_79c510c2f30940df",
+            "name": "batch devto f",
+            "reason": "not eligible (status demoted)"
+          },
+          {
+            "destination_id": "dst_fe32c6015ee44a1c",
+            "name": "AI Video Forum",
+            "reason": "not eligible (status uncertified)"
+          },
+          {
+            "destination_id": "dst_2915547c598341c2",
+            "name": "Lemmy KI",
+            "reason": "not eligible (status uncertified)"
+          },
+          {
+            "destination_id": "dst_88467db9746d4a1c",
+            "name": "Mystery site",
+            "reason": "not eligible (status uncertified)"
+          },
+          {
+            "destination_id": "dst_dbb85a8daed640cd",
+            "name": "Startup Gründer Forum",
+            "reason": "not eligible (status uncertified)"
+          },
+          {
+            "destination_id": "dst_5c26b9e7f1e64faf",
+            "name": "batch lemmy de",
+            "reason": "rules: this community's language is 'de' and the post is 'en'; add content.translations['de'], or list 'en' in the destination's config.accepted_languages if the community accepts it"
+          },
+          {
+            "destination_id": "dst_ce581572b6d54e35",
+            "name": "batch webhook w",
+            "reason": "not eligible (status paused)"
+          },
+          {
+            "destination_id": "dst_d0ec7eecd0b5402b",
+            "name": "தமிழ் படைப்பாளிகள் சமூகம்",
+            "reason": "not eligible (status uncertified)"
+          },
+          {
+            "destination_id": "dst_cb1e5652c2ab454c",
+            "name": "batch discourse rc",
+            "reason": "rules: this community bans self-promotion and the post is promotional (marked promotional by the sender)"
+          },
+          {
+            "destination_id": "dst_46bf56ab94c44aab",
+            "name": "batch lemmy ta",
+            "reason": "rules: this community's language is 'ta' and the post is 'en'; add content.translations['ta'], or list 'en' in the destination's config.accepted_languages if the community accepts it"
+          }
+        ],
+        "manifest": {
+          "manifest_version": "1.0",
+          "kind": "recommendation",
+          "service": {
+            "name": "incubrix-longtail",
+            "version": "1.0.0",
+            "python": "3.11.5"
+          },
+          "connectors": [],
+          "models": [
+            {
+              "provider": "none",
+              "note": "no AI model used for this result"
+            }
+          ],
+          "settings": {
+            "simulation_mode": true,
+            "ai_provider": "mock"
+          },
+          "seed": 0,
+          "timings": {
+            "total_s": 0.0
+          },
+          "cost_estimate_usd": {
+            "total": 0,
+            "per_unit": null,
+            "units": null
+          },
+          "warnings": [],
+          "ai_generated": false,
+          "rights": {
+            "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+            "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+            "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+          }
+        }
+      },
+      "seconds": 0.023
+    }
+  ]
+}

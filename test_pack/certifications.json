@@ -1,0 +1,5170 @@
+{
+  "certifications": [
+    {
+      "id": "crt_07587cf7ccd74862",
+      "destination_id": "dst_d93b86a040ad48e7",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:59+00:00",
+      "finished_at": "2026-10-16T18:48:59+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "post_id": "pst_d7a70f32310d405d",
+            "destination_id": "dst_d93b86a040ad48e7",
+            "state": "published",
+            "platform_post_id": "1004|https://discourse-core-8677d0.mock",
+            "live_url": "https://discourse-core-8677d0.mock/t/incubrix-connector-certification-a47ef319-please-ignore/51004",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_d93b86a040ad48e7-a47ef319",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-core-8677d0.mock/t/incubrix-connector-certification-a47ef319-please-ignore/51004"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "live_url": "https://discourse-core-8677d0.mock/t/incubrix-connector-certification-a47ef319-please-ignore/51004",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:59+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_d93b86a040ad48e7/crt_07587cf7ccd74862.json?expires=1792781339&sig=ce98924938d8e2b8a94265c2111b7534",
+      "error": null
+    },
+    {
+      "id": "crt_03d63a6fb2434c5d",
+      "destination_id": "dst_0c2056eb15884607",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:58+00:00",
+      "finished_at": "2026-10-16T18:48:58+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "post_id": "pst_8bc5b175ad804fc7",
+            "destination_id": "dst_0c2056eb15884607",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-ja-8677d0.mock",
+            "live_url": "https://discourse-ja-8677d0.mock/t/incubrix-connector-certification-07c7313f-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_0c2056eb15884607-07c7313f",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-ja-8677d0.mock/t/incubrix-connector-certification-07c7313f-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "live_url": "https://discourse-ja-8677d0.mock/t/incubrix-connector-certification-07c7313f-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:58+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_0c2056eb15884607/crt_03d63a6fb2434c5d.json?expires=1792781338&sig=c24b2526d37c73a126cef2d67fb5deb1",
+      "error": null
+    },
+    {
+      "id": "crt_edae0e80beec47c4",
+      "destination_id": "dst_9dcb76c9a60f48a6",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:57+00:00",
+      "finished_at": "2026-10-16T18:48:57+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "post_id": "pst_dc108aab56f84924",
+            "destination_id": "dst_9dcb76c9a60f48a6",
+            "state": "published",
+            "platform_post_id": "wp1001|https://webhook-revoke-8677d0.mock",
+            "live_url": "https://webhook-revoke-8677d0.mock/news/wp1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_9dcb76c9a60f48a6-18a1bcb9",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://webhook-revoke-8677d0.mock/news/wp1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "live_url": "https://webhook-revoke-8677d0.mock/news/wp1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "views": 40,
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 6
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:57+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_9dcb76c9a60f48a6/crt_edae0e80beec47c4.json?expires=1792781337&sig=7c644a18eb0475996a5b8f934008d9a4",
+      "error": null
+    },
+    {
+      "id": "crt_96037efe45a84308",
+      "destination_id": "dst_1eda7133ebc94140",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:56+00:00",
+      "finished_at": "2026-10-16T18:48:56+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "post_id": "pst_b69cf3bca25f4c70",
+            "destination_id": "dst_1eda7133ebc94140",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-drift-8677d0.mock",
+            "live_url": "https://lemmy-drift-8677d0.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_1eda7133ebc94140-582eac3d",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-drift-8677d0.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "live_url": "https://lemmy-drift-8677d0.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_1eda7133ebc94140/crt_96037efe45a84308.json?expires=1792781336&sig=c7253cfebd6da0b5d2577d39d6b28eeb",
+      "error": null
+    },
+    {
+      "id": "crt_0fe3c9e38c754c8e",
+      "destination_id": "dst_1eda7133ebc94140",
+      "status": "failed",
+      "started_at": "2026-10-16T18:48:56+00:00",
+      "finished_at": "2026-10-16T18:48:56+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:56+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": false,
+          "ms": 15,
+          "at": "2026-10-16T18:48:56+00:00",
+          "error": {
+            "code": "PLATFORM_UNAVAILABLE",
+            "message": "platform response is missing 'post_view' (API changed?)",
+            "retryable": false,
+            "details": {
+              "cause": "SCHEMA_DRIFT",
+              "missing_field": "post_view",
+              "orphan_cleaned_up": "1002|https://lemmy-drift-8677d0.mock"
+            }
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_1eda7133ebc94140/crt_0fe3c9e38c754c8e.json?expires=1792781336&sig=ae4ff00dc005bf19461d1d9135a3fe0b",
+      "error": {
+        "code": "PLATFORM_UNAVAILABLE",
+        "message": "platform response is missing 'post_view' (API changed?)",
+        "retryable": false,
+        "details": {
+          "cause": "SCHEMA_DRIFT",
+          "missing_field": "post_view",
+          "orphan_cleaned_up": "1002|https://lemmy-drift-8677d0.mock"
+        }
+      }
+    },
+    {
+      "id": "crt_f92131dcc3f140d0",
+      "destination_id": "dst_ffe3a8f93bf949c3",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:55+00:00",
+      "finished_at": "2026-10-16T18:48:55+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "post_id": "pst_b9fd5eb5cdc24ca0",
+            "destination_id": "dst_ffe3a8f93bf949c3",
+            "state": "published",
+            "platform_post_id": "5f4963782a5b4c8db5c48484|https://ghost-expired-8677d0.mock",
+            "live_url": "https://ghost-expired-8677d0.mock/incubrix-connector-certification-0564f73c-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_ffe3a8f93bf949c3-0564f73c",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-expired-8677d0.mock/incubrix-connector-certification-0564f73c-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "live_url": "https://ghost-expired-8677d0.mock/incubrix-connector-certification-0564f73c-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_ffe3a8f93bf949c3/crt_f92131dcc3f140d0.json?expires=1792781335&sig=41bbca14e644d99f1013f2ac96a08df4",
+      "error": null
+    },
+    {
+      "id": "crt_3c805c9d48014c7c",
+      "destination_id": "dst_65e3a1c59ebc43c0",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:55+00:00",
+      "finished_at": "2026-10-16T18:48:55+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "post_id": "pst_d0f52467c92b47b1",
+            "destination_id": "dst_65e3a1c59ebc43c0",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-expired-8677d0.mock",
+            "live_url": "https://lemmy-expired-8677d0.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_65e3a1c59ebc43c0-41de2f1c",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-expired-8677d0.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "live_url": "https://lemmy-expired-8677d0.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_65e3a1c59ebc43c0/crt_3c805c9d48014c7c.json?expires=1792781335&sig=6a1bc270eb8b278dd3d2c439547681f9",
+      "error": null
+    },
+    {
+      "id": "crt_780999cf84174dc0",
+      "destination_id": "dst_8622ab7656da4a72",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:55+00:00",
+      "finished_at": "2026-10-16T18:48:55+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "post_id": "pst_77ed0b01d1fd4745",
+            "destination_id": "dst_8622ab7656da4a72",
+            "state": "published",
+            "platform_post_id": "5b5590c263e349a18fd521a7|https://hashnode-reject-8677d0.mock",
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-e7766ea8-please-i",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_8622ab7656da4a72-e7766ea8",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-e7766ea8-please-i"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-e7766ea8-please-i",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "views": 26,
+            "likes": 4,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:55+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_8622ab7656da4a72/crt_780999cf84174dc0.json?expires=1792781335&sig=87901ae2685d96e52fa4da57e341f1da",
+      "error": null
+    },
+    {
+      "id": "crt_59b661a896764ae9",
+      "destination_id": "dst_e31fdba5d8d3405a",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:51+00:00",
+      "finished_at": "2026-10-16T18:48:51+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:51+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:51+00:00",
+          "result": {
+            "post_id": "pst_65ea7e2f62af4c2d",
+            "destination_id": "dst_e31fdba5d8d3405a",
+            "state": "published",
+            "platform_post_id": "2f33bd1af162448791480665|https://ghost-timeout-8677d0.mock",
+            "live_url": "https://ghost-timeout-8677d0.mock/incubrix-connector-certification-34f43c6f-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_e31fdba5d8d3405a-34f43c6f",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:51+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-timeout-8677d0.mock/incubrix-connector-certification-34f43c6f-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:51+00:00",
+          "result": {
+            "live_url": "https://ghost-timeout-8677d0.mock/incubrix-connector-certification-34f43c6f-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:51+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:51+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_e31fdba5d8d3405a/crt_59b661a896764ae9.json?expires=1792781331&sig=eb88e37d9ef16b00e60d39f429b15d56",
+      "error": null
+    },
+    {
+      "id": "crt_d51516525a6c444c",
+      "destination_id": "dst_9fa1940107ad4632",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:50+00:00",
+      "finished_at": "2026-10-16T18:48:50+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "post_id": "pst_c6ed432ecf0d45ec",
+            "destination_id": "dst_9fa1940107ad4632",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-nolinks-8677d0.mock",
+            "live_url": "https://discourse-nolinks-8677d0.mock/t/incubrix-connector-certification-b23e85e8-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_9fa1940107ad4632-b23e85e8",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-nolinks-8677d0.mock/t/incubrix-connector-certification-b23e85e8-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "live_url": "https://discourse-nolinks-8677d0.mock/t/incubrix-connector-certification-b23e85e8-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_9fa1940107ad4632/crt_d51516525a6c444c.json?expires=1792781330&sig=370358e1bd1177de6496702ddf198cdf",
+      "error": null
+    },
+    {
+      "id": "crt_b336b5c14c2d40ae",
+      "destination_id": "dst_bc4af86589244a29",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:50+00:00",
+      "finished_at": "2026-10-16T18:48:50+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "post_id": "pst_e368755e0f4f4a1d",
+            "destination_id": "dst_bc4af86589244a29",
+            "state": "published",
+            "platform_post_id": "d2514f12e9044bdf9adab953|https://ghost-disclose-8677d0.mock",
+            "live_url": "https://ghost-disclose-8677d0.mock/incubrix-connector-certification-21ce118a-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_bc4af86589244a29-21ce118a",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-disclose-8677d0.mock/incubrix-connector-certification-21ce118a-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "live_url": "https://ghost-disclose-8677d0.mock/incubrix-connector-certification-21ce118a-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_bc4af86589244a29/crt_b336b5c14c2d40ae.json?expires=1792781330&sig=544e8dcf4927eb0f77e4b18ec8765c34",
+      "error": null
+    },
+    {
+      "id": "crt_2433a84dadaa4976",
+      "destination_id": "dst_53621706c72c4d08",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:50+00:00",
+      "finished_at": "2026-10-16T18:48:50+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "build_assist_pack",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "files": [
+              {
+                "name": "post.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_e225eb75c5b1/post.md?expires=1792781330&sig=4dab3647996a9fa955555da1a8b35425"
+              },
+              {
+                "name": "caption.txt",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_e225eb75c5b1/caption.txt?expires=1792781330&sig=376590fde56a08b4acfb4bc0ded45fa7"
+              },
+              {
+                "name": "checklist.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_e225eb75c5b1/checklist.md?expires=1792781330&sig=ee7d88f7a21f04b64ea610deaa584d17"
+              },
+              {
+                "name": "pack.zip",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_e225eb75c5b1/pack.zip?expires=1792781330&sig=349f40850776d9d83fed2469e5d44726"
+              }
+            ],
+            "caption": "IncuBrix connector certification d7403349 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "deep_link": "https://assisted-noauto-8677d0.mock/submit",
+            "checklist": [
+              "Post from the official IncuBrix account on check assisted noauto.",
+              "Title must stay under 300 characters (it is 55).",
+              "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+              "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+            ],
+            "pack_id": "pack_e225eb75c5b1"
+          }
+        },
+        {
+          "step": "check_pack_files",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "files": 4,
+            "checklist_items": 4,
+            "deep_link": "https://assisted-noauto-8677d0.mock/submit"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "deleted": true
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_53621706c72c4d08/crt_2433a84dadaa4976.json?expires=1792781330&sig=705d6cb62d19a0185ca20419ee5459e5",
+      "error": null
+    },
+    {
+      "id": "crt_e9f4a37598444f94",
+      "destination_id": "dst_deb4eddf797c4c73",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:50+00:00",
+      "finished_at": "2026-10-16T18:48:50+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "post_id": "pst_7009f91c303943c4",
+            "destination_id": "dst_deb4eddf797c4c73",
+            "state": "published",
+            "platform_post_id": "1001|https://devto-429-8677d0.mock",
+            "live_url": "https://devto-429-8677d0.mock/incubrix/incubrix-connector-certification-dbd903a5-please-i-3e9",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_deb4eddf797c4c73-dbd903a5",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://devto-429-8677d0.mock/incubrix/incubrix-connector-certification-dbd903a5-please-i-3e9"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "live_url": "https://devto-429-8677d0.mock/incubrix/incubrix-connector-certification-dbd903a5-please-i-3e9",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "views": 11,
+            "likes": 3,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "deleted": true,
+            "method": "unpublished (Forem has no delete API)"
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:50+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_deb4eddf797c4c73/crt_e9f4a37598444f94.json?expires=1792781330&sig=f540351c4c8f16a19b32cf8649958686",
+      "error": null
+    },
+    {
+      "id": "crt_1baa4ee8fc174175",
+      "destination_id": "dst_3accd2f2da4a4368",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:49+00:00",
+      "finished_at": "2026-10-16T18:48:49+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "post_id": "pst_f879deb0ab514105",
+            "destination_id": "dst_3accd2f2da4a4368",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-cap-8677d0.mock",
+            "live_url": "https://lemmy-cap-8677d0.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_3accd2f2da4a4368-e9786079",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-cap-8677d0.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "live_url": "https://lemmy-cap-8677d0.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_3accd2f2da4a4368/crt_1baa4ee8fc174175.json?expires=1792781329&sig=9d20fe8f6a621da6d5d79af1b5d33f1d",
+      "error": null
+    },
+    {
+      "id": "crt_56b893b36fd24975",
+      "destination_id": "dst_39cd7f4e95e5473e",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:49+00:00",
+      "finished_at": "2026-10-16T18:48:49+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "post_id": "pst_b9a38006ec064ae8",
+            "destination_id": "dst_39cd7f4e95e5473e",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-nopromo-8677d0.mock",
+            "live_url": "https://discourse-nopromo-8677d0.mock/t/incubrix-connector-certification-b684d5a3-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_39cd7f4e95e5473e-b684d5a3",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-nopromo-8677d0.mock/t/incubrix-connector-certification-b684d5a3-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "live_url": "https://discourse-nopromo-8677d0.mock/t/incubrix-connector-certification-b684d5a3-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:49+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_39cd7f4e95e5473e/crt_56b893b36fd24975.json?expires=1792781329&sig=99fadf3fc35fe0be5dcbc880cfdb75c8",
+      "error": null
+    },
+    {
+      "id": "crt_43ccaefd627f44d5",
+      "destination_id": "dst_27a6821a10ef4e31",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:48+00:00",
+      "finished_at": "2026-10-16T18:48:48+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "post_id": "pst_dd9c4b3bc5954282",
+            "destination_id": "dst_27a6821a10ef4e31",
+            "state": "published",
+            "platform_post_id": "wp1001|https://webhook-core-8677d0.mock",
+            "live_url": "https://webhook-core-8677d0.mock/news/wp1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_27a6821a10ef4e31-922a6de6",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://webhook-core-8677d0.mock/news/wp1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "live_url": "https://webhook-core-8677d0.mock/news/wp1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "views": 40,
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 6
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_27a6821a10ef4e31/crt_43ccaefd627f44d5.json?expires=1792781328&sig=9b3a2469de4ab3122435ffe72899ce72",
+      "error": null
+    },
+    {
+      "id": "crt_bd15f897f4a645d9",
+      "destination_id": "dst_c4b6d87181694c2b",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:48+00:00",
+      "finished_at": "2026-10-16T18:48:48+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "build_assist_pack",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "files": [
+              {
+                "name": "post.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_8b02d9ed4cfb/post.md?expires=1792781328&sig=acbc758a6e10b64f41a61a031a63939f"
+              },
+              {
+                "name": "caption.txt",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_8b02d9ed4cfb/caption.txt?expires=1792781328&sig=7dfffac476dd9a9c36b029b65fe087dd"
+              },
+              {
+                "name": "checklist.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_8b02d9ed4cfb/checklist.md?expires=1792781328&sig=e7b45819df6a0546e7c46afe7d62ccae"
+              },
+              {
+                "name": "pack.zip",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_8b02d9ed4cfb/pack.zip?expires=1792781328&sig=7e44947cc83042fccaa8e4ac95bd9a5f"
+              }
+            ],
+            "caption": "IncuBrix connector certification 89b26e6c please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "deep_link": "https://assisted-core-8677d0.mock/submit",
+            "checklist": [
+              "Post from the official IncuBrix account on check assisted core.",
+              "Title must stay under 300 characters (it is 55).",
+              "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+              "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+            ],
+            "pack_id": "pack_8b02d9ed4cfb"
+          }
+        },
+        {
+          "step": "check_pack_files",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "files": 4,
+            "checklist_items": 4,
+            "deep_link": "https://assisted-core-8677d0.mock/submit"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "deleted": true
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_c4b6d87181694c2b/crt_bd15f897f4a645d9.json?expires=1792781328&sig=2970bbaaae90e46d3b79e0ecfae03c2f",
+      "error": null
+    },
+    {
+      "id": "crt_8e596de132c7433c",
+      "destination_id": "dst_81d4a1ed1e5a428d",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:48+00:00",
+      "finished_at": "2026-10-16T18:48:48+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "post_id": "pst_0e568610277a447a",
+            "destination_id": "dst_81d4a1ed1e5a428d",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-forum41-8677d0.mock",
+            "live_url": "https://discourse-forum41-8677d0.mock/t/incubrix-connector-certification-3a28ffbe-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_81d4a1ed1e5a428d-3a28ffbe",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-forum41-8677d0.mock/t/incubrix-connector-certification-3a28ffbe-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "live_url": "https://discourse-forum41-8677d0.mock/t/incubrix-connector-certification-3a28ffbe-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:48+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_81d4a1ed1e5a428d/crt_8e596de132c7433c.json?expires=1792781328&sig=7c6bc4aa341cb2d0a9ea0363bfa25895",
+      "error": null
+    },
+    {
+      "id": "crt_e6f23fa7ddaa454c",
+      "destination_id": "dst_58e1259c74444990",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:47+00:00",
+      "finished_at": "2026-10-16T18:48:47+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "post_id": "pst_97f493f3cfa449b5",
+            "destination_id": "dst_58e1259c74444990",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-core-8677d0.mock",
+            "live_url": "https://lemmy-core-8677d0.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_58e1259c74444990-6e3e95b7",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-core-8677d0.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "live_url": "https://lemmy-core-8677d0.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_58e1259c74444990/crt_e6f23fa7ddaa454c.json?expires=1792781327&sig=d8601487e24f55fe8f313c75d90b905f",
+      "error": null
+    },
+    {
+      "id": "crt_20c14cdde5084c4b",
+      "destination_id": "dst_6063c8d893694659",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:47+00:00",
+      "finished_at": "2026-10-16T18:48:47+00:00",
+      "duration_s": 0.078,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "post_id": "pst_53669666de2847db",
+            "destination_id": "dst_6063c8d893694659",
+            "state": "published",
+            "platform_post_id": "1001|https://devto-core-8677d0.mock",
+            "live_url": "https://devto-core-8677d0.mock/incubrix/incubrix-connector-certification-7325239a-please-i-3e9",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_6063c8d893694659-7325239a",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://devto-core-8677d0.mock/incubrix/incubrix-connector-certification-7325239a-please-i-3e9"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "live_url": "https://devto-core-8677d0.mock/incubrix/incubrix-connector-certification-7325239a-please-i-3e9",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "views": 11,
+            "likes": 3,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "deleted": true,
+            "method": "unpublished (Forem has no delete API)"
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 62,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_6063c8d893694659/crt_20c14cdde5084c4b.json?expires=1792781327&sig=a80bceb9f2ef035a716238ee722461e0",
+      "error": null
+    },
+    {
+      "id": "crt_447648bf771743ed",
+      "destination_id": "dst_91fff1077ee14d0a",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:47+00:00",
+      "finished_at": "2026-10-16T18:48:47+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "post_id": "pst_f9d561d67959452b",
+            "destination_id": "dst_91fff1077ee14d0a",
+            "state": "published",
+            "platform_post_id": "c5fa614fc2fe48229e69f2d0|https://ghost-core-8677d0.mock",
+            "live_url": "https://ghost-core-8677d0.mock/incubrix-connector-certification-ef71fcaf-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_91fff1077ee14d0a-ef71fcaf",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-core-8677d0.mock/incubrix-connector-certification-ef71fcaf-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "live_url": "https://ghost-core-8677d0.mock/incubrix-connector-certification-ef71fcaf-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:47+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_91fff1077ee14d0a/crt_447648bf771743ed.json?expires=1792781327&sig=4e945221d729f394968a5a974d0a091f",
+      "error": null
+    },
+    {
+      "id": "crt_e9dea7bf74c24d65",
+      "destination_id": "dst_d93b86a040ad48e7",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:46+00:00",
+      "finished_at": "2026-10-16T18:48:46+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "post_id": "pst_ae03a38023a44d8a",
+            "destination_id": "dst_d93b86a040ad48e7",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-core-8677d0.mock",
+            "live_url": "https://discourse-core-8677d0.mock/t/incubrix-connector-certification-7733ed2f-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_d93b86a040ad48e7-7733ed2f",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-core-8677d0.mock/t/incubrix-connector-certification-7733ed2f-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "live_url": "https://discourse-core-8677d0.mock/t/incubrix-connector-certification-7733ed2f-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:46+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_d93b86a040ad48e7/crt_e9dea7bf74c24d65.json?expires=1792781326&sig=b7f19ebe35557876caaa1d2445fcf68d",
+      "error": null
+    },
+    {
+      "id": "crt_b197c9f5aa124001",
+      "destination_id": "dst_46bf56ab94c44aab",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:44+00:00",
+      "finished_at": "2026-10-16T18:48:44+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "post_id": "pst_ef14c3242b89422b",
+            "destination_id": "dst_46bf56ab94c44aab",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-ta-2ba151b6.mock",
+            "live_url": "https://lemmy-ta-2ba151b6.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_46bf56ab94c44aab-0c5584b4",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-ta-2ba151b6.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "live_url": "https://lemmy-ta-2ba151b6.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_46bf56ab94c44aab/crt_b197c9f5aa124001.json?expires=1792781324&sig=ab4bb62ac3eccb0a89fad4752ef295ad",
+      "error": null
+    },
+    {
+      "id": "crt_8b619174a5994ac0",
+      "destination_id": "dst_c1a7a54a85a64c1a",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:44+00:00",
+      "finished_at": "2026-10-16T18:48:44+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "post_id": "pst_11a0281482994ef3",
+            "destination_id": "dst_c1a7a54a85a64c1a",
+            "state": "published",
+            "platform_post_id": "c4ec40e0b4c1446e8e4d2387|https://ghost-ai-3cc27e40.mock",
+            "live_url": "https://ghost-ai-3cc27e40.mock/incubrix-connector-certification-986b1a47-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_c1a7a54a85a64c1a-986b1a47",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-ai-3cc27e40.mock/incubrix-connector-certification-986b1a47-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "live_url": "https://ghost-ai-3cc27e40.mock/incubrix-connector-certification-986b1a47-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_c1a7a54a85a64c1a/crt_8b619174a5994ac0.json?expires=1792781324&sig=c9e963602e378614a32858356dc16255",
+      "error": null
+    },
+    {
+      "id": "crt_2558da980dde435a",
+      "destination_id": "dst_cb1e5652c2ab454c",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:44+00:00",
+      "finished_at": "2026-10-16T18:48:44+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "post_id": "pst_50f0336f764e4c5f",
+            "destination_id": "dst_cb1e5652c2ab454c",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-rc-9cdc7cc0.mock",
+            "live_url": "https://discourse-rc-9cdc7cc0.mock/t/incubrix-connector-certification-5aef7e89-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_cb1e5652c2ab454c-5aef7e89",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-rc-9cdc7cc0.mock/t/incubrix-connector-certification-5aef7e89-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "live_url": "https://discourse-rc-9cdc7cc0.mock/t/incubrix-connector-certification-5aef7e89-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:44+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_cb1e5652c2ab454c/crt_2558da980dde435a.json?expires=1792781324&sig=b6efd4ca742cae387192123a2374b079",
+      "error": null
+    },
+    {
+      "id": "crt_72ad82a1d88045d4",
+      "destination_id": "dst_ce581572b6d54e35",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:43+00:00",
+      "finished_at": "2026-10-16T18:48:43+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "post_id": "pst_1efa529c9a9848ef",
+            "destination_id": "dst_ce581572b6d54e35",
+            "state": "published",
+            "platform_post_id": "wp1001|https://webhook-w-d5b8885e.mock",
+            "live_url": "https://webhook-w-d5b8885e.mock/news/wp1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_ce581572b6d54e35-b7a7aee7",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://webhook-w-d5b8885e.mock/news/wp1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "live_url": "https://webhook-w-d5b8885e.mock/news/wp1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "views": 40,
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 6
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_ce581572b6d54e35/crt_72ad82a1d88045d4.json?expires=1792781323&sig=a408ae925382fa06a43735c09dfc8d44",
+      "error": null
+    },
+    {
+      "id": "crt_ccb249db9ad74106",
+      "destination_id": "dst_5c26b9e7f1e64faf",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:43+00:00",
+      "finished_at": "2026-10-16T18:48:43+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "post_id": "pst_92ed27364c1e4ea8",
+            "destination_id": "dst_5c26b9e7f1e64faf",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-de-2ba151b6.mock",
+            "live_url": "https://lemmy-de-2ba151b6.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_5c26b9e7f1e64faf-b16d5489",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-de-2ba151b6.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "live_url": "https://lemmy-de-2ba151b6.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:43+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_5c26b9e7f1e64faf/crt_ccb249db9ad74106.json?expires=1792781323&sig=1d1abb8224630ab05ff8539b2059836c",
+      "error": null
+    },
+    {
+      "id": "crt_58cfa8ca1b7e4fce",
+      "destination_id": "dst_79c510c2f30940df",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:41+00:00",
+      "finished_at": "2026-10-16T18:48:41+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "post_id": "pst_ded972ec6df2471c",
+            "destination_id": "dst_79c510c2f30940df",
+            "state": "published",
+            "platform_post_id": "1001|https://devto-f-41425fe8.mock",
+            "live_url": "https://devto-f-41425fe8.mock/incubrix/incubrix-connector-certification-f5adeaf0-please-i-3e9",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_79c510c2f30940df-f5adeaf0",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://devto-f-41425fe8.mock/incubrix/incubrix-connector-certification-f5adeaf0-please-i-3e9"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "live_url": "https://devto-f-41425fe8.mock/incubrix/incubrix-connector-certification-f5adeaf0-please-i-3e9",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "views": 11,
+            "likes": 3,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "deleted": true,
+            "method": "unpublished (Forem has no delete API)"
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_79c510c2f30940df/crt_58cfa8ca1b7e4fce.json?expires=1792781321&sig=cbeb2537400130e6f2830c16f9273a88",
+      "error": null
+    },
+    {
+      "id": "crt_a6a5177b2867458c",
+      "destination_id": "dst_79c510c2f30940df",
+      "status": "failed",
+      "started_at": "2026-10-16T18:48:41+00:00",
+      "finished_at": "2026-10-16T18:48:41+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": false,
+          "ms": 0,
+          "at": "2026-10-16T18:48:41+00:00",
+          "error": {
+            "code": "PLATFORM_UNAVAILABLE",
+            "message": "platform response is missing 'url' (API changed?)",
+            "retryable": false,
+            "details": {
+              "cause": "SCHEMA_DRIFT",
+              "missing_field": "url",
+              "orphan_cleaned_up": "1002|https://devto-f-41425fe8.mock"
+            }
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_79c510c2f30940df/crt_a6a5177b2867458c.json?expires=1792781321&sig=03f364040c5095f3961008b7cb6e3cd1",
+      "error": {
+        "code": "PLATFORM_UNAVAILABLE",
+        "message": "platform response is missing 'url' (API changed?)",
+        "retryable": false,
+        "details": {
+          "cause": "SCHEMA_DRIFT",
+          "missing_field": "url",
+          "orphan_cleaned_up": "1002|https://devto-f-41425fe8.mock"
+        }
+      }
+    },
+    {
+      "id": "crt_835faad3d2c84bee",
+      "destination_id": "dst_b987e0c619224dfb",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:40+00:00",
+      "finished_at": "2026-10-16T18:48:40+00:00",
+      "duration_s": 0.031,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "ok": true,
+            "team": "IncuBrix Sim"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "post_id": "pst_7bc769efbd764fcd",
+            "destination_id": "dst_b987e0c619224dfb",
+            "state": "published",
+            "platform_post_id": "C0BATCH/1792176520.001001|https://slack-m-8e44b49b.mock",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176520001001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_b987e0c619224dfb-a5e1ada8",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176520001001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176520001001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_b987e0c619224dfb/crt_835faad3d2c84bee.json?expires=1792781320&sig=358e94e3c68ab9ca36ccf0fb791ad45d",
+      "error": null
+    },
+    {
+      "id": "crt_4bc137fababb49fe",
+      "destination_id": "dst_5773076e815e4541",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:40+00:00",
+      "finished_at": "2026-10-16T18:48:40+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "post_id": "pst_f18c6ee7db43459f",
+            "destination_id": "dst_5773076e815e4541",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-c-041c793e.mock",
+            "live_url": "https://discourse-c-041c793e.mock/t/incubrix-connector-certification-5453cc6b-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_5773076e815e4541-5453cc6b",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-c-041c793e.mock/t/incubrix-connector-certification-5453cc6b-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "live_url": "https://discourse-c-041c793e.mock/t/incubrix-connector-certification-5453cc6b-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_5773076e815e4541/crt_4bc137fababb49fe.json?expires=1792781320&sig=d2bef9759ce56edc1f7fe05ab4893c4a",
+      "error": null
+    },
+    {
+      "id": "crt_77e1dc1d1be54b0d",
+      "destination_id": "dst_f8d702305b41420c",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:40+00:00",
+      "finished_at": "2026-10-16T18:48:40+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "post_id": "pst_da68ea37a2e44651",
+            "destination_id": "dst_f8d702305b41420c",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-n-4557a1cc.mock",
+            "live_url": "https://lemmy-n-4557a1cc.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_f8d702305b41420c-8b6bb357",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-n-4557a1cc.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "live_url": "https://lemmy-n-4557a1cc.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:40+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_f8d702305b41420c/crt_77e1dc1d1be54b0d.json?expires=1792781320&sig=9b71fd225d40dc724b2d9b42082f9b6b",
+      "error": null
+    },
+    {
+      "id": "crt_e5e7971ace194a96",
+      "destination_id": "dst_2b95b8db12c74de1",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:39+00:00",
+      "finished_at": "2026-10-16T18:48:39+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "post_id": "pst_09df6bb5c0ce4ef4",
+            "destination_id": "dst_2b95b8db12c74de1",
+            "state": "published",
+            "platform_post_id": "37af90d422574c54944f5d8b|https://ghost-g-bcb2fa72.mock",
+            "live_url": "https://ghost-g-bcb2fa72.mock/incubrix-connector-certification-3938e357-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_2b95b8db12c74de1-3938e357",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-g-bcb2fa72.mock/incubrix-connector-certification-3938e357-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "live_url": "https://ghost-g-bcb2fa72.mock/incubrix-connector-certification-3938e357-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_2b95b8db12c74de1/crt_e5e7971ace194a96.json?expires=1792781319&sig=939381b76d0f9068159f574646096ca2",
+      "error": null
+    },
+    {
+      "id": "crt_5a158cebb26e42d5",
+      "destination_id": "dst_21db3fe2b9cb408a",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:39+00:00",
+      "finished_at": "2026-10-16T18:48:39+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "post_id": "pst_c3075c1719534712",
+            "destination_id": "dst_21db3fe2b9cb408a",
+            "state": "published",
+            "platform_post_id": "1001|https://devto-d-e80325c9.mock",
+            "live_url": "https://devto-d-e80325c9.mock/incubrix/incubrix-connector-certification-000be5cc-please-i-3e9",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_21db3fe2b9cb408a-000be5cc",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://devto-d-e80325c9.mock/incubrix/incubrix-connector-certification-000be5cc-please-i-3e9"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "live_url": "https://devto-d-e80325c9.mock/incubrix/incubrix-connector-certification-000be5cc-please-i-3e9",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "views": 11,
+            "likes": 3,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "deleted": true,
+            "method": "unpublished (Forem has no delete API)"
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_21db3fe2b9cb408a/crt_5a158cebb26e42d5.json?expires=1792781319&sig=e7bc4fa23cf1cb88e32b5ea9dfc769d8",
+      "error": null
+    },
+    {
+      "id": "crt_4b38a4dd5fe24688",
+      "destination_id": "dst_7dbeeaf6661747a2",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:39+00:00",
+      "finished_at": "2026-10-16T18:48:39+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "post_id": "pst_5807f6c75b03456a",
+            "destination_id": "dst_7dbeeaf6661747a2",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-l-7f698889.mock",
+            "live_url": "https://lemmy-l-7f698889.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_7dbeeaf6661747a2-60f16c3e",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-l-7f698889.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "live_url": "https://lemmy-l-7f698889.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:39+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_7dbeeaf6661747a2/crt_4b38a4dd5fe24688.json?expires=1792781319&sig=ae1ca4456d456b0870e15800244e9383",
+      "error": null
+    },
+    {
+      "id": "crt_ca99eb74ddf54ee8",
+      "destination_id": "dst_274805d56bf44f26",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:36+00:00",
+      "finished_at": "2026-10-16T18:48:36+00:00",
+      "duration_s": 0.031,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "post_id": "pst_69079d76cc954ec5",
+            "destination_id": "dst_274805d56bf44f26",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-r-65d1edab.mock",
+            "live_url": "https://discourse-r-65d1edab.mock/t/incubrix-connector-certification-9b4ff962-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_274805d56bf44f26-9b4ff962",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-r-65d1edab.mock/t/incubrix-connector-certification-9b4ff962-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "live_url": "https://discourse-r-65d1edab.mock/t/incubrix-connector-certification-9b4ff962-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_274805d56bf44f26/crt_ca99eb74ddf54ee8.json?expires=1792781316&sig=1b050069410b669d4f268dad85a9fa9f",
+      "error": null
+    },
+    {
+      "id": "crt_9c214f030c1e4776",
+      "destination_id": "dst_cb61081b0b5b40cf",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:36+00:00",
+      "finished_at": "2026-10-16T18:48:36+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "ok": true,
+            "team": "IncuBrix Sim"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "post_id": "pst_4165d017ed3f450a",
+            "destination_id": "dst_cb61081b0b5b40cf",
+            "state": "published",
+            "platform_post_id": "C0BATCH/1792176516.001001|https://slack-s-457f876e.mock",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176516001001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_cb61081b0b5b40cf-d0ef1b10",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176516001001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176516001001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:36+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_cb61081b0b5b40cf/crt_9c214f030c1e4776.json?expires=1792781316&sig=ee9fefa71581e89bb3615468b25ccef7",
+      "error": null
+    },
+    {
+      "id": "crt_e92d33f87d7c4ab6",
+      "destination_id": "dst_c8c6771c721b43ae",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:32+00:00",
+      "finished_at": "2026-10-16T18:48:32+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "post_id": "pst_02c7ecbabb154307",
+            "destination_id": "dst_c8c6771c721b43ae",
+            "state": "published",
+            "platform_post_id": "ibx-0fae79be74c6|batch-3d9fba3a",
+            "live_url": "http://127.0.0.1:59496/api/v1/feeds/batch-3d9fba3a.xml#ibx-0fae79be74c6",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_c8c6771c721b43ae-f68945dc",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "http://127.0.0.1:59496/api/v1/feeds/batch-3d9fba3a.xml#ibx-0fae79be74c6"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "live_url": "http://127.0.0.1:59496/api/v1/feeds/batch-3d9fba3a.xml#ibx-0fae79be74c6",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "deleted": true,
+            "already_gone": false
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_c8c6771c721b43ae/crt_e92d33f87d7c4ab6.json?expires=1792781312&sig=3075d92fa6b647f36375ac2ea8a7e044",
+      "error": null
+    },
+    {
+      "id": "crt_978cb3c5cef04308",
+      "destination_id": "dst_1793a8263e854e6e",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:32+00:00",
+      "finished_at": "2026-10-16T18:48:32+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "post_id": "pst_b2a11102fe7147a2",
+            "destination_id": "dst_1793a8263e854e6e",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-t-628ba702.mock",
+            "live_url": "https://discourse-t-628ba702.mock/t/incubrix-connector-certification-e63dc8f9-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_1793a8263e854e6e-e63dc8f9",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-t-628ba702.mock/t/incubrix-connector-certification-e63dc8f9-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "live_url": "https://discourse-t-628ba702.mock/t/incubrix-connector-certification-e63dc8f9-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:32+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_1793a8263e854e6e/crt_978cb3c5cef04308.json?expires=1792781312&sig=4ef417ed962f269afdc8332f860171c1",
+      "error": null
+    },
+    {
+      "id": "crt_c841cb23f34f4a85",
+      "destination_id": "dst_5a15657d6fc24d56",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:31+00:00",
+      "finished_at": "2026-10-16T18:48:31+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "post_id": "pst_01733f1635cc4009",
+            "destination_id": "dst_5a15657d6fc24d56",
+            "state": "published",
+            "platform_post_id": "wp1001|https://webhook-webhook-3d9fba3a.mock",
+            "live_url": "https://webhook-webhook-3d9fba3a.mock/news/wp1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_5a15657d6fc24d56-3f7b2f4b",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://webhook-webhook-3d9fba3a.mock/news/wp1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "live_url": "https://webhook-webhook-3d9fba3a.mock/news/wp1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "views": 40,
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 6
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_5a15657d6fc24d56/crt_c841cb23f34f4a85.json?expires=1792781311&sig=56eb8e40f8bcd4a4db1ed3f8442f6c5f",
+      "error": null
+    },
+    {
+      "id": "crt_ac9375196a8444de",
+      "destination_id": "dst_f61f1df7b4284266",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:31+00:00",
+      "finished_at": "2026-10-16T18:48:31+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "build_assist_pack",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "files": [
+              {
+                "name": "post.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_3848080c79b3/post.md?expires=1792781311&sig=99fc770c73d87f5f3398dfa878b636c9"
+              },
+              {
+                "name": "caption.txt",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_3848080c79b3/caption.txt?expires=1792781311&sig=ebd78855f6715591eb9eb4e54dea12ed"
+              },
+              {
+                "name": "checklist.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_3848080c79b3/checklist.md?expires=1792781311&sig=29c303765241dac3069f22bb9ed70380"
+              },
+              {
+                "name": "pack.zip",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_3848080c79b3/pack.zip?expires=1792781311&sig=2217360a7fba22513b67ef272695330a"
+              }
+            ],
+            "caption": "IncuBrix connector certification 2f19e9c1 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "deep_link": "https://assisted-assisted-3d9fba3a.mock/submit",
+            "checklist": [
+              "Post from the official IncuBrix account on batch assisted assisted.",
+              "Title must stay under 300 characters (it is 55).",
+              "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+              "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+            ],
+            "pack_id": "pack_3848080c79b3"
+          }
+        },
+        {
+          "step": "check_pack_files",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "files": 4,
+            "checklist_items": 4,
+            "deep_link": "https://assisted-assisted-3d9fba3a.mock/submit"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "deleted": true
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_f61f1df7b4284266/crt_ac9375196a8444de.json?expires=1792781311&sig=d2ba78f6c63b827003dcf1e468065200",
+      "error": null
+    },
+    {
+      "id": "crt_e4d79a2a67594fd9",
+      "destination_id": "dst_1fcd4b4dbc3e4c83",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:31+00:00",
+      "finished_at": "2026-10-16T18:48:31+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "post_id": "pst_b08df7afd45543a3",
+            "destination_id": "dst_1fcd4b4dbc3e4c83",
+            "state": "published",
+            "platform_post_id": "46a7f19e47134b2e94737144|https://hashnode-hashnode-3d9fba3a.mock",
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-4388309c-please-i",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_1fcd4b4dbc3e4c83-4388309c",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-4388309c-please-i"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-4388309c-please-i",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "views": 26,
+            "likes": 4,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_1fcd4b4dbc3e4c83/crt_e4d79a2a67594fd9.json?expires=1792781311&sig=bf91e363448872d03c10f49486c580c5",
+      "error": null
+    },
+    {
+      "id": "crt_0d12e866e4af4b87",
+      "destination_id": "dst_2762bde4dab94817",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:31+00:00",
+      "finished_at": "2026-10-16T18:48:31+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "ok": true,
+            "team": "IncuBrix Sim"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "post_id": "pst_e793a34c0aaf4191",
+            "destination_id": "dst_2762bde4dab94817",
+            "state": "published",
+            "platform_post_id": "C0BATCH/1792176511.001001|https://slack-slack-3d9fba3a.mock",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176511001001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_2762bde4dab94817-1d14b0be",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176511001001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792176511001001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:31+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_2762bde4dab94817/crt_0d12e866e4af4b87.json?expires=1792781311&sig=f28be98c5a4942c9309e431832b414f7",
+      "error": null
+    },
+    {
+      "id": "crt_14862020b77b47b6",
+      "destination_id": "dst_9a449515d91543fa",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:30+00:00",
+      "finished_at": "2026-10-16T18:48:30+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "post_id": "pst_66507473481f4d51",
+            "destination_id": "dst_9a449515d91543fa",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy-lemmy-3d9fba3a.mock",
+            "live_url": "https://lemmy-lemmy-3d9fba3a.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_9a449515d91543fa-46159af0",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy-lemmy-3d9fba3a.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "live_url": "https://lemmy-lemmy-3d9fba3a.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_9a449515d91543fa/crt_14862020b77b47b6.json?expires=1792781310&sig=758659fcddbe16264dd5c1ab020ff0f3",
+      "error": null
+    },
+    {
+      "id": "crt_b9063ebceac44edc",
+      "destination_id": "dst_5bdfa078d75e4ab5",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:30+00:00",
+      "finished_at": "2026-10-16T18:48:30+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "post_id": "pst_f6d2b0fabe874698",
+            "destination_id": "dst_5bdfa078d75e4ab5",
+            "state": "published",
+            "platform_post_id": "1001|https://devto-devto-3d9fba3a.mock",
+            "live_url": "https://devto-devto-3d9fba3a.mock/incubrix/incubrix-connector-certification-a7bb4530-please-i-3e9",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_5bdfa078d75e4ab5-a7bb4530",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://devto-devto-3d9fba3a.mock/incubrix/incubrix-connector-certification-a7bb4530-please-i-3e9"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "live_url": "https://devto-devto-3d9fba3a.mock/incubrix/incubrix-connector-certification-a7bb4530-please-i-3e9",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "views": 11,
+            "likes": 3,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "deleted": true,
+            "method": "unpublished (Forem has no delete API)"
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_5bdfa078d75e4ab5/crt_b9063ebceac44edc.json?expires=1792781310&sig=7b37e48132c211ae710c2e8fb56d9592",
+      "error": null
+    },
+    {
+      "id": "crt_5011562fb8644588",
+      "destination_id": "dst_f5288d615b5e4896",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:30+00:00",
+      "finished_at": "2026-10-16T18:48:30+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "post_id": "pst_bf6f0cddc2714b88",
+            "destination_id": "dst_f5288d615b5e4896",
+            "state": "published",
+            "platform_post_id": "f988e83e875e4306ad5b86b8|https://ghost-ghost-3d9fba3a.mock",
+            "live_url": "https://ghost-ghost-3d9fba3a.mock/incubrix-connector-certification-71c132d1-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_f5288d615b5e4896-71c132d1",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://ghost-ghost-3d9fba3a.mock/incubrix-connector-certification-71c132d1-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "live_url": "https://ghost-ghost-3d9fba3a.mock/incubrix-connector-certification-71c132d1-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:30+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_f5288d615b5e4896/crt_5011562fb8644588.json?expires=1792781310&sig=e9a282bec3b36219bada73bf707fd895",
+      "error": null
+    },
+    {
+      "id": "crt_6d4a4d4753c84841",
+      "destination_id": "dst_d6fc4d7021974b96",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:29+00:00",
+      "finished_at": "2026-10-16T18:48:29+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "post_id": "pst_b7c05931a81949dd",
+            "destination_id": "dst_d6fc4d7021974b96",
+            "state": "published",
+            "platform_post_id": "1001|https://discourse-discourse-3d9fba3a.mock",
+            "live_url": "https://discourse-discourse-3d9fba3a.mock/t/incubrix-connector-certification-68ce2b06-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_d6fc4d7021974b96-68ce2b06",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://discourse-discourse-3d9fba3a.mock/t/incubrix-connector-certification-68ce2b06-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "live_url": "https://discourse-discourse-3d9fba3a.mock/t/incubrix-connector-certification-68ce2b06-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:29+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_d6fc4d7021974b96/crt_6d4a4d4753c84841.json?expires=1792781309&sig=73c3f4e6f7ec32cd01f8e3d24ce3bba5",
+      "error": null
+    },
+    {
+      "id": "crt_d61913266f5746df",
+      "destination_id": "dst_forum_aicreators",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.032,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_d0a02087e9c542a5",
+            "destination_id": "dst_forum_aicreators",
+            "state": "published",
+            "platform_post_id": "1001|https://forum.aicreators.mock",
+            "live_url": "https://forum.aicreators.mock/t/incubrix-connector-certification-b4d30682-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_forum_aicreators-b4d30682",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://forum.aicreators.mock/t/incubrix-connector-certification-b4d30682-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://forum.aicreators.mock/t/incubrix-connector-certification-b4d30682-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_forum_aicreators/crt_d61913266f5746df.json?expires=1792781305&sig=27b0bd54fc0d668856415c1ff410c7d9",
+      "error": null
+    },
+    {
+      "id": "crt_e370563cb6454c77",
+      "destination_id": "dst_forum_founders",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true,
+            "members": 1840
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_0cdd0c2a72b541ed",
+            "destination_id": "dst_forum_founders",
+            "state": "published",
+            "platform_post_id": "1001|https://founders.discourse.mock",
+            "live_url": "https://founders.discourse.mock/t/incubrix-connector-certification-b53402f1-please-ignore/51001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_forum_founders-b53402f1",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://founders.discourse.mock/t/incubrix-connector-certification-b53402f1-please-ignore/51001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://founders.discourse.mock/t/incubrix-connector-certification-b53402f1-please-ignore/51001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 7,
+            "likes": 2,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_forum_founders/crt_e370563cb6454c77.json?expires=1792781305&sig=1f53dc9a940b646c96d99899fe7500f8",
+      "error": null
+    },
+    {
+      "id": "crt_8047446a111841f3",
+      "destination_id": "dst_lemmy_test",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true,
+            "members": 953
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_f7ac2f79800e4515",
+            "destination_id": "dst_lemmy_test",
+            "state": "published",
+            "platform_post_id": "1001|https://lemmy.incubrix.mock",
+            "live_url": "https://lemmy.incubrix.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_lemmy_test-7a96cfd1",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://lemmy.incubrix.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://lemmy.incubrix.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_lemmy_test/crt_8047446a111841f3.json?expires=1792781305&sig=6114fb41c56e456b29ff068b24db53ee",
+      "error": null
+    },
+    {
+      "id": "crt_485f78009d584722",
+      "destination_id": "dst_lemmy_videomacher",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true,
+            "members": 1498
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_2d5e9671d48d4cff",
+            "destination_id": "dst_lemmy_videomacher",
+            "state": "published",
+            "platform_post_id": "1001|https://feddit.mock",
+            "live_url": "https://feddit.mock/post/1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_lemmy_videomacher-6d173fd1",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://feddit.mock/post/1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://feddit.mock/post/1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_lemmy_videomacher/crt_485f78009d584722.json?expires=1792781305&sig=5f3a6aa6cc41a3f637421ca68732c7bd",
+      "error": null
+    },
+    {
+      "id": "crt_89d33f4041d0480d",
+      "destination_id": "dst_devto",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_e671381b36b34d37",
+            "destination_id": "dst_devto",
+            "state": "published",
+            "platform_post_id": "1001|https://dev.to.mock",
+            "live_url": "https://dev.to.mock/incubrix/incubrix-connector-certification-6bee47cc-please-i-3e9",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_devto-6bee47cc",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://dev.to.mock/incubrix/incubrix-connector-certification-6bee47cc-please-i-3e9"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://dev.to.mock/incubrix/incubrix-connector-certification-6bee47cc-please-i-3e9",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 11,
+            "likes": 3,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true,
+            "method": "unpublished (Forem has no delete API)"
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_devto/crt_89d33f4041d0480d.json?expires=1792781305&sig=ea25a6b766e069ddb120735009a1acfa",
+      "error": null
+    },
+    {
+      "id": "crt_91207742b71b44ca",
+      "destination_id": "dst_ghost_blog",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true,
+            "version": "5.96"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_db9d27cb41ba4184",
+            "destination_id": "dst_ghost_blog",
+            "state": "published",
+            "platform_post_id": "199dffa251e74f848be97872|https://blog.incubrix.mock",
+            "live_url": "https://blog.incubrix.mock/incubrix-connector-certification-eb61fd9f-please-ignore/",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_ghost_blog-eb61fd9f",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://blog.incubrix.mock/incubrix-connector-certification-eb61fd9f-please-ignore/"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://blog.incubrix.mock/incubrix-connector-certification-eb61fd9f-please-ignore/",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_ghost_blog/crt_91207742b71b44ca.json?expires=1792781305&sig=7458d948fc5ad069dc8f71c3c4d3189d",
+      "error": null
+    },
+    {
+      "id": "crt_e3fdf86265364950",
+      "destination_id": "dst_partner_news",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_993faceab2c744d4",
+            "destination_id": "dst_partner_news",
+            "state": "published",
+            "platform_post_id": "wp1001|https://partner-news.mock",
+            "live_url": "https://partner-news.mock/news/wp1001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_partner_news-7ed045e6",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://partner-news.mock/news/wp1001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://partner-news.mock/news/wp1001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 40,
+            "likes": 0,
+            "comments": 0,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 6
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_partner_news/crt_e3fdf86265364950.json?expires=1792781305&sig=b94978060a7ceabc0040315d7ac69c43",
+      "error": null
+    },
+    {
+      "id": "crt_5fd1f993e40f4400",
+      "destination_id": "dst_assist_hn",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "build_assist_pack",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "files": [
+              {
+                "name": "post.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_d7cfc69bd1ba/post.md?expires=1792781305&sig=618791f595cf7fafe8dafd7cb2fb4a9b"
+              },
+              {
+                "name": "caption.txt",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_d7cfc69bd1ba/caption.txt?expires=1792781305&sig=9dd5723c65d20caa51dfa74f1e0acb31"
+              },
+              {
+                "name": "checklist.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_d7cfc69bd1ba/checklist.md?expires=1792781305&sig=da9b06a7049126107fc2992111c8bad9"
+              },
+              {
+                "name": "pack.zip",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_d7cfc69bd1ba/pack.zip?expires=1792781305&sig=7f2c2ff66a88adbcbe60a6490d2ec318"
+              }
+            ],
+            "caption": "IncuBrix connector certification 9688c997 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "deep_link": "https://news.ycombinator.com/submitlink?u=&t=IncuBrix%20connector%20certification%209688c997%20please%20ignore",
+            "checklist": [
+              "Post from the official IncuBrix account on Hacker News (assisted).",
+              "Re-read the community rules before posting: https://news.ycombinator.com/newsguidelines.html",
+              "Frequency cap is 1/30d: check that IncuBrix has not posted here inside that window.",
+              "Self-promotion is limited: at most one promotional post in the window; lead with value.",
+              "Link policy: one_link.",
+              "Title must stay under 300 characters (it is 55).",
+              "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+              "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+            ],
+            "pack_id": "pack_d7cfc69bd1ba"
+          }
+        },
+        {
+          "step": "check_pack_files",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "files": 4,
+            "checklist_items": 8,
+            "deep_link": "https://news.ycombinator.com/submitlink?u=&t=IncuBrix%20connector%20certification%209688c997%20please%20ignore"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_assist_hn/crt_5fd1f993e40f4400.json?expires=1792781305&sig=0c233272fa035a3c09f0e509e588617e",
+      "error": null
+    },
+    {
+      "id": "crt_60378a67d07c4215",
+      "destination_id": "dst_assist_newtubers",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "build_assist_pack",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "files": [
+              {
+                "name": "post.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_5896a0299d0e/post.md?expires=1792781305&sig=b4fc35a26c794272aa952f8ff1a5ff8d"
+              },
+              {
+                "name": "caption.txt",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_5896a0299d0e/caption.txt?expires=1792781305&sig=020528b64ef937c3fa25232bba7255f6"
+              },
+              {
+                "name": "checklist.md",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_5896a0299d0e/checklist.md?expires=1792781305&sig=334d71879f6361a2c98ce81f34aaf38e"
+              },
+              {
+                "name": "pack.zip",
+                "url": "http://127.0.0.1:59496/api/v1/files/packs/pack_5896a0299d0e/pack.zip?expires=1792781305&sig=21d5e7c170e20a089ec52897882168c7"
+              }
+            ],
+            "caption": "IncuBrix connector certification 8251e571 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+            "deep_link": "https://www.reddit.com/r/NewTubers/submit",
+            "checklist": [
+              "Post from the official IncuBrix account on Reddit r/NewTubers (assisted).",
+              "Re-read the community rules before posting: https://www.reddit.com/r/NewTubers/about/rules",
+              "Frequency cap is 1/7d: check that IncuBrix has not posted here inside that window.",
+              "Self-promotion is NOT allowed: keep it discussion-first, no calls to action.",
+              "Link policy: none.",
+              "Title must stay under 300 characters (it is 55).",
+              "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+              "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+            ],
+            "pack_id": "pack_5896a0299d0e"
+          }
+        },
+        {
+          "step": "check_pack_files",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "files": 4,
+            "checklist_items": 8,
+            "deep_link": "https://www.reddit.com/r/NewTubers/submit"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_assist_newtubers/crt_60378a67d07c4215.json?expires=1792781305&sig=1edf3d37aaf6421e59b882eac3c2ae36",
+      "error": null
+    },
+    {
+      "id": "crt_bcf644acb4cc4d1f",
+      "destination_id": "dst_hashnode",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.016,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_0a544c224b7f4b22",
+            "destination_id": "dst_hashnode",
+            "state": "published",
+            "platform_post_id": "50954a66143247e5a0aabe15|https://gql.hashnode.mock",
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-0e4cc629-please-i",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_hashnode-0e4cc629",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-0e4cc629-please-i"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://incubrix.hashnode.dev/incubrix-connector-certification-0e4cc629-please-i",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 16,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 26,
+            "likes": 4,
+            "comments": 1,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_hashnode/crt_bcf644acb4cc4d1f.json?expires=1792781305&sig=000a5861d448315ac2089ae8b5609fa4",
+      "error": null
+    },
+    {
+      "id": "crt_ac90a49fd4214468",
+      "destination_id": "dst_slack_creators",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.015,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true,
+            "team": "IncuBrix Sim"
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_a8e1c5da5639420f",
+            "destination_id": "dst_slack_creators",
+            "state": "published",
+            "platform_post_id": "C0SHOWTELL/1792176505.001001|https://slack.mock",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0SHOWTELL/p1792176505001001",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_slack_creators-df1c6d6a",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "https://incubrix-sim.slack.com/archives/C0SHOWTELL/p1792176505001001"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "https://incubrix-sim.slack.com/archives/C0SHOWTELL/p1792176505001001",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "fetch_metrics",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "views": 0,
+            "likes": 3,
+            "comments": 2,
+            "shares": 0,
+            "saves": 0,
+            "watch_time_s": 0,
+            "clicks": 0
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 15,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_slack_creators/crt_ac90a49fd4214468.json?expires=1792781305&sig=c3536b1a2d7c8149717b0c513928c374",
+      "error": null
+    },
+    {
+      "id": "crt_dff61c3db42b4d31",
+      "destination_id": "dst_mrss_ctv",
+      "status": "passed",
+      "started_at": "2026-10-16T18:48:25+00:00",
+      "finished_at": "2026-10-16T18:48:25+00:00",
+      "duration_s": 0.0,
+      "steps": [
+        {
+          "step": "probe",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "ok": true
+          }
+        },
+        {
+          "step": "publish",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "post_id": "pst_b86cecac8fa1473d",
+            "destination_id": "dst_mrss_ctv",
+            "state": "published",
+            "platform_post_id": "ibx-9391f982d663|incubrix-ctv",
+            "live_url": "http://127.0.0.1:59496/api/v1/feeds/incubrix-ctv.xml#ibx-9391f982d663",
+            "reason": null,
+            "reschedule_at": null,
+            "idempotency_key": "cert-dst_mrss_ctv-6f3f9f29",
+            "status": "live",
+            "warnings": []
+          }
+        },
+        {
+          "step": "get_status",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "live",
+            "live_url": "http://127.0.0.1:59496/api/v1/feeds/incubrix-ctv.xml#ibx-9391f982d663"
+          }
+        },
+        {
+          "step": "confirm_live_url",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "live_url": "http://127.0.0.1:59496/api/v1/feeds/incubrix-ctv.xml#ibx-9391f982d663",
+            "checked": "platform status (simulated host)"
+          }
+        },
+        {
+          "step": "delete",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "deleted": true,
+            "already_gone": false
+          }
+        },
+        {
+          "step": "confirm_deleted",
+          "ok": true,
+          "ms": 0,
+          "at": "2026-10-16T18:48:25+00:00",
+          "result": {
+            "status": "deleted",
+            "live_url": null
+          }
+        }
+      ],
+      "evidence_url": "http://127.0.0.1:59496/api/v1/files/certifications/dst_mrss_ctv/crt_dff61c3db42b4d31.json?expires=1792781305&sig=ef9db51343c4acb85107b562967c2b6a",
+      "error": null
+    }
+  ]
+}

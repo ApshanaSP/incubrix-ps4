@@ -1,0 +1,82 @@
+{
+  "name": "06_content_rejected",
+  "description": "Hard case 2c: the platform rejects the content; its message is returned for review.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "devto",
+        "credentials": {
+          "api_key": "sim-devto-key"
+        }
+      },
+      "save_as": "con_d",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://devto-d-{{run}}.mock",
+        "connector_key": "devto",
+        "name": "batch devto d",
+        "config": {
+          "api_base_url": "https://devto-d-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_d.id}}"
+      },
+      "save_as": "dest_d",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_d.id}}/certify",
+      "body": {},
+      "save_as": "cert_d",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "body": {
+        "destination_id": "{{dest_d.id}}",
+        "kind": "reject",
+        "op": "publish"
+      },
+      "expect_status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_d.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "p-{{run}}"
+      },
+      "save_as": "p",
+      "expect": {
+        "result.results.0.error.code": "PLATFORM_CONTENT_REJECTED"
+      }
+    }
+  ]
+}

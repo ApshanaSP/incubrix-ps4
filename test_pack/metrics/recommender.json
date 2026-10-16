@@ -1,0 +1,254 @@
+{
+  "items": 10,
+  "catalogue_size": 237,
+  "mean_precision_at_10": 0.33,
+  "per_item": [
+    {
+      "id": "c01",
+      "title": "How auto-captions changed our short-form video workflow",
+      "precision_at_10": 0.3,
+      "labelled_relevant_in_catalogue": 19,
+      "top10": [
+        "Runway Discord",
+        "Lemmy.world c/videos",
+        "reddit r/aivideo",
+        "Spectra Video (PeerTube)",
+        "Civitai",
+        "Blender Video (PeerTube)",
+        "MakerTube (PeerTube)",
+        "Video Production Stack Exchange",
+        "VideoHelp Forum",
+        "KDE Discuss (Kdenlive)"
+      ],
+      "top10_hits": [
+        "reddit r/aivideo",
+        "Video Production Stack Exchange",
+        "KDE Discuss (Kdenlive)"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c02",
+      "title": "Growing a SaaS newsletter to 10k readers by repurposing one video a week",
+      "precision_at_10": 0.6,
+      "labelled_relevant_in_catalogue": 21,
+      "top10": [
+        "reddit r/Newsletters",
+        "Ghost Forum",
+        "Dev.to #saas",
+        "reddit r/SaaS",
+        "Hashnode SaaS tag",
+        "sh.itjust.works c/technology",
+        "Zapier Community",
+        "Make Community",
+        "reddit r/content_marketing",
+        "Runway Discord"
+      ],
+      "top10_hits": [
+        "reddit r/Newsletters",
+        "Ghost Forum",
+        "Dev.to #saas",
+        "reddit r/SaaS",
+        "Hashnode SaaS tag",
+        "reddit r/content_marketing"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c03",
+      "title": "We open-sourced our caption aligner (MIT)",
+      "precision_at_10": 0.2,
+      "labelled_relevant_in_catalogue": 23,
+      "top10": [
+        "Python Discuss",
+        "programming.dev c/python",
+        "lemmy.ml c/opensource",
+        "Dev.to #opensource",
+        "Level Up Coding",
+        "reddit r/AI_Agents",
+        "Product Hunt",
+        "sh.itjust.works c/technology",
+        "lemmy.world c/futurology",
+        "There's An AI For That"
+      ],
+      "top10_hits": [
+        "Level Up Coding",
+        "sh.itjust.works c/technology"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c04",
+      "title": "IncuBrix is live: publish one video to every platform in one click",
+      "precision_at_10": 0.2,
+      "labelled_relevant_in_catalogue": 15,
+      "top10": [
+        "Product Hunt",
+        "OpenAlternative",
+        "DevHunt",
+        "Fazier",
+        "Microlaunch",
+        "SideProjectors",
+        "Uneed",
+        "Launching Next",
+        "Peerlist Launchpad",
+        "BetaList"
+      ],
+      "top10_hits": [
+        "Product Hunt",
+        "BetaList"
+      ],
+      "excluded_by_rules": 218
+    },
+    {
+      "id": "c05",
+      "title": "Color grading with AI masks in DaVinci Resolve: a 10-minute tutorial",
+      "precision_at_10": 0.3,
+      "labelled_relevant_in_catalogue": 15,
+      "top10": [
+        "Blackmagic Forum (DaVinci Resolve)",
+        "Audacity Forum",
+        "Runway Discord",
+        "reddit r/aivideo",
+        "KDE Discuss (Kdenlive)",
+        "Civitai",
+        "VideoHelp Forum",
+        "Lemmy.world c/videos",
+        "Spectra Video (PeerTube)",
+        "Blender Video (PeerTube)"
+      ],
+      "top10_hits": [
+        "Blackmagic Forum (DaVinci Resolve)",
+        "VideoHelp Forum",
+        "Lemmy.world c/videos"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c06",
+      "title": "Whisper vs cloud speech APIs for podcast transcription: accuracy and cost",
+      "precision_at_10": 0.0,
+      "labelled_relevant_in_catalogue": 16,
+      "top10": [
+        "lemmy.world c/podcasts",
+        "Ardour Discourse",
+        "Runway Discord",
+        "reddit r/aivideo",
+        "Civitai",
+        "There's An AI For That",
+        "Hashnode generative-ai tag",
+        "lemmy.world c/futurology",
+        "Generative AI publication",
+        "sh.itjust.works c/technology"
+      ],
+      "top10_hits": [],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c07",
+      "title": "Bootstrapping an AI video startup from India: year one",
+      "precision_at_10": 0.7,
+      "labelled_relevant_in_catalogue": 16,
+      "top10": [
+        "Lemmy.world c/startups",
+        "The Startup (Medium)",
+        "reddit r/startup",
+        "reddit r/startups",
+        "Dev.to #startup",
+        "Hashnode startups tag",
+        "BetaList",
+        "sh.itjust.works c/technology",
+        "Product Hunt",
+        "Hacker News"
+      ],
+      "top10_hits": [
+        "Lemmy.world c/startups",
+        "The Startup (Medium)",
+        "reddit r/startup",
+        "reddit r/startups",
+        "Dev.to #startup",
+        "Hashnode startups tag",
+        "Hacker News"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c08",
+      "title": "A prompting guide for AI-generated B-roll",
+      "precision_at_10": 0.3,
+      "labelled_relevant_in_catalogue": 17,
+      "top10": [
+        "Runway Discord",
+        "Civitai",
+        "reddit r/aivideo",
+        "Lemmy.world c/videos",
+        "There's An AI For That",
+        "Dev.to #ai",
+        "Spectra Video (PeerTube)",
+        "Blender Video (PeerTube)",
+        "MakerTube (PeerTube)",
+        "Video Production Stack Exchange"
+      ],
+      "top10_hits": [
+        "Runway Discord",
+        "reddit r/aivideo",
+        "Dev.to #ai"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c09",
+      "title": "One video, ten platforms: a content distribution playbook",
+      "precision_at_10": 0.2,
+      "labelled_relevant_in_catalogue": 18,
+      "top10": [
+        "reddit r/content_marketing",
+        "Lemmy.world c/videos",
+        "Superpath Community (Slack)",
+        "Spectra Video (PeerTube)",
+        "MakerTube (PeerTube)",
+        "Blender Video (PeerTube)",
+        "TilVids (PeerTube)",
+        "Diode Zone (PeerTube)",
+        "Runway Discord",
+        "sh.itjust.works c/technology"
+      ],
+      "top10_hits": [
+        "reddit r/content_marketing",
+        "Superpath Community (Slack)"
+      ],
+      "excluded_by_rules": 10
+    },
+    {
+      "id": "c10",
+      "title": "Automating video uploads with n8n and a publishing API",
+      "precision_at_10": 0.5,
+      "labelled_relevant_in_catalogue": 17,
+      "top10": [
+        "n8n Community",
+        "reddit r/nocode",
+        "reddit r/automation",
+        "Make Community",
+        "Runway Discord",
+        "Level Up Coding",
+        "reddit r/aivideo",
+        "Mautic Community Forum",
+        "Dev.to #llm",
+        "Civitai"
+      ],
+      "top10_hits": [
+        "n8n Community",
+        "reddit r/nocode",
+        "reddit r/automation",
+        "Make Community",
+        "Level Up Coding"
+      ],
+      "excluded_by_rules": 10
+    }
+  ],
+  "unknown_label_names": [
+    "Descript Community",
+    "Lemmy.world c/artificial_intel",
+    "Lemmy.world c/marketing"
+  ]
+}

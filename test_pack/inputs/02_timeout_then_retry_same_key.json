@@ -1,0 +1,99 @@
+{
+  "name": "02_timeout_then_retry_same_key",
+  "description": "Hard case 1: the platform creates the post but the answer times out; the retry with the same key returns that post; exactly one post exists.",
+  "steps": [
+    {
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "body": {
+        "connector_key": "discourse",
+        "credentials": {
+          "api_key": "sim-discourse-key",
+          "api_username": "incubrix_bot"
+        }
+      },
+      "save_as": "con_t",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "body": {
+        "url": "https://discourse-t-{{run}}.mock",
+        "connector_key": "discourse",
+        "name": "batch discourse t",
+        "config": {
+          "base_url": "https://discourse-t-{{run}}.mock"
+        },
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "connection_id": "{{con_t.id}}"
+      },
+      "save_as": "dest_t",
+      "expect_status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/destinations/{{dest_t.id}}/certify",
+      "body": {},
+      "save_as": "cert_t",
+      "expect": {
+        "result.passed": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/sim/faults",
+      "body": {
+        "destination_id": "{{dest_t.id}}",
+        "kind": "timeout_after_create",
+        "op": "publish"
+      },
+      "expect_status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "body": {
+        "content": {
+          "title": "How we cut video editing time with AI captions",
+          "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+          "tags": [
+            "ai",
+            "video"
+          ],
+          "promotional": false
+        },
+        "destination_ids": [
+          "{{dest_t.id}}"
+        ]
+      },
+      "headers": {
+        "Idempotency-Key": "timeout-{{run}}"
+      },
+      "save_as": "first"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/posts/{{first.result.results.0.post_id}}/retry",
+      "body": {},
+      "save_as": "retry",
+      "expect": {
+        "result.replayed": true
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/sim/state",
+      "params": {
+        "destination_id": "{{dest_t.id}}"
+      },
+      "expect": {
+        "posts_live": 1
+      }
+    }
+  ]
+}
