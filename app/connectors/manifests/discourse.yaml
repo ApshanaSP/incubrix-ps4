@@ -1,0 +1,22 @@
+key: discourse
+version: 1.0.0
+tier: native
+auth: api_key
+surfaces:
+  - key: topic
+    content_types: [text, image, video_link]
+    spec: {title_max_chars: 255, title_min_chars: 15, title_required: true, body_max_chars: 32000, body_min_chars: 20, links_allowed: true}
+rate_limits:
+  per_connection: {requests: 60, per_seconds: 60}
+capabilities: [publish, status, delete, metrics]
+error_map:
+  "429": PLATFORM_RATE_LIMIT
+  "422": PLATFORM_CONTENT_REJECTED
+  "401": CONNECTION_AUTH_EXPIRED
+  "403": CONNECTION_AUTH_EXPIRED
+  "500": PLATFORM_UNAVAILABLE
+  "502": PLATFORM_UNAVAILABLE
+  "503": PLATFORM_UNAVAILABLE
+instance_param: base_url
+credentials: [api_key, api_username]
+destination_config: {base_url: "Forum root URL", category_id: "Category to post into (optional)"}

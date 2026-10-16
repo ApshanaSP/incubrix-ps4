@@ -1,0 +1,15 @@
+key: mrss
+version: 1.0.0
+tier: feed
+auth: none
+surfaces:
+  - key: item
+    content_types: [video, video_link, image, text]
+    spec: {title_max_chars: 200, title_required: true, body_max_chars: 5000, links_allowed: true, media_mime_types: [video/mp4, video/quicktime, application/x-mpegURL, image/jpeg, image/png]}
+rate_limits:
+  per_connection: {requests: 600, per_seconds: 60}
+capabilities: [publish, status, delete]
+error_map: {}
+instance_param: feed_key
+credentials: []
+destination_config: {feed_key: "Feed name; served at /api/v1/feeds/{feed_key}.xml for CTV apps and video aggregators", max_items: "default 100"}

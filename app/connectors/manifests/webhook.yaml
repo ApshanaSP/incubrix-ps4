@@ -1,0 +1,22 @@
+key: webhook
+version: 1.0.0
+tier: bridge
+auth: api_key
+surfaces:
+  - key: post
+    content_types: [text, image, video, video_link, link]
+    spec: {title_max_chars: 200, body_max_chars: 50000, links_allowed: true}
+rate_limits:
+  per_connection: {requests: 60, per_seconds: 60}
+capabilities: [publish, status, delete, metrics]
+error_map:
+  "429": PLATFORM_RATE_LIMIT
+  "422": PLATFORM_CONTENT_REJECTED
+  "400": PLATFORM_CONTENT_REJECTED
+  "401": CONNECTION_AUTH_EXPIRED
+  "403": CONNECTION_AUTH_EXPIRED
+  "500": PLATFORM_UNAVAILABLE
+  "503": PLATFORM_UNAVAILABLE
+instance_param: base_url
+credentials: [signing_secret]
+destination_config: {base_url: "Partner endpoint root; the protocol is in docs/webhook-protocol.md"}

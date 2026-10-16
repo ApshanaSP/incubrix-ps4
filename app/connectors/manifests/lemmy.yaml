@@ -1,0 +1,22 @@
+key: lemmy
+version: 1.0.0
+tier: protocol
+auth: api_key
+surfaces:
+  - key: post
+    content_types: [text, image, video_link, link]
+    spec: {title_max_chars: 200, title_required: true, body_max_chars: 10000, links_allowed: true, max_media: 1}
+rate_limits:
+  per_connection: {requests: 30, per_seconds: 60}
+capabilities: [publish, status, delete, metrics]
+error_map:
+  "429": PLATFORM_RATE_LIMIT
+  "400": PLATFORM_CONTENT_REJECTED
+  "401": CONNECTION_AUTH_EXPIRED
+  "403": CONNECTION_AUTH_EXPIRED
+  "500": PLATFORM_UNAVAILABLE
+  "502": PLATFORM_UNAVAILABLE
+  "503": PLATFORM_UNAVAILABLE
+instance_param: base_url
+credentials: [username, password]
+destination_config: {base_url: "Lemmy instance URL", community: "Community name, e.g. incubrix_test"}

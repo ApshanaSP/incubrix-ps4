@@ -1,0 +1,28 @@
+key: slack
+version: 1.0.0
+tier: native
+auth: bot_token
+surfaces:
+  - key: message
+    content_types: [text, link, image]
+    spec: {title_max_chars: 150, body_max_chars: 3900, links_allowed: true}
+rate_limits:
+  per_connection: {requests: 50, per_seconds: 60}
+capabilities: [publish, status, delete, metrics]
+error_map:
+  "429": PLATFORM_RATE_LIMIT
+  ratelimited: PLATFORM_RATE_LIMIT
+  invalid_auth: CONNECTION_AUTH_EXPIRED
+  token_expired: CONNECTION_AUTH_EXPIRED
+  token_revoked: CONNECTION_AUTH_EXPIRED
+  account_inactive: CONNECTION_AUTH_EXPIRED
+  not_in_channel: CONNECTION_AUTH_EXPIRED
+  msg_too_long: PLATFORM_CONTENT_REJECTED
+  msg_blocks_too_long: PLATFORM_CONTENT_REJECTED
+  channel_not_found: PLATFORM_CONTENT_REJECTED
+  is_archived: PLATFORM_CONTENT_REJECTED
+  restricted_action: PLATFORM_CONTENT_REJECTED
+  "500": PLATFORM_UNAVAILABLE
+instance_param: channel
+credentials: [bot_token]
+destination_config: {channel: "Channel id the app was invited to", api_base_url: "Defaults to https://slack.com"}
