@@ -1,0 +1,295 @@
+{
+  "name": "12_csv_duplicates_bad_urls_mixed_languages",
+  "description": "Hard case 6a: a CSV with duplicates, bad URLs and mixed languages gives a row-by-row report.",
+  "ok": true,
+  "seconds": 0.999,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/catalogue/imports/upload",
+      "http_status": 202,
+      "correlation_id": "7ff067dd26c5423c85291ded8832d41a",
+      "response": {
+        "job_id": "job_74fe2aab0c584162",
+        "kind": "catalogue_import",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_74fe2aab0c584162"
+        },
+        "created_at": "2026-10-17T18:22:07+00:00",
+        "updated_at": "2026-10-17T18:22:07+00:00"
+      },
+      "job": {
+        "job_id": "job_74fe2aab0c584162",
+        "kind": "catalogue_import",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "summary": {
+            "source": "messy_destinations.csv",
+            "rows": 11,
+            "created": 5,
+            "updated": 1,
+            "duplicates": 1,
+            "errors": 4,
+            "with_warnings": 4,
+            "unreachable": 1,
+            "seconds": 0.42,
+            "rows_per_second": 26.2
+          },
+          "links": {
+            "report_csv": "http://localhost:8333/incubrix-longtail/imports/20261017-182207/report.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=93a5f886d2c53d1de3719d68d6fe3bcf8bf52e510887b883f5b10baec4b8b26c",
+            "report_json": "http://localhost:8333/incubrix-longtail/imports/20261017-182207/report.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0a129a84b81d0d06147be91d45791e844162d118331d62a4c17553f6c474caf6",
+            "catalogue_csv": "http://localhost:8333/incubrix-longtail/imports/20261017-182207/catalogue.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=908f00bb90bfe0eb353d7bbb9a3e3fe936eef54d828d51c3018923f2fe38e38b",
+            "input": "http://localhost:8333/incubrix-longtail/imports/inputs/1f80c6ab.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=856cf34a5fcb21b533658edb1c072aab5f501397d800e32fe4958b4c170c6182"
+          },
+          "rows_preview": [
+            {
+              "row": 2,
+              "url": "https://forum.aivideo-batch.mock",
+              "platform_key": "discourse",
+              "status": "created",
+              "errors": [],
+              "warnings": [],
+              "reachability": {
+                "reachable": true,
+                "http_status": 200,
+                "note": "simulated host"
+              },
+              "destination_id": "dst_73207646b2104e10",
+              "relevance_score": 4,
+              "relevance_reason": "Audience overlap: ai (ai); video (video).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 3,
+              "url": "HTTPS://www.forum.aivideo-batch.mock/?utm_source=x",
+              "platform_key": "discourse",
+              "status": "duplicate",
+              "errors": [],
+              "warnings": [],
+              "duplicate_of_row": 2
+            },
+            {
+              "row": 4,
+              "url": "not a url",
+              "platform_key": "discourse",
+              "status": "error",
+              "errors": [
+                "url contains spaces"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 5,
+              "url": "https://exa mple.com",
+              "platform_key": "ghost",
+              "status": "error",
+              "errors": [
+                "url contains spaces"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 6,
+              "url": "https://feddit-batch.mock/c/kuenstliche_intelligenz",
+              "platform_key": "lemmy",
+              "status": "created",
+              "errors": [],
+              "warnings": [],
+              "reachability": {
+                "reachable": true,
+                "http_status": 200,
+                "note": "simulated host"
+              },
+              "destination_id": "dst_344150c2c0e54843",
+              "relevance_score": 2,
+              "relevance_reason": "Audience overlap: ai (ai).",
+              "language": "de",
+              "est_audience": null
+            },
+            {
+              "row": 7,
+              "url": "https://lemmy-batch.mock",
+              "platform_key": "lemmy",
+              "status": "error",
+              "errors": [
+                "lemmy rows need a community (column 'community' or a /c/<name> URL)"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 8,
+              "url": "https://creadores-batch.mock",
+              "platform_key": "discourse",
+              "status": "error",
+              "errors": [
+                "self_promo_allowed must be yes, no or limited (got 'maybe')"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 9,
+              "url": "https://gruender-batch.mock",
+              "platform_key": "discourse",
+              "status": "created",
+              "errors": [],
+              "warnings": [
+                "language 'xx' is not an ISO code; detected instead",
+                "no language given and too little page text to detect one: assumed 'en'; set the language column if the community uses another"
+              ],
+              "reachability": {
+                "reachable": true,
+                "http_status": 200,
+                "note": "simulated host"
+              },
+              "language_detected": null,
+              "destination_id": "dst_699296af6d4e49ae",
+              "relevance_score": 3,
+              "relevance_reason": "Audience overlap: founders (founders, startup).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 10,
+              "url": "https://tamil-creators-batch.mock",
+              "platform_key": "discourse",
+              "status": "created",
+              "errors": [],
+              "warnings": [
+                "no language given and too little page text to detect one: assumed 'en'; set the language column if the community uses another"
+              ],
+              "reachability": {
+                "reachable": true,
+                "http_status": 200,
+                "note": "simulated host"
+              },
+              "language_detected": null,
+              "destination_id": "dst_b235fecc4da548ec",
+              "relevance_score": 4,
+              "relevance_reason": "Audience overlap: video (video); creators (creators).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 11,
+              "url": "https://www.reddit.com/r/NewTubers",
+              "platform_key": "reddit",
+              "status": "updated",
+              "errors": [],
+              "warnings": [
+                "not reachable (ConnectError)"
+              ],
+              "existing_id": "dst_assist_newtubers",
+              "reachability": {
+                "reachable": false,
+                "error": "ConnectError",
+                "ms": 88
+              },
+              "destination_id": "dst_assist_newtubers",
+              "relevance_score": 4,
+              "relevance_reason": "Audience overlap: video (video); creators (creators).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 12,
+              "url": "https://mystery-batch.mock",
+              "platform_key": "tumblr",
+              "status": "created",
+              "errors": [],
+              "warnings": [
+                "unknown platform 'tumblr': catalogued as assisted (a person posts)"
+              ],
+              "reachability": {
+                "reachable": true,
+                "http_status": 200,
+                "note": "simulated host"
+              },
+              "destination_id": "dst_2b5771d009ca40a4",
+              "relevance_score": 1,
+              "relevance_reason": "No overlap with IncuBrix's audience (AI, video, marketing, SaaS, creators, founders).",
+              "language": "en",
+              "est_audience": null
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "catalogue_import",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.10"
+            },
+            "connectors": [],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": false,
+              "ai_provider": "mock",
+              "score_with_ai": false,
+              "commit": true,
+              "reachability_mode": "online"
+            },
+            "seed": 0,
+            "timings": {
+              "total_s": 0.462
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 11
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_74fe2aab0c584162",
+          "report_csv": "http://localhost:8333/incubrix-longtail/imports/20261017-182207/report.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=93a5f886d2c53d1de3719d68d6fe3bcf8bf52e510887b883f5b10baec4b8b26c",
+          "report_json": "http://localhost:8333/incubrix-longtail/imports/20261017-182207/report.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0a129a84b81d0d06147be91d45791e844162d118331d62a4c17553f6c474caf6",
+          "catalogue_csv": "http://localhost:8333/incubrix-longtail/imports/20261017-182207/catalogue.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=908f00bb90bfe0eb353d7bbb9a3e3fe936eef54d828d51c3018923f2fe38e38b",
+          "input": "http://localhost:8333/incubrix-longtail/imports/inputs/1f80c6ab.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182207Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=856cf34a5fcb21b533658edb1c072aab5f501397d800e32fe4958b4c170c6182"
+        },
+        "created_at": "2026-10-17T18:22:07+00:00",
+        "updated_at": "2026-10-17T18:22:07+00:00"
+      },
+      "seconds": 0.999,
+      "checks": [
+        {
+          "field": "status",
+          "expected": "succeeded",
+          "got": "succeeded",
+          "ok": true
+        },
+        {
+          "field": "result.summary.duplicates",
+          "expected": 1,
+          "got": 1,
+          "ok": true
+        },
+        {
+          "field": "result.summary.errors",
+          "expected": 4,
+          "got": 4,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

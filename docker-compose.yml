@@ -58,7 +58,8 @@ services:
     ports: ["8333:8333"]
     volumes: ["s3-data:/data"]
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:9333/cluster/status || exit 1"]
+      # healthy only when the S3 gateway itself (8333) answers, not just the master (9333)
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:9333/cluster/status && nc -z 127.0.0.1 8333 || exit 1"]
       interval: 5s
       retries: 30
 

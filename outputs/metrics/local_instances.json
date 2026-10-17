@@ -8,7 +8,7 @@
       "idempotent_replays_returning_same_post": 10,
       "live_url_http_200": 10,
       "deleted_after": 10,
-      "mean_publish_job_s": 0.378
+      "mean_publish_job_s": 0.349
     },
     "Local Ghost blog": {
       "publishes": 10,
@@ -17,21 +17,21 @@
       "idempotent_replays_returning_same_post": 10,
       "live_url_http_200": 10,
       "deleted_after": 10,
-      "mean_publish_job_s": 0.413
+      "mean_publish_job_s": 0.444
     }
   },
   "certifications": [
     {
       "destination": "Local Ghost blog",
       "status": "passed",
-      "duration_s": 3.575,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_3d369c4e3cc64247/crt_d0e9e04080da4fbc.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050802Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ca6c9719edb14b392d50d1ce2892487c8268bf7eb4066a01b57623166e061c66"
+      "duration_s": 4.233,
+      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_4d9873e829844785/crt_fd809a6b31f4409f.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182047Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=704cc19644a35d1b059312fcbed98522c6004343095a94efe1881c427194ff1e"
     },
     {
       "destination": "Local Lemmy c/incubrix_test",
       "status": "passed",
-      "duration_s": 1.155,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_1660b4afacaa402d/crt_d72372a6a8a9473a.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050758Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6db360c5965964da002c09cd2f05cd6abee270a869ee7b90c596d54c2377f0c2"
+      "duration_s": 1.416,
+      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_87dcca28dc8d4dc1/crt_b462648cfde94027.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T182043Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fe5a2666a1f95c57ca941e9f1480bde84e53b3b5a36550f0d572bfaf5ba597d8"
     }
   ]
 }

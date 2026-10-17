@@ -63,6 +63,7 @@ reproduces every hard case on demand. Reading public pages (rules, reachability)
   Its labels are a first draft made with AI help before rows were added (see AI_USE.md).
 - **Timeout recovery matches on title** on Discourse, Lemmy, Dev.to, Ghost and Hashnode (exact on Slack and the
   partner webhook). **Dev.to has no delete API** (delete unpublishes). **Ghost has no view counts** (L3).
+- **Found by the final Docker run:** the API could start before the S3 gateway accepted connections (its health check tested the wrong port). Fixed in the compose health check, and the service now waits for S3 at start-up.
 - **Single-instance job runner:** jobs running at a restart are marked failed (retryable), not resumed.
 
 ## 4. Measured numbers
@@ -72,9 +73,9 @@ Dell Latitude E7470 (i7-6600U, 2 cores, 16 GB), Windows 11, Python 3.11.5, simul
 
 | Metric | Result |
 |---|---|
-| Certification | 9 connectors × 5 fresh destinations = **45/45**, 0.006-0.019 s per run on mocks; real Lemmy 1.2 s (L4), real Ghost 3.6 s (L3) |
+| Certification | 9 connectors × 5 fresh destinations = **45/45**, 0.006-0.019 s per run on mocks; real Lemmy 1.4 s (L4), real Ghost 4.2 s (L3) |
 | Reliability (simulation) | 300 publishes, about 45% with injected faults (timeout after create, timeout, 429, 500, reject): **250/250 published** after same-key retries (30 rejections and 20 long-429 reschedules correctly not retried); **0 duplicate posts**, including 22 timeouts after the post was created |
-| Reliability (real local instances) | Lemmy 10/10 and Ghost 10/10 published, live (HTTP 200), same key returned the same post 10/10, all deleted |
+| Reliability (real local instances) | Lemmy 10/10 and Ghost 10/10 published, live (HTTP 200), same key returned the same post 10/10, all deleted (`docker compose` from empty volumes, final code, 17 Oct) |
 | Rule safety | 51 cases: **31/31 violations caught, 0 missed, 0 false blocks** |
 | Catalogue import | 1,000 rows online in **19.5 s** (50/50 duplicates, 10/10 bad URLs, 723 unreachable reported, slowest `/health` during the import 0.67 s); offline 1,002 rows in 3.2 s, 5,002 in 17.2 s |
 | Recommender | precision@10 **0.32** on the draft labels (0.17 before the topic match and the assisted route); per item 0.0-0.7 |

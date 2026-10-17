@@ -91,10 +91,23 @@ class S3Storage(Storage):
         self.client = boto3.client("s3", endpoint_url=s.s3_endpoint, **common)
         # presigned links must use the host the downloader can reach
         self.public = boto3.client("s3", endpoint_url=s.s3_public_endpoint or s.s3_endpoint, **common)
-        try:
-            self.client.head_bucket(Bucket=self.bucket)
-        except Exception:
-            self.client.create_bucket(Bucket=self.bucket)
+        # S3 may still be starting (in compose it can report healthy a moment before it accepts requests):
+        # wait for it for about a minute instead of failing the service's start
+        from botocore.exceptions import EndpointConnectionError
+
+        for attempt in range(30):
+            try:
+                try:
+                    self.client.head_bucket(Bucket=self.bucket)
+                except EndpointConnectionError:
+                    raise
+                except Exception:
+                    self.client.create_bucket(Bucket=self.bucket)
+                break
+            except EndpointConnectionError:
+                if attempt == 29:
+                    raise
+                time.sleep(2)
 
     def put_bytes(self, key: str, data: bytes, content_type: str | None = None) -> str:
         ctype = content_type or mimetypes.guess_type(key)[0] or "application/octet-stream"
