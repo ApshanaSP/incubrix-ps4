@@ -1,0 +1,130 @@
+{
+  "certification_id": "crt_cf8ed90352d945ff",
+  "destination": {
+    "id": "dst_01c24568aefe4b7e",
+    "name": "check webhook revoke",
+    "url": "https://webhook-revoke-48a224.mock",
+    "normalized_url": "https://webhook-revoke-48a224.mock",
+    "platform_key": "webhook",
+    "connector_key": "webhook",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "video",
+      "ai"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "base_url": "https://webhook-revoke-48a224.mock"
+    },
+    "connection_id": "con_31f8f0b0299243b1",
+    "created_at": "2026-10-17T05:54:50+00:00",
+    "updated_at": "2026-10-17T05:54:50+00:00"
+  },
+  "connector": "webhook",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:50+00:00",
+  "finished_at": "2026-10-17T05:54:50+00:00",
+  "duration_s": 0.031,
+  "passed": true,
+  "level": "L2",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 16,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "post_id": "pst_47d6414100d444ec",
+        "destination_id": "dst_01c24568aefe4b7e",
+        "state": "published",
+        "platform_post_id": "wp1001|https://webhook-revoke-48a224.mock",
+        "live_url": "https://webhook-revoke-48a224.mock/news/wp1001",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_01c24568aefe4b7e-4759bf61",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://webhook-revoke-48a224.mock/news/wp1001"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "live_url": "https://webhook-revoke-48a224.mock/news/wp1001",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "fetch_metrics",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "views": 40,
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 6
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 14,
+      "at": "2026-10-17T05:54:50+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

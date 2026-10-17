@@ -1,0 +1,132 @@
+{
+  "certification_id": "crt_2df96431694c44cf",
+  "destination": {
+    "id": "dst_3348c49c72a6460e",
+    "name": "check lemmy drift",
+    "url": "https://lemmy-drift-48a224.mock",
+    "normalized_url": "https://lemmy-drift-48a224.mock#community=incubrix_test",
+    "platform_key": "lemmy",
+    "connector_key": "lemmy",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "video",
+      "ai"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "base_url": "https://lemmy-drift-48a224.mock",
+      "community": "incubrix_test"
+    },
+    "connection_id": "con_a3691327a25d45ea",
+    "created_at": "2026-10-17T05:54:49+00:00",
+    "updated_at": "2026-10-17T05:54:49+00:00"
+  },
+  "connector": "lemmy",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:49+00:00",
+  "finished_at": "2026-10-17T05:54:49+00:00",
+  "duration_s": 0.016,
+  "passed": true,
+  "level": "L4",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "ok": true,
+        "members": 953
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 16,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "post_id": "pst_b1d7cef38ae446d8",
+        "destination_id": "dst_3348c49c72a6460e",
+        "state": "published",
+        "platform_post_id": "1001|https://lemmy-drift-48a224.mock",
+        "live_url": "https://lemmy-drift-48a224.mock/post/1001",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_3348c49c72a6460e-1c410221",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://lemmy-drift-48a224.mock/post/1001"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "live_url": "https://lemmy-drift-48a224.mock/post/1001",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "fetch_metrics",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "views": 0,
+        "likes": 3,
+        "comments": 2,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:49+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

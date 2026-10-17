@@ -1,0 +1,289 @@
+{
+  "name": "12_csv_duplicates_bad_urls_mixed_languages",
+  "description": "Hard case 6a: a CSV with duplicates, bad URLs and mixed languages gives a row-by-row report.",
+  "ok": true,
+  "seconds": 1.943,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/catalogue/imports/upload",
+      "http_status": 202,
+      "correlation_id": "ca336f88676d4825ac4367d92a4af8e8",
+      "response": {
+        "job_id": "job_0017e146336743de",
+        "kind": "catalogue_import",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:54419/api/v1/jobs/job_0017e146336743de"
+        },
+        "created_at": "2026-10-17T05:54:32+00:00",
+        "updated_at": "2026-10-17T05:54:32+00:00"
+      },
+      "job": {
+        "job_id": "job_0017e146336743de",
+        "kind": "catalogue_import",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "summary": {
+            "source": "messy_destinations.csv",
+            "rows": 11,
+            "created": 5,
+            "updated": 1,
+            "duplicates": 1,
+            "errors": 4,
+            "with_warnings": 4,
+            "unreachable": 0,
+            "seconds": 1.53,
+            "rows_per_second": 7.2
+          },
+          "links": {
+            "report_csv": "http://127.0.0.1:54419/api/v1/files/imports/20261017-112433/report.csv?expires=1792821273&sig=ae6a215692d0beb77d63b477de10790d",
+            "report_json": "http://127.0.0.1:54419/api/v1/files/imports/20261017-112433/report.json?expires=1792821273&sig=a4e55ac1e9863d4e97eb03557d4108d2",
+            "catalogue_csv": "http://127.0.0.1:54419/api/v1/files/imports/20261017-112433/catalogue.csv?expires=1792821273&sig=3073fd66f28c8343ab9ba24efb43d5c2",
+            "input": "http://127.0.0.1:54419/api/v1/files/imports/inputs/2dfcef78.csv?expires=1792821272&sig=f6bdc8d9f4d156bb818a49017f7c9b56"
+          },
+          "rows_preview": [
+            {
+              "row": 2,
+              "url": "https://forum.aivideo-batch.mock",
+              "platform_key": "discourse",
+              "status": "created",
+              "errors": [],
+              "warnings": [
+                "declared language 'en' but the page reads as 'pt'"
+              ],
+              "reachability": {
+                "reachable": null,
+                "note": "not checked (offline mode)"
+              },
+              "destination_id": "dst_c0fcb080127e4777",
+              "relevance_score": 4,
+              "relevance_reason": "Audience overlap: ai (ai); video (video).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 3,
+              "url": "HTTPS://www.forum.aivideo-batch.mock/?utm_source=x",
+              "platform_key": "discourse",
+              "status": "duplicate",
+              "errors": [],
+              "warnings": [],
+              "duplicate_of_row": 2
+            },
+            {
+              "row": 4,
+              "url": "not a url",
+              "platform_key": "discourse",
+              "status": "error",
+              "errors": [
+                "url contains spaces"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 5,
+              "url": "https://exa mple.com",
+              "platform_key": "ghost",
+              "status": "error",
+              "errors": [
+                "url contains spaces"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 6,
+              "url": "https://feddit-batch.mock/c/kuenstliche_intelligenz",
+              "platform_key": "lemmy",
+              "status": "created",
+              "errors": [],
+              "warnings": [],
+              "reachability": {
+                "reachable": null,
+                "note": "not checked (offline mode)"
+              },
+              "destination_id": "dst_676c42eb963d4dee",
+              "relevance_score": 2,
+              "relevance_reason": "Audience overlap: ai (ai).",
+              "language": "de",
+              "est_audience": null
+            },
+            {
+              "row": 7,
+              "url": "https://lemmy-batch.mock",
+              "platform_key": "lemmy",
+              "status": "error",
+              "errors": [
+                "lemmy rows need a community (column 'community' or a /c/<name> URL)"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 8,
+              "url": "https://creadores-batch.mock",
+              "platform_key": "discourse",
+              "status": "error",
+              "errors": [
+                "self_promo_allowed must be yes, no or limited (got 'maybe')"
+              ],
+              "warnings": []
+            },
+            {
+              "row": 9,
+              "url": "https://gruender-batch.mock",
+              "platform_key": "discourse",
+              "status": "created",
+              "errors": [],
+              "warnings": [
+                "language 'xx' is not an ISO code; detected instead"
+              ],
+              "reachability": {
+                "reachable": null,
+                "note": "not checked (offline mode)"
+              },
+              "language_detected": "af",
+              "destination_id": "dst_a4476b335b1a4651",
+              "relevance_score": 3,
+              "relevance_reason": "Audience overlap: founders (founders, startup).",
+              "language": "af",
+              "est_audience": null
+            },
+            {
+              "row": 10,
+              "url": "https://tamil-creators-batch.mock",
+              "platform_key": "discourse",
+              "status": "created",
+              "errors": [],
+              "warnings": [],
+              "reachability": {
+                "reachable": null,
+                "note": "not checked (offline mode)"
+              },
+              "language_detected": null,
+              "destination_id": "dst_60b3cbd24ba34e52",
+              "relevance_score": 4,
+              "relevance_reason": "Audience overlap: video (video); creators (creators).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 11,
+              "url": "https://www.reddit.com/r/NewTubers",
+              "platform_key": "reddit",
+              "status": "updated",
+              "errors": [],
+              "warnings": [
+                "declared language 'en' but the page reads as 'af'"
+              ],
+              "existing_id": "dst_assist_newtubers",
+              "reachability": {
+                "reachable": null,
+                "note": "not checked (offline mode)"
+              },
+              "destination_id": "dst_assist_newtubers",
+              "relevance_score": 4,
+              "relevance_reason": "Audience overlap: video (video); creators (creators).",
+              "language": "en",
+              "est_audience": null
+            },
+            {
+              "row": 12,
+              "url": "https://mystery-batch.mock",
+              "platform_key": "tumblr",
+              "status": "created",
+              "errors": [],
+              "warnings": [
+                "unknown platform 'tumblr': catalogued as assisted (a person posts)",
+                "declared language 'en' but the page reads as 'af'"
+              ],
+              "reachability": {
+                "reachable": null,
+                "note": "not checked (offline mode)"
+              },
+              "destination_id": "dst_88bf7227048845bb",
+              "relevance_score": 1,
+              "relevance_reason": "No overlap with IncuBrix's audience (AI, video, marketing, SaaS, creators, founders).",
+              "language": "en",
+              "est_audience": null
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "catalogue_import",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "score_with_ai": false,
+              "commit": true,
+              "reachability_mode": "offline"
+            },
+            "seed": 0,
+            "timings": {
+              "total_s": 1.547
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 11
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:54419/api/v1/jobs/job_0017e146336743de",
+          "report_csv": "http://127.0.0.1:54419/api/v1/files/imports/20261017-112433/report.csv?expires=1792821273&sig=ae6a215692d0beb77d63b477de10790d",
+          "report_json": "http://127.0.0.1:54419/api/v1/files/imports/20261017-112433/report.json?expires=1792821273&sig=a4e55ac1e9863d4e97eb03557d4108d2",
+          "catalogue_csv": "http://127.0.0.1:54419/api/v1/files/imports/20261017-112433/catalogue.csv?expires=1792821273&sig=3073fd66f28c8343ab9ba24efb43d5c2",
+          "input": "http://127.0.0.1:54419/api/v1/files/imports/inputs/2dfcef78.csv?expires=1792821272&sig=f6bdc8d9f4d156bb818a49017f7c9b56"
+        },
+        "created_at": "2026-10-17T05:54:32+00:00",
+        "updated_at": "2026-10-17T05:54:33+00:00"
+      },
+      "seconds": 1.943,
+      "checks": [
+        {
+          "field": "status",
+          "expected": "succeeded",
+          "got": "succeeded",
+          "ok": true
+        },
+        {
+          "field": "result.summary.duplicates",
+          "expected": 1,
+          "got": 1,
+          "ok": true
+        },
+        {
+          "field": "result.summary.errors",
+          "expected": 4,
+          "got": 4,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@
       "idempotent_replays_returning_same_post": 10,
       "live_url_http_200": 10,
       "deleted_after": 10,
-      "mean_publish_job_s": 0.411
+      "mean_publish_job_s": 0.378
     },
     "Local Ghost blog": {
       "publishes": 10,
@@ -17,39 +17,21 @@
       "idempotent_replays_returning_same_post": 10,
       "live_url_http_200": 10,
       "deleted_after": 10,
-      "mean_publish_job_s": 0.391
+      "mean_publish_job_s": 0.413
     }
   },
   "certifications": [
     {
       "destination": "Local Ghost blog",
       "status": "passed",
-      "duration_s": 4.301,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_555e94daea13428f/crt_7ee5c4693acf4888.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261016%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261016T145031Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=4be125d26dd591d2be1cbe26f97fb662d257f3bca82a791d9dccc4df60767a68"
+      "duration_s": 3.575,
+      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_3d369c4e3cc64247/crt_d0e9e04080da4fbc.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050802Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ca6c9719edb14b392d50d1ce2892487c8268bf7eb4066a01b57623166e061c66"
     },
     {
       "destination": "Local Lemmy c/incubrix_test",
       "status": "passed",
-      "duration_s": 1.227,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_7e82efd29335430b/crt_f02d084b63d24658.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261016%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261016T145027Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1ada165905b28deab30cb6efda2cc1eebcc80cc4db0a95fe073b86396aa94005"
-    },
-    {
-      "destination": "Local Lemmy c/incubrix_test",
-      "status": "passed",
-      "duration_s": 0.729,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_7e82efd29335430b/crt_b1ad52b60b3b4857.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261016%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261016T144905Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=59c8c48f5fc9af6e263b16b753bddcb80f44e62cb527c77bebd1acfc3d8c6e76"
-    },
-    {
-      "destination": "Local Ghost blog",
-      "status": "failed",
-      "duration_s": 0.068,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_555e94daea13428f/crt_95908ffde37f4d98.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261016%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261016T144905Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0d0772c0184546c3fbaffa4cd02e3dcac7f9d6d9033c2c6218396483b93bfb9d"
-    },
-    {
-      "destination": "Local Lemmy c/incubrix_test",
-      "status": "passed",
-      "duration_s": 1.568,
-      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_7e82efd29335430b/crt_c346fa863cd04d78.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261016%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261016T144817Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f4082b63e7534f66285224f931bbab1149cc8027d9c24645f7671e2ca41755e4"
+      "duration_s": 1.155,
+      "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_1660b4afacaa402d/crt_d72372a6a8a9473a.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050758Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6db360c5965964da002c09cd2f05cd6abee270a869ee7b90c596d54c2377f0c2"
     }
   ]
 }

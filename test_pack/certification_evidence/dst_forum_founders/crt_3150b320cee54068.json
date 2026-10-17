@@ -1,0 +1,131 @@
+{
+  "certification_id": "crt_3150b320cee54068",
+  "destination": {
+    "id": "dst_forum_founders",
+    "name": "Indie Founders Forum (no promotion)",
+    "url": "https://founders.discourse.mock",
+    "normalized_url": "https://founders.discourse.mock",
+    "platform_key": "discourse",
+    "connector_key": "discourse",
+    "surface": null,
+    "category": "forum",
+    "audience_tags": [
+      "founders",
+      "saas"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": 960,
+    "rules_url": "https://founders.discourse.mock/faq",
+    "frequency_cap": "1/7d",
+    "self_promo_allowed": "no",
+    "link_policy": "one_link;no_shorteners",
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": 4,
+    "relevance_reason": "Founders building SaaS; no self-promotion allowed.",
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "base_url": "https://founders.discourse.mock"
+    },
+    "connection_id": "con_17b96c6642574f6b",
+    "created_at": "2026-10-17T05:54:14+00:00",
+    "updated_at": "2026-10-17T05:54:14+00:00"
+  },
+  "connector": "discourse",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:14+00:00",
+  "finished_at": "2026-10-17T05:54:14+00:00",
+  "duration_s": 0.016,
+  "passed": true,
+  "level": "L4",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 16,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "ok": true,
+        "members": 1840
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "post_id": "pst_89ba6e831dd6473c",
+        "destination_id": "dst_forum_founders",
+        "state": "published",
+        "platform_post_id": "1001|https://founders.discourse.mock",
+        "live_url": "https://founders.discourse.mock/t/incubrix-connector-certification-be4431b8-please-ignore/51001",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_forum_founders-be4431b8",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://founders.discourse.mock/t/incubrix-connector-certification-be4431b8-please-ignore/51001"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "live_url": "https://founders.discourse.mock/t/incubrix-connector-certification-be4431b8-please-ignore/51001",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "fetch_metrics",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "views": 7,
+        "likes": 2,
+        "comments": 1,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

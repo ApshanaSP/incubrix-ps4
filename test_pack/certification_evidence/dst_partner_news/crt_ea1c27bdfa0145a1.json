@@ -1,0 +1,130 @@
+{
+  "certification_id": "crt_ea1c27bdfa0145a1",
+  "destination": {
+    "id": "dst_partner_news",
+    "name": "CreatorNews partner site (signed webhook)",
+    "url": "https://partner-news.mock",
+    "normalized_url": "https://partner-news.mock",
+    "platform_key": "partner_site",
+    "connector_key": "webhook",
+    "surface": null,
+    "category": "partner",
+    "audience_tags": [
+      "creators",
+      "marketing"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": "5/1d",
+    "self_promo_allowed": "yes",
+    "link_policy": "any",
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": 4,
+    "relevance_reason": "Partner newsroom for creator-economy news.",
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "base_url": "https://partner-news.mock"
+    },
+    "connection_id": "con_87ba41ac963b437d",
+    "created_at": "2026-10-17T05:54:14+00:00",
+    "updated_at": "2026-10-17T05:54:14+00:00"
+  },
+  "connector": "webhook",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:14+00:00",
+  "finished_at": "2026-10-17T05:54:14+00:00",
+  "duration_s": 0.016,
+  "passed": true,
+  "level": "L2",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 16,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "post_id": "pst_80004a5e092147b3",
+        "destination_id": "dst_partner_news",
+        "state": "published",
+        "platform_post_id": "wp1001|https://partner-news.mock",
+        "live_url": "https://partner-news.mock/news/wp1001",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_partner_news-92ce36a0",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://partner-news.mock/news/wp1001"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "live_url": "https://partner-news.mock/news/wp1001",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "fetch_metrics",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "views": 40,
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 6
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

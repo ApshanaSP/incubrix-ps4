@@ -1,0 +1,132 @@
+{
+  "certification_id": "crt_1a18227318684243",
+  "destination": {
+    "id": "dst_29c4201132dc4a7f",
+    "name": "batch slack m",
+    "url": "https://slack-m-51f6fccd.mock",
+    "normalized_url": "https://slack-m-51f6fccd.mock#channel=c0batch",
+    "platform_key": "slack",
+    "connector_key": "slack",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "ai",
+      "creators"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "api_base_url": "https://slack-m-51f6fccd.mock",
+      "channel": "C0BATCH"
+    },
+    "connection_id": "con_89e999a5e7f84fd2",
+    "created_at": "2026-10-17T05:54:30+00:00",
+    "updated_at": "2026-10-17T05:54:30+00:00"
+  },
+  "connector": "slack",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:30+00:00",
+  "finished_at": "2026-10-17T05:54:30+00:00",
+  "duration_s": 0.015,
+  "passed": true,
+  "level": "L4",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 14,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "ok": true,
+        "team": "IncuBrix Sim"
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "post_id": "pst_cbdc88465bba47a3",
+        "destination_id": "dst_29c4201132dc4a7f",
+        "state": "published",
+        "platform_post_id": "C0BATCH/1792216470.001001|https://slack-m-51f6fccd.mock",
+        "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792216470001001",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_29c4201132dc4a7f-aaf1f2dc",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792216470001001"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792216470001001",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "fetch_metrics",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "views": 0,
+        "likes": 3,
+        "comments": 2,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:30+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

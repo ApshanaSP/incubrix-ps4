@@ -1,0 +1,116 @@
+{
+  "certification_id": "crt_4f834efe035e4c3e",
+  "destination": {
+    "id": "dst_mrss_ctv",
+    "name": "IncuBrix CTV video feed (MRSS)",
+    "url": "https://feeds.incubrix.mock/ctv",
+    "normalized_url": "https://feeds.incubrix.mock/ctv#feed_key=incubrix-ctv",
+    "platform_key": "mrss",
+    "connector_key": "mrss",
+    "surface": null,
+    "category": "video_feed",
+    "audience_tags": [
+      "video",
+      "creators"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": "yes",
+    "link_policy": "any",
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": 4,
+    "relevance_reason": "Video feed polled by CTV apps and aggregators.",
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "feed_key": "incubrix-ctv"
+    },
+    "connection_id": null,
+    "created_at": "2026-10-17T05:54:14+00:00",
+    "updated_at": "2026-10-17T05:54:14+00:00"
+  },
+  "connector": "mrss",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:14+00:00",
+  "finished_at": "2026-10-17T05:54:14+00:00",
+  "duration_s": 0.0,
+  "passed": true,
+  "level": "L2",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "post_id": "pst_c9c2bc825a6a40ac",
+        "destination_id": "dst_mrss_ctv",
+        "state": "published",
+        "platform_post_id": "ibx-5326a893e0e9|incubrix-ctv",
+        "live_url": "http://127.0.0.1:54419/api/v1/feeds/incubrix-ctv.xml#ibx-5326a893e0e9",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_mrss_ctv-30ae9f0f",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "http://127.0.0.1:54419/api/v1/feeds/incubrix-ctv.xml#ibx-5326a893e0e9"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "live_url": "http://127.0.0.1:54419/api/v1/feeds/incubrix-ctv.xml#ibx-5326a893e0e9",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "deleted": true,
+        "already_gone": false
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:14+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

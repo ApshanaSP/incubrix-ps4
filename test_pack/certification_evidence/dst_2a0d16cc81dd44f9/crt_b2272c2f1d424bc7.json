@@ -1,0 +1,104 @@
+{
+  "certification_id": "crt_b2272c2f1d424bc7",
+  "destination": {
+    "id": "dst_2a0d16cc81dd44f9",
+    "name": "check assisted noauto",
+    "url": "https://assisted-noauto-48a224.mock",
+    "normalized_url": "https://assisted-noauto-48a224.mock",
+    "platform_key": "assisted",
+    "connector_key": "assisted",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "video",
+      "ai"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": false,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "submit_url": "https://assisted-noauto-48a224.mock/submit"
+    },
+    "connection_id": null,
+    "created_at": "2026-10-17T05:54:42+00:00",
+    "updated_at": "2026-10-17T05:54:42+00:00"
+  },
+  "connector": "assisted",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T05:54:42+00:00",
+  "finished_at": "2026-10-17T05:54:42+00:00",
+  "duration_s": 0.015,
+  "passed": true,
+  "level": "L1",
+  "steps": [
+    {
+      "step": "build_assist_pack",
+      "ok": true,
+      "ms": 14,
+      "at": "2026-10-17T05:54:42+00:00",
+      "result": {
+        "files": [
+          {
+            "name": "post.md",
+            "url": "http://127.0.0.1:54419/api/v1/files/packs/pack_b0769519be6f/post.md?expires=1792821282&sig=d2b7a12fff603c28e3be4a127c63440d"
+          },
+          {
+            "name": "caption.txt",
+            "url": "http://127.0.0.1:54419/api/v1/files/packs/pack_b0769519be6f/caption.txt?expires=1792821282&sig=31a31a85b248c083647e816cdd4d0251"
+          },
+          {
+            "name": "checklist.md",
+            "url": "http://127.0.0.1:54419/api/v1/files/packs/pack_b0769519be6f/checklist.md?expires=1792821282&sig=f4a3b0df9d7fe59fc53e600228e405f8"
+          },
+          {
+            "name": "pack.zip",
+            "url": "http://127.0.0.1:54419/api/v1/files/packs/pack_b0769519be6f/pack.zip?expires=1792821282&sig=238073f77deb240884f430be8685c621"
+          }
+        ],
+        "caption": "IncuBrix connector certification 81ad98ef please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+        "deep_link": "https://assisted-noauto-48a224.mock/submit",
+        "checklist": [
+          "Post from the official IncuBrix account on check assisted noauto.",
+          "Title must stay under 300 characters (it is 55).",
+          "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+          "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+        ],
+        "pack_id": "pack_b0769519be6f"
+      }
+    },
+    {
+      "step": "check_pack_files",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:42+00:00",
+      "result": {
+        "files": 4,
+        "checklist_items": 4,
+        "deep_link": "https://assisted-noauto-48a224.mock/submit"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T05:54:42+00:00",
+      "result": {
+        "deleted": true
+      }
+    }
+  ],
+  "error": null
+}
