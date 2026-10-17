@@ -3,142 +3,212 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>IncuBrix Long-Tail</title>
 <style>
 :root {
-  --bg: #f6f7f9; --panel: #ffffff; --text: #1b1f24; --muted: #5d6673; --line: #dde1e6;
-  --accent: #2456d6; --accent-weak: #e8eefc;
-  --ok: #17803d; --ok-bg: #e6f4ea; --bad: #b3261e; --bad-bg: #fdecea; --warn: #8a5a00; --warn-bg: #fff4dc;
-  --info: #3b4a63; --info-bg: #eef1f6; --code: #f1f3f6;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #111418; --panel: #191d23; --text: #e7eaee; --muted: #9aa4b1; --line: #2c333c;
-    --accent: #7aa2ff; --accent-weak: #1e2a44;
-    --ok: #6fd28f; --ok-bg: #16301f; --bad: #ff8a80; --bad-bg: #3a1a18; --warn: #f2c26b; --warn-bg: #33280f;
-    --info: #b9c4d6; --info-bg: #222934; --code: #20262e;
-  }
+  --bg: #f4f6fa; --panel: #ffffff; --text: #1d2433; --muted: #5f6b7d; --line: #e2e7ef; --soft: #f8fafc;
+  --brand: #3056d3; --brand-soft: #eaf0ff; --brand-dark: #2343ad;
+  --ok: #147a3d; --ok-soft: #e7f6ec; --bad: #b42318; --bad-soft: #fdecea; --warn: #8a5300; --warn-soft: #fff4e0;
+  --person: #6941c6; --person-soft: #f1ecfd; --grey: #475467; --grey-soft: #f0f2f5;
+  --radius: 12px; --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; }
-header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 12px 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-header h1 { font-size: 17px; margin: 0; }
-header .grow { flex: 1; }
-header a { color: var(--accent); text-decoration: none; margin-left: 12px; }
-nav { display: flex; gap: 4px; padding: 0 20px; background: var(--panel); border-bottom: 1px solid var(--line); overflow-x: auto; }
-nav button { border: 0; background: none; color: var(--muted); padding: 10px 14px; font: inherit; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
-nav button.on { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
-main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+html { color-scheme: light; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.55 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+a { color: var(--brand); }
+.top { background: var(--panel); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1120px; margin: 0 auto; padding: 18px 20px 0; }
+.brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand > div:nth-child(2) { flex: 1 1 260px; min-width: 0; }
+.logo { width: 38px; height: 38px; border-radius: 10px; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 18px; }
+.brand h1 { margin: 0; font-size: 20px; } .brand p { margin: 0; color: var(--muted); font-size: 14px; }
+.brand .grow { flex: 1; }
+.links a { margin-left: 14px; font-size: 14px; text-decoration: none; }
+.safe { margin-top: 12px; display: inline-flex; gap: 8px; align-items: center; background: var(--ok-soft); color: var(--ok); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; }
+.safe.bad { background: var(--bad-soft); color: var(--bad); }
+.tabs { display: flex; gap: 6px; margin-top: 14px; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { border: 0; background: none; padding: 10px 14px 12px; font: inherit; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
+.tabs button b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--grey-soft); color: var(--grey); font-size: 12px; margin-right: 6px; }
+.tabs button.on { color: var(--text); font-weight: 600; border-bottom-color: var(--brand); }
+.tabs button.on b { background: var(--brand); color: #fff; }
+main { max-width: 1120px; margin: 0 auto; padding: 22px 20px 60px; }
 section { display: none; } section.on { display: block; }
-.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
-.panel h2 { font-size: 15px; margin: 0 0 4px; } .hint { color: var(--muted); margin: 0 0 12px; }
-table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; }
+.intro { background: var(--brand-soft); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 18px; color: #22305e; }
+.intro b { color: var(--brand-dark); }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; margin-bottom: 16px; }
+.box h2 { margin: 0 0 4px; font-size: 17px; } .box .sub { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+.toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.toolbar .grow { flex: 1; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.stat .n { font-size: 24px; font-weight: 700; } .stat .l { color: var(--muted); font-size: 13px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+.card h3 { margin: 0; font-size: 15px; } .card .kind { color: var(--muted); font-size: 13px; }
+.card .foot { display: flex; gap: 8px; align-items: center; margin-top: auto; padding-top: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.c-ok { background: var(--ok-soft); color: var(--ok); } .c-bad { background: var(--bad-soft); color: var(--bad); }
+.c-warn { background: var(--warn-soft); color: var(--warn); } .c-person { background: var(--person-soft); color: var(--person); }
+.c-grey { background: var(--grey-soft); color: var(--grey); } .c-brand { background: var(--brand-soft); color: var(--brand-dark); }
+.rule { background: var(--soft); border: 1px solid var(--line); color: var(--grey); font-weight: 500; }
+.btn { border: 0; border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; background: var(--brand); color: #fff; }
+.btn:hover { background: var(--brand-dark); }
+.btn.light { background: var(--brand-soft); color: var(--brand-dark); } .btn.light:hover { background: #dce6ff; }
+.btn.small { padding: 6px 12px; font-size: 13.5px; }
+.btn:disabled { opacity: .55; cursor: wait; }
+input[type=text], input[type=password], textarea, select { width: 100%; padding: 9px 11px; border: 1px solid #cfd6e2; border-radius: 8px; background: #fff; color: var(--text); font: inherit; }
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand-soft); border-color: var(--brand); }
+textarea { min-height: 96px; resize: vertical; }
+label.f { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; } .help { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+.stack > * + * { margin-top: 12px; }
+.checks { display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; }
+.pick { max-height: 230px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; background: var(--soft); }
+.pick label { display: flex; gap: 8px; align-items: center; padding: 3px 0; font-size: 14px; cursor: pointer; }
+.pick .k { color: var(--muted); font-size: 12.5px; }
+.res { border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 12px 14px; background: var(--panel); }
+.res + .res { margin-top: 10px; }
+.res.ok { border-left-color: var(--ok); } .res.bad { border-left-color: var(--bad); } .res.warn { border-left-color: var(--warn); }
+.res.person { border-left-color: var(--person); } .res.grey { border-left-color: #98a2b3; }
+.res .head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.res .head .t { font-weight: 700; } .res .head .grow { flex: 1; }
+.big { font-size: 15px; font-weight: 700; }
+.why { margin-top: 6px; } .why b { color: var(--muted); font-weight: 600; }
+ul.list { margin: 6px 0 0; padding-left: 20px; } ul.list li { margin: 2px 0; }
+details { margin-top: 8px; } details summary { cursor: pointer; color: var(--brand); font-size: 13.5px; font-weight: 600; }
+pre { background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: 10px; white-space: pre-wrap; word-break: break-word; font: 12.5px/1.5 Consolas, "Cascadia Mono", monospace; margin: 8px 0 0; }
+code { background: var(--grey-soft); border-radius: 4px; padding: 1px 5px; font: 12.5px Consolas, monospace; }
+.steps { margin: 8px 0 0; padding: 0; list-style: none; }
+.steps li { display: flex; gap: 8px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--line); font-size: 13.5px; }
+.steps li:last-child { border-bottom: 0; }
+.dot { width: 18px; height: 18px; flex: none; border-radius: 50%; display: inline-grid; place-items: center; font-size: 11px; color: #fff; background: var(--ok); }
+.dot.no { background: var(--bad); }
+.case { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.case:last-child { border-bottom: 0; }
+.case .num { width: 30px; height: 30px; border-radius: 50%; background: var(--grey-soft); color: var(--grey); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.case .num.ok { background: var(--ok); color: #fff; } .case .num.bad { background: var(--bad); color: #fff; }
+.case h3 { margin: 0; font-size: 15px; } .case .expect { color: var(--muted); font-size: 13.5px; }
+.drop { border: 2px dashed #c7d2fe; background: #f7f9ff; border-radius: var(--radius); padding: 22px; text-align: center; }
+.drop.over { background: var(--brand-soft); border-color: var(--brand); }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 .tablewrap { overflow-x: auto; }
-.pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; white-space: nowrap; }
-.ok { color: var(--ok); background: var(--ok-bg); } .bad { color: var(--bad); background: var(--bad-bg); }
-.warn { color: var(--warn); background: var(--warn-bg); } .info { color: var(--info); background: var(--info-bg); }
-button.act, label.act { background: var(--accent); color: #fff; border: 0; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
-button.ghost { background: var(--accent-weak); color: var(--accent); border: 0; border-radius: 6px; padding: 5px 10px; font: inherit; cursor: pointer; }
-button:disabled { opacity: .55; cursor: wait; }
-input[type=text], input[type=password], textarea, select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--text); font: inherit; }
-textarea { min-height: 90px; resize: vertical; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.field label { display: block; color: var(--muted); font-size: 12px; margin-bottom: 3px; }
-.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.small { font-size: 12px; color: var(--muted); }
-code, pre { background: var(--code); border-radius: 4px; font: 12px/1.45 Consolas, "Cascadia Mono", monospace; }
-code { padding: 1px 4px; } pre { padding: 10px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 6px 0 0; }
-.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-top: 10px; }
-.card h3 { margin: 0 0 6px; font-size: 14px; }
-ul.plain { margin: 4px 0 0; padding-left: 18px; }
-details summary { cursor: pointer; color: var(--accent); }
-.dest-list { max-height: 220px; overflow: auto; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
-.dest-list label { display: block; padding: 2px 0; }
-.steps li { margin-bottom: 4px; }
-.err { color: var(--bad); }
+.muted { color: var(--muted); } .err { color: var(--bad); }
+.tokenrow { display: none; margin-top: 10px; gap: 8px; align-items: center; } .tokenrow.show { display: flex; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.empty { color: var(--muted); padding: 18px; text-align: center; }
 </style>
 </head>
 <body>
-<header>
-  <h1>IncuBrix Long-Tail Distribution</h1>
-  <span id="status" class="pill info">checking…</span>
-  <span class="grow"></span>
-  <span class="small" id="tokenbox" hidden>Access token <input type="password" id="token" style="width:180px" placeholder="Bearer token"></span>
-  <a href="/docs" target="_blank" rel="noopener">API docs</a>
-  <a href="/openapi.yaml" target="_blank" rel="noopener">openapi.yaml</a>
-</header>
-<nav>
-  <button data-tab="dest" class="on">Destinations</button>
-  <button data-tab="pub">Publish</button>
-  <button data-tab="hard">Hard cases</button>
-  <button data-tab="cat">Catalogue</button>
-</nav>
+<div class="top"><div class="top-in">
+  <div class="brand">
+    <div class="logo">IB</div>
+    <div><h1>Long-Tail Distribution</h1><p>Publish one post to many small communities, safely, without spamming.</p></div>
+    <span class="links"><a href="/docs" target="_blank" rel="noopener">API docs</a><a href="/openapi.yaml" target="_blank" rel="noopener">openapi.yaml</a></span>
+  </div>
+  <div class="safe" id="status">Checking the service…</div>
+  <div class="tokenrow" id="tokenrow"><span class="muted">This demo is protected. Access token:</span>
+    <input type="password" id="token" style="max-width:240px"><button class="btn small" id="tokenSave">Use token</button></div>
+  <nav class="tabs">
+    <button data-tab="dest" class="on"><b>1</b>Destinations</button>
+    <button data-tab="pub"><b>2</b>Publish a post</button>
+    <button data-tab="hard"><b>3</b>Hard cases</button>
+    <button data-tab="cat"><b>4</b>Import a list</button>
+  </nav>
+</div></div>
+
 <main>
-
+<!-- ================================================================ 1. destinations -->
 <section id="dest" class="on">
-  <div class="panel">
-    <div class="row"><h2 style="flex:1">Destinations</h2>
-      <input type="text" id="destFilter" placeholder="Filter by name or connector" style="max-width:260px">
-      <button class="ghost" id="destReload">Reload</button></div>
-    <p class="hint">Every place the service can post to. One connector serves many destinations (adding a forum is one row). A destination is used only after it is certified: a test post is published, its live URL checked, its status read and the post deleted.</p>
-    <div class="tablewrap"><table>
-      <thead><tr><th>Name</th><th>Connector</th><th>Level</th><th>Status</th><th>Posting rules</th><th>Last certified</th><th></th></tr></thead>
-      <tbody id="destRows"><tr><td colspan="7" class="small">Loading…</td></tr></tbody>
-    </table></div>
+  <div class="intro"><b>Destinations</b> are the places a post can go: forums, communities, blogs, team chats, partner sites and video feeds.
+    Before the service ever posts to a place, it <b>tests</b> it: it makes a test post, checks it is live, then deletes it. Only places that pass are <b>Ready</b>.</div>
+  <div class="stats" id="destStats"></div>
+  <div class="box">
+    <div class="toolbar"><h2 class="grow" style="margin:0">All destinations</h2>
+      <label class="muted" style="font-size:13.5px"><input type="checkbox" id="destTests"> Show test places from Hard cases</label>
+      <input type="text" id="destFilter" placeholder="Search…" style="max-width:240px">
+      <button class="btn light small" id="destReload">Refresh</button></div>
+    <div class="cards" id="destCards"><div class="empty">Loading…</div></div>
+    <div class="legend"><span><span class="chip c-brand">L4</span> posts automatically and reads likes and views</span>
+      <span><span class="chip c-brand">L3</span> posts automatically</span><span><span class="chip c-brand">L2</span> feed or partner site</span>
+      <span><span class="chip c-person">L1</span> a person posts (bots not allowed)</span></div>
   </div>
 </section>
 
+<!-- ================================================================ 2. publish -->
 <section id="pub">
-  <div class="panel">
-    <h2>Publish a post</h2>
-    <p class="hint">The service tailors the post for each destination, checks its format limits and posting rules, then posts, or blocks or reschedules it with the reason. The same idempotency key never creates a second post.</p>
-    <div class="grid">
-      <div class="field"><label for="pTitle">Title</label><input type="text" id="pTitle" value="How we cut video editing time with AI captions"></div>
-      <div class="field"><label for="pLink">Link to the original (optional)</label><input type="text" id="pLink" placeholder="https://…"></div>
-      <div class="field"><label for="pTags">Tags (comma separated)</label><input type="text" id="pTags" value="ai, video"></div>
-      <div class="field"><label for="pLang">Language</label><select id="pLang"><option value="en">English (en)</option><option value="de">German (de)</option><option value="ta">Tamil (ta)</option><option value="ja">Japanese (ja)</option><option value="es">Spanish (es)</option></select></div>
+  <div class="intro">Write a post and pick where it should go. For each place the service <b>adapts the post</b> (length, hashtags, links),
+    <b>checks that place's rules</b> (how often you may post, adverts, links, AI labels, language) and then <b>posts it, blocks it or schedules it for later</b>, and tells you why.</div>
+  <div class="two">
+    <div class="box stack">
+      <h2>Your post</h2>
+      <div><label class="f" for="pTitle">Title</label><input type="text" id="pTitle" value="How we cut video editing time with AI captions"></div>
+      <div><label class="f" for="pBody">Text</label><textarea id="pBody">We tested three captioning workflows for short videos and measured the time each one saved.</textarea></div>
+      <div class="grid2">
+        <div><label class="f" for="pTags">Tags</label><input type="text" id="pTags" value="ai, video"><div class="help">Separate with commas</div></div>
+        <div><label class="f" for="pLink">Link to the original</label><input type="text" id="pLink" placeholder="https://… (optional)"></div>
+        <div><label class="f" for="pLang">Language of the post</label><select id="pLang"><option value="en">English</option><option value="de">German</option><option value="ta">Tamil</option><option value="ja">Japanese</option><option value="es">Spanish</option></select></div>
+        <div><label class="f" for="pPromo">Is it an advert?</label><select id="pPromo"><option value="">Let the service decide</option><option value="true">Yes, it is an advert</option><option value="false">No</option></select></div>
+      </div>
+      <div class="checks"><label><input type="checkbox" id="pAi"> Made with AI</label><label><input type="checkbox" id="pDry"> Only check, don't post</label></div>
+      <div>
+        <div class="toolbar" style="margin-bottom:6px"><label class="f grow" style="margin:0">Where should it go?</label>
+          <button class="btn light small" id="pRecommend">Suggest the best places</button></div>
+        <div class="pick" id="pDests"><span class="muted">Loading…</span></div>
+      </div>
+      <details><summary>Advanced: retry key</summary>
+        <div class="help" style="margin:6px 0">Sending the same post again with the same key never creates a second post. Click "New key" for a new post.</div>
+        <div class="toolbar" style="margin:0"><input type="text" id="pKey" class="grow"><button class="btn light small" id="pNewKey">New key</button></div>
+      </details>
+      <div class="toolbar" style="margin:0"><button class="btn" id="pGo">Publish</button><span class="muted" id="pState"></span></div>
     </div>
-    <div class="field" style="margin-top:12px"><label for="pBody">Body</label><textarea id="pBody">We tested three captioning workflows for short videos and measured the time each one saved.</textarea></div>
-    <div class="row" style="margin-top:10px">
-      <label><input type="checkbox" id="pAi"> AI-generated content</label>
-      <label>Promotional: <select id="pPromo" style="width:auto"><option value="">detect automatically</option><option value="true">yes</option><option value="false">no</option></select></label>
-      <label><input type="checkbox" id="pDry"> Dry run (check only, post nothing)</label>
+    <div>
+      <div id="recoOut"></div>
+      <div class="box" id="pubBox"><h2>Result</h2><p class="sub" id="pubHint">Press Publish to see what happens at each place.</p><div id="pubOut"></div></div>
     </div>
-    <div class="row" style="margin-top:10px">
-      <div class="field" style="flex:1;min-width:240px"><label for="pKey">Idempotency key (send the same key again: no second post)</label><input type="text" id="pKey"></div>
-      <button class="ghost" id="pNewKey">New key</button>
-    </div>
-    <div class="field" style="margin-top:12px"><label>Destinations <button class="ghost" id="pRecommend" style="margin-left:8px">Recommend for this post</button></label>
-      <div class="dest-list" id="pDests"><span class="small">Loading…</span></div></div>
-    <div class="row" style="margin-top:12px"><button class="act" id="pGo">Publish</button><span class="small" id="pState"></span></div>
   </div>
-  <div id="recoOut"></div>
-  <div id="pubOut"></div>
 </section>
 
+<!-- ================================================================ 3. hard cases -->
 <section id="hard">
-  <div class="panel">
-    <div class="row"><h2 style="flex:1">Hard cases</h2><button class="act" id="hAll">Run all</button></div>
-    <p class="hint">These are the batch runner's inputs (<code>batch_inputs/</code>). Each one creates its own fresh destination on a mock platform, injects the fault (timeout, 429, expired token, renamed API field…) and checks what the service does. Nothing is posted anywhere real.</p>
-    <div id="hList" class="small">Loading…</div>
+  <div class="intro">These are the <b>difficult situations</b> the brief asks about: timeouts, rate limits, expired logins, adverts, changed APIs and more.
+    Each test creates its own throw-away place on a <b>built-in test platform</b>, causes the problem on purpose and checks that the service does the right thing.
+    Nothing real is touched. These are the same tests the batch runner uses.</div>
+  <div class="box">
+    <div class="toolbar"><h2 class="grow" style="margin:0">17 hard cases</h2><span class="muted" id="hScore"></span><button class="btn" id="hAll">Run all</button></div>
+    <div id="hList"><div class="empty">Loading…</div></div>
   </div>
 </section>
 
+<!-- ================================================================ 4. catalogue -->
 <section id="cat">
-  <div class="panel">
-    <h2>Import a catalogue CSV</h2>
-    <p class="hint">Rows are validated, de-duplicated (normalised URL + platform), checked for reachability (robots.txt respected), enriched and scored for relevance, with a row-by-row report. Columns: <code>name,url,platform_key,connector_key,language,audience_tags,…</code></p>
-    <div class="row">
-      <input type="file" id="cFile" accept=".csv,text/csv">
-      <label><input type="checkbox" id="cCommit"> Add the valid rows to the catalogue</label>
-      <button class="act" id="cGo">Import</button>
-      <button class="ghost" id="cSample">Try the messy sample CSV</button>
-      <button class="ghost" id="cExport">Download the catalogue CSV</button>
+  <div class="intro">Add many destinations at once from a spreadsheet (CSV). The service <b>checks every row</b>: is the link valid and reachable, is it a duplicate,
+    which language is it, and how relevant is it to IncuBrix's audience (AI, video, marketing, SaaS, creators, founders). You get a report for every row.</div>
+  <div class="box">
+    <div class="drop" id="drop">
+      <div class="big">Drop a CSV file here</div>
+      <p class="muted" style="margin:6px 0 12px">or</p>
+      <div class="toolbar" style="justify-content:center;margin:0">
+        <label class="btn light small" for="cFile" style="display:inline-block">Choose a file</label>
+        <input type="file" id="cFile" accept=".csv,text/csv" hidden>
+        <button class="btn light small" id="cSample">Try a messy sample</button>
+      </div>
+      <p class="help" id="cName" style="margin-top:10px"></p>
     </div>
-    <div id="cOut"></div>
+    <div class="toolbar" style="margin-top:14px">
+      <label><input type="checkbox" id="cCommit"> Also add the good rows to my destinations</label><span class="grow"></span>
+      <button class="btn light small" id="cExport">Download all destinations (CSV)</button>
+      <button class="btn" id="cGo">Check the file</button>
+    </div>
+    <p class="help">Columns: <code>name, url, platform_key, connector_key, language, audience_tags</code> (and optional rules such as <code>frequency_cap</code>, <code>self_promo_allowed</code>).</p>
   </div>
+  <div id="cOut"></div>
 </section>
 </main>
 
@@ -150,22 +220,24 @@ const el = (tag, attrs = {}, ...kids) => {
   const n = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
     if (k === "class") n.className = v; else if (k === "text") n.textContent = v;
-    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else if (v !== undefined && v !== null) n.setAttribute(k, v);
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else if (v !== undefined && v !== null && v !== false) n.setAttribute(k, v);
   }
-  for (const kid of kids.flat()) if (kid !== null && kid !== undefined) n.append(kid instanceof Node ? kid : String(kid));
+  for (const kid of kids.flat()) if (kid !== null && kid !== undefined && kid !== false) n.append(kid instanceof Node ? kid : String(kid));
   return n;
 };
 // replaceChildren that skips empty parts (a plain call would print them as "null")
-const put = (node, ...kids) => node.replaceChildren(...kids.flat().filter((k) => k !== null && k !== undefined));
-const pill = (text, kind) => el("span", { class: "pill " + kind, text });
+const put = (node, ...kids) => node.replaceChildren(...kids.flat().filter((k) => k !== null && k !== undefined && k !== false));
+const chip = (text, kind, title) => el("span", { class: "chip " + kind, text, title });
 const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } },
                 set(k, v) { try { localStorage.setItem(k, v); } catch { /* storage may be blocked */ } } };
 const newKey = () => "ui-" + Math.random().toString(36).slice(2, 10);
 const short = (v, n = 160) => { const s = typeof v === "string" ? v : JSON.stringify(v); return s && s.length > n ? s.slice(0, n) + "…" : s; };
+const sleep = (ms) => new Promise((ok) => setTimeout(ok, ms));
+const when = (iso) => iso ? new Date(iso).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "never";
 
 async function api(method, path, opts = {}) {
   const headers = Object.assign({}, opts.headers || {});
-  const token = $("token").value || store.get("ibx-token");
+  const token = store.get("ibx-token");
   if (token) headers["Authorization"] = "Bearer " + token;
   let body;
   if (opts.form) body = opts.form;
@@ -174,204 +246,246 @@ async function api(method, path, opts = {}) {
   const url = path + (opts.params ? "?" + new URLSearchParams(opts.params) : "");
   for (let attempt = 0; attempt < 8; attempt++) {
     const r = await fetch(url, { method, headers, body });
-    let data = null;
     const text = await r.text();
+    let data = null;
     try { data = text ? JSON.parse(text) : null; } catch { data = text; }
-    if (r.status === 401) { $("tokenbox").hidden = false; }
+    if (r.status === 401) $("tokenrow").classList.add("show");
     if (r.status === 429 && data && data.error && data.error.code === "SERVICE_RATE_LIMIT") {
-      await new Promise((ok) => setTimeout(ok, 1000 * ((data.error.details || {}).retry_after_s || 3)));
+      await sleep(1000 * ((data.error.details || {}).retry_after_s || 3));
       continue;
     }
     return { status: r.status, data };
   }
-  return { status: 429, data: { error: { code: "SERVICE_RATE_LIMIT", message: "rate limited" } } };
+  return { status: 429, data: { error: { code: "SERVICE_RATE_LIMIT", message: "too many requests" } } };
 }
 
 async function waitJob(resp) {
   if (resp.status !== 202 || !resp.data || !resp.data.job_id) return resp.data;
-  for (let i = 0; i < 1200; i++) {
+  for (let i = 0; i < 600; i++) {
     const j = (await api("GET", "/api/v1/jobs/" + resp.data.job_id)).data;
     if (j && (j.status === "succeeded" || j.status === "failed")) return j;
-    await new Promise((ok) => setTimeout(ok, 300));
+    await sleep(i < 4 ? 250 : 1000);  // quick at first, then once a second (the service allows 120 requests a minute)
   }
   return { status: "timeout" };
 }
 
-const stateKind = (s) => ({ published: "ok", certified: "ok", passed: "ok", succeeded: "ok", live: "ok",
-  blocked: "bad", failed: "bad", demoted: "bad", excluded: "bad", rescheduled: "warn", paused: "warn",
-  awaiting_human: "info", dry_run: "info", uncertified: "info" }[s] || "info");
+// ---------------------------------------------------------------- plain-language words
+const KIND = { discourse: "Forum (Discourse)", lemmy: "Community (Lemmy)", devto: "Developer blog (Dev.to)", ghost: "Blog (Ghost)",
+  webhook: "Partner website (signed webhook)", assisted: "A person posts (no bots allowed)", hashnode: "Developer blog (Hashnode)",
+  slack: "Team chat (Slack)", mrss: "Video feed for TV apps (MRSS)" };
+const LEVEL = { L0: "listed only", L1: "a person posts", L2: "feed or partner site", L3: "posts automatically", L4: "posts automatically + reads stats" };
+const STATUS = { certified: ["Ready", "c-ok"], uncertified: ["Not tested yet", "c-grey"], demoted: ["Failed its test, not used", "c-bad"],
+  paused: ["Paused: login needs reconnecting", "c-warn"], excluded: ["Excluded", "c-bad"] };
+const OUTCOME = {
+  published: ["✅", "Posted", "ok"], blocked: ["⛔", "Blocked, not posted", "bad"], rescheduled: ["⏰", "Will post later", "warn"],
+  awaiting_human: ["👤", "Ready for a person to post", "person"], failed: ["❌", "Could not post", "bad"], dry_run: ["🔍", "Checked only", "grey"] };
+const CASES = {
+  "01": ["Test and post to every kind of place", "All 9 connector types pass their test, then one post goes to all of them."],
+  "02": ["The platform times out, then we retry", "The post was made but the answer was lost. The retry finds it: exactly one post, no duplicate."],
+  "03": ["Rate limit with a long wait", "The platform says 'wait 15 minutes'. The service does not hammer it: it schedules the post for later."],
+  "04": ["Rate limit with a short wait", "The platform says 'wait 2 seconds'. The service waits, then posts."],
+  "05": ["Login token expired", "The service stops, pauses that place and asks the owner to reconnect."],
+  "06": ["The platform rejects the post", "The platform's reason is shown, and the post is not retried."],
+  "07": ["Title and text too long", "Shortened at a word boundary, never mid-word, with a note."],
+  "08": ["File type not accepted", "The file is left out with a note; a check names the exact file."],
+  "09": ["A second post inside a weekly limit", "The community allows one post a week, so the second waits until it is allowed."],
+  "10": ["An advert to a no-adverts community", "Blocked before anything is sent, with the reason."],
+  "11": ["The platform changed its API", "The test catches it: the place fails, is taken out of use and a ticket is opened."],
+  "12": ["A messy spreadsheet", "Duplicates, broken links and mixed languages each get a clear row-by-row reason."],
+  "13": ["A partner withdraws permission", "Posting stops and the place is paused until permission is given again."],
+  "14": ["A community in another language", "Uses the creator's own translation; without one, the post is held with the reason."],
+  "15": ["A community that requires an AI label", "The label is added automatically; without it the post would be blocked."],
+  "16": ["AI reads a community's rules", "The AI proposes the rules with quotes; nothing is used until a person approves them."],
+  "17": ["Suggest where to post", "A ranked list of places with the reason for each."] };
 
 // ---------------------------------------------------------------- tabs, status, token
-document.querySelectorAll("nav button").forEach((b) => b.addEventListener("click", () => {
-  document.querySelectorAll("nav button").forEach((x) => x.classList.toggle("on", x === b));
+document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => {
+  document.querySelectorAll(".tabs button").forEach((x) => x.classList.toggle("on", x === b));
   document.querySelectorAll("section").forEach((s) => s.classList.toggle("on", s.id === b.dataset.tab));
+  window.scrollTo({ top: 0 });
 }));
-$("token").value = store.get("ibx-token") || "";
-$("token").addEventListener("change", () => { store.set("ibx-token", $("token").value); loadDestinations(); });
+$("tokenSave").addEventListener("click", () => { store.set("ibx-token", $("token").value.trim()); $("tokenrow").classList.remove("show"); loadAll(); });
 
 async function loadStatus() {
   try {
     const r = await api("GET", "/ready");
     const c = (r.data && r.data.checks) || {};
-    const ok = r.status === 200;
-    $("status").className = "pill " + (ok ? "ok" : "bad");
-    $("status").textContent = (ok ? "ready" : "not ready") + " · " + (c.simulation_mode ? "simulation mode (mock platforms)" : "real mode")
-      + " · " + (c.connectors || "?") + " connectors · " + (c.storage || "");
-  } catch (e) { $("status").className = "pill bad"; $("status").textContent = "service unreachable"; }
+    $("status").className = "safe" + (r.status === 200 ? "" : " bad");
+    $("status").textContent = r.status !== 200 ? "⚠ The service is not ready" : c.simulation_mode
+      ? "🛡 Safe test mode: posts go to built-in test platforms, nothing real is posted · " + c.connectors + " connectors"
+      : "● Live mode · " + c.connectors + " connectors";
+  } catch { $("status").className = "safe bad"; $("status").textContent = "⚠ Cannot reach the service"; }
 }
 
-// ---------------------------------------------------------------- destinations
+// ---------------------------------------------------------------- 1. destinations
 let destinations = [];
-const rulesText = (d) => [
-  d.frequency_cap ? "max " + d.frequency_cap : "no cap",
-  "promotion: " + (d.self_promo_allowed || "?"),
-  "links: " + (d.link_policy || "any"),
-  d.disclosure_required ? "AI label required" : null,
-  d.automation_allowed === false ? "no automation (a person posts)" : null,
-  d.language && d.language !== "en" ? "language: " + d.language : null,
-].filter(Boolean).join(" · ");
+function ruleChips(d) {
+  return [
+    chip(d.frequency_cap ? "🕒 at most " + d.frequency_cap.replace("/", " per ").replace("7d", "week").replace("1d", "day").replace("30d", "month") : "🕒 no limit", "rule"),
+    chip(d.self_promo_allowed === "no" ? "🚫 no adverts" : d.self_promo_allowed === "limited" ? "📣 a few adverts" : "📣 adverts ok", "rule"),
+    d.link_policy && d.link_policy !== "any" ? chip("🔗 " + d.link_policy.replaceAll("_", " ").replaceAll(";", ", "), "rule") : null,
+    d.disclosure_required ? chip("🤖 AI label needed", "rule") : null,
+    d.language && d.language !== "en" ? chip("🌐 language: " + d.language, "rule") : null,
+  ];
+}
 
 async function loadDestinations() {
   const r = await api("GET", "/api/v1/destinations");
   destinations = (r.data && r.data.destinations) || [];
   renderDestinations();
-  renderPublishDests();
+  renderPicker();
 }
+
+// places created by the Hard cases tab, the batch runner or the reviewer check are throw-away test places
+const isTestPlace = (d) => /^(batch|check|Certification pack) /.test(d.name || "");
 
 function renderDestinations() {
+  const shown = $("destTests").checked ? destinations : destinations.filter((d) => !isTestPlace(d));
+  const hidden = destinations.length - shown.length;
+  const ready = shown.filter((d) => d.status === "certified").length;
+  const kinds = new Set(shown.map((d) => d.connector_key)).size;
+  const person = shown.filter((d) => d.connector_key === "assisted").length;
+  put($("destStats"),
+    el("div", { class: "stat" }, el("div", { class: "n", text: shown.length }),
+      el("div", { class: "l", text: "destinations" + (hidden ? " (" + hidden + " test places hidden)" : "") })),
+    el("div", { class: "stat" }, el("div", { class: "n", text: ready }), el("div", { class: "l", text: "ready (tested)" })),
+    el("div", { class: "stat" }, el("div", { class: "n", text: kinds }), el("div", { class: "l", text: "kinds of platform" })),
+    el("div", { class: "stat" }, el("div", { class: "n", text: person }), el("div", { class: "l", text: "where a person posts" })));
   const q = $("destFilter").value.toLowerCase();
-  const rows = destinations.filter((d) => !q || (d.name + " " + d.connector_key + " " + d.url).toLowerCase().includes(q));
-  const tb = $("destRows");
-  put(tb, );
-  if (!rows.length) { tb.append(el("tr", {}, el("td", { colspan: 7, class: "small", text: "No destinations." }))); return; }
-  for (const d of rows) {
-    const out = el("td", { colspan: 7 });
-    const detail = el("tr", { hidden: "" }, out);
-    const btn = el("button", { class: "ghost", text: "Certify" });
-    btn.addEventListener("click", () => certify(d, btn, detail, out));
-    tb.append(el("tr", {},
-      el("td", {}, el("div", { text: d.name }), el("div", { class: "small", text: d.url })),
-      el("td", {}, el("code", { text: d.connector_key })),
-      el("td", {}, pill(d.level || "L0", "info")),
-      el("td", {}, pill(d.status, stateKind(d.status))),
-      el("td", { class: "small", text: rulesText(d) }),
-      el("td", { class: "small", text: d.last_certified_at ? d.last_certified_at.replace("T", " ").slice(0, 16) : "never" }),
-      el("td", {}, btn)), detail);
-  }
+  const list = shown.filter((d) => !q || (d.name + " " + d.connector_key + " " + (KIND[d.connector_key] || "")).toLowerCase().includes(q));
+  if (!list.length) { put($("destCards"), el("div", { class: "empty", text: "No destinations match." })); return; }
+  put($("destCards"), list.map(destCard));
 }
 
-async function certify(d, btn, detailRow, cell) {
-  btn.disabled = true; btn.textContent = "Certifying…";
-  detailRow.hidden = false; put(cell, el("span", { class: "small", text: "Running the certification job…" }));
+function destCard(d) {
+  const [stText, stKind] = STATUS[d.status] || [d.status, "c-grey"];
+  const out = el("div");
+  const btn = el("button", { class: "btn light small", text: "Test it now" });
+  const last = el("span", { class: "muted", style: "font-size:12.5px", text: "Last tested: " + when(d.last_certified_at) });
+  btn.addEventListener("click", () => certify(d, btn, out, last));
+  return el("div", { class: "card" },
+    el("div", {}, el("h3", { text: d.name }), el("div", { class: "kind", text: KIND[d.connector_key] || d.connector_key })),
+    el("div", { class: "chips" }, chip(stText, stKind), chip((d.level || "L0") + " · " + (LEVEL[d.level] || ""), d.level === "L1" ? "c-person" : "c-brand")),
+    el("div", { class: "chips" }, ruleChips(d)),
+    out,
+    el("div", { class: "foot" }, btn, last));
+}
+
+const STEP_WORDS = { probe: "Platform reachable", publish: "Test post made", get_status: "Post is live", confirm_live_url: "Live link works",
+  fetch_metrics: "Stats read (views, likes…)", delete: "Test post deleted", confirm_deleted: "Deletion confirmed" };
+
+async function certify(d, btn, out, last) {
+  btn.disabled = true; btn.textContent = "Testing…";
+  put(out, el("div", { class: "muted", text: "Making a test post, checking it, then deleting it…" }));
   const job = await waitJob(await api("POST", "/api/v1/destinations/" + d.id + "/certify", { json: {} }));
   const res = (job && job.result) || {};
-  const steps = el("ol", { class: "steps" });
-  for (const s of res.steps || []) {
-    steps.append(el("li", {}, pill(s.ok ? "ok" : "failed", s.ok ? "ok" : "bad"), " ", el("b", { text: s.step }), " ",
-      el("span", { class: "small", text: short(s.result || s.error || "", 140) })));
-  }
-  put(cell, el("div", { class: "row" },
-      pill(res.passed ? "certified " + (res.level || "") : "FAILED", res.passed ? "ok" : "bad"),
-      el("span", { class: "small", text: (res.duration_s !== undefined ? res.duration_s + " s" : "") }),
-      res.error ? el("span", { class: "err", text: (res.error.code || "") + ": " + (res.error.message || "") }) : null),
-    steps,
-    res.evidence_url ? el("a", { href: res.evidence_url, target: "_blank", rel: "noopener", text: "Stored evidence (JSON)" }) : null);
-  btn.disabled = false; btn.textContent = "Certify";
+  put(out,
+    el("div", { class: "big", style: "color:" + (res.passed ? "var(--ok)" : "var(--bad)"),
+      text: res.passed ? "✅ Passed: " + (res.level || "") + " in " + res.duration_s + " s" : "❌ Failed: " + ((res.error && res.error.message) || "see the steps") }),
+    el("ul", { class: "steps" }, (res.steps || []).map((s) =>
+      el("li", {}, el("span", { class: "dot" + (s.ok ? "" : " no"), text: s.ok ? "✓" : "✕" }), STEP_WORDS[s.step] || s.step))),
+    res.evidence_url ? el("a", { href: res.evidence_url, target: "_blank", rel: "noopener", style: "font-size:13px", text: "See the saved proof" }) : null);
+  btn.disabled = false; btn.textContent = "Test again";
   const fresh = (await api("GET", "/api/v1/destinations/" + d.id)).data;
-  if (fresh && fresh.id) Object.assign(d, fresh);
-  const row = detailRow.previousElementSibling;
-  if (row) { put(row.children[2], pill(d.level || "L0", "info")); put(row.children[3], pill(d.status, stateKind(d.status)));
-             row.children[5].textContent = d.last_certified_at ? d.last_certified_at.replace("T", " ").slice(0, 16) : "never"; }
+  if (fresh && fresh.id) { Object.assign(d, fresh); if (last) last.textContent = "Last tested: " + when(d.last_certified_at); }
 }
 $("destReload").addEventListener("click", loadDestinations);
 $("destFilter").addEventListener("input", renderDestinations);
+$("destTests").addEventListener("change", () => { renderDestinations(); renderPicker(); });
 
-// ---------------------------------------------------------------- publish
-function renderPublishDests(selected) {
+// ---------------------------------------------------------------- 2. publish
+function renderPicker(selected) {
   const box = $("pDests");
   const before = new Set([...box.querySelectorAll("input:checked")].map((i) => i.value));
-  put(box, );
-  for (const d of destinations) {
-    const checked = selected ? selected.has(d.id) : before.size ? before.has(d.id) : d.id === "dst_forum_aicreators";
+  put(box, destinations.filter((d) => $("destTests").checked || !isTestPlace(d)).map((d) => {
     const cb = el("input", { type: "checkbox", value: d.id });
-    cb.checked = checked;
-    box.append(el("label", {}, cb, " ", d.name, " ", el("span", { class: "small", text: "(" + d.connector_key + ", " + d.status + ")" })));
-  }
+    cb.checked = selected ? selected.has(d.id) : before.size ? before.has(d.id) : d.id === "dst_forum_aicreators";
+    const [stText] = STATUS[d.status] || [d.status];
+    return el("label", {}, cb, el("span", {}, d.name, " ", el("span", { class: "k", text: "· " + (KIND[d.connector_key] || d.connector_key) + (d.status !== "certified" ? " · " + stText : "") })));
+  }));
 }
 
-function contentFromForm() {
-  const promo = $("pPromo").value;
+function postFromForm() {
   const c = { title: $("pTitle").value, body: $("pBody").value, language: $("pLang").value, ai_generated: $("pAi").checked,
               tags: $("pTags").value.split(",").map((t) => t.trim()).filter(Boolean) };
   if ($("pLink").value.trim()) c.link = $("pLink").value.trim();
-  if (promo) c.promotional = promo === "true";
+  if ($("pPromo").value) c.promotional = $("pPromo").value === "true";
   return c;
 }
 
 const seenJobs = {};
-$("pNewKey").addEventListener("click", () => { $("pKey").value = newKey(); });
 $("pKey").value = newKey();
+$("pNewKey").addEventListener("click", () => { $("pKey").value = newKey(); });
 
 $("pRecommend").addEventListener("click", async () => {
-  const r = await api("POST", "/api/v1/recommendations", { json: { content: contentFromForm(), top_k: 10 } });
+  $("pRecommend").disabled = true;
+  const r = await api("POST", "/api/v1/recommendations", { json: { content: postFromForm(), top_k: 8 } });
+  $("pRecommend").disabled = false;
   const recs = (r.data && r.data.recommendations) || [];
-  const out = $("recoOut");
-  put(out, el("div", { class: "panel" }, el("h2", { text: "Recommended destinations" }),
-    el("p", { class: "hint", text: "Ranked by topic, audience, rules, past results and format. Destinations that would break a rule are excluded with the reason. The top ones are now ticked above." }),
-    el("ol", {}, recs.map((x) => el("li", {}, el("b", { text: x.name }), " ", pill("score " + x.score, "info"), " ",
-      x.route === "assisted" ? pill("a person posts", "warn") : null, el("div", { class: "small", text: x.reason })))),
-    (r.data && r.data.excluded && r.data.excluded.length) ? el("details", {}, el("summary", { text: r.data.excluded.length + " excluded" }),
-      el("ul", { class: "plain small" }, r.data.excluded.slice(0, 30).map((x) => el("li", { text: x.name + ": " + x.reason })))) : null));
-  renderPublishDests(new Set(recs.slice(0, 5).map((x) => x.destination_id)));
+  const excluded = (r.data && r.data.excluded) || [];
+  put($("recoOut"), el("div", { class: "box" }, el("h2", { text: "Suggested places" }),
+    el("p", { class: "sub", text: "Best first, based on topic, audience, rules and past results. The top 5 are now ticked." }),
+    el("ol", { class: "list" }, recs.map((x) => el("li", {}, el("b", { text: x.name }), " ",
+      x.route === "assisted" ? chip("a person posts", "c-person") : null,
+      el("div", { class: "muted", style: "font-size:13px", text: x.reason })))),
+    excluded.length ? el("details", {}, el("summary", { text: excluded.length + " places left out because a rule would be broken" }),
+      el("ul", { class: "list muted" }, excluded.slice(0, 25).map((x) => el("li", { text: x.name + ": " + x.reason.replace(/^rules: /, "") })))) : null));
+  renderPicker(new Set(recs.slice(0, 5).map((x) => x.destination_id)));
 });
+
+function resultCard(r, dry) {
+  let state = r.state === "failed" && r.post_state ? r.post_state : r.state;
+  if (dry) state = "dry_run";
+  const [icon, title, kind] = OUTCOME[state] || ["•", state, "grey"];
+  const err = r.error;
+  const why = r.reason || (err && err.message) || (dry && r.violations && r.violations.length ? r.violations.map((v) => v.message).join("; ") : "");
+  const extraViolations = (r.violations || []).filter((v) => v.message !== r.reason);
+  return el("div", { class: "res " + kind },
+    el("div", { class: "head" }, el("span", { class: "big", text: icon }), el("span", { class: "t", text: dry ? (r.would_post ? "Would be posted" : "Would be blocked") : title }),
+      el("span", { class: "grow" }), el("span", { class: "muted", style: "font-size:13px", text: r.name })),
+    why ? el("div", { class: "why" }, el("b", { text: "Why: " }), why) : null,
+    r.reschedule_at ? el("div", { class: "why" }, el("b", { text: "When: " }), when(r.reschedule_at)) : null,
+    r.live_url ? el("div", { class: "why" }, el("b", { text: "Live at: " }), el("a", { href: r.live_url, target: "_blank", rel: "noopener", text: r.live_url })) : null,
+    (r.warnings && r.warnings.length) ? el("ul", { class: "list" }, r.warnings.map((w) => el("li", { text: "Note: " + w }))) : null,
+    r.assist_pack ? el("div", { class: "why" }, el("b", { text: "For the person posting: " }),
+      r.assist_pack.deep_link ? el("a", { href: r.assist_pack.deep_link, target: "_blank", rel: "noopener", text: "open the posting page" }) : null,
+      el("ul", { class: "list" }, (r.assist_pack.checklist || []).map((c) => el("li", { text: typeof c === "string" ? c : (c.item || JSON.stringify(c)) })))) : null,
+    (r.rendition || extraViolations.length || err) ? el("details", {}, el("summary", { text: "Details" }),
+      r.tailoring_notes && r.tailoring_notes.length ? el("div", { class: "why" }, el("b", { text: "How the post was adapted:" }),
+        el("ul", { class: "list" }, r.tailoring_notes.map((n) => el("li", { text: n })))) : null,
+      extraViolations.length ? el("ul", { class: "list" }, extraViolations.map((v) => el("li", { text: v.message }))) : null,
+      err ? el("div", { class: "why muted" }, "Code: ", el("code", { text: err.code }), err.retryable ? " (will be retried)" : "") : null,
+      r.rendition ? el("pre", { text: (r.rendition.title || "") + "\n\n" + (r.rendition.body || "") }) : null) : null);
+}
 
 $("pGo").addEventListener("click", async () => {
   const ids = [...$("pDests").querySelectorAll("input:checked")].map((i) => i.value);
-  if (!ids.length) { $("pState").textContent = "Pick at least one destination."; return; }
-  $("pGo").disabled = true; $("pState").textContent = "Publishing…";
+  if (!ids.length) { $("pState").textContent = "Tick at least one place."; return; }
+  $("pGo").disabled = true; $("pState").textContent = "Working…";
   const key = $("pKey").value || newKey();
-  const accepted = await api("POST", "/api/v1/publications", {
-    json: { content: contentFromForm(), destination_ids: ids, dry_run: $("pDry").checked },
-    headers: { "Idempotency-Key": key } });
+  const dry = $("pDry").checked;
+  const accepted = await api("POST", "/api/v1/publications", { json: { content: postFromForm(), destination_ids: ids, dry_run: dry },
+                                                              headers: { "Idempotency-Key": key } });
   const jobId = accepted.data && accepted.data.job_id;
   const replay = jobId && seenJobs[key] === jobId;
   if (jobId) seenJobs[key] = jobId;
   const job = await waitJob(accepted);
   $("pGo").disabled = false; $("pState").textContent = "";
-  const out = $("pubOut");
+  $("pubHint").textContent = dry ? "Checked only: nothing was posted." : "What happened at each place:";
   const res = (job && job.result) || {};
-  const panel = el("div", { class: "panel" }, el("div", { class: "row" }, el("h2", { style: "flex:1", text: "Result" }),
-    el("span", { class: "small", text: "key " + $("pKey").value + " · " + Object.entries(res.summary || {}).map(([k, v]) => v + " " + k).join(", ") })));
-  if (replay) panel.append(el("p", {}, pill("same Idempotency-Key", "info"),
-    " The service returned the same job as before: nothing was posted again. Click “New key” for a new publication."));
-  if (accepted.status >= 400) panel.append(el("p", { class: "err", text: short(accepted.data && accepted.data.error, 400) }));
-  if (job && job.status === "failed") panel.append(el("p", { class: "err", text: short(job.error, 400) }));
-  for (const r of res.results || []) {
-    const state = r.state === "failed" && r.post_state ? r.post_state : r.state;
-    const err = r.error || null;
-    const card = el("div", { class: "card" },
-      el("div", { class: "row" }, el("h3", { style: "flex:1", text: r.name }), pill(state, stateKind(state)),
-        r.replayed ? pill("same key: replayed, no second post", "info") : null),
-      r.reason ? el("div", {}, el("b", { text: (r.code || "") + " " }), r.reason) : null,
-      err ? el("div", { class: "err" }, el("b", { text: err.code + " " }), err.message, err.retryable ? " (will be retried)" : "") : null,
-      r.reschedule_at ? el("div", { class: "small", text: "rescheduled to " + r.reschedule_at }) : null,
-      r.live_url ? el("div", {}, "Live: ", el("a", { href: r.live_url, target: "_blank", rel: "noopener", text: r.live_url })) : null,
-      (r.warnings && r.warnings.length) ? el("ul", { class: "plain small" }, r.warnings.map((w) => el("li", { text: "⚠ " + w }))) : null,
-      (r.violations && r.violations.filter((v) => v.message !== r.reason).length) ? el("ul", { class: "plain small" },
-        r.violations.filter((v) => v.message !== r.reason).map((v) => el("li", { text: v.code + " (" + v.rule + "): " + v.message }))) : null,
-      r.assist_pack ? el("details", { open: "" }, el("summary", { text: "Ready-to-post pack for a person" }),
-        r.assist_pack.deep_link ? el("div", {}, "Post it here: ", el("a", { href: r.assist_pack.deep_link, target: "_blank", rel: "noopener", text: r.assist_pack.deep_link })) : null,
-        el("ul", { class: "plain small" }, (r.assist_pack.checklist || []).map((c) => el("li", { text: typeof c === "string" ? c : (c.item || JSON.stringify(c)) })))) : null,
-      r.rendition ? el("details", {}, el("summary", { text: "What was sent (after tailoring)" }),
-        el("ul", { class: "plain small" }, (r.tailoring_notes || []).map((n) => el("li", { text: n }))),
-        el("pre", { text: (r.rendition.title || "") + "\n\n" + (r.rendition.body || "") })) : null);
-    panel.append(card);
-  }
-  put(out, panel);
+  const counts = {};
+  for (const r of res.results || []) { const s = dry ? (r.would_post ? "would post" : "would be blocked") : (OUTCOME[r.state === "failed" && r.post_state ? r.post_state : r.state] || [0, r.state])[1]; counts[s] = (counts[s] || 0) + 1; }
+  put($("pubOut"),
+    replay ? el("div", { class: "res grey", style: "margin-bottom:10px" }, el("div", { class: "t", text: "↩ Same post sent again" }),
+      el("div", { class: "why", text: "You used the same retry key, so the service returned the earlier result and posted nothing new. Click “New key” (under Advanced) for a new post." })) : null,
+    accepted.status >= 400 ? el("p", { class: "err", text: short(accepted.data && accepted.data.error, 300) }) : null,
+    job && job.status === "failed" ? el("p", { class: "err", text: short(job.error, 300) }) : null,
+    Object.keys(counts).length ? el("div", { class: "chips", style: "margin-bottom:10px" }, Object.entries(counts).map(([k, v]) => chip(v + " × " + k, "c-grey"))) : null,
+    (res.results || []).map((r) => resultCard(r, dry)));
   loadDestinations();
 });
 
-// ---------------------------------------------------------------- hard cases (the batch runner's inputs)
+// ---------------------------------------------------------------- 3. hard cases (the batch runner's inputs)
 const PH = /\{\{([^}]+)\}\}/g;
 const lookup = (ctx, dotted) => dotted.trim().split(".").reduce((cur, part) => {
   if (cur === undefined || cur === null) throw new Error("missing " + dotted);
@@ -387,37 +501,49 @@ function fill(v, ctx) {
   if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x, ctx)]));
   return v;
 }
-function stepSummary(body) {
-  if (!body || typeof body !== "object") return short(body, 120);
-  const r = body.result || body;
-  if (body.pending_faults) return "fault armed: " + body.pending_faults.map((f) => f.kind + " on " + f.op).join(", ");
-  if (r.replayed !== undefined) return r.replayed ? "replayed: the same post came back, no second post" : "posted again (" + (r.state || "") + ")";
-  if (r.results && r.results[0]) { const x = r.results[0]; return [x.state, x.code, x.error && x.error.code, x.reason].filter(Boolean).join(" · "); }
-  if (r.passed !== undefined) return (r.passed ? "certified " + (r.level || "") : "certification failed") + (r.error ? " · " + (r.error.details && r.error.details.cause || r.error.code) : "");
-  if (r.summary) return Object.entries(r.summary).filter(([k]) => ["rows", "duplicates", "errors", "unreachable"].includes(k)).map(([k, v]) => k + " " + v).join(", ");
-  if (body.error) return body.error.code + ": " + body.error.message;
-  if (body.status && body.id) return "status " + body.status;
-  if (body.posts_live !== undefined) return "posts on the platform: " + body.posts_live;
-  return short(body, 120);
+function stepWords(method, path, body) {
+  const r = (body && body.result) || body || {};
+  if (path.endsWith("/connections")) return "Log in to the test platform";
+  if (path.endsWith("/destinations") && method === "POST") return "Add a throw-away place";
+  if (path.includes("/certify")) return r.passed === undefined ? "Test the place" : r.passed ? "Test the place: passed (" + (r.level || "") + ")"
+    : "Test the place: failed" + (r.error && r.error.details && r.error.details.cause ? " (" + r.error.details.cause.replaceAll("_", " ").toLowerCase() + ")" : "");
+  if (path.endsWith("/sim/faults")) return "Cause the problem on purpose: " + ((body.pending_faults || [])[0] || {}).kind?.replaceAll("_", " ");
+  if (path.endsWith("/sim/state")) return "Count posts on the platform: " + body.posts_live;
+  if (path.includes("/retry")) return r.replayed ? "Retry with the same key: the same post came back, no duplicate" : "Retry";
+  if (path.endsWith("/publications")) {
+    const x = (r.results || [])[0] || {};
+    const s = x.state === "failed" && x.post_state ? x.post_state : x.state;
+    return "Publish: " + ((OUTCOME[s] || [0, s])[1] || "") + (x.reason ? " (" + short(x.reason, 90) + ")" : x.error ? " (" + x.error.code + ")" : "");
+  }
+  if (path.includes("/imports")) { const s = r.summary || {}; return "Import the spreadsheet: " + s.rows + " rows, " + s.duplicates + " duplicate, " + s.errors + " with errors"; }
+  if (path.includes("/rules/capture")) return "AI reads the rules page and proposes rules";
+  if (path.includes("/confirm")) return "A person approves the rules";
+  if (path.includes("/recommendations")) return "Suggest places: " + ((r.recommendations || []).length) + " ranked";
+  if (path.includes("/validate")) return "Check against the platform's limits: " + (body.ok ? "ok" : "problem found");
+  if (path.includes("/tickets")) return "Check that a ticket was opened";
+  if (path.includes("/destinations/") && method === "GET") return "Look at the place: " + ((STATUS[body.status] || [body.status])[0]);
+  if (path.includes("/tailor")) return "Adapt the post for the place";
+  if (body && body.error) return method + " " + path + ": " + body.error.code;
+  return method + " " + path.replace(/\?.*/, "");
 }
 
-async function runScenario(name, box, btn) {
-  btn.disabled = true;
+async function runScenario(name, row) {
+  const btn = row.querySelector("button"), num = row.querySelector(".num"), box = row.querySelector(".out");
+  btn.disabled = true; btn.textContent = "Running…"; num.className = "num";
   const sc = (await api("GET", "/ui/scenarios/" + encodeURIComponent(name))).data;
   const ctx = { run: Math.random().toString(36).slice(2, 10) };
-  const list = el("ol", { class: "steps small" });
-  put(box, list);
+  const steps = el("ul", { class: "steps" });
   let ok = true;
   for (const raw of sc.steps || []) {
     let step;
-    try { step = fill(raw, ctx); } catch (e) { list.append(el("li", { class: "err", text: "cannot fill this step from earlier steps: " + e.message })); ok = false; break; }
-    if (step.sleep) { await new Promise((r) => setTimeout(r, 1000 * step.sleep)); continue; }
+    try { step = fill(raw, ctx); } catch (e) { steps.append(el("li", { class: "err", text: "Could not continue: " + e.message })); ok = false; break; }
+    if (step.sleep) { await sleep(1000 * step.sleep); continue; }
     const method = (step.method || "POST").toUpperCase();
     let resp;
     if (step.upload) {
-      const blob = await (await fetch("/ui/files/" + step.upload.split("/").pop())).blob();
+      const fname = step.upload.split("/").pop();
       const fd = new FormData();
-      fd.append("file", blob, step.upload.split("/").pop());
+      fd.append("file", await (await fetch("/ui/files/" + fname)).blob(), fname);
       for (const [k, v] of Object.entries(step.form || {})) fd.append(k, String(v));
       resp = await api(method, step.path, { form: fd, headers: step.headers || {} });
     } else {
@@ -425,96 +551,107 @@ async function runScenario(name, box, btn) {
     }
     let body = resp.data;
     if (step.wait !== false && resp.status === 202 && body && body.job_id) body = await waitJob(resp);
-    let stepOk = !(step.expect_status && resp.status !== step.expect_status);
-    const checks = [];
+    let good = !(step.expect_status && resp.status !== step.expect_status);
     for (const [dotted, want] of Object.entries(step.expect || {})) {
-      let got; try { got = lookup({ body }, "body." + dotted); } catch { got = "<missing>"; }
-      const good = JSON.stringify(got) === JSON.stringify(want);
-      stepOk = stepOk && good;
-      checks.push(el("span", { class: "pill " + (good ? "ok" : "bad"), text: dotted + " = " + short(got, 40) }));
+      let got; try { got = lookup({ body }, "body." + dotted); } catch { got = undefined; }
+      good = good && JSON.stringify(got) === JSON.stringify(want);
     }
-    ok = ok && stepOk;
-    list.append(el("li", {}, pill(stepOk ? "ok" : "not as expected", stepOk ? "ok" : "bad"), " ",
-      el("code", { text: method + " " + step.path.replace(/\?.*/, "") }), " ", el("span", { text: "HTTP " + resp.status + " · " + stepSummary(body) + " " }), checks));
+    ok = ok && good;
+    steps.append(el("li", {}, el("span", { class: "dot" + (good ? "" : " no"), text: good ? "✓" : "✕" }), stepWords(method, step.path, body || {})));
     if (step.save_as) ctx[step.save_as] = body;
   }
-  box.prepend(el("div", {}, pill(ok ? "handled as expected" : "NOT as expected", ok ? "ok" : "bad")));
-  btn.disabled = false;
+  num.className = "num " + (ok ? "ok" : "bad"); num.textContent = ok ? "✓" : "✕";
+  put(box, el("div", { class: "big", style: "margin-top:8px;color:" + (ok ? "var(--ok)" : "var(--bad)"), text: ok ? "Handled correctly" : "Not handled as expected" }),
+    el("details", {}, el("summary", { text: "Show the " + steps.children.length + " steps" }), steps));
+  btn.disabled = false; btn.textContent = "Run again";
   return ok;
 }
 
 async function loadScenarios() {
   const r = await api("GET", "/ui/scenarios");
-  const host = $("hList");
-  put(host, );
-  for (const s of (r.data && r.data.scenarios) || []) {
-    const box = el("div", { style: "margin-top:6px" });
-    const btn = el("button", { class: "ghost", text: "Run" });
-    btn.addEventListener("click", () => runScenario(s.name, box, btn));
-    host.append(el("div", { class: "card", "data-name": s.name }, el("div", { class: "row" },
-      el("h3", { style: "flex:1", text: s.name.replace(/^\d+_/, "").replaceAll("_", " ") }), el("span", { class: "small", text: s.steps + " steps" }), btn),
-      el("div", { class: "small", text: s.description }), box));
-  }
+  const list = (r.data && r.data.scenarios) || [];
+  put($("hList"), list.map((s) => {
+    const n = s.name.slice(0, 2);
+    const [title, expect] = CASES[n] || [s.name.replace(/^\d+_/, "").replaceAll("_", " "), s.description];
+    const row = el("div", { class: "case", "data-name": s.name },
+      el("div", { class: "num", text: String(parseInt(n, 10)) }),
+      el("div", {}, el("h3", { text: title }), el("div", { class: "expect", text: "What should happen: " + expect }), el("div", { class: "out" })),
+      el("button", { class: "btn light small", text: "Run" }));
+    row.querySelector("button").addEventListener("click", () => runScenario(s.name, row));
+    return row;
+  }));
 }
 $("hAll").addEventListener("click", async () => {
   $("hAll").disabled = true;
-  let good = 0, all = 0;
-  for (const card of $("hList").children) {
-    const btn = card.querySelector("button"); const box = card.lastChild;
-    const name = card.dataset.name;
-    all++; if (await runScenario(name, box, btn)) good++;
-    $("hAll").textContent = "Running… " + all;
+  const rows = [...$("hList").querySelectorAll(".case")];
+  let good = 0;
+  for (const [i, row] of rows.entries()) {
+    $("hScore").textContent = "Running " + (i + 1) + " of " + rows.length + "…";
+    if (await runScenario(row.dataset.name, row)) good++;
   }
-  $("hAll").textContent = "Run all (" + good + "/" + all + " as expected)";
-  $("hAll").disabled = false;
+  $("hScore").textContent = good + " of " + rows.length + " handled correctly";
+  $("hAll").disabled = false; $("hAll").textContent = "Run all again";
   loadDestinations();
 });
 
-// ---------------------------------------------------------------- catalogue
+// ---------------------------------------------------------------- 4. catalogue
+let chosen = null;
+function choose(file) { chosen = file; $("cName").textContent = file ? "Selected: " + file.name : ""; }
+$("cFile").addEventListener("change", () => choose($("cFile").files[0]));
+const drop = $("drop");
+["dragenter", "dragover"].forEach((e) => drop.addEventListener(e, (ev) => { ev.preventDefault(); drop.classList.add("over"); }));
+["dragleave", "drop"].forEach((e) => drop.addEventListener(e, (ev) => { ev.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", (ev) => { if (ev.dataTransfer.files[0]) choose(ev.dataTransfer.files[0]); });
+
+const ROW_STATUS = { valid: ["Good", "c-ok"], created: ["Added", "c-ok"], updated: ["Updated", "c-ok"], duplicate: ["Duplicate", "c-warn"], error: ["Problem", "c-bad"] };
 async function importCsv(blob, filename) {
   const fd = new FormData();
   fd.append("file", blob, filename);
   fd.append("commit", $("cCommit").checked ? "true" : "false");
   $("cGo").disabled = true;
-  put($("cOut"), el("p", { class: "small", text: "Importing " + filename + "… (reachability is checked for real; this can take a little while)" }));
+  put($("cOut"), el("div", { class: "box" }, el("div", { class: "muted", text: "Checking " + filename + "… links are checked for real, so this can take a little while." })));
   const job = await waitJob(await api("POST", "/api/v1/catalogue/imports/upload", { form: fd }));
   $("cGo").disabled = false;
   const res = (job && job.result) || {};
-  const s = res.summary || {};
-  if (!res.summary) { put($("cOut"), el("p", { class: "err", text: short(job && (job.error || job), 400) })); return; }
+  const s = res.summary;
+  if (!s) { put($("cOut"), el("div", { class: "box err", text: "The file could not be checked: " + short(job && (job.error || job), 300) })); return; }
   const rows = res.rows_preview || [];
-  put($("cOut"), 
-    el("div", { class: "row", style: "margin:12px 0" }, ["rows", "created", "updated", "duplicates", "errors", "unreachable", "with_warnings"]
-      .map((k) => pill(k.replace("_", " ") + ": " + (s[k] ?? 0), k === "errors" || k === "unreachable" ? (s[k] ? "bad" : "ok") : k === "duplicates" ? "warn" : "info")),
-      el("span", { class: "small", text: s.seconds + " s" })),
-    el("div", { class: "row" }, res.links && res.links.report_csv ? el("a", { href: res.links.report_csv, target: "_blank", rel: "noopener", text: "Row-by-row report (CSV)" }) : null,
-      res.links && res.links.report_json ? el("a", { href: res.links.report_json, target: "_blank", rel: "noopener", text: "Report (JSON)" }) : null),
-    el("div", { class: "tablewrap" }, el("table", {}, el("thead", {}, el("tr", {}, ["Row", "URL", "Status", "Problems", "Relevance"].map((h) => el("th", { text: h })))),
-      el("tbody", {}, rows.map((r) => el("tr", {}, el("td", { text: r.row }), el("td", { class: "small", text: r.url }),
-        el("td", {}, pill(r.status + (r.duplicate_of_row ? " of row " + r.duplicate_of_row : ""), r.status === "error" ? "bad" : r.status === "duplicate" ? "warn" : "ok")),
-        el("td", { class: "small", text: [...(r.errors || []), ...(r.warnings || [])].join("; ") }),
-        el("td", { class: "small", text: r.relevance_score ? r.relevance_score + "/5 " + (r.relevance_reason || "") : "" })))))),
-    rows.length < (s.rows || 0) ? el("p", { class: "small", text: "Showing the first " + rows.length + " rows; the report has all of them." }) : null);
+  const stat = (n, l) => el("div", { class: "stat" }, el("div", { class: "n", text: n ?? 0 }), el("div", { class: "l", text: l }));
+  put($("cOut"),
+    el("div", { class: "stats" }, stat(s.rows, "rows in the file"), stat((s.rows || 0) - (s.duplicates || 0) - (s.errors || 0), "good rows"),
+      stat(s.duplicates, "duplicates"), stat(s.errors, "rows with a problem"), stat(s.unreachable, "links that did not answer"),
+      $("cCommit").checked ? stat((s.created || 0) + (s.updated || 0), "added to destinations") : null),
+    el("div", { class: "box" },
+      el("div", { class: "toolbar" }, el("h2", { class: "grow", style: "margin:0", text: "Row by row" }),
+        res.links && res.links.report_csv ? el("a", { href: res.links.report_csv, target: "_blank", rel: "noopener", text: "Download the full report (CSV)" }) : null),
+      el("div", { class: "tablewrap" }, el("table", {},
+        el("thead", {}, el("tr", {}, ["Row", "Link", "Result", "What the service says", "Relevance"].map((h) => el("th", { text: h })))),
+        el("tbody", {}, rows.map((r) => {
+          const [t, k] = ROW_STATUS[r.status] || [r.status, "c-grey"];
+          return el("tr", {}, el("td", { text: r.row }), el("td", { style: "word-break:break-all", text: r.url }),
+            el("td", {}, chip(t + (r.duplicate_of_row ? " of row " + r.duplicate_of_row : ""), k)),
+            el("td", { text: [...(r.errors || []), ...(r.warnings || [])].join("; ") || "—" }),
+            el("td", { text: r.relevance_score ? r.relevance_score + " / 5" : "—", title: r.relevance_reason || "" }));
+        })))),
+      rows.length < (s.rows || 0) ? el("p", { class: "help", text: "Showing the first " + rows.length + " rows; the downloaded report has all " + s.rows + "." }) : null));
   if ($("cCommit").checked) loadDestinations();
 }
 $("cGo").addEventListener("click", () => {
-  const f = $("cFile").files[0];
-  if (!f) { put($("cOut"), el("p", { class: "small", text: "Choose a CSV file first, or try the sample." })); return; }
-  importCsv(f, f.name);
+  if (!chosen) { $("cName").textContent = "Choose or drop a CSV file first, or try the messy sample."; return; }
+  importCsv(chosen, chosen.name);
 });
 $("cSample").addEventListener("click", async () => importCsv(await (await fetch("/ui/files/messy_destinations.csv")).blob(), "messy_destinations.csv"));
 $("cExport").addEventListener("click", async () => {
-  const token = $("token").value || store.get("ibx-token");
+  const token = store.get("ibx-token");
   const r = await fetch("/api/v1/catalogue/export.csv", { headers: token ? { Authorization: "Bearer " + token } : {} });
   const url = URL.createObjectURL(await r.blob());
-  el("a", { href: url, download: "catalogue.csv" }).click();
+  el("a", { href: url, download: "destinations.csv" }).click();
   setTimeout(() => URL.revokeObjectURL(url), 5000);
 });
 
 // ---------------------------------------------------------------- start
-loadStatus();
-loadDestinations();
-loadScenarios();
+function loadAll() { loadStatus(); loadDestinations(); loadScenarios(); }
+loadAll();
 </script>
 </body>
 </html>

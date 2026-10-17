@@ -87,7 +87,7 @@ Open **http://localhost:8080/** in a browser (light mode: `start-light.ps1`, or 
 
 | Tab | What you can do |
 |---|---|
-| Destinations | every destination with its level, status and posting rules; **Certify** runs a certification and shows each step (publish, live URL, status, metrics, delete, deletion confirmed) |
+| Destinations | every place with what kind it is, whether it is Ready, its level in plain words and its rules; **Test it now** runs a certification and shows each step (test post made, live, link works, stats read, deleted, deletion confirmed) |
 | Publish | write a post, let the recommender pick destinations, publish or dry-run, and see per destination what was sent after tailoring and whether it was published, blocked or rescheduled, and why; send the same idempotency key again to see that nothing is posted twice |
 | Hard cases | runs the 17 batch inputs from `batch_inputs/` one by one or all at once, showing every step and check (each creates its own mock destination, so nothing real is touched) |
 | Catalogue | upload a CSV (or the messy sample) and see the row-by-row report: duplicates, invalid rows, reachability, relevance |
