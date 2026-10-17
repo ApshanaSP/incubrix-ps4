@@ -244,3 +244,22 @@ Zenn,https://zenn.dev,devblog,assisted,developer_blog,ai;saas,ja,https://zenn.de
 TabNews,https://www.tabnews.com.br,devblog,assisted,developer_blog,ai;saas,pt,https://www.tabnews.com.br/termos-de-uso,,Brazilian developer and founder news
 Journal du Hacker,https://www.journalduhacker.net,devblog,assisted,developer_blog,ai;saas,fr,https://www.journalduhacker.net/about,,French tech link aggregator
 velog,https://velog.io,devblog,assisted,developer_blog,ai;saas,ko,,,Korean developer blogs
+rankett.net (PeerTube),https://rankett.net,peertube,assisted,video_platform,video;creators,en,https://rankett.net/api/v1/config/about,,A video-sharing platform dedicated to musicians and all creative artists; a person uploads
+tv.lumbung.space (PeerTube),https://tv.lumbung.space,peertube,assisted,video_platform,video;creators,en,https://tv.lumbung.space/api/v1/config/about,,"Live streaming, video archiving, video publishing and podcast hosting for the lumbung artists network!; a person uploads"
+Hardlimit (PeerTube),https://video.hardlimit.com,peertube,assisted,video_platform,video;saas,en,https://video.hardlimit.com/api/v1/config/about,,"Computers, hardware, software and gaming in Spanish and English; a person uploads"
+fairtube (PeerTube),https://fair.tube,peertube,assisted,video_platform,video;saas,en,https://fair.tube/api/v1/config/about,,EN: Federated video publishing and streaming platform using peer-to-peer distribution based on PeerTube with a content f; a person uploads
+GEEK Tube (PeerTube),https://videos.maitregeek.eu,peertube,assisted,video_platform,video;saas,en,https://videos.maitregeek.eu/api/v1/config/about,,"MaîtreGEEK Videos self-hosted, decentralized tutorials about tech and video games!; a person uploads"
+My Sunshine Video (PeerTube),https://my-sunshine.video,peertube,assisted,video_platform,video;saas,en,https://my-sunshine.video/api/v1/config/about,,"Video sharing using the free, open source PeerTube application! There are no ads, no tracking, and no spam! 無料の動画アプリ「Pee; a person uploads"
+sh.itjust.works c/imageai,https://sh.itjust.works/c/imageai,lemmy,lemmy,community,ai,en,,imageai,AI Generated Images (8540 subscribers)
+lemmy.ml c/photography,https://lemmy.ml/c/photography,lemmy,lemmy,community,creators,en,,photography,Photography (7605 subscribers)
+programming.dev c/auai,https://programming.dev/c/auai,lemmy,lemmy,community,ai,en,,auai,Actually Useful AI (3349 subscribers)
+lemmy.ml c/peertube,https://lemmy.ml/c/peertube,lemmy,lemmy,community,video,en,,peertube,Peertube (2741 subscribers)
+sh.itjust.works c/musicproduction,https://sh.itjust.works/c/musicproduction,lemmy,lemmy,community,creators,en,,musicproduction,Music Production (1256 subscribers)
+lemmy.zip c/vgartwork,https://lemmy.zip/c/vgartwork,lemmy,lemmy,community,video,en,,vgartwork,Video Game Artwork (821 subscribers)
+sh.itjust.works c/youtubeclassics,https://sh.itjust.works/c/youtubeclassics,lemmy,lemmy,community,video,en,,youtubeclassics,YouTube Classics (711 subscribers)
+sh.itjust.works c/learnmachinelearning,https://sh.itjust.works/c/learnmachinelearning,lemmy,lemmy,community,ai,en,,learnmachinelearning,Learn Machine Learning (603 subscribers)
+lemmy.zip c/videogamesuggestions,https://lemmy.zip/c/videogamesuggestions,lemmy,lemmy,community,video,en,,videogamesuggestions,Video Game Suggestions (547 subscribers)
+programming.dev c/game_design,https://programming.dev/c/game_design,lemmy,lemmy,community,creators,en,,game_design,Game Design (474 subscribers)
+programming.dev c/ddd,https://programming.dev/c/ddd,lemmy,lemmy,community,creators,en,,ddd,Domain-Driven Design (307 subscribers)
+lemmy.blahaj.zone c/AntiAI,https://lemmy.blahaj.zone/c/AntiAI,lemmy,lemmy,community,ai,en,,AntiAI,Anti-AI (192 subscribers)
+lemmy.sdf.org c/linux_video_editing,https://lemmy.sdf.org/c/linux_video_editing,lemmy,lemmy,community,video,en,,linux_video_editing,Linux Video Editing (150 subscribers)

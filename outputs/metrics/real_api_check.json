@@ -1,0 +1,71 @@
+{
+  "checked_at": "2026-10-17T23:37:21",
+  "results": [
+    {
+      "platform": "discourse",
+      "ok": true,
+      "seconds": 8.65,
+      "instance": "https://meta.discourse.org",
+      "post": "1|https://meta.discourse.org",
+      "certify_probe": {
+        "ok": true,
+        "members": 69082
+      },
+      "get_status": {
+        "status": "live",
+        "live_url": "https://meta.discourse.org/t/new-to-discourse-start-here/1"
+      },
+      "fetch_metrics": {
+        "views": 120316,
+        "likes": 446,
+        "comments": 5,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "platform": "devto",
+      "ok": true,
+      "seconds": 2.98,
+      "instance": "https://dev.to",
+      "post": "4863859|https://dev.to",
+      "get_status": {
+        "status": "live",
+        "live_url": "https://dev.to/devengers/dev-opportunity-radar-21-500k-y-combinator-funding-bolt-builders-week-and-ai-safety-research-12b8"
+      },
+      "note": "fetch_metrics reads the account's own articles (needs its key), not checked"
+    },
+    {
+      "platform": "lemmy",
+      "ok": true,
+      "seconds": 6.26,
+      "instance": "https://lemmy.world",
+      "post": "53254352|https://lemmy.world",
+      "community_id_lookup": 2478,
+      "get_status": {
+        "status": "live",
+        "live_url": "https://lemmy.zip/post/73413891"
+      },
+      "fetch_metrics": {
+        "views": 0,
+        "likes": 45,
+        "comments": 0,
+        "shares": 0,
+        "saves": 0,
+        "watch_time_s": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "platform": "hashnode",
+      "ok": true,
+      "seconds": 0.66,
+      "instance": "https://gql.hashnode.com",
+      "finding": "Hashnode's GraphQL API needs a Pro plan on the publication since 13 May 2026 (https://hashnode.com/changelog/2026-05-13-graphql-api-paid-access); upgrade the publication, or post there through the assisted pack",
+      "code": "PLATFORM_UNAVAILABLE",
+      "handled": "the connector stops with this reason instead of crashing or retrying"
+    }
+  ]
+}

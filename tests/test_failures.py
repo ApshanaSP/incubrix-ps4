@@ -123,3 +123,25 @@ def test_hard_delete_within_ten_minutes_on_certification(client):
     certs = client.get("/api/v1/certifications").json()["certifications"]
     passed = [c for c in certs if c["status"] == "passed"]
     assert passed and max(c["duration_s"] for c in passed) < 600
+
+
+def test_redirected_or_html_api_answer_is_a_clear_error(monkeypatch):
+    """A moved API (3xx) or a web page instead of JSON stops with a reason instead of crashing or retrying."""
+    import asyncio
+
+    import httpx
+
+    from app.connectors import http as platform_http
+    from app.errors import ConnectorError
+
+    answers = iter([httpx.Response(301, headers={"location": "https://example.com/announcement"}),
+                    httpx.Response(200, text="<html><body>Checking your browser</body></html>",
+                                   headers={"content-type": "text/html"})])
+    monkeypatch.setattr(platform_http, "_transport_for", lambda url: httpx.MockTransport(lambda req: next(answers)))
+    client = platform_http.PlatformHTTP("hashnode", "redirect-check")
+    for cause in ("API_MOVED", "NOT_AN_API_RESPONSE"):
+        try:
+            asyncio.run(client.request("POST", "https://gql.example.mock/", json={}))
+            raise AssertionError("no error")
+        except ConnectorError as exc:
+            assert exc.code == "PLATFORM_UNAVAILABLE" and exc.retryable is False and exc.details["cause"] == cause

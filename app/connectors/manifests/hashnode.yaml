@@ -2,6 +2,8 @@ key: hashnode
 version: 1.0.0
 tier: native
 auth: api_key
+# since 2026-05-13 every Hashnode GraphQL call needs a Pro plan on the publication (checked 2026-10-17)
+access_requirement: Hashnode Pro plan on the publication
 surfaces:
   - key: article
     content_types: [text, image, video_link]

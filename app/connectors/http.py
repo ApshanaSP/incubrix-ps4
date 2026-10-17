@@ -219,7 +219,26 @@ class PlatformHTTP:
                     await asyncio.sleep(wait)
                     continue
                 raise self._mapped(resp, retry_after=wait)
+            if 300 <= resp.status_code < 400:
+                # an API call that is redirected means the API moved or its access rules changed (for example
+                # Hashnode's GraphQL API, which since May 2026 redirects to its paid-plan announcement)
+                loc = resp.headers.get("location", "")
+                raise ConnectorError(
+                    "PLATFORM_UNAVAILABLE",
+                    f"the platform redirected this API call to {loc or 'another address'}: its API moved or its access "
+                    "rules changed, so the call was not repeated",
+                    retryable=False, details={"http_status": resp.status_code, "location": loc, "cause": "API_MOVED"},
+                )
             if resp.status_code in expect:
+                if resp.content and "html" in resp.headers.get("content-type", "").lower():
+                    # a login wall, bot protection or a moved API answered with a web page, not the API
+                    raise ConnectorError(
+                        "PLATFORM_UNAVAILABLE",
+                        "the platform answered with a web page instead of its API (a login wall, bot protection or a "
+                        "moved API)", retryable=False,
+                        details={"http_status": resp.status_code, "cause": "NOT_AN_API_RESPONSE",
+                                 "outcome_unknown": method != "GET"},
+                    )
                 reset_breaker(self.connector_key, self.scope)
                 return resp
             if resp.status_code >= 500:

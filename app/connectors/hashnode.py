@@ -29,8 +29,19 @@ class HashnodeConnector(Connector):
         return url.rstrip("/")
 
     async def _gql(self, api: str, connection: Connection, query: str, variables: dict[str, Any]) -> dict[str, Any]:
-        resp = await self.http(api).request("POST", f"{api}/", json={"query": query, "variables": variables},
-                                            headers={"Authorization": self.credential(connection, "token")})
+        try:
+            resp = await self.http(api).request("POST", f"{api}/", json={"query": query, "variables": variables},
+                                                headers={"Authorization": self.credential(connection, "token")})
+        except ConnectorError as exc:
+            if (exc.details or {}).get("cause") == "API_MOVED":
+                # checked on 17 Oct 2026 (tools/check_real_apis.py): gql.hashnode.com redirects every call
+                raise ConnectorError(
+                    "PLATFORM_UNAVAILABLE",
+                    "Hashnode's GraphQL API needs a Pro plan on the publication since 13 May 2026 "
+                    "(https://hashnode.com/changelog/2026-05-13-graphql-api-paid-access); upgrade the publication, "
+                    "or post there through the assisted pack", retryable=False,
+                    details={**(exc.details or {}), "cause": "API_REQUIRES_PAID_PLAN"}) from None
+            raise
         data = resp.json()
         if data.get("errors"):
             err = data["errors"][0]

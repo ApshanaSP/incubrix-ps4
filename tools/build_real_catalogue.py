@@ -41,6 +41,25 @@ SEED = ROOT / "research_seed.csv"
 OUT_CSV = ROOT / "real_catalogue.csv"
 OUT_EVIDENCE = ROOT / "real_catalogue_evidence.json"
 CACHE = ROOT / ".ai_cache.json"
+# rules a person copied from a site that bots may not read (robots.txt) or that renders them with JavaScript:
+# one text file per destination, named after it (see slug()); first line may be "source: <url>"
+PASTED = ROOT / "pasted_rules"
+
+
+def slug(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def pasted_rules(name: str) -> tuple[str, str] | None:
+    f = PASTED / f"{slug(name)}.txt"
+    if not f.exists():
+        return None
+    text = f.read_text(encoding="utf-8").strip()
+    source = "pasted by a person"
+    first, _, rest = text.partition("\n")
+    if first.lower().startswith("source:"):
+        source, text = f"pasted by a person from {first.split(':', 1)[1].strip()}", rest.strip()
+    return (text[:7000], source) if len(text) > 80 else None
 
 # a sentence only the built-in mock site's rules page contains; it must never appear in real research
 MOCK_RULES_MARKER = "Members may post at most one link post per week."
@@ -114,8 +133,11 @@ async def discourse_members(client: httpx.AsyncClient, url: str) -> int | None:
 async def gather_row(client: httpx.AsyncClient, row: dict[str, str]) -> dict[str, Any]:
     info: dict[str, Any] = {"row": row, "reachable": "", "members": None, "rules_text": "", "rules_from": ""}
     url = row["url"]
+    pasted = pasted_rules(row["name"])
     if row["platform_key"] == "reddit":
         info["reachable"] = "not checked: reddit robots.txt disallows automated access"
+        if pasted:
+            info["rules_text"], info["rules_from"] = pasted
         return info
     try:
         if row["platform_key"] == "lemmy":
@@ -143,7 +165,21 @@ async def gather_row(client: httpx.AsyncClient, row: dict[str, str]) -> dict[str
         if row["platform_key"] == "discourse":
             info["members"] = await discourse_members(client, url)
         rules_url = row.get("rules_url")
-        if rules_url:
+        if pasted:
+            info["rules_text"], info["rules_from"] = pasted
+        elif row["platform_key"] == "peertube" and rules_url and rules_url.endswith("/api/v1/config/about"):
+            # PeerTube publishes its terms, code of conduct and moderation rules in its public config API
+            try:
+                about = (await client.get(rules_url)).json().get("instance") or {}
+                text = "\n\n".join(f"{k}:\n{about[k]}" for k in ("terms", "codeOfConduct", "moderationInformation")
+                                   if about.get(k))
+                if len(text) > 200:
+                    info["rules_text"], info["rules_from"] = text[:7000], rules_url
+                else:
+                    info["rules_note"] = "instance publishes too little rules text"
+            except (httpx.HTTPError, ValueError) as exc:
+                info["rules_note"] = f"could not read the instance rules: {type(exc).__name__}"
+        elif rules_url:
             try:
                 _, text = await fetch_page_text(rules_url, max_chars=7000)
                 if MOCK_RULES_MARKER in text:
@@ -273,7 +309,7 @@ async def main() -> int:
             # no quote could be found on the page: the AI's rules cannot be trusted, use strict defaults
             ai = {**ai, "ai_error": "no AI quote was found on the rules page"}
         if info["rules_text"] and not ai.get("ai_error"):
-            source = "ai_from_rules_page"
+            source = "ai_from_pasted_rules" if str(info.get("rules_from", "")).startswith("pasted by a person") else "ai_from_rules_page"
             # rules the page does not mention stay strict; a person confirms them
             filled = {k: (v if v is not None else CONSERVATIVE[k]) for k, v in rules.items()}
             defaulted = [k for k, v in rules.items() if v is None]

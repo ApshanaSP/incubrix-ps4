@@ -5,6 +5,7 @@ A containerised connector service that takes IncuBrix publishing beyond the big 
 It provides:
 
 - **Nine connectors on one contract** (Appendix A): Discourse, Lemmy, Dev.to (any Forem), Ghost, a signed partner webhook, an assisted tier (a ready-to-post pack for a person), Hashnode, Slack app, and an MRSS video feed.
+- **Checked against the real platforms** (read-only, `python -m tools.check_real_apis`): the Discourse, Dev.to and Lemmy connectors read real public posts with their own code. Hashnode retired its free API on 13 May 2026 (every call needs a Pro plan on the publication); the connector stops with that reason instead of failing silently.
 - **Configuration, not code:** one connector serves every instance. Adding forum number 41 is one catalogue row.
 - **Posting rules checked before every post:** frequency cap, self-promotion, links, AI disclosure, automation permission and language. A post that breaks a rule is blocked or rescheduled, with the reason.
 - **Certification:** a destination is used only after a real test post is published, its live URL confirmed, its status read, its metrics read where supported, and the post deleted, with stored evidence. A scheduler re-tests destinations before 30 days and demotes any that fail.
