@@ -50,7 +50,7 @@ This is what makes "the same key never creates a second post, even after a timeo
 | Catalogue import | Validate, de-duplicate (normalised URL + platform), reachability, enrichment (Discourse/Lemmy member counts), language detection, relevance, row-by-row report | `tests/test_catalogue.py`, batch input 12 |
 | AI rules capture with human confirmation | Groq `gpt-oss-120b` proposes rules with quotes; posting is blocked until a person confirms | batch input 16 |
 | Relevance 1-5 with a reason | AI or heuristic | `/api/v1/relevance` |
-| Tailoring | Forum discussion-first, canonical URL for articles, word-boundary truncation, tag and hashtag style, mentions, localised AI disclosure | `tests/test_rules.py`, `tests/test_catalogue.py::test_tailoring_styles` |
+| Tailoring | Forum discussion-first (the question varies per post), canonical URL for articles, word-boundary truncation, tag and hashtag style (a trailing hashtag block is removed), mentions, localised AI disclosure | `tests/test_rules.py`, `tests/test_catalogue.py::test_tailoring_styles` |
 | Recommender, metrics, recertification, real catalogue | See sections 4 and 5 | |
 | Integration Standard 1-10 | All 10 | `tests/test_integration.py` |
 
@@ -64,6 +64,9 @@ This is what makes "the same key never creates a second post, even after a timeo
 - **Reconciliation after a timeout matches on title for platforms without metadata** (Discourse, Lemmy, Dev.to, Ghost, Hashnode). Two different posts with the same title inside the lookup window could be confused. Slack (message metadata) and the partner webhook (idempotency-key lookup) are exact.
 - **Antivirus inside Docker builds.** On the development PC, Avast re-signs HTTPS, so `pip install` inside the image build failed certificate checks. The Dockerfile accepts an optional build secret `extra_ca` (a no-op when absent, as on a clean machine); the PC passes Avast's root through a git-ignored `docker-compose.override.yml`.
 - **Import by URL of our own upload link failed inside compose** (the link's host, `localhost:8333`, is not the API container). Fixed on 17 Oct: such links are fetched from the internal S3 host with the signed `Host` header kept.
+- **The first real-catalogue builds read our own mock site instead of the real rules pages.** With simulation mode on (the default), rules-page fetching was routed to the built-in mock site for every URL, so 60 rows quoted the mock page's rules as if they were the community's. Found on 17 Oct by checking the evidence (identical quotes for different forums). Fixed: reading public pages is never simulated (only `*.mock` hosts go to the mock site), the builder refuses mock text, and every AI quote must be found on its page. The catalogue was rebuilt; the numbers above are after the fix.
+- **Self-promotion detection is rule-based.** Probing on 17 Oct found it missed a launch post with no sales words and an affiliate link, and blocked 'no sign up needed'; it now uses strong and weak signals, negation, affiliate patterns and the own domain named without a link. It will still miss cleverly worded promotion; an AI classifier behind the provider adapter is the next step.
+- **Connectors for Discourse, Dev.to, Hashnode, Slack and the partner webhook have only run against our mock platforms**, which follow each platform's public API documentation. Lemmy and Ghost ran against the real software. Real-API differences (field names, pagination, rate-limit headers) may show up on first use; certification is designed to catch them before any real post.
 - **Recommender labels are a first draft.** `catalogue/recommender_labels.csv` was drafted with AI help (see AI_USE.md) before 70 rows were added to the catalogue, so some good recommendations (for example the new launch sites for a launch post) count as misses. The precision below is measured on that draft.
 - **Antivirus that re-signs HTTPS** (Avast on the development PC) breaks certificate checks unless `USE_SYSTEM_CERTS=true`; light mode sets it.
 - **Single-instance job runner.** Jobs that were running when the process stopped are marked failed on restart (`retryable: true`), not resumed.
@@ -101,9 +104,9 @@ Test posts are deleted in the same run, so the 10-minute cleanup limit is met wi
 - Success rate on the rest: **100%** (250/250).
 - **Duplicate posts found on the platforms: 0**, including the 22 cases where the platform created the post and the answer never arrived.
 
-**Rule safety** (`catalogue/rule_test_set.json`, 45 labelled cases: 28 violations, 17 allowed posts):
+**Rule safety** (`catalogue/rule_test_set.json`, 51 labelled cases: 31 violations, 20 allowed posts; the set is ours, so it shows the rules work as designed, not how they do on unseen wording):
 
-- **28 caught, 0 missed.**
+- **31 caught, 0 missed.**
 - 0 false blocks.
 
 **Catalogue import** (offline reachability, to time the pipeline itself):
@@ -120,20 +123,20 @@ Test posts are deleted in the same run, so the 10-minute cleanup limit is met wi
 
 An earlier version froze the API for 10 s during an online import (a new TLS context per host for robots.txt, and charset guessing over whole pages); both were fixed and the numbers above are after the fix.
 
-**Recommender:** mean precision of the top 10 over 10 content items on the draft labelled set (`python -m tools.eval_recommender`, `outputs/metrics/recommender.json`): **0.33**. It was 0.17 before two fixes: a topic match (TF-IDF between the post and each destination's description) and recommending places that ban automation through the assisted pack instead of dropping them. Per item it ranges from 0.0 (a speech-to-text post, where the labels expect general ML forums whose descriptions never mention speech) to 0.7. See section 3 on the labels.
+**Recommender:** mean precision of the top 10 over 10 content items on the draft labelled set (`python -m tools.eval_recommender`, `outputs/metrics/recommender.json`): **0.35**. It was 0.17 before two fixes: a topic match (TF-IDF between the post and each destination's description) and recommending places that ban automation through the assisted pack instead of dropping them. Per item it ranges from 0.0 to 0.7; the weakest items need meaning, not shared words (a speech-to-text post whose labelled destinations never mention speech). See section 3 on the labels.
 
 **Cost:**
 
 - Publishing, tailoring and rule checks make no paid calls: **$0 per 1,000 publications**.
 - AI rules capture with Groq `openai/gpt-oss-120b` measured on real rules pages: about 840 input and 600 output tokens per page, about **$0.0006 per destination** at list prices ($0.15 / $0.75 per million tokens). Run on the free tier during development, so $0 actually spent.
-- The real-catalogue rebuild (17 Oct): 72 calls to Groq `openai/gpt-oss-20b`, 61,181 input and 68,842 output tokens, **$0.025 at list prices** (`catalogue/real_catalogue_evidence.json`); 18 rows reuse answers from the first build with `gpt-oss-120b`. Run on the free tier, so $0 spent. Rows whose rules page could not be read make no AI call.
+- The real-catalogue rebuild (17 Oct): Groq `openai/gpt-oss-20b` (61,181 input, 68,842 output tokens: **$0.025 at list prices**) and Gemini `gemini-3.1-flash-lite` (75,591 input, 9,008 output tokens) plus 19 calls to `gemini-flash-latest` whose totals were not saved because that run stopped on the free quota. The model is recorded per row. All on free tiers, so $0 spent; the free daily limits (Groq 200,000 tokens a day per model, Gemini Flash 20 requests a day) were the real constraint. Rows whose rules page could not be read make no AI call.
 
 ## 5. Outstanding items
 
 - **Recommender.** Ranks by audience fit, rules fit (rule-breakers are excluded with the reason), past engagement from `fetch_metrics`, and format fit, with a reason for each destination.
 - **Metrics.** `fetch_metrics` works on Discourse, Lemmy, Dev.to, Hashnode, Slack and the partner webhook, normalised to views, likes, comments, shares, saves, watch time and clicks.
 - **Recertification.** A scheduler (`RECERT_INTERVAL_S`) re-tests destinations last certified more than `RECERT_AFTER_DAYS` (25) ago. A failure demotes the destination to L0, excludes it, opens a ticket and calls `ALERT_WEBHOOK_URL`.
-- **Real catalogue.** `catalogue/real_catalogue.csv`: 237 real destinations, **167 outside Reddit** (Reddit is one of the 15 major platforms, so it is not counted toward the long tail). Outside Reddit: 49 Discourse, 24 Lemmy, 10 Dev.to tags, 5 Hashnode tags, 8 Slack communities, 71 assisted (launch sites, directories, Q&A, PeerTube, other forums); 83 have rules read from their rules page by the AI with a quote for each rule (`real_catalogue_evidence.json`), 84 have strict conservative defaults marked `rules_source=conservative_default`. Languages: English plus German, French, Spanish, Portuguese, Japanese and Korean communities. Each row has a relevance score 1-5 with a reason and a connector type. Nothing was posted to any of them.
+- **Real catalogue.** `catalogue/real_catalogue.csv`: 235 real destinations, **165 outside Reddit** (Reddit is one of the 15 major platforms, so it is not counted toward the long tail), 128 of them with relevance 3 or more. Outside Reddit: 49 Discourse, 23 Lemmy, 10 Dev.to tags, 5 Hashnode tags, 8 Slack communities, 70 assisted (launch sites, directories, Q&A, PeerTube, other forums). **55 have rules read from their real rules page, with every rule quote checked against that page** (90 of 96 AI quotes were found; `real_catalogue_evidence.json` keeps the verified quotes). The other 110 have strict conservative defaults, marked `rules_source=conservative_default`: 43 Discourse forums disallow automated reading of their guidelines in `robots.txt` (respected), 37 got AI answers whose quotes were not on the page (discarded), the rest have no readable rules page. A person can paste rules for any row (`rules_text`), which the AI then reads with the same checks. Every row has a relevance score with a reason and a connector type. Nothing was posted to any of them.
 
 ## 6. What I would do next
 

@@ -5,49 +5,49 @@
     "discourse": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.019,
-      "max_s": 0.047
+      "mean_s": 0.025,
+      "max_s": 0.032
     },
     "lemmy": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.013,
+      "mean_s": 0.016,
       "max_s": 0.016
     },
     "devto": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.015,
+      "mean_s": 0.013,
       "max_s": 0.016
     },
     "ghost": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.013,
-      "max_s": 0.016
+      "mean_s": 0.015,
+      "max_s": 0.015
     },
     "webhook": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.006,
-      "max_s": 0.015
+      "mean_s": 0.012,
+      "max_s": 0.016
     },
     "assisted": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.009,
-      "max_s": 0.015
+      "mean_s": 0.013,
+      "max_s": 0.016
     },
     "hashnode": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.006,
+      "mean_s": 0.012,
       "max_s": 0.016
     },
     "slack": {
       "destinations_certified": 5,
       "runs": 5,
-      "mean_s": 0.012,
+      "mean_s": 0.015,
       "max_s": 0.016
     },
     "mrss": {
@@ -87,18 +87,18 @@
     }
   },
   "rule_safety": {
-    "cases": 45,
-    "violations": 28,
-    "caught": 28,
+    "cases": 51,
+    "violations": 31,
+    "caught": 31,
     "missed": 0,
     "missed_ids": [],
-    "allowed_cases": 17,
+    "allowed_cases": 20,
     "false_blocks": 0,
     "false_block_ids": []
   },
   "catalogue_import": {
     "1000_rows": {
-      "seconds": 3.17,
+      "seconds": 4.97,
       "rows": 1002,
       "created": 950,
       "duplicates": 50,
@@ -106,7 +106,7 @@
       "reachability": "offline (network checks skipped)"
     },
     "5000_rows": {
-      "seconds": 17.18,
+      "seconds": 23.36,
       "rows": 5002,
       "created": 4750,
       "duplicates": 250,
@@ -119,5 +119,5 @@
     "usd_per_1000_publications": 0.0,
     "note": "publishing, tailoring and rules checks use no paid API; see REPORT.md for AI rules capture cost"
   },
-  "seconds_total": 93.5
+  "seconds_total": 105.5
 }
