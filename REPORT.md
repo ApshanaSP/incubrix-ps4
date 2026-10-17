@@ -36,8 +36,9 @@ This is what makes "the same key never creates a second post, even after a timeo
 | Core connectors: Discourse, Lemmy, Dev.to, Ghost, signed webhook, assisted | Certified in simulation (publish, confirm live URL, status, metrics, delete, confirm deletion) | `tests/test_certification.py`, batch input 01, evidence JSON per run |
 | Advanced connectors: Hashnode, Slack app, MRSS | Certified in simulation | the same |
 | Real local Lemmy 0.19.5 and Ghost 5 | `docker compose up` brings up api, mocks, S3, Lemmy (+UI, Postgres) and Ghost; bootstrap certifies all 14 destinations: local Lemmy at L4, local Ghost at L3 | `docker compose logs bootstrap`, `outputs/metrics/local_instances.json` |
-| Tests in the container | 79/79 pass: `docker compose run --rm api python -m pytest` | `test_pack/tests/` |
-| Batch runner against the compose stack (mocks as a separate service) | 17/17 inputs as expected | `outputs/compose/batch-20261016-202242/` |
+| Tests in the container | 84/84 pass: `docker compose run --rm api python -m pytest` (17 Oct, current code) | `test_pack/tests/` |
+| Batch runner against the compose stack (mocks as a separate service) | 17/17 inputs as expected (16 and 17 Oct) | `outputs/compose/batch-20261017-103850/` |
+| Reviewer-style check against the compose stack (real Lemmy and Ghost, S3 storage) | 38/38 (17 Oct) | `outputs/compose/reviewer_check/20261017-104442/` |
 | Light mode, no Docker (`start-light.ps1`: one process, mocks in-process, about 75 MB of RAM) | 84/84 tests pass; batch runner 17/17 inputs as expected | `outputs/light/batch-20261016-231014/` |
 | Reviewer-style check over HTTP (`tools/reviewer_check.py`): every must-have, Integration point and hard case with inputs that differ from the batch inputs | 38/38 checks pass | `outputs/reviewer_check/` |
 | Certification pack: one destination per connector, run record + evidence page + screenshot, plus the real Lemmy and Ghost runs | 9/9 connectors passed | `certification_pack/INDEX.md` |
@@ -61,7 +62,8 @@ This is what makes "the same key never creates a second post, even after a timeo
 - **Lemmy-UI and many forums render their rules with JavaScript.** Lemmy rules are read through its API instead. Some Discourse forums disallow `/guidelines` in `robots.txt`; those rows fall back to strict defaults, marked `rules_source=conservative_default`.
 - **Ghost's Admin API has no view counts**, so Ghost has no `fetch_metrics` and certifies at L3, not L4.
 - **Reconciliation after a timeout matches on title for platforms without metadata** (Discourse, Lemmy, Dev.to, Ghost, Hashnode). Two different posts with the same title inside the lookup window could be confused. Slack (message metadata) and the partner webhook (idempotency-key lookup) are exact.
-- **Docker compose was last run on 16 Oct.** It was verified then with real Lemmy and Ghost (section 4). The PC used for this work has a failing SSD (repeated crashes since September), so compose was not re-run after the 17 Oct changes; they were tested in light mode and by the test suite. Re-run `docker compose up` on another machine before relying on it.
+- **Antivirus inside Docker builds.** On the development PC, Avast re-signs HTTPS, so `pip install` inside the image build failed certificate checks. The Dockerfile accepts an optional build secret `extra_ca` (a no-op when absent, as on a clean machine); the PC passes Avast's root through a git-ignored `docker-compose.override.yml`.
+- **Import by URL of our own upload link failed inside compose** (the link's host, `localhost:8333`, is not the API container). Fixed on 17 Oct: such links are fetched from the internal S3 host with the signed `Host` header kept.
 - **Recommender labels are a first draft.** `catalogue/recommender_labels.csv` was drafted with AI help (see AI_USE.md) before 70 rows were added to the catalogue, so some good recommendations (for example the new launch sites for a launch post) count as misses. The precision below is measured on that draft.
 - **Antivirus that re-signs HTTPS** (Avast on the development PC) breaks certificate checks unless `USE_SYSTEM_CERTS=true`; light mode sets it.
 - **Single-instance job runner.** Jobs that were running when the process stopped are marked failed on restart (`retryable: true`), not resumed.
@@ -86,12 +88,12 @@ Hardware: Dell Latitude E7470 laptop, Intel Core i7-6600U (2 cores, 4 threads, 2
 
 Test posts are deleted in the same run, so the 10-minute cleanup limit is met with a wide margin.
 
-**Real local instances** (docker compose on the same laptop, Docker Desktop 29.8; `python -m tools.measure_local --n 10`, raw output in `outputs/metrics/local_instances.json`):
+**Real local instances** (docker compose on the same laptop, Docker Engine 29.8, re-run on 17 Oct with the current code; bootstrap certified all 14 destinations; `python -m tools.measure_local --n 10`, raw output in `outputs/metrics/local_instances.json`):
 
 | Destination | Certification run | Publishes | Published | Same key again returns the same post | Live URL answered 200 | Deleted afterwards | Mean publish job |
 |---|---|---|---|---|---|---|---|
-| Local Lemmy c/incubrix_test | 0.7-1.6 s, L4 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.41 s |
-| Local Ghost blog | 4.3 s, L3 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.39 s |
+| Local Lemmy c/incubrix_test | 1.2 s, L4 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.38 s |
+| Local Ghost blog | 3.6 s, L3 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.41 s |
 
 **Reliability:** 300 publishes across the 7 native connectors with random injected faults. About 45% of calls had a fault: timeout after the post was created, timeout before, 429 with a 1-second or 10-minute reset, 500, and rejection. Each failure was retried through `/posts/{id}/retry` with the same idempotency key.
 

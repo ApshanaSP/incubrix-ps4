@@ -13,6 +13,7 @@ import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Literal
+from urllib.parse import urlsplit
 
 import httpx
 import yaml
@@ -636,9 +637,17 @@ async def _import_job(data: bytes, source: str, score_with_ai: bool, commit: boo
 async def import_from_url(body: ImportUrlIn) -> dict[str, Any]:
     """Import a destinations CSV from a URL. Validates, de-duplicates (normalised URL + platform), checks
     reachability, enriches, scores relevance and writes a row-by-row report."""
+    url, headers = body.url, {}
+    s = get_settings()
+    public, internal = urlsplit(s.s3_public_endpoint or ""), urlsplit(s.s3_endpoint or "")
+    if public.netloc and internal.netloc and public.netloc != internal.netloc and urlsplit(url).netloc == public.netloc:
+        # one of our own storage links (from POST /api/v1/uploads): inside compose the public host
+        # (localhost:8333) is not this container, so connect to the internal host and keep the signed Host header
+        url = url.replace(f"{public.scheme}://{public.netloc}", f"{internal.scheme}://{internal.netloc}", 1)
+        headers["Host"] = public.netloc
     try:
         async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
-            resp = await client.get(body.url)
+            resp = await client.get(url, headers=headers)
         resp.raise_for_status()
     except httpx.HTTPError as exc:
         raise ApiError("UPSTREAM_FETCH_FAILED", f"could not download the CSV: {type(exc).__name__}") from exc
@@ -907,7 +916,6 @@ def _mock_target(body: SimFaultIn) -> tuple[str, str]:
     if body.destination_id:
         row = store.get_destination(body.destination_id)
         cfg = row.get("config") or {}
-        from urllib.parse import urlsplit
 
         base = cfg.get("base_url") or cfg.get("api_base_url") or {"devto": "https://dev.to", "slack": "https://slack.com",
                                                                    "hashnode": "https://gql.hashnode.com"}.get(row["connector_key"], "")

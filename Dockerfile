@@ -6,7 +6,13 @@ WORKDIR /srv
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt requirements-dev.txt ./
-RUN pip install -r requirements-dev.txt
+# Optional build secret "extra_ca": a CA certificate to trust while downloading packages, for machines whose
+# antivirus or proxy re-signs HTTPS. Without it (the normal case) the build is unchanged.
+RUN --mount=type=secret,id=extra_ca \
+    if [ -s /run/secrets/extra_ca ]; then \
+      cat /etc/ssl/certs/ca-certificates.crt /run/secrets/extra_ca > /tmp/ca.pem && export PIP_CERT=/tmp/ca.pem; \
+    fi; \
+    pip install -r requirements-dev.txt && rm -f /tmp/ca.pem
 
 COPY app ./app
 COPY tools ./tools

@@ -64,6 +64,8 @@ docker compose up --build         # api :8080, Lemmy UI :1236, Ghost :2368, S3 (
 
 The `bootstrap` container creates the Lemmy community and the Ghost integration, registers both and certifies every destination. Its log ends with one PASS or FAIL line per destination.
 
+Behind antivirus or a proxy that re-signs HTTPS, `pip install` in the image build fails certificate checks. Put that CA certificate at `.local/extra-ca.pem` and add a `docker-compose.override.yml` that passes it as the build secret `extra_ca` to `api`, `mocks` and `bootstrap` (both paths are git-ignored); without it the build is unchanged.
+
 Light mode, without Docker (simulation mode, Python 3.11+). One process, SQLite and files under `./data`, mock platforms in-process; about 75 MB of RAM measured:
 
 ```bash

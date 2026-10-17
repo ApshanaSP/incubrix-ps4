@@ -268,8 +268,18 @@ def main(argv: list[str] | None = None) -> int:
 
     def simulation():
         r = k.req("GET", "/ready").json()
-        return r["checks"].get("simulation_mode") is True, r
-    k.check("MH7 simulation", "service reports simulation mode (mock platforms, no real accounts)", simulation)
+        if r["checks"].get("simulation_mode") is True:
+            return True, r
+        # docker compose runs in real mode against local test instances; then every destination must be a
+        # mock (.mock) or a local instance, so no real community or account is involved
+        from urllib.parse import urlsplit
+        local = {"localhost", "127.0.0.1", "lemmy", "ghost", "lemmy-ui", "mocks"}
+        # assisted destinations are never contacted (a person posts the pack), so their real URLs are fine
+        hosts = {urlsplit(d["url"]).hostname or "" for d in k.req("GET", "/api/v1/destinations").json()["destinations"]
+                 if d["connector_key"] != "assisted"}
+        outside = sorted(h for h in hosts if not (h.endswith(".mock") or h in local))
+        return not outside, {"simulation_mode": False, "destinations_outside_mocks_and_local_instances": outside}
+    k.check("MH7 simulation", "simulation mode, or only mock and local test instances (no real accounts)", simulation)
 
     # ================================================================ hard cases
     def expired_key():

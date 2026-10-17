@@ -1,0 +1,363 @@
+{
+  "name": "08_unsupported_media",
+  "description": "Hard case 3b: media the destination does not accept is dropped with a note; contract validate reports it per field.",
+  "ok": true,
+  "seconds": 0.888,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "09cca4b33f4d4d198ae2efd4e3ec4afe",
+      "response": {
+        "id": "con_b33fa650f9804bea",
+        "connector_key": "slack",
+        "name": "slack",
+        "auth_type": "bot_token",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "bot_token": "<set>"
+        },
+        "created_at": "2026-10-17T05:09:21+00:00",
+        "updated_at": "2026-10-17T05:09:21+00:00"
+      },
+      "seconds": 0.064
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "c356783ace81474e9a8a4d3c788603d7",
+      "response": {
+        "id": "dst_e0a142876b184b38",
+        "name": "batch slack m",
+        "url": "https://slack-m-c96a3f1d.mock",
+        "normalized_url": "https://slack-m-c96a3f1d.mock#channel=c0batch",
+        "platform_key": "slack",
+        "connector_key": "slack",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "api_base_url": "https://slack-m-c96a3f1d.mock",
+          "channel": "C0BATCH"
+        },
+        "connection_id": "con_b33fa650f9804bea",
+        "created_at": "2026-10-17T05:09:21+00:00",
+        "updated_at": "2026-10-17T05:09:21+00:00",
+        "created": true
+      },
+      "seconds": 0.03
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_e0a142876b184b38/certify",
+      "http_status": 202,
+      "correlation_id": "530bc9a3ead7400fae0d5c0fa68ee961",
+      "response": {
+        "job_id": "job_d8f30571d5c8476e",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_d8f30571d5c8476e"
+        },
+        "created_at": "2026-10-17T05:09:21+00:00",
+        "updated_at": "2026-10-17T05:09:21+00:00"
+      },
+      "job": {
+        "job_id": "job_d8f30571d5c8476e",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_d3e5bb8d058b4a17",
+          "destination_id": "dst_e0a142876b184b38",
+          "name": "batch slack m",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.267,
+          "evidence_url": "http://localhost:8333/incubrix-longtail/certifications/dst_e0a142876b184b38/crt_d3e5bb8d058b4a17.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050921Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a0e624b963901249327be920993fed5413c13a546d3ced8b0f2bc3a8fecc53b9",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://localhost:8333/incubrix-longtail/certifications/dst_e0a142876b184b38/crt_d3e5bb8d058b4a17.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050921Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a0e624b963901249327be920993fed5413c13a546d3ced8b0f2bc3a8fecc53b9"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.10"
+            },
+            "connectors": [
+              {
+                "key": "slack",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": false,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_d8f30571d5c8476e",
+          "evidence": "http://localhost:8333/incubrix-longtail/certifications/dst_e0a142876b184b38/crt_d3e5bb8d058b4a17.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050921Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=a0e624b963901249327be920993fed5413c13a546d3ced8b0f2bc3a8fecc53b9"
+        },
+        "created_at": "2026-10-17T05:09:21+00:00",
+        "updated_at": "2026-10-17T05:09:21+00:00"
+      },
+      "seconds": 0.331,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "f1e0f161443f46efb1203cd98650662e",
+      "response": {
+        "job_id": "job_92dbb9aa8bc54143",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_92dbb9aa8bc54143"
+        },
+        "created_at": "2026-10-17T05:09:21+00:00",
+        "updated_at": "2026-10-17T05:09:21+00:00"
+      },
+      "job": {
+        "job_id": "job_92dbb9aa8bc54143",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_2a6b7ecebddb44dc",
+          "summary": {
+            "published": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_e0a142876b184b38",
+              "name": "batch slack m",
+              "connector_key": "slack",
+              "tailoring_notes": [
+                "style: chat",
+                "chat style: summary only, cut at a word boundary",
+                "dropped video media not accepted here (https://cdn.example.com/a.mp4)"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "message"
+              },
+              "post_id": "pst_2259482102ec4e41",
+              "state": "published",
+              "platform_post_id": "C0BATCH/1792213761.001002|https://slack-m-c96a3f1d.mock",
+              "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792213761001002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "p-c96a3f1d:dst_e0a142876b184b38",
+              "status": "live",
+              "warnings": []
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.10"
+            },
+            "connectors": [
+              {
+                "key": "slack",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": false,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.186,
+              "total_s": 0.186
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://localhost:8333/incubrix-longtail/publications/pub_2a6b7ecebddb44dc.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050921Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fa8f85c295f8df1376fe5aea72c37cf91b603d93e9a0db1bbdbf2634676130dc"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://localhost:8080/api/v1/jobs/job_92dbb9aa8bc54143",
+          "result": "http://localhost:8333/incubrix-longtail/publications/pub_2a6b7ecebddb44dc.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=incubrix%2F20261017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261017T050921Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fa8f85c295f8df1376fe5aea72c37cf91b603d93e9a0db1bbdbf2634676130dc"
+        },
+        "created_at": "2026-10-17T05:09:21+00:00",
+        "updated_at": "2026-10-17T05:09:21+00:00"
+      },
+      "seconds": 0.419,
+      "checks": [
+        {
+          "field": "result.results.0.state",
+          "expected": "published",
+          "got": "published",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/connector/v1/discourse/validate",
+      "http_status": 200,
+      "correlation_id": "1c0788c99c1c44d696da7f14fcd53e13",
+      "response": {
+        "ok": false,
+        "violations": [
+          {
+            "code": "DEST_SPEC_VIOLATION",
+            "rule": "format",
+            "field": "media[0]",
+            "action": "block",
+            "message": "file media is not accepted here (accepted: image, text, video_link)",
+            "media_url": "https://a/b.pdf"
+          }
+        ],
+        "warnings": []
+      },
+      "seconds": 0.043,
+      "checks": [
+        {
+          "field": "ok",
+          "expected": false,
+          "got": false,
+          "ok": true
+        },
+        {
+          "field": "violations.0.field",
+          "expected": "media[0]",
+          "got": "media[0]",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

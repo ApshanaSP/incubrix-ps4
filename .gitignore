@@ -8,3 +8,6 @@ outputs/batch-*/
 .venv/
 catalogue/.ai_cache.json
 .pip-cache/
+# machine-specific compose settings (for example an antivirus certificate); never committed
+docker-compose.override.yml
+.local/
