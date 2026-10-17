@@ -20,6 +20,7 @@ from __future__ import annotations
 import asyncio
 import csv
 import json
+import re
 import os
 import sys
 import time
@@ -174,6 +175,30 @@ async def assess(provider, info: dict[str, Any]) -> dict[str, Any]:
     return fallback
 
 
+def _norm(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", (text or "").lower()).strip()
+
+
+def quote_found(quote: str, page_text: str) -> bool:
+    """The quote is on the page: exactly after normalising case, spacing and punctuation, or (for quotes the AI
+    trimmed or joined) at least 90% of its longer words appear in one stretch of the page of the same length."""
+    q, t = _norm(quote), _norm(page_text)
+    if not q or not t:
+        return False
+    if q in t:
+        return True
+    words = [w for w in q.split() if len(w) > 3]
+    if len(words) < 4:
+        return False
+    tw = t.split()
+    span = len(q.split()) + 5
+    for i in range(0, max(1, len(tw) - span + 1), 3):
+        window = set(tw[i:i + span])
+        if sum(w in window for w in words) >= 0.9 * len(words):
+            return True
+    return False
+
+
 def clean(value: Any, kind: str) -> Any:
     if value in (None, "", "null"):
         return None
@@ -242,6 +267,11 @@ async def main() -> int:
                  "link_policy": clean(ai.get("link_policy"), "links"),
                  "disclosure_required": clean(ai.get("disclosure_required"), "bool"),
                  "automation_allowed": clean(ai.get("automation_allowed"), "bool")}
+        quotes = ai.get("evidence") or []
+        verified = [q for q in quotes if quote_found(str(q.get("quote", "")), info["rules_text"])]
+        if info["rules_text"] and not ai.get("ai_error") and not verified:
+            # no quote could be found on the page: the AI's rules cannot be trusted, use strict defaults
+            ai = {**ai, "ai_error": "no AI quote was found on the rules page"}
         if info["rules_text"] and not ai.get("ai_error"):
             source = "ai_from_rules_page"
             # rules the page does not mention stay strict; a person confirms them
@@ -273,12 +303,13 @@ async def main() -> int:
             "relevance_reason": (ai.get("relevance_reason") or "")[:300], "level": level if r["connector_key"] == "assisted" else "L0",
             "community": r.get("community", ""), "base_url": info.get("base_url", ""),
             "rules_source": source + (f" (defaults for: {', '.join(defaulted)})" if defaulted and source != "conservative_default" else ""),
-            "rules_evidence": len(ai.get("evidence") or []), "reachable": info["reachable"],
+            "rules_evidence": len(verified), "reachable": info["reachable"],
             "checked_at": time.strftime("%Y-%m-%d"), "notes": r["notes"],
         })
         evidence[r["name"]] = {"url": r["url"], "rules_read_from": info.get("rules_from") or None,
                                "rules_note": info.get("rules_note"), "ai_rules": rules,
-                               "evidence": ai.get("evidence") or [], "ai_error": ai.get("ai_error"),
+                               "evidence": verified, "quotes_from_ai": len(quotes), "quotes_found_on_page": len(verified),
+                               "ai_error": ai.get("ai_error"),
                                "model": ai.get("_model", "groq/openai/gpt-oss-120b")}
     with open(OUT_CSV, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
