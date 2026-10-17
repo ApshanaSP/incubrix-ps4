@@ -193,7 +193,7 @@ Every setting is an environment variable (or a line in `.env`); [`.env.example`]
 | AI providers (adapters; mock needs no key) | `AI_PRICE_PER_M_INPUT` | (empty) | override list prices (USD per million tokens) for cost reports |
 | AI providers (adapters; mock needs no key) | `AI_PRICE_PER_M_OUTPUT` | (empty) |  |
 | AI providers (adapters; mock needs no key) | `GEMINI_API_KEY` | (empty) |  |
-| AI providers (adapters; mock needs no key) | `GEMINI_MODEL` | `gemini-2.5-flash` |  |
+| AI providers (adapters; mock needs no key) | `GEMINI_MODEL` | `gemini-flash-latest` |  |
 | catalogue import | `REACHABILITY_MODE` | `online` | `online`, or `offline` to skip network checks |
 | catalogue import | `REACHABILITY_CONCURRENCY` | `50` |  |
 | catalogue import | `REACHABILITY_TIMEOUT_S` | `6` |  |

@@ -95,7 +95,10 @@ def test_tailoring_styles(client):
         "dst_forum_aicreators", "dst_devto", "dst_slack_creators", "dst_assist_hn"]}).json()["renditions"]
     forum, devto, slack, hn = res
     assert forum["rendition"]["body"].strip().endswith("More detail: https://incubrix.com/blog/captions")
-    assert "#AI" not in forum["rendition"]["body"] and "Curious how others" in forum["rendition"]["body"]
+    from app.tailoring import DISCUSSION_PROMPTS
+
+    assert "#AI" not in forum["rendition"]["body"]
+    assert any(p in forum["rendition"]["body"] for p in DISCUSSION_PROMPTS["en"])  # discussion-first question
     assert devto["rendition"]["canonical_url"] == "https://incubrix.com/blog/captions"
     assert devto["rendition"]["tags"] == ["ai", "video"]
     assert len(slack["rendition"]["body"]) <= 600
@@ -200,3 +203,14 @@ def test_rules_pages_are_read_for_real_in_simulation_mode(monkeypatch):
     assert "Be kind." in text and "at most one link post per week" not in text
     _, mock_text = asyncio.run(intel.fetch_page_text("https://forum.mock/guidelines"))
     assert seen["transport"] == "ASGITransport"
+
+
+def test_trailing_hashtags_removed_and_prompts_vary():
+    from app.tailoring import discussion_prompt, strip_hashtags
+
+    assert strip_hashtags("We measured editing time. #ai #video") == "We measured editing time."
+    assert strip_hashtags("Three #ai tools we tried") == "Three ai tools we tried"
+    titles = ["How we caption shorts", "Colour grading in ten minutes", "Our first 1k users", "Whisper vs cloud APIs",
+              "A B-roll prompting guide", "Ten platforms, one video"]
+    assert len({discussion_prompt("en", t) for t in titles}) > 1
+    assert discussion_prompt("en", titles[0]) == discussion_prompt("en", titles[0])

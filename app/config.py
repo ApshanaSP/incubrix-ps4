@@ -86,7 +86,7 @@ class Settings:
     groq_api_key: str = field(default_factory=lambda: os.getenv("GROQ_API_KEY", ""))
     groq_model: str = field(default_factory=lambda: os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"))
     gemini_api_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""))
-    gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.5-flash"))
+    gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
     # catalogue import
     reachability_mode: str = field(default_factory=lambda: os.getenv("REACHABILITY_MODE", "online"))
     reachability_concurrency: int = field(default_factory=lambda: _int("REACHABILITY_CONCURRENCY", 50))

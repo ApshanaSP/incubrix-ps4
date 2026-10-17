@@ -38,7 +38,7 @@ Everything in the default path, and everything it outputs, may be used commercia
 | Built-in heuristic adapter (`mock`) | this repository | rules capture, relevance, tests | yes, default |
 | `openai/gpt-oss-120b` served by Groq | model: Apache-2.0; Groq API commercial terms | rules capture, relevance (`AI_PROVIDER=groq`) | opt-in |
 | `openai/gpt-oss-20b` served by Groq | model: Apache-2.0; Groq API commercial terms | real-catalogue build, after the 120b model's free daily token limit was used up (`GROQ_MODEL`); the model used is recorded per row | opt-in |
-| Gemini 2.5 Flash, Google Gemini API | Google API terms (commercial use allowed on paid tier) | same tasks (`AI_PROVIDER=gemini`) | opt-in |
+| Gemini Flash (`gemini-flash-latest`), Google Gemini API | Google API terms (commercial use allowed on paid tier) | same tasks (`AI_PROVIDER=gemini`) | opt-in |
 
 All AI calls go through `app/ai/providers.py`, so a provider is changed by configuration only. AI-written outputs (rules proposals, relevance reasons) are marked in the result manifest, and rules proposals are not used until a person confirms them.
 

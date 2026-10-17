@@ -40,12 +40,21 @@ DISCLOSURES = {
     "ta": "அறிவிப்பு: இந்த பதிவு AI உதவியுடன் உருவாக்கப்பட்டது (AI-generated).",
     "ja": "注記：この投稿はAIの支援を受けて作成されました（AI-generated）。",
 }
+# several phrasings, chosen per post: the same sentence under every post in every forum is a bot's footprint
 DISCUSSION_PROMPTS = {
-    "en": "What has worked for you here? Curious how others in this community approach it.",
-    "de": "Welche Erfahrungen habt ihr damit gemacht?",
-    "fr": "Quelle est votre expérience à ce sujet ?",
-    "es": "¿Qué os ha funcionado a vosotros?",
+    "en": ["What has worked for you here? Curious how others in this community approach it.",
+           "Has anyone here tried something similar? I'd like to hear what you found.",
+           "What would you do differently? Happy to answer questions.",
+           "How do you handle this in your own work?"],
+    "de": ["Welche Erfahrungen habt ihr damit gemacht?", "Wie macht ihr das bei euch?"],
+    "fr": ["Quelle est votre expérience à ce sujet ?", "Comment faites-vous de votre côté ?"],
+    "es": ["¿Qué os ha funcionado a vosotros?", "¿Cómo lo hacéis vosotros?"],
 }
+
+
+def discussion_prompt(lang: str, title: str) -> str:
+    options = DISCUSSION_PROMPTS.get(lang) or DISCUSSION_PROMPTS["en"]
+    return options[sum(title.encode("utf-8")) % len(options)]  # stable for one post, varies across posts
 
 
 class Translation(BaseModel):
@@ -88,6 +97,8 @@ def truncate_words(text: str, limit: int, ellipsis: str = "…") -> str:
 
 
 def strip_hashtags(text: str) -> str:
+    # a block of hashtags at the very end is removed; inline ones keep their word ("#ai tools" -> "ai tools")
+    text = re.sub(r"(?:\s*(?<![\w/#])#[A-Za-z][\w-]*)+\s*$", "", text)
     return re.sub(r"(?<![\w/#])#([A-Za-z][\w-]*)", r"\1", text)
 
 
@@ -127,7 +138,7 @@ def tailor(content: ContentItem, destination: Destination) -> tuple[Rendition, l
         body = strip_hashtags(body)
         if body != content.body.strip():
             notes.append("removed hashtags (forums do not use them)")
-        prompt = destination.config.get("discussion_prompt") or DISCUSSION_PROMPTS.get(lang, DISCUSSION_PROMPTS["en"])
+        prompt = destination.config.get("discussion_prompt") or discussion_prompt(lang, title)
         body = f"{body}\n\n{prompt}"
         notes.append("discussion-first framing: added a question for the community")
         tags = []

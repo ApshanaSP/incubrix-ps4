@@ -18,7 +18,7 @@ Light mode (`start-light.ps1`, no Docker) and the batch runner's handling of the
 
 | Task | Default | Optional providers | Human control |
 |---|---|---|---|
-| Rules capture: read a community's rules page and propose posting rules with a quote for each | heuristic adapter (no key) | Groq `openai/gpt-oss-120b`, Gemini 2.5 Flash | The proposal is stored as `proposed` and posting is blocked until a person confirms or corrects it (`POST .../rules/{id}/confirm`) |
+| Rules capture: read a community's rules page and propose posting rules with a quote for each | heuristic adapter (no key) | Groq `openai/gpt-oss-120b`, Gemini Flash | The proposal is stored as `proposed` and posting is blocked until a person confirms or corrects it (`POST .../rules/{id}/confirm`) |
 | Relevance score 1-5 with a reason | heuristic adapter | same | Scores can be overridden per destination |
 | Building the real catalogue (`tools/build_real_catalogue.py`) | Groq `openai/gpt-oss-120b` | Gemini | Every AI-read rule keeps its source quote; rows whose rules page could not be read get conservative defaults, marked as such |
 

@@ -26,6 +26,7 @@ PRICES = {
     "llama-3.3-70b-versatile": (0.59, 0.79),
     "gemini-2.5-flash": (0.30, 2.50),
     "gemini-2.0-flash": (0.10, 0.40),
+    "gemini-flash-latest": (0.30, 2.50),  # an alias; estimated at the Gemini 2.5 Flash list price
 }
 
 
