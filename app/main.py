@@ -329,7 +329,8 @@ UI_PAGE = Path(__file__).parent / "static" / "dashboard.html"
 async def root(request: Request) -> Any:
     """Browsers get the dashboard; API clients get the service links as JSON."""
     if "text/html" in request.headers.get("accept", ""):
-        return FileResponse(UI_PAGE, media_type="text/html")
+        # always the latest page after an update (browsers otherwise keep showing a cached copy)
+        return FileResponse(UI_PAGE, media_type="text/html", headers={"Cache-Control": "no-cache"})
     return {"service": "IncuBrix Long-Tail Distribution", "dashboard": "/", "docs": "/docs",
             "openapi": "/openapi.yaml", "health": "/health", "ready": "/ready"}
 

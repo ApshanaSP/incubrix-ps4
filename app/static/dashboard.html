@@ -433,6 +433,42 @@ $("pRecommend").addEventListener("click", async () => {
   renderPicker(new Set(recs.slice(0, 5).map((x) => x.destination_id)));
 });
 
+// test-platform addresses end in .mock: they exist only inside this service, so show the stored post instead
+const isMockUrl = (u) => { try { return new URL(u).hostname.endsWith(".mock"); } catch { return false; } };
+
+function liveLink(r) {
+  if (!isMockUrl(r.live_url)) {
+    return el("div", { class: "why" }, el("b", { text: "Live at: " }), el("a", { href: r.live_url, target: "_blank", rel: "noopener", text: r.live_url }));
+  }
+  const panel = el("div");
+  const btn = el("button", { class: "btn light small", text: "View it on the test platform" });
+  btn.addEventListener("click", () => showMockPost(r, panel, btn));
+  return el("div", { class: "why" }, el("div", {}, el("b", { text: "Posted on the test platform. " }),
+      el("span", { class: "muted", text: "Its address (" + r.live_url + ") ends in .mock: it exists only inside this service, so a browser cannot open it." })),
+    el("div", { style: "margin-top:6px" }, btn), panel);
+}
+
+async function showMockPost(r, panel, btn) {
+  btn.disabled = true;
+  const st = (await api("GET", "/api/v1/sim/state", { params: { destination_id: r.destination_id } })).data || {};
+  btn.disabled = false;
+  const posts = st.posts || [];
+  const title = (r.rendition && r.rendition.title) || "";
+  const tail = String(r.live_url).split(/[/#]/).filter(Boolean).pop();
+  const post = posts.find((p) => JSON.stringify(p).includes(String(r.platform_post_id || "").split("|")[0]) && (p.title || p.name) === title)
+    || posts.find((p) => (p.title || p.name) === title) || posts.find((p) => JSON.stringify(p).includes(tail)) || posts[posts.length - 1];
+  if (!post) { put(panel, el("p", { class: "err", text: "The test platform has no posts for this place yet." })); return; }
+  const text = post.raw || post.body || post.body_markdown || post.markdown || post.contentMarkdown || post.html || post.text || post.content || "";
+  const gone = post.deleted || post.deleted_at || post.published === false;
+  put(panel, el("div", { class: "card", style: "margin-top:8px;box-shadow:none" },
+    el("div", { class: "chips" }, chip(gone ? "deleted" : "live on the test platform", gone ? "c-grey" : "c-ok"),
+      chip((st.platform || "") + " · " + (st.host || ""), "c-grey"),
+      chip(st.posts_live + " post" + (st.posts_live === 1 ? "" : "s") + " live there", "c-brand")),
+    el("h3", { text: post.title || post.name || "(no title)" }),
+    el("pre", { text: String(text).replace(/<[^>]+>/g, "") || "(no text)" }),
+    el("div", { class: "muted", style: "font-size:12.5px", text: "Received " + when(post.created_at || post.published_at || post.ts) })));
+}
+
 function resultCard(r, dry) {
   let state = r.state === "failed" && r.post_state ? r.post_state : r.state;
   if (dry) state = "dry_run";
@@ -445,7 +481,7 @@ function resultCard(r, dry) {
       el("span", { class: "grow" }), el("span", { class: "muted", style: "font-size:13px", text: r.name })),
     why ? el("div", { class: "why" }, el("b", { text: "Why: " }), why) : null,
     r.reschedule_at ? el("div", { class: "why" }, el("b", { text: "When: " }), when(r.reschedule_at)) : null,
-    r.live_url ? el("div", { class: "why" }, el("b", { text: "Live at: " }), el("a", { href: r.live_url, target: "_blank", rel: "noopener", text: r.live_url })) : null,
+    r.live_url ? liveLink(r) : null,
     (r.warnings && r.warnings.length) ? el("ul", { class: "list" }, r.warnings.map((w) => el("li", { text: "Note: " + w }))) : null,
     r.assist_pack ? el("div", { class: "why" }, el("b", { text: "For the person posting: " }),
       r.assist_pack.deep_link ? el("a", { href: r.assist_pack.deep_link, target: "_blank", rel: "noopener", text: "open the posting page" }) : null,
