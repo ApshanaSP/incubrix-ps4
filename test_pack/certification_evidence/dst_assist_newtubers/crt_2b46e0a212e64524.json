@@ -1,0 +1,108 @@
+{
+  "certification_id": "crt_2b46e0a212e64524",
+  "destination": {
+    "id": "dst_assist_newtubers",
+    "name": "Reddit r/NewTubers (assisted)",
+    "url": "https://www.reddit.com/r/NewTubers",
+    "normalized_url": "https://reddit.com/r/NewTubers",
+    "platform_key": "reddit",
+    "connector_key": "assisted",
+    "surface": null,
+    "category": "community",
+    "audience_tags": [
+      "video",
+      "creators"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": "https://www.reddit.com/r/NewTubers/about/rules",
+    "frequency_cap": "1/7d",
+    "self_promo_allowed": "no",
+    "link_policy": "none",
+    "disclosure_required": false,
+    "automation_allowed": false,
+    "relevance_score": 5,
+    "relevance_reason": "New YouTube creators; strict no-promotion rules.",
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "submit_url": "https://www.reddit.com/r/NewTubers/submit"
+    },
+    "connection_id": null,
+    "created_at": "2026-10-17T18:15:42+00:00",
+    "updated_at": "2026-10-17T18:15:42+00:00"
+  },
+  "connector": "assisted",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T18:15:43+00:00",
+  "finished_at": "2026-10-17T18:15:43+00:00",
+  "duration_s": 0.015,
+  "passed": true,
+  "level": "L1",
+  "steps": [
+    {
+      "step": "build_assist_pack",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:15:43+00:00",
+      "result": {
+        "files": [
+          {
+            "name": "post.md",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_2ed0d2b8bb60/post.md?expires=1792865743&sig=1d7fa4d43be241c9c7b26cfea24dbbb1"
+          },
+          {
+            "name": "caption.txt",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_2ed0d2b8bb60/caption.txt?expires=1792865743&sig=910ba5605d4beb31c93ae37931e55c2f"
+          },
+          {
+            "name": "checklist.md",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_2ed0d2b8bb60/checklist.md?expires=1792865743&sig=9ced416a554d0e25e09dab40b54ddd6f"
+          },
+          {
+            "name": "pack.zip",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_2ed0d2b8bb60/pack.zip?expires=1792865743&sig=4c11b705a2849dc50d7db384875a9785"
+          }
+        ],
+        "caption": "IncuBrix connector certification 525ef76e please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+        "deep_link": "https://www.reddit.com/r/NewTubers/submit",
+        "checklist": [
+          "Post from the official IncuBrix account on Reddit r/NewTubers (assisted).",
+          "Re-read the community rules before posting: https://www.reddit.com/r/NewTubers/about/rules",
+          "Frequency cap is 1/7d: check that IncuBrix has not posted here inside that window.",
+          "Self-promotion is NOT allowed: keep it discussion-first, no calls to action.",
+          "Link policy: none.",
+          "Title must stay under 300 characters (it is 55).",
+          "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+          "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+        ],
+        "pack_id": "pack_2ed0d2b8bb60"
+      }
+    },
+    {
+      "step": "check_pack_files",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:15:43+00:00",
+      "result": {
+        "files": 4,
+        "checklist_items": 8,
+        "deep_link": "https://www.reddit.com/r/NewTubers/submit"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 14,
+      "at": "2026-10-17T18:15:43+00:00",
+      "result": {
+        "deleted": true
+      }
+    }
+  ],
+  "error": null
+}

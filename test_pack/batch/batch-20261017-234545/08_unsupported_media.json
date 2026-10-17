@@ -1,0 +1,363 @@
+{
+  "name": "08_unsupported_media",
+  "description": "Hard case 3b: media the destination does not accept is dropped with a note; contract validate reports it per field.",
+  "ok": true,
+  "seconds": 0.442,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "98ff3a0891254bdc902fbf7ad07b1956",
+      "response": {
+        "id": "con_26814de5062b4b6b",
+        "connector_key": "slack",
+        "name": "slack",
+        "auth_type": "bot_token",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "bot_token": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:57+00:00",
+        "updated_at": "2026-10-17T18:15:57+00:00"
+      },
+      "seconds": 0.021
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "ce8e858c8b634dc68ca62bfe816a97f6",
+      "response": {
+        "id": "dst_b983f36628f241d0",
+        "name": "batch slack m",
+        "url": "https://slack-m-7b57e0cf.mock",
+        "normalized_url": "https://slack-m-7b57e0cf.mock#channel=c0batch",
+        "platform_key": "slack",
+        "connector_key": "slack",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "api_base_url": "https://slack-m-7b57e0cf.mock",
+          "channel": "C0BATCH"
+        },
+        "connection_id": "con_26814de5062b4b6b",
+        "created_at": "2026-10-17T18:15:57+00:00",
+        "updated_at": "2026-10-17T18:15:57+00:00",
+        "created": true
+      },
+      "seconds": 0.017
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_b983f36628f241d0/certify",
+      "http_status": 202,
+      "correlation_id": "e384d2835d1c499ab13bb70ddb865b73",
+      "response": {
+        "job_id": "job_ee527e4a7396491a",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_ee527e4a7396491a"
+        },
+        "created_at": "2026-10-17T18:15:57+00:00",
+        "updated_at": "2026-10-17T18:15:57+00:00"
+      },
+      "job": {
+        "job_id": "job_ee527e4a7396491a",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_f8a5d122facc4cc6",
+          "destination_id": "dst_b983f36628f241d0",
+          "name": "batch slack m",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.016,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_b983f36628f241d0/crt_f8a5d122facc4cc6.json?expires=1792865757&sig=d88b249a52014f63b65df9cf44218c0a",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_b983f36628f241d0/crt_f8a5d122facc4cc6.json?expires=1792865757&sig=d88b249a52014f63b65df9cf44218c0a"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "slack",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_ee527e4a7396491a",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_b983f36628f241d0/crt_f8a5d122facc4cc6.json?expires=1792865757&sig=d88b249a52014f63b65df9cf44218c0a"
+        },
+        "created_at": "2026-10-17T18:15:57+00:00",
+        "updated_at": "2026-10-17T18:15:57+00:00"
+      },
+      "seconds": 0.305,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "59899706c63d4d0e971b85446fdf2d11",
+      "response": {
+        "job_id": "job_0ffa9b93e706431f",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_0ffa9b93e706431f"
+        },
+        "created_at": "2026-10-17T18:15:58+00:00",
+        "updated_at": "2026-10-17T18:15:58+00:00"
+      },
+      "job": {
+        "job_id": "job_0ffa9b93e706431f",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_1a529c5331164e31",
+          "summary": {
+            "published": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_b983f36628f241d0",
+              "name": "batch slack m",
+              "connector_key": "slack",
+              "tailoring_notes": [
+                "style: chat",
+                "chat style: summary only, cut at a word boundary",
+                "dropped video media not accepted here (https://cdn.example.com/a.mp4)"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "message"
+              },
+              "post_id": "pst_7819b55eefa742d2",
+              "state": "published",
+              "platform_post_id": "C0BATCH/1792260958.001002|https://slack-m-7b57e0cf.mock",
+              "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792260958001002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "p-7b57e0cf:dst_b983f36628f241d0",
+              "status": "live",
+              "warnings": []
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "slack",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.016,
+              "total_s": 0.016
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 1
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://127.0.0.1:62148/api/v1/files/publications/pub_1a529c5331164e31.json?expires=1792865758&sig=217d56823181e551989a157cc422d6f6"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_0ffa9b93e706431f",
+          "result": "http://127.0.0.1:62148/api/v1/files/publications/pub_1a529c5331164e31.json?expires=1792865758&sig=217d56823181e551989a157cc422d6f6"
+        },
+        "created_at": "2026-10-17T18:15:58+00:00",
+        "updated_at": "2026-10-17T18:15:58+00:00"
+      },
+      "seconds": 0.067,
+      "checks": [
+        {
+          "field": "result.results.0.state",
+          "expected": "published",
+          "got": "published",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/connector/v1/discourse/validate",
+      "http_status": 200,
+      "correlation_id": "537a4f5ac92542fd84c9efa0de97af40",
+      "response": {
+        "ok": false,
+        "violations": [
+          {
+            "code": "DEST_SPEC_VIOLATION",
+            "rule": "format",
+            "field": "media[0]",
+            "action": "block",
+            "message": "file media is not accepted here (accepted: image, text, video_link)",
+            "media_url": "https://a/b.pdf"
+          }
+        ],
+        "warnings": []
+      },
+      "seconds": 0.032,
+      "checks": [
+        {
+          "field": "ok",
+          "expected": false,
+          "got": false,
+          "ok": true
+        },
+        {
+          "field": "violations.0.field",
+          "expected": "media[0]",
+          "got": "media[0]",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

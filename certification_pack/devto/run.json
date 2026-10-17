@@ -1,17 +1,17 @@
 {
   "job": {
-    "job_id": "job_1d96addea7254129",
+    "job_id": "job_59501f63f0294e60",
     "kind": "certification",
     "status": "succeeded",
     "progress": 100,
     "result": {
-      "certification_id": "crt_ca4c860688244ea2",
-      "destination_id": "dst_0704b81e54cb4812",
+      "certification_id": "crt_a7476ce66d8d41b2",
+      "destination_id": "dst_af342b1f5efa414c",
       "name": "Certification pack: devto",
       "passed": true,
       "level": "L4",
-      "duration_s": 0.016,
-      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_0704b81e54cb4812/crt_ca4c860688244ea2.json?expires=1792781162&sig=7af8c294392bf4a64fc790b83e88d269",
+      "duration_s": 0.015,
+      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_af342b1f5efa414c/crt_a7476ce66d8d41b2.json?expires=1792865807&sig=c429116bb2b630c2e5e43f26548dd37c",
       "error": null,
       "steps": [
         {
@@ -44,7 +44,7 @@
         }
       ],
       "links": {
-        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_0704b81e54cb4812/crt_ca4c860688244ea2.json?expires=1792781162&sig=7af8c294392bf4a64fc790b83e88d269"
+        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_af342b1f5efa414c/crt_a7476ce66d8d41b2.json?expires=1792865807&sig=c429116bb2b630c2e5e43f26548dd37c"
       },
       "manifest": {
         "manifest_version": "1.0",
@@ -89,25 +89,25 @@
     },
     "error": null,
     "links": {
-      "self": "http://localhost:8088/api/v1/jobs/job_1d96addea7254129",
-      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_0704b81e54cb4812/crt_ca4c860688244ea2.json?expires=1792781162&sig=7af8c294392bf4a64fc790b83e88d269"
+      "self": "http://localhost:8088/api/v1/jobs/job_59501f63f0294e60",
+      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_af342b1f5efa414c/crt_a7476ce66d8d41b2.json?expires=1792865807&sig=c429116bb2b630c2e5e43f26548dd37c"
     },
-    "created_at": "2026-10-16T18:46:02+00:00",
-    "updated_at": "2026-10-16T18:46:02+00:00"
+    "created_at": "2026-10-17T18:16:47+00:00",
+    "updated_at": "2026-10-17T18:16:47+00:00"
   },
   "certification": {
-    "id": "crt_ca4c860688244ea2",
-    "destination_id": "dst_0704b81e54cb4812",
+    "id": "crt_a7476ce66d8d41b2",
+    "destination_id": "dst_af342b1f5efa414c",
     "status": "passed",
-    "started_at": "2026-10-16T18:46:02+00:00",
-    "finished_at": "2026-10-16T18:46:02+00:00",
-    "duration_s": 0.016,
+    "started_at": "2026-10-17T18:16:47+00:00",
+    "finished_at": "2026-10-17T18:16:47+00:00",
+    "duration_s": 0.015,
     "steps": [
       {
         "step": "probe",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "ok": true
         }
@@ -116,16 +116,16 @@
         "step": "publish",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
-          "post_id": "pst_f57f82dbac594a22",
-          "destination_id": "dst_0704b81e54cb4812",
+          "post_id": "pst_1c21bff8d74b41a9",
+          "destination_id": "dst_af342b1f5efa414c",
           "state": "published",
-          "platform_post_id": "1001|https://devto-pack-0227a2.mock",
-          "live_url": "https://devto-pack-0227a2.mock/incubrix/incubrix-connector-certification-5a576949-please-i-3e9",
+          "platform_post_id": "1001|https://devto-pack-bf10e5.mock",
+          "live_url": "https://devto-pack-bf10e5.mock/incubrix/incubrix-connector-certification-b48c2efa-please-i-3e9",
           "reason": null,
           "reschedule_at": null,
-          "idempotency_key": "cert-dst_0704b81e54cb4812-5a576949",
+          "idempotency_key": "cert-dst_af342b1f5efa414c-b48c2efa",
           "status": "live",
           "warnings": []
         }
@@ -134,27 +134,27 @@
         "step": "get_status",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "status": "live",
-          "live_url": "https://devto-pack-0227a2.mock/incubrix/incubrix-connector-certification-5a576949-please-i-3e9"
+          "live_url": "https://devto-pack-bf10e5.mock/incubrix/incubrix-connector-certification-b48c2efa-please-i-3e9"
         }
       },
       {
         "step": "confirm_live_url",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
-          "live_url": "https://devto-pack-0227a2.mock/incubrix/incubrix-connector-certification-5a576949-please-i-3e9",
+          "live_url": "https://devto-pack-bf10e5.mock/incubrix/incubrix-connector-certification-b48c2efa-please-i-3e9",
           "checked": "platform status (simulated host)"
         }
       },
       {
         "step": "fetch_metrics",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "ms": 14,
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "views": 11,
           "likes": 3,
@@ -169,7 +169,7 @@
         "step": "delete",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "deleted": true,
           "method": "unpublished (Forem has no delete API)"
@@ -178,24 +178,24 @@
       {
         "step": "confirm_deleted",
         "ok": true,
-        "ms": 16,
-        "at": "2026-10-16T18:46:02+00:00",
+        "ms": 0,
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "status": "deleted",
           "live_url": null
         }
       }
     ],
-    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_0704b81e54cb4812/crt_ca4c860688244ea2.json?expires=1792781162&sig=7af8c294392bf4a64fc790b83e88d269",
+    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_af342b1f5efa414c/crt_a7476ce66d8d41b2.json?expires=1792865807&sig=c429116bb2b630c2e5e43f26548dd37c",
     "error": null
   },
   "run": {
-    "certification_id": "crt_ca4c860688244ea2",
+    "certification_id": "crt_a7476ce66d8d41b2",
     "destination": {
-      "id": "dst_0704b81e54cb4812",
+      "id": "dst_af342b1f5efa414c",
       "name": "Certification pack: devto",
-      "url": "https://devto-pack-0227a2.mock",
-      "normalized_url": "https://devto-pack-0227a2.mock",
+      "url": "https://devto-pack-bf10e5.mock",
+      "normalized_url": "https://devto-pack-bf10e5.mock",
       "platform_key": "devto",
       "connector_key": "devto",
       "surface": null,
@@ -220,18 +220,18 @@
       "status": "uncertified",
       "rules_status": "confirmed",
       "config": {
-        "api_base_url": "https://devto-pack-0227a2.mock"
+        "api_base_url": "https://devto-pack-bf10e5.mock"
       },
-      "connection_id": "con_2bc6831a2f0e4eec",
-      "created_at": "2026-10-16T18:46:02+00:00",
-      "updated_at": "2026-10-16T18:46:02+00:00"
+      "connection_id": "con_a7777d4b3f27487e",
+      "created_at": "2026-10-17T18:16:47+00:00",
+      "updated_at": "2026-10-17T18:16:47+00:00"
     },
     "connector": "devto",
     "connector_version": "1.0.0",
     "simulated": true,
-    "started_at": "2026-10-16T18:46:02+00:00",
-    "finished_at": "2026-10-16T18:46:02+00:00",
-    "duration_s": 0.016,
+    "started_at": "2026-10-17T18:16:47+00:00",
+    "finished_at": "2026-10-17T18:16:47+00:00",
+    "duration_s": 0.015,
     "passed": true,
     "level": "L4",
     "steps": [
@@ -239,7 +239,7 @@
         "step": "probe",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "ok": true
         }
@@ -248,16 +248,16 @@
         "step": "publish",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
-          "post_id": "pst_f57f82dbac594a22",
-          "destination_id": "dst_0704b81e54cb4812",
+          "post_id": "pst_1c21bff8d74b41a9",
+          "destination_id": "dst_af342b1f5efa414c",
           "state": "published",
-          "platform_post_id": "1001|https://devto-pack-0227a2.mock",
-          "live_url": "https://devto-pack-0227a2.mock/incubrix/incubrix-connector-certification-5a576949-please-i-3e9",
+          "platform_post_id": "1001|https://devto-pack-bf10e5.mock",
+          "live_url": "https://devto-pack-bf10e5.mock/incubrix/incubrix-connector-certification-b48c2efa-please-i-3e9",
           "reason": null,
           "reschedule_at": null,
-          "idempotency_key": "cert-dst_0704b81e54cb4812-5a576949",
+          "idempotency_key": "cert-dst_af342b1f5efa414c-b48c2efa",
           "status": "live",
           "warnings": []
         }
@@ -266,27 +266,27 @@
         "step": "get_status",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "status": "live",
-          "live_url": "https://devto-pack-0227a2.mock/incubrix/incubrix-connector-certification-5a576949-please-i-3e9"
+          "live_url": "https://devto-pack-bf10e5.mock/incubrix/incubrix-connector-certification-b48c2efa-please-i-3e9"
         }
       },
       {
         "step": "confirm_live_url",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
-          "live_url": "https://devto-pack-0227a2.mock/incubrix/incubrix-connector-certification-5a576949-please-i-3e9",
+          "live_url": "https://devto-pack-bf10e5.mock/incubrix/incubrix-connector-certification-b48c2efa-please-i-3e9",
           "checked": "platform status (simulated host)"
         }
       },
       {
         "step": "fetch_metrics",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "ms": 14,
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "views": 11,
           "likes": 3,
@@ -301,7 +301,7 @@
         "step": "delete",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:02+00:00",
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "deleted": true,
           "method": "unpublished (Forem has no delete API)"
@@ -310,8 +310,8 @@
       {
         "step": "confirm_deleted",
         "ok": true,
-        "ms": 16,
-        "at": "2026-10-16T18:46:02+00:00",
+        "ms": 0,
+        "at": "2026-10-17T18:16:47+00:00",
         "result": {
           "status": "deleted",
           "live_url": null

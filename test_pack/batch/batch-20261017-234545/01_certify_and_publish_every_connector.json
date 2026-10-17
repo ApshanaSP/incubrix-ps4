@@ -1,0 +1,2160 @@
+{
+  "name": "01_certify_and_publish_every_connector",
+  "description": "Certify a fresh destination for each of the 9 connectors, then publish one item to all of them.",
+  "ok": true,
+  "seconds": 3.125,
+  "steps": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "4ef25d053b474518a6085ba7ee78f521",
+      "response": {
+        "id": "con_0970cb91cdd54f0e",
+        "connector_key": "discourse",
+        "name": "discourse",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "api_key": "<set>",
+          "api_username": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:46+00:00",
+        "updated_at": "2026-10-17T18:15:46+00:00"
+      },
+      "seconds": 0.037
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "9699400917bc4d208ae4e0fedb63bd05",
+      "response": {
+        "id": "dst_7307d2f7a1704bd9",
+        "name": "batch discourse discourse",
+        "url": "https://discourse-discourse-5cbab28b.mock",
+        "normalized_url": "https://discourse-discourse-5cbab28b.mock",
+        "platform_key": "discourse",
+        "connector_key": "discourse",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://discourse-discourse-5cbab28b.mock"
+        },
+        "connection_id": "con_0970cb91cdd54f0e",
+        "created_at": "2026-10-17T18:15:46+00:00",
+        "updated_at": "2026-10-17T18:15:46+00:00",
+        "created": true
+      },
+      "seconds": 0.029
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_7307d2f7a1704bd9/certify",
+      "http_status": 202,
+      "correlation_id": "4d73bb8811bf490080600c306df9744f",
+      "response": {
+        "job_id": "job_5232696979524eca",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_5232696979524eca"
+        },
+        "created_at": "2026-10-17T18:15:46+00:00",
+        "updated_at": "2026-10-17T18:15:46+00:00"
+      },
+      "job": {
+        "job_id": "job_5232696979524eca",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_68651aa61c934b67",
+          "destination_id": "dst_7307d2f7a1704bd9",
+          "name": "batch discourse discourse",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.032,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_7307d2f7a1704bd9/crt_68651aa61c934b67.json?expires=1792865746&sig=025aca7fa0675136a17f56b4e36b8365",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_7307d2f7a1704bd9/crt_68651aa61c934b67.json?expires=1792865746&sig=025aca7fa0675136a17f56b4e36b8365"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "discourse",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_5232696979524eca",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_7307d2f7a1704bd9/crt_68651aa61c934b67.json?expires=1792865746&sig=025aca7fa0675136a17f56b4e36b8365"
+        },
+        "created_at": "2026-10-17T18:15:46+00:00",
+        "updated_at": "2026-10-17T18:15:46+00:00"
+      },
+      "seconds": 0.317,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "6064117040af4cb089aac71c69aa3f00",
+      "response": {
+        "id": "con_193846b1f15f40f2",
+        "connector_key": "lemmy",
+        "name": "lemmy",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "username": "<set>",
+          "password": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00"
+      },
+      "seconds": 0.03
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "1e4592b1989a4b4eb60d73dcdd93e0c9",
+      "response": {
+        "id": "dst_df739990759a42f1",
+        "name": "batch lemmy lemmy",
+        "url": "https://lemmy-lemmy-5cbab28b.mock",
+        "normalized_url": "https://lemmy-lemmy-5cbab28b.mock#community=incubrix_test",
+        "platform_key": "lemmy",
+        "connector_key": "lemmy",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://lemmy-lemmy-5cbab28b.mock",
+          "community": "incubrix_test"
+        },
+        "connection_id": "con_193846b1f15f40f2",
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00",
+        "created": true
+      },
+      "seconds": 0.031
+    },
+    {
+      "step": 6,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_df739990759a42f1/certify",
+      "http_status": 202,
+      "correlation_id": "a28911bcf4d94be58fc3839c6add3aed",
+      "response": {
+        "job_id": "job_b16afa3829f04fb6",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_b16afa3829f04fb6"
+        },
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00"
+      },
+      "job": {
+        "job_id": "job_b16afa3829f04fb6",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_32e4d8e0de3745d3",
+          "destination_id": "dst_df739990759a42f1",
+          "name": "batch lemmy lemmy",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.047,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_df739990759a42f1/crt_32e4d8e0de3745d3.json?expires=1792865747&sig=8e4ec910d14b94596671d851de75bb36",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_df739990759a42f1/crt_32e4d8e0de3745d3.json?expires=1792865747&sig=8e4ec910d14b94596671d851de75bb36"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_b16afa3829f04fb6",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_df739990759a42f1/crt_32e4d8e0de3745d3.json?expires=1792865747&sig=8e4ec910d14b94596671d851de75bb36"
+        },
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00"
+      },
+      "seconds": 0.326,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "e79edba4839f443f88c49a5d46ded3f9",
+      "response": {
+        "id": "con_5a666250c6244308",
+        "connector_key": "devto",
+        "name": "devto",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "api_key": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00"
+      },
+      "seconds": 0.031
+    },
+    {
+      "step": 8,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "dd6aac1bd6ab4752a19440d00f8be9d0",
+      "response": {
+        "id": "dst_57dc48ebe1e24b74",
+        "name": "batch devto devto",
+        "url": "https://devto-devto-5cbab28b.mock",
+        "normalized_url": "https://devto-devto-5cbab28b.mock",
+        "platform_key": "devto",
+        "connector_key": "devto",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "api_base_url": "https://devto-devto-5cbab28b.mock"
+        },
+        "connection_id": "con_5a666250c6244308",
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00",
+        "created": true
+      },
+      "seconds": 0.029
+    },
+    {
+      "step": 9,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_57dc48ebe1e24b74/certify",
+      "http_status": 202,
+      "correlation_id": "24d6debbeb9d42e2a9feedfd2e7151ae",
+      "response": {
+        "job_id": "job_15ba0fa4ee1648ef",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_15ba0fa4ee1648ef"
+        },
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00"
+      },
+      "job": {
+        "job_id": "job_15ba0fa4ee1648ef",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_7f98d532da704f05",
+          "destination_id": "dst_57dc48ebe1e24b74",
+          "name": "batch devto devto",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.031,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_57dc48ebe1e24b74/crt_7f98d532da704f05.json?expires=1792865747&sig=85e72f848b38f24bbf19f8109547720e",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_57dc48ebe1e24b74/crt_7f98d532da704f05.json?expires=1792865747&sig=85e72f848b38f24bbf19f8109547720e"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "devto",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_15ba0fa4ee1648ef",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_57dc48ebe1e24b74/crt_7f98d532da704f05.json?expires=1792865747&sig=85e72f848b38f24bbf19f8109547720e"
+        },
+        "created_at": "2026-10-17T18:15:47+00:00",
+        "updated_at": "2026-10-17T18:15:47+00:00"
+      },
+      "seconds": 0.321,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "77a591ad87d949e9baa86bdb0e3f25bf",
+      "response": {
+        "id": "con_4968c73c22034a9b",
+        "connector_key": "ghost",
+        "name": "ghost",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "admin_api_key": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.031
+    },
+    {
+      "step": 11,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "51c7aecda47f4ef3b37a813fbb0a42e9",
+      "response": {
+        "id": "dst_c0583e1dd2634538",
+        "name": "batch ghost ghost",
+        "url": "https://ghost-ghost-5cbab28b.mock",
+        "normalized_url": "https://ghost-ghost-5cbab28b.mock",
+        "platform_key": "ghost",
+        "connector_key": "ghost",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://ghost-ghost-5cbab28b.mock"
+        },
+        "connection_id": "con_4968c73c22034a9b",
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00",
+        "created": true
+      },
+      "seconds": 0.031
+    },
+    {
+      "step": 12,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_c0583e1dd2634538/certify",
+      "http_status": 202,
+      "correlation_id": "abef54c2f7594fbfb2eed01f8856d6a2",
+      "response": {
+        "job_id": "job_7b840fe7bf1c4a98",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_7b840fe7bf1c4a98"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "job": {
+        "job_id": "job_7b840fe7bf1c4a98",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_151a6963a21b42a9",
+          "destination_id": "dst_c0583e1dd2634538",
+          "name": "batch ghost ghost",
+          "passed": true,
+          "level": "L3",
+          "duration_s": 0.015,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_c0583e1dd2634538/crt_151a6963a21b42a9.json?expires=1792865748&sig=3a7aa55f1cf9cc3425f008caa7c68902",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_c0583e1dd2634538/crt_151a6963a21b42a9.json?expires=1792865748&sig=3a7aa55f1cf9cc3425f008caa7c68902"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "ghost",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_7b840fe7bf1c4a98",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_c0583e1dd2634538/crt_151a6963a21b42a9.json?expires=1792865748&sig=3a7aa55f1cf9cc3425f008caa7c68902"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.319,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 13,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "9ebb0c88c8de4943b9ac9d5aa1a95b41",
+      "response": {
+        "id": "con_c92aee845d7e431e",
+        "connector_key": "webhook",
+        "name": "webhook",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "signing_secret": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.035
+    },
+    {
+      "step": 14,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "26bd1d251f824f96910d6937a088ee24",
+      "response": {
+        "id": "dst_3d222d7c0fbb4433",
+        "name": "batch webhook webhook",
+        "url": "https://webhook-webhook-5cbab28b.mock",
+        "normalized_url": "https://webhook-webhook-5cbab28b.mock",
+        "platform_key": "webhook",
+        "connector_key": "webhook",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "base_url": "https://webhook-webhook-5cbab28b.mock"
+        },
+        "connection_id": "con_c92aee845d7e431e",
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00",
+        "created": true
+      },
+      "seconds": 0.031
+    },
+    {
+      "step": 15,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_3d222d7c0fbb4433/certify",
+      "http_status": 202,
+      "correlation_id": "0bb81587b3154622b9c49ff3a40b788f",
+      "response": {
+        "job_id": "job_2fb5a06efdf74229",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_2fb5a06efdf74229"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "job": {
+        "job_id": "job_2fb5a06efdf74229",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_fab567eed86c4569",
+          "destination_id": "dst_3d222d7c0fbb4433",
+          "name": "batch webhook webhook",
+          "passed": true,
+          "level": "L2",
+          "duration_s": 0.031,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_3d222d7c0fbb4433/crt_fab567eed86c4569.json?expires=1792865748&sig=30fdb7b25b78f419c131c9fa119df756",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_3d222d7c0fbb4433/crt_fab567eed86c4569.json?expires=1792865748&sig=30fdb7b25b78f419c131c9fa119df756"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "webhook",
+                "version": "1.0.0",
+                "tier": "bridge"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_2fb5a06efdf74229",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_3d222d7c0fbb4433/crt_fab567eed86c4569.json?expires=1792865748&sig=30fdb7b25b78f419c131c9fa119df756"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.325,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 16,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "cb374c80ee8845bb83130e06f4dc1715",
+      "response": {
+        "id": "dst_5d76af6866ee4222",
+        "name": "batch assisted assisted",
+        "url": "https://assisted-assisted-5cbab28b.mock",
+        "normalized_url": "https://assisted-assisted-5cbab28b.mock",
+        "platform_key": "assisted",
+        "connector_key": "assisted",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "submit_url": "https://assisted-assisted-5cbab28b.mock/submit"
+        },
+        "connection_id": null,
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00",
+        "created": true
+      },
+      "seconds": 0.029
+    },
+    {
+      "step": 17,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_5d76af6866ee4222/certify",
+      "http_status": 202,
+      "correlation_id": "9152c34836e243f3b6e16b048b1d454a",
+      "response": {
+        "job_id": "job_ebfc05d1623a4a02",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_ebfc05d1623a4a02"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "job": {
+        "job_id": "job_ebfc05d1623a4a02",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_8c977f421a554664",
+          "destination_id": "dst_5d76af6866ee4222",
+          "name": "batch assisted assisted",
+          "passed": true,
+          "level": "L1",
+          "duration_s": 0.016,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_5d76af6866ee4222/crt_8c977f421a554664.json?expires=1792865748&sig=654afa0cc58d8ee04feb8dbebb49e8ec",
+          "error": null,
+          "steps": [
+            {
+              "step": "build_assist_pack",
+              "ok": true
+            },
+            {
+              "step": "check_pack_files",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_5d76af6866ee4222/crt_8c977f421a554664.json?expires=1792865748&sig=654afa0cc58d8ee04feb8dbebb49e8ec"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "assisted",
+                "version": "1.0.0",
+                "tier": "assisted"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_ebfc05d1623a4a02",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_5d76af6866ee4222/crt_8c977f421a554664.json?expires=1792865748&sig=654afa0cc58d8ee04feb8dbebb49e8ec"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.056,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 18,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "6890192de0054309bfa5a301fd6c4bf0",
+      "response": {
+        "id": "con_feba685b95004490",
+        "connector_key": "hashnode",
+        "name": "hashnode",
+        "auth_type": "api_key",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "token": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.019
+    },
+    {
+      "step": 19,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "dc1eb269d1d240c2981294b5bfc09478",
+      "response": {
+        "id": "dst_47e2b2019efd466e",
+        "name": "batch hashnode hashnode",
+        "url": "https://hashnode-hashnode-5cbab28b.mock",
+        "normalized_url": "https://hashnode-hashnode-5cbab28b.mock#publication_id=pub1",
+        "platform_key": "hashnode",
+        "connector_key": "hashnode",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "api_base_url": "https://hashnode-hashnode-5cbab28b.mock",
+          "publication_id": "pub1"
+        },
+        "connection_id": "con_feba685b95004490",
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00",
+        "created": true
+      },
+      "seconds": 0.02
+    },
+    {
+      "step": 20,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_47e2b2019efd466e/certify",
+      "http_status": 202,
+      "correlation_id": "4c8f9ccf965c44a8b3e1a2a0ef3d007a",
+      "response": {
+        "job_id": "job_1bbe5d0a27ca45c8",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_1bbe5d0a27ca45c8"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "job": {
+        "job_id": "job_1bbe5d0a27ca45c8",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_d254437f0f874f15",
+          "destination_id": "dst_47e2b2019efd466e",
+          "name": "batch hashnode hashnode",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.015,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_47e2b2019efd466e/crt_d254437f0f874f15.json?expires=1792865748&sig=800b102d8907c21e5caf968dd5b87697",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_47e2b2019efd466e/crt_d254437f0f874f15.json?expires=1792865748&sig=800b102d8907c21e5caf968dd5b87697"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "hashnode",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_1bbe5d0a27ca45c8",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_47e2b2019efd466e/crt_d254437f0f874f15.json?expires=1792865748&sig=800b102d8907c21e5caf968dd5b87697"
+        },
+        "created_at": "2026-10-17T18:15:48+00:00",
+        "updated_at": "2026-10-17T18:15:48+00:00"
+      },
+      "seconds": 0.312,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 21,
+      "method": "POST",
+      "path": "/api/v1/connections",
+      "http_status": 201,
+      "correlation_id": "6e7ec51278114bcda88741108f1666e1",
+      "response": {
+        "id": "con_6c7b4f40f5194c93",
+        "connector_key": "slack",
+        "name": "slack",
+        "auth_type": "bot_token",
+        "status": "active",
+        "expires_at": null,
+        "credentials": {
+          "bot_token": "<set>"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "seconds": 0.032
+    },
+    {
+      "step": 22,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "a2067c533e3346f8aad9373b42654a15",
+      "response": {
+        "id": "dst_0072bbf32bba4576",
+        "name": "batch slack slack",
+        "url": "https://slack-slack-5cbab28b.mock",
+        "normalized_url": "https://slack-slack-5cbab28b.mock#channel=c0batch",
+        "platform_key": "slack",
+        "connector_key": "slack",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "api_base_url": "https://slack-slack-5cbab28b.mock",
+          "channel": "C0BATCH"
+        },
+        "connection_id": "con_6c7b4f40f5194c93",
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00",
+        "created": true
+      },
+      "seconds": 0.032
+    },
+    {
+      "step": 23,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_0072bbf32bba4576/certify",
+      "http_status": 202,
+      "correlation_id": "53c310b113af44a691f7f5e62d5e6115",
+      "response": {
+        "job_id": "job_f0ba7486dad14eda",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_f0ba7486dad14eda"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "job": {
+        "job_id": "job_f0ba7486dad14eda",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_92fec7ac3c484626",
+          "destination_id": "dst_0072bbf32bba4576",
+          "name": "batch slack slack",
+          "passed": true,
+          "level": "L4",
+          "duration_s": 0.047,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_0072bbf32bba4576/crt_92fec7ac3c484626.json?expires=1792865749&sig=9b5d557be5670b327d75293cb3000a4b",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "fetch_metrics",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_0072bbf32bba4576/crt_92fec7ac3c484626.json?expires=1792865749&sig=9b5d557be5670b327d75293cb3000a4b"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "slack",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_f0ba7486dad14eda",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_0072bbf32bba4576/crt_92fec7ac3c484626.json?expires=1792865749&sig=9b5d557be5670b327d75293cb3000a4b"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "seconds": 0.311,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 24,
+      "method": "POST",
+      "path": "/api/v1/destinations",
+      "http_status": 201,
+      "correlation_id": "0b6a9917bc5a4c929c35e2175f76e186",
+      "response": {
+        "id": "dst_e568fb44b6934a0a",
+        "name": "batch mrss mrss",
+        "url": "https://mrss-mrss-5cbab28b.mock",
+        "normalized_url": "https://mrss-mrss-5cbab28b.mock#feed_key=batch-5cbab28b",
+        "platform_key": "mrss",
+        "connector_key": "mrss",
+        "surface": null,
+        "category": null,
+        "audience_tags": [
+          "ai",
+          "creators"
+        ],
+        "language": "en",
+        "geo": null,
+        "est_audience": null,
+        "rules_url": null,
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": false,
+        "automation_allowed": true,
+        "relevance_score": null,
+        "relevance_reason": null,
+        "level": "L0",
+        "last_certified_at": null,
+        "status": "uncertified",
+        "rules_status": "confirmed",
+        "config": {
+          "feed_key": "batch-5cbab28b"
+        },
+        "connection_id": null,
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00",
+        "created": true
+      },
+      "seconds": 0.021
+    },
+    {
+      "step": 25,
+      "method": "POST",
+      "path": "/api/v1/destinations/dst_e568fb44b6934a0a/certify",
+      "http_status": 202,
+      "correlation_id": "7a23d7f681da437fbdad5d49bada7239",
+      "response": {
+        "job_id": "job_68f7896034cc4375",
+        "kind": "certification",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_68f7896034cc4375"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "job": {
+        "job_id": "job_68f7896034cc4375",
+        "kind": "certification",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "certification_id": "crt_7896bfa571164a59",
+          "destination_id": "dst_e568fb44b6934a0a",
+          "name": "batch mrss mrss",
+          "passed": true,
+          "level": "L2",
+          "duration_s": 0.016,
+          "evidence_url": "http://127.0.0.1:62148/api/v1/files/certifications/dst_e568fb44b6934a0a/crt_7896bfa571164a59.json?expires=1792865749&sig=7bf128a930c6ee4b50504b957935bdda",
+          "error": null,
+          "steps": [
+            {
+              "step": "probe",
+              "ok": true
+            },
+            {
+              "step": "publish",
+              "ok": true
+            },
+            {
+              "step": "get_status",
+              "ok": true
+            },
+            {
+              "step": "confirm_live_url",
+              "ok": true
+            },
+            {
+              "step": "delete",
+              "ok": true
+            },
+            {
+              "step": "confirm_deleted",
+              "ok": true
+            }
+          ],
+          "links": {
+            "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_e568fb44b6934a0a/crt_7896bfa571164a59.json?expires=1792865749&sig=7bf128a930c6ee4b50504b957935bdda"
+          },
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "certification",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "mrss",
+                "version": "1.0.0",
+                "tier": "feed"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_68f7896034cc4375",
+          "evidence": "http://127.0.0.1:62148/api/v1/files/certifications/dst_e568fb44b6934a0a/crt_7896bfa571164a59.json?expires=1792865749&sig=7bf128a930c6ee4b50504b957935bdda"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "seconds": 0.046,
+      "checks": [
+        {
+          "field": "result.passed",
+          "expected": true,
+          "got": true,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "step": 26,
+      "method": "POST",
+      "path": "/api/v1/publications",
+      "http_status": 202,
+      "correlation_id": "52f20eaf8cbf4530bb121a7ace5bee61",
+      "response": {
+        "job_id": "job_4742a73e7e904bc5",
+        "kind": "publication",
+        "status": "queued",
+        "progress": 0,
+        "result": null,
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_4742a73e7e904bc5"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "job": {
+        "job_id": "job_4742a73e7e904bc5",
+        "kind": "publication",
+        "status": "succeeded",
+        "progress": 100,
+        "result": {
+          "publication_id": "pub_4d231ec59bb54a6d",
+          "summary": {
+            "published": 8,
+            "awaiting_human": 1
+          },
+          "results": [
+            {
+              "destination_id": "dst_7307d2f7a1704bd9",
+              "name": "batch discourse discourse",
+              "connector_key": "discourse",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nHow do you handle this in your own work?",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "topic"
+              },
+              "post_id": "pst_d6f506ad5c1f4587",
+              "state": "published",
+              "platform_post_id": "1002|https://discourse-discourse-5cbab28b.mock",
+              "live_url": "https://discourse-discourse-5cbab28b.mock/t/how-we-cut-video-editing-time-with-ai-captions/51002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_7307d2f7a1704bd9",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_df739990759a42f1",
+              "name": "batch lemmy lemmy",
+              "connector_key": "lemmy",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nHow do you handle this in your own work?",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_779fa183867c49dc",
+              "state": "published",
+              "platform_post_id": "1002|https://lemmy-lemmy-5cbab28b.mock",
+              "live_url": "https://lemmy-lemmy-5cbab28b.mock/post/1002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_df739990759a42f1",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_57dc48ebe1e24b74",
+              "name": "batch devto devto",
+              "connector_key": "devto",
+              "tailoring_notes": [
+                "style: article",
+                "tags converted to Dev.to format (lowercase, alphanumeric, max 4)"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [
+                  "ai",
+                  "video"
+                ],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "article"
+              },
+              "post_id": "pst_26e14e0945c74451",
+              "state": "published",
+              "platform_post_id": "1002|https://devto-devto-5cbab28b.mock",
+              "live_url": "https://devto-devto-5cbab28b.mock/incubrix/how-we-cut-video-editing-time-with-ai-captions-3ea",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_57dc48ebe1e24b74",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_c0583e1dd2634538",
+              "name": "batch ghost ghost",
+              "connector_key": "ghost",
+              "tailoring_notes": [
+                "style: article"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [
+                  "ai",
+                  "video"
+                ],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_658cb18f5d9349b8",
+              "state": "published",
+              "platform_post_id": "7b04f5d77b044183950ae948|https://ghost-ghost-5cbab28b.mock",
+              "live_url": "https://ghost-ghost-5cbab28b.mock/how-we-cut-video-editing-time-with-ai-captions/",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_c0583e1dd2634538",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_3d222d7c0fbb4433",
+              "name": "batch webhook webhook",
+              "connector_key": "webhook",
+              "tailoring_notes": [
+                "style: article"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [
+                  "ai",
+                  "video"
+                ],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_4d3e18f8d0e74736",
+              "state": "published",
+              "platform_post_id": "wp1002|https://webhook-webhook-5cbab28b.mock",
+              "live_url": "https://webhook-webhook-5cbab28b.mock/news/wp1002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_3d222d7c0fbb4433",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_5d76af6866ee4222",
+              "name": "batch assisted assisted",
+              "connector_key": "assisted",
+              "tailoring_notes": [
+                "style: forum",
+                "discussion-first framing: added a question for the community"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.\n\nHow do you handle this in your own work?",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "post"
+              },
+              "post_id": "pst_d13e928cca294b8f",
+              "state": "awaiting_human",
+              "platform_post_id": "assist:pack_a51bce611990",
+              "live_url": null,
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_5d76af6866ee4222",
+              "status": "awaiting_human",
+              "assist_pack": {
+                "files": [
+                  {
+                    "name": "post.md",
+                    "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_a51bce611990/post.md?expires=1792865749&sig=382952c0927c261b7d64155bbbb4381c"
+                  },
+                  {
+                    "name": "caption.txt",
+                    "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_a51bce611990/caption.txt?expires=1792865749&sig=c1748b7958436d802dbb79982b0a4ce4"
+                  },
+                  {
+                    "name": "checklist.md",
+                    "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_a51bce611990/checklist.md?expires=1792865749&sig=188e9946dc15677d1d4df9a13a5e7bee"
+                  },
+                  {
+                    "name": "media_1",
+                    "source_url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "note": "media could not be downloaded; use the source URL"
+                  },
+                  {
+                    "name": "pack.zip",
+                    "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_a51bce611990/pack.zip?expires=1792865749&sig=4e5cdfe659363417aea7b64bc1aa5ab2"
+                  }
+                ],
+                "caption": "How we cut video editing time with AI captions\n\nWe tested three captioning workflows for short videos and measured the time each one saved.\n\nHow do you handle this in your own work?",
+                "deep_link": "https://assisted-assisted-5cbab28b.mock/submit",
+                "checklist": [
+                  "Post from the official IncuBrix account on batch assisted assisted.",
+                  "Title must stay under 300 characters (it is 46).",
+                  "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+                  "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+                ],
+                "pack_id": "pack_a51bce611990"
+              },
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_47e2b2019efd466e",
+              "name": "batch hashnode hashnode",
+              "connector_key": "hashnode",
+              "tailoring_notes": [
+                "style: article"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [
+                  "ai",
+                  "video"
+                ],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "article"
+              },
+              "post_id": "pst_48009aa0ba3b4c58",
+              "state": "published",
+              "platform_post_id": "faeed44973094fa8ad47d908|https://hashnode-hashnode-5cbab28b.mock",
+              "live_url": "https://incubrix.hashnode.dev/how-we-cut-video-editing-time-with-ai-captions",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_47e2b2019efd466e",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_0072bbf32bba4576",
+              "name": "batch slack slack",
+              "connector_key": "slack",
+              "tailoring_notes": [
+                "style: chat",
+                "chat style: summary only, cut at a word boundary",
+                "dropped video media not accepted here (https://cdn.example.com/ep.mp4)"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [],
+                "tags": [],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "message"
+              },
+              "post_id": "pst_a5568a7b646c4246",
+              "state": "published",
+              "platform_post_id": "C0BATCH/1792260949.001002|https://slack-slack-5cbab28b.mock",
+              "live_url": "https://incubrix-sim.slack.com/archives/C0BATCH/p1792260949001002",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_0072bbf32bba4576",
+              "status": "live",
+              "warnings": []
+            },
+            {
+              "destination_id": "dst_e568fb44b6934a0a",
+              "name": "batch mrss mrss",
+              "connector_key": "mrss",
+              "tailoring_notes": [
+                "style: feed"
+              ],
+              "rendition": {
+                "title": "How we cut video editing time with AI captions",
+                "body": "We tested three captioning workflows for short videos and measured the time each one saved.",
+                "body_format": "markdown",
+                "media": [
+                  {
+                    "url": "https://cdn.example.com/ep.mp4",
+                    "type": "video",
+                    "mime": "video/mp4"
+                  }
+                ],
+                "tags": [
+                  "ai",
+                  "video"
+                ],
+                "mentions": [],
+                "promotional": false,
+                "ai_generated": false,
+                "language": "en",
+                "surface": "item"
+              },
+              "post_id": "pst_bf6c33b24d614dc8",
+              "state": "published",
+              "platform_post_id": "ibx-ba08ce999473|batch-5cbab28b",
+              "live_url": "http://127.0.0.1:62148/api/v1/feeds/batch-5cbab28b.xml#ibx-ba08ce999473",
+              "reason": null,
+              "reschedule_at": null,
+              "idempotency_key": "all-5cbab28b:dst_e568fb44b6934a0a",
+              "status": "live",
+              "warnings": []
+            }
+          ],
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "publication",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "assisted",
+                "version": "1.0.0",
+                "tier": "assisted"
+              },
+              {
+                "key": "devto",
+                "version": "1.0.0",
+                "tier": "native"
+              },
+              {
+                "key": "discourse",
+                "version": "1.0.0",
+                "tier": "native"
+              },
+              {
+                "key": "ghost",
+                "version": "1.0.0",
+                "tier": "native"
+              },
+              {
+                "key": "hashnode",
+                "version": "1.0.0",
+                "tier": "native"
+              },
+              {
+                "key": "lemmy",
+                "version": "1.0.0",
+                "tier": "protocol"
+              },
+              {
+                "key": "mrss",
+                "version": "1.0.0",
+                "tier": "feed"
+              },
+              {
+                "key": "slack",
+                "version": "1.0.0",
+                "tier": "native"
+              },
+              {
+                "key": "webhook",
+                "version": "1.0.0",
+                "tier": "bridge"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock",
+              "dry_run": false
+            },
+            "seed": 0,
+            "timings": {
+              "published": 0.063,
+              "total_s": 0.063
+            },
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": 0.0,
+              "units": 9
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          },
+          "links": {
+            "result": "http://127.0.0.1:62148/api/v1/files/publications/pub_4d231ec59bb54a6d.json?expires=1792865749&sig=14a4ffde3654c3c1ca56e21414e79e7a"
+          }
+        },
+        "error": null,
+        "links": {
+          "self": "http://127.0.0.1:62148/api/v1/jobs/job_4742a73e7e904bc5",
+          "result": "http://127.0.0.1:62148/api/v1/files/publications/pub_4d231ec59bb54a6d.json?expires=1792865749&sig=14a4ffde3654c3c1ca56e21414e79e7a"
+        },
+        "created_at": "2026-10-17T18:15:49+00:00",
+        "updated_at": "2026-10-17T18:15:49+00:00"
+      },
+      "seconds": 0.321,
+      "checks": [
+        {
+          "field": "status",
+          "expected": "succeeded",
+          "got": "succeeded",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

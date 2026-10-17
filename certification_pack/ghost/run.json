@@ -1,17 +1,17 @@
 {
   "job": {
-    "job_id": "job_e5a3226259794454",
+    "job_id": "job_3c340023798e46c9",
     "kind": "certification",
     "status": "succeeded",
     "progress": 100,
     "result": {
-      "certification_id": "crt_95ca40ed37324d5d",
-      "destination_id": "dst_8c1e84d6ffce4687",
+      "certification_id": "crt_9bb848f9920e4d17",
+      "destination_id": "dst_8261b60508ca46d6",
       "name": "Certification pack: ghost",
       "passed": true,
       "level": "L3",
-      "duration_s": 0.015,
-      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_8c1e84d6ffce4687/crt_95ca40ed37324d5d.json?expires=1792781165&sig=20eb78bc3b1ff5736e7ad39fdcb2c8af",
+      "duration_s": 0.031,
+      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_8261b60508ca46d6/crt_9bb848f9920e4d17.json?expires=1792865811&sig=a89b728edf94245c6dbfe837e37d9a3a",
       "error": null,
       "steps": [
         {
@@ -40,7 +40,7 @@
         }
       ],
       "links": {
-        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_8c1e84d6ffce4687/crt_95ca40ed37324d5d.json?expires=1792781165&sig=20eb78bc3b1ff5736e7ad39fdcb2c8af"
+        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_8261b60508ca46d6/crt_9bb848f9920e4d17.json?expires=1792865811&sig=a89b728edf94245c6dbfe837e37d9a3a"
       },
       "manifest": {
         "manifest_version": "1.0",
@@ -85,25 +85,25 @@
     },
     "error": null,
     "links": {
-      "self": "http://localhost:8088/api/v1/jobs/job_e5a3226259794454",
-      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_8c1e84d6ffce4687/crt_95ca40ed37324d5d.json?expires=1792781165&sig=20eb78bc3b1ff5736e7ad39fdcb2c8af"
+      "self": "http://localhost:8088/api/v1/jobs/job_3c340023798e46c9",
+      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_8261b60508ca46d6/crt_9bb848f9920e4d17.json?expires=1792865811&sig=a89b728edf94245c6dbfe837e37d9a3a"
     },
-    "created_at": "2026-10-16T18:46:05+00:00",
-    "updated_at": "2026-10-16T18:46:05+00:00"
+    "created_at": "2026-10-17T18:16:51+00:00",
+    "updated_at": "2026-10-17T18:16:51+00:00"
   },
   "certification": {
-    "id": "crt_95ca40ed37324d5d",
-    "destination_id": "dst_8c1e84d6ffce4687",
+    "id": "crt_9bb848f9920e4d17",
+    "destination_id": "dst_8261b60508ca46d6",
     "status": "passed",
-    "started_at": "2026-10-16T18:46:05+00:00",
-    "finished_at": "2026-10-16T18:46:05+00:00",
-    "duration_s": 0.015,
+    "started_at": "2026-10-17T18:16:51+00:00",
+    "finished_at": "2026-10-17T18:16:51+00:00",
+    "duration_s": 0.031,
     "steps": [
       {
         "step": "probe",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "ms": 16,
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "ok": true,
           "version": "5.96"
@@ -112,17 +112,17 @@
       {
         "step": "publish",
         "ok": true,
-        "ms": 15,
-        "at": "2026-10-16T18:46:05+00:00",
+        "ms": 0,
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
-          "post_id": "pst_076ef078ef4c497e",
-          "destination_id": "dst_8c1e84d6ffce4687",
+          "post_id": "pst_52ec8679efc34ccd",
+          "destination_id": "dst_8261b60508ca46d6",
           "state": "published",
-          "platform_post_id": "7166cae8036c4b13aef08b23|https://ghost-pack-0227a2.mock",
-          "live_url": "https://ghost-pack-0227a2.mock/incubrix-connector-certification-f1e60116-please-ignore/",
+          "platform_post_id": "ad106de723e74d8f8cdf5504|https://ghost-pack-bf10e5.mock",
+          "live_url": "https://ghost-pack-bf10e5.mock/incubrix-connector-certification-e31805a3-please-ignore/",
           "reason": null,
           "reschedule_at": null,
-          "idempotency_key": "cert-dst_8c1e84d6ffce4687-f1e60116",
+          "idempotency_key": "cert-dst_8261b60508ca46d6-e31805a3",
           "status": "live",
           "warnings": []
         }
@@ -131,19 +131,19 @@
         "step": "get_status",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "status": "live",
-          "live_url": "https://ghost-pack-0227a2.mock/incubrix-connector-certification-f1e60116-please-ignore/"
+          "live_url": "https://ghost-pack-bf10e5.mock/incubrix-connector-certification-e31805a3-please-ignore/"
         }
       },
       {
         "step": "confirm_live_url",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
-          "live_url": "https://ghost-pack-0227a2.mock/incubrix-connector-certification-f1e60116-please-ignore/",
+          "live_url": "https://ghost-pack-bf10e5.mock/incubrix-connector-certification-e31805a3-please-ignore/",
           "checked": "platform status (simulated host)"
         }
       },
@@ -151,7 +151,7 @@
         "step": "delete",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "deleted": true
         }
@@ -159,24 +159,24 @@
       {
         "step": "confirm_deleted",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "ms": 14,
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "status": "deleted",
           "live_url": null
         }
       }
     ],
-    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_8c1e84d6ffce4687/crt_95ca40ed37324d5d.json?expires=1792781165&sig=20eb78bc3b1ff5736e7ad39fdcb2c8af",
+    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_8261b60508ca46d6/crt_9bb848f9920e4d17.json?expires=1792865811&sig=a89b728edf94245c6dbfe837e37d9a3a",
     "error": null
   },
   "run": {
-    "certification_id": "crt_95ca40ed37324d5d",
+    "certification_id": "crt_9bb848f9920e4d17",
     "destination": {
-      "id": "dst_8c1e84d6ffce4687",
+      "id": "dst_8261b60508ca46d6",
       "name": "Certification pack: ghost",
-      "url": "https://ghost-pack-0227a2.mock",
-      "normalized_url": "https://ghost-pack-0227a2.mock",
+      "url": "https://ghost-pack-bf10e5.mock",
+      "normalized_url": "https://ghost-pack-bf10e5.mock",
       "platform_key": "ghost",
       "connector_key": "ghost",
       "surface": null,
@@ -201,26 +201,26 @@
       "status": "uncertified",
       "rules_status": "confirmed",
       "config": {
-        "base_url": "https://ghost-pack-0227a2.mock"
+        "base_url": "https://ghost-pack-bf10e5.mock"
       },
-      "connection_id": "con_cf0d7167e9d04db3",
-      "created_at": "2026-10-16T18:46:05+00:00",
-      "updated_at": "2026-10-16T18:46:05+00:00"
+      "connection_id": "con_103bc1eb11194013",
+      "created_at": "2026-10-17T18:16:51+00:00",
+      "updated_at": "2026-10-17T18:16:51+00:00"
     },
     "connector": "ghost",
     "connector_version": "1.0.0",
     "simulated": true,
-    "started_at": "2026-10-16T18:46:05+00:00",
-    "finished_at": "2026-10-16T18:46:05+00:00",
-    "duration_s": 0.015,
+    "started_at": "2026-10-17T18:16:51+00:00",
+    "finished_at": "2026-10-17T18:16:51+00:00",
+    "duration_s": 0.031,
     "passed": true,
     "level": "L3",
     "steps": [
       {
         "step": "probe",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "ms": 16,
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "ok": true,
           "version": "5.96"
@@ -229,17 +229,17 @@
       {
         "step": "publish",
         "ok": true,
-        "ms": 15,
-        "at": "2026-10-16T18:46:05+00:00",
+        "ms": 0,
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
-          "post_id": "pst_076ef078ef4c497e",
-          "destination_id": "dst_8c1e84d6ffce4687",
+          "post_id": "pst_52ec8679efc34ccd",
+          "destination_id": "dst_8261b60508ca46d6",
           "state": "published",
-          "platform_post_id": "7166cae8036c4b13aef08b23|https://ghost-pack-0227a2.mock",
-          "live_url": "https://ghost-pack-0227a2.mock/incubrix-connector-certification-f1e60116-please-ignore/",
+          "platform_post_id": "ad106de723e74d8f8cdf5504|https://ghost-pack-bf10e5.mock",
+          "live_url": "https://ghost-pack-bf10e5.mock/incubrix-connector-certification-e31805a3-please-ignore/",
           "reason": null,
           "reschedule_at": null,
-          "idempotency_key": "cert-dst_8c1e84d6ffce4687-f1e60116",
+          "idempotency_key": "cert-dst_8261b60508ca46d6-e31805a3",
           "status": "live",
           "warnings": []
         }
@@ -248,19 +248,19 @@
         "step": "get_status",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "status": "live",
-          "live_url": "https://ghost-pack-0227a2.mock/incubrix-connector-certification-f1e60116-please-ignore/"
+          "live_url": "https://ghost-pack-bf10e5.mock/incubrix-connector-certification-e31805a3-please-ignore/"
         }
       },
       {
         "step": "confirm_live_url",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
-          "live_url": "https://ghost-pack-0227a2.mock/incubrix-connector-certification-f1e60116-please-ignore/",
+          "live_url": "https://ghost-pack-bf10e5.mock/incubrix-connector-certification-e31805a3-please-ignore/",
           "checked": "platform status (simulated host)"
         }
       },
@@ -268,7 +268,7 @@
         "step": "delete",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "deleted": true
         }
@@ -276,8 +276,8 @@
       {
         "step": "confirm_deleted",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:05+00:00",
+        "ms": 14,
+        "at": "2026-10-17T18:16:51+00:00",
         "result": {
           "status": "deleted",
           "live_url": null

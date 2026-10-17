@@ -1,0 +1,116 @@
+{
+  "certification_id": "crt_e2e00be445434d93",
+  "destination": {
+    "id": "dst_60bb98c6024d42b9",
+    "name": "check ghost timeout",
+    "url": "https://ghost-timeout-ddd254.mock",
+    "normalized_url": "https://ghost-timeout-ddd254.mock",
+    "platform_key": "ghost",
+    "connector_key": "ghost",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "video",
+      "ai"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "base_url": "https://ghost-timeout-ddd254.mock"
+    },
+    "connection_id": "con_a95979855c994dfd",
+    "created_at": "2026-10-17T18:16:10+00:00",
+    "updated_at": "2026-10-17T18:16:10+00:00"
+  },
+  "connector": "ghost",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T18:16:10+00:00",
+  "finished_at": "2026-10-17T18:16:10+00:00",
+  "duration_s": 0.047,
+  "passed": true,
+  "level": "L3",
+  "steps": [
+    {
+      "step": "probe",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:16:10+00:00",
+      "result": {
+        "ok": true,
+        "version": "5.96"
+      }
+    },
+    {
+      "step": "publish",
+      "ok": true,
+      "ms": 16,
+      "at": "2026-10-17T18:16:10+00:00",
+      "result": {
+        "post_id": "pst_e8f0e532c6f24117",
+        "destination_id": "dst_60bb98c6024d42b9",
+        "state": "published",
+        "platform_post_id": "e4bb3fe06b064267aa4d4be1|https://ghost-timeout-ddd254.mock",
+        "live_url": "https://ghost-timeout-ddd254.mock/incubrix-connector-certification-5dcaecab-please-ignore/",
+        "reason": null,
+        "reschedule_at": null,
+        "idempotency_key": "cert-dst_60bb98c6024d42b9-5dcaecab",
+        "status": "live",
+        "warnings": []
+      }
+    },
+    {
+      "step": "get_status",
+      "ok": true,
+      "ms": 15,
+      "at": "2026-10-17T18:16:10+00:00",
+      "result": {
+        "status": "live",
+        "live_url": "https://ghost-timeout-ddd254.mock/incubrix-connector-certification-5dcaecab-please-ignore/"
+      }
+    },
+    {
+      "step": "confirm_live_url",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:16:10+00:00",
+      "result": {
+        "live_url": "https://ghost-timeout-ddd254.mock/incubrix-connector-certification-5dcaecab-please-ignore/",
+        "checked": "platform status (simulated host)"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:16:10+00:00",
+      "result": {
+        "deleted": true
+      }
+    },
+    {
+      "step": "confirm_deleted",
+      "ok": true,
+      "ms": 14,
+      "at": "2026-10-17T18:16:10+00:00",
+      "result": {
+        "status": "deleted",
+        "live_url": null
+      }
+    }
+  ],
+  "error": null
+}

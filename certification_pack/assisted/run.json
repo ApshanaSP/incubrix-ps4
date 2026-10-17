@@ -1,17 +1,17 @@
 {
   "job": {
-    "job_id": "job_fc615505b1ff46d6",
+    "job_id": "job_f602027f76eb420a",
     "kind": "certification",
     "status": "succeeded",
     "progress": 100,
     "result": {
-      "certification_id": "crt_38536f348e314989",
-      "destination_id": "dst_dfc724c38c734731",
+      "certification_id": "crt_127fe9a99af44e67",
+      "destination_id": "dst_ad47a45cad3647e6",
       "name": "Certification pack: assisted",
       "passed": true,
       "level": "L1",
-      "duration_s": 0.0,
-      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_dfc724c38c734731/crt_38536f348e314989.json?expires=1792781171&sig=1076892cad428df4747f908133642cdf",
+      "duration_s": 0.016,
+      "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_ad47a45cad3647e6/crt_127fe9a99af44e67.json?expires=1792865817&sig=b30d94623b45788f07a4a23082650892",
       "error": null,
       "steps": [
         {
@@ -28,7 +28,7 @@
         }
       ],
       "links": {
-        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_dfc724c38c734731/crt_38536f348e314989.json?expires=1792781171&sig=1076892cad428df4747f908133642cdf"
+        "evidence": "http://localhost:8088/api/v1/files/certifications/dst_ad47a45cad3647e6/crt_127fe9a99af44e67.json?expires=1792865817&sig=b30d94623b45788f07a4a23082650892"
       },
       "manifest": {
         "manifest_version": "1.0",
@@ -73,86 +73,86 @@
     },
     "error": null,
     "links": {
-      "self": "http://localhost:8088/api/v1/jobs/job_fc615505b1ff46d6",
-      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_dfc724c38c734731/crt_38536f348e314989.json?expires=1792781171&sig=1076892cad428df4747f908133642cdf"
+      "self": "http://localhost:8088/api/v1/jobs/job_f602027f76eb420a",
+      "evidence": "http://localhost:8088/api/v1/files/certifications/dst_ad47a45cad3647e6/crt_127fe9a99af44e67.json?expires=1792865817&sig=b30d94623b45788f07a4a23082650892"
     },
-    "created_at": "2026-10-16T18:46:11+00:00",
-    "updated_at": "2026-10-16T18:46:11+00:00"
+    "created_at": "2026-10-17T18:16:57+00:00",
+    "updated_at": "2026-10-17T18:16:57+00:00"
   },
   "certification": {
-    "id": "crt_38536f348e314989",
-    "destination_id": "dst_dfc724c38c734731",
+    "id": "crt_127fe9a99af44e67",
+    "destination_id": "dst_ad47a45cad3647e6",
     "status": "passed",
-    "started_at": "2026-10-16T18:46:11+00:00",
-    "finished_at": "2026-10-16T18:46:11+00:00",
-    "duration_s": 0.0,
+    "started_at": "2026-10-17T18:16:57+00:00",
+    "finished_at": "2026-10-17T18:16:57+00:00",
+    "duration_s": 0.016,
     "steps": [
       {
         "step": "build_assist_pack",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:11+00:00",
+        "ms": 16,
+        "at": "2026-10-17T18:16:57+00:00",
         "result": {
           "files": [
             {
               "name": "post.md",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/post.md?expires=1792781171&sig=baca87ac2d0975f65c48c2c63e81558d"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/post.md?expires=1792865817&sig=046f2dfae23e833644f6ef42e392339e"
             },
             {
               "name": "caption.txt",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/caption.txt?expires=1792781171&sig=d70ed24e37429dc342327d0714df7782"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/caption.txt?expires=1792865817&sig=24bb4581b1988301542495b371e46fba"
             },
             {
               "name": "checklist.md",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/checklist.md?expires=1792781171&sig=2ed9ed1d449863fcbac8192aa84352c8"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/checklist.md?expires=1792865817&sig=983f8fc3ce0c59f5a8ee7df629fbe163"
             },
             {
               "name": "pack.zip",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/pack.zip?expires=1792781171&sig=3cf67e071f794188fecb3e2c9d07f89f"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/pack.zip?expires=1792865817&sig=e2a8e55f753c9d916d9edf5e4a1f7c57"
             }
           ],
-          "caption": "IncuBrix connector certification 1085d561 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
-          "deep_link": "https://assisted-pack-0227a2.mock/submit",
+          "caption": "IncuBrix connector certification de72d0a6 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+          "deep_link": "https://assisted-pack-bf10e5.mock/submit",
           "checklist": [
             "Post from the official IncuBrix account on Certification pack: assisted.",
             "Title must stay under 300 characters (it is 55).",
             "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
             "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
           ],
-          "pack_id": "pack_5bdc1f37e59f"
+          "pack_id": "pack_dacf384a98c3"
         }
       },
       {
         "step": "check_pack_files",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:11+00:00",
+        "at": "2026-10-17T18:16:57+00:00",
         "result": {
           "files": 4,
           "checklist_items": 4,
-          "deep_link": "https://assisted-pack-0227a2.mock/submit"
+          "deep_link": "https://assisted-pack-bf10e5.mock/submit"
         }
       },
       {
         "step": "delete",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:11+00:00",
+        "at": "2026-10-17T18:16:57+00:00",
         "result": {
           "deleted": true
         }
       }
     ],
-    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_dfc724c38c734731/crt_38536f348e314989.json?expires=1792781171&sig=1076892cad428df4747f908133642cdf",
+    "evidence_url": "http://localhost:8088/api/v1/files/certifications/dst_ad47a45cad3647e6/crt_127fe9a99af44e67.json?expires=1792865817&sig=b30d94623b45788f07a4a23082650892",
     "error": null
   },
   "run": {
-    "certification_id": "crt_38536f348e314989",
+    "certification_id": "crt_127fe9a99af44e67",
     "destination": {
-      "id": "dst_dfc724c38c734731",
+      "id": "dst_ad47a45cad3647e6",
       "name": "Certification pack: assisted",
-      "url": "https://assisted-pack-0227a2.mock",
-      "normalized_url": "https://assisted-pack-0227a2.mock",
+      "url": "https://assisted-pack-bf10e5.mock",
+      "normalized_url": "https://assisted-pack-bf10e5.mock",
       "platform_key": "assisted",
       "connector_key": "assisted",
       "surface": null,
@@ -177,72 +177,72 @@
       "status": "uncertified",
       "rules_status": "confirmed",
       "config": {
-        "submit_url": "https://assisted-pack-0227a2.mock/submit"
+        "submit_url": "https://assisted-pack-bf10e5.mock/submit"
       },
       "connection_id": null,
-      "created_at": "2026-10-16T18:46:11+00:00",
-      "updated_at": "2026-10-16T18:46:11+00:00"
+      "created_at": "2026-10-17T18:16:57+00:00",
+      "updated_at": "2026-10-17T18:16:57+00:00"
     },
     "connector": "assisted",
     "connector_version": "1.0.0",
     "simulated": true,
-    "started_at": "2026-10-16T18:46:11+00:00",
-    "finished_at": "2026-10-16T18:46:11+00:00",
-    "duration_s": 0.0,
+    "started_at": "2026-10-17T18:16:57+00:00",
+    "finished_at": "2026-10-17T18:16:57+00:00",
+    "duration_s": 0.016,
     "passed": true,
     "level": "L1",
     "steps": [
       {
         "step": "build_assist_pack",
         "ok": true,
-        "ms": 0,
-        "at": "2026-10-16T18:46:11+00:00",
+        "ms": 16,
+        "at": "2026-10-17T18:16:57+00:00",
         "result": {
           "files": [
             {
               "name": "post.md",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/post.md?expires=1792781171&sig=baca87ac2d0975f65c48c2c63e81558d"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/post.md?expires=1792865817&sig=046f2dfae23e833644f6ef42e392339e"
             },
             {
               "name": "caption.txt",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/caption.txt?expires=1792781171&sig=d70ed24e37429dc342327d0714df7782"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/caption.txt?expires=1792865817&sig=24bb4581b1988301542495b371e46fba"
             },
             {
               "name": "checklist.md",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/checklist.md?expires=1792781171&sig=2ed9ed1d449863fcbac8192aa84352c8"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/checklist.md?expires=1792865817&sig=983f8fc3ce0c59f5a8ee7df629fbe163"
             },
             {
               "name": "pack.zip",
-              "url": "http://localhost:8088/api/v1/files/packs/pack_5bdc1f37e59f/pack.zip?expires=1792781171&sig=3cf67e071f794188fecb3e2c9d07f89f"
+              "url": "http://localhost:8088/api/v1/files/packs/pack_dacf384a98c3/pack.zip?expires=1792865817&sig=e2a8e55f753c9d916d9edf5e4a1f7c57"
             }
           ],
-          "caption": "IncuBrix connector certification 1085d561 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
-          "deep_link": "https://assisted-pack-0227a2.mock/submit",
+          "caption": "IncuBrix connector certification de72d0a6 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+          "deep_link": "https://assisted-pack-bf10e5.mock/submit",
           "checklist": [
             "Post from the official IncuBrix account on Certification pack: assisted.",
             "Title must stay under 300 characters (it is 55).",
             "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
             "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
           ],
-          "pack_id": "pack_5bdc1f37e59f"
+          "pack_id": "pack_dacf384a98c3"
         }
       },
       {
         "step": "check_pack_files",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:11+00:00",
+        "at": "2026-10-17T18:16:57+00:00",
         "result": {
           "files": 4,
           "checklist_items": 4,
-          "deep_link": "https://assisted-pack-0227a2.mock/submit"
+          "deep_link": "https://assisted-pack-bf10e5.mock/submit"
         }
       },
       {
         "step": "delete",
         "ok": true,
         "ms": 0,
-        "at": "2026-10-16T18:46:11+00:00",
+        "at": "2026-10-17T18:16:57+00:00",
         "result": {
           "deleted": true
         }

@@ -1,0 +1,109 @@
+{
+  "certification_id": "crt_7772f781f9574b97",
+  "destination": {
+    "id": "dst_assist_hn",
+    "name": "Hacker News (assisted)",
+    "url": "https://news.ycombinator.com",
+    "normalized_url": "https://news.ycombinator.com",
+    "platform_key": "hackernews",
+    "connector_key": "assisted",
+    "surface": null,
+    "category": "news_aggregator",
+    "audience_tags": [
+      "founders",
+      "saas",
+      "ai"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": "https://news.ycombinator.com/newsguidelines.html",
+    "frequency_cap": "1/30d",
+    "self_promo_allowed": "limited",
+    "link_policy": "one_link",
+    "disclosure_required": false,
+    "automation_allowed": false,
+    "relevance_score": 4,
+    "relevance_reason": "Founders and engineers; automated posting not allowed.",
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "submit_url_template": "https://news.ycombinator.com/submitlink?u={url}&t={title}"
+    },
+    "connection_id": null,
+    "created_at": "2026-10-17T18:15:42+00:00",
+    "updated_at": "2026-10-17T18:15:42+00:00"
+  },
+  "connector": "assisted",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T18:15:43+00:00",
+  "finished_at": "2026-10-17T18:15:43+00:00",
+  "duration_s": 0.016,
+  "passed": true,
+  "level": "L1",
+  "steps": [
+    {
+      "step": "build_assist_pack",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:15:43+00:00",
+      "result": {
+        "files": [
+          {
+            "name": "post.md",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_25e0729cb786/post.md?expires=1792865743&sig=f8f4f027f68ec769f7b4676d28c0b8d4"
+          },
+          {
+            "name": "caption.txt",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_25e0729cb786/caption.txt?expires=1792865743&sig=494e8be7dbe6ab2e97f83ecbccab0a21"
+          },
+          {
+            "name": "checklist.md",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_25e0729cb786/checklist.md?expires=1792865743&sig=9a78f5e5784723fa82c618881c53f302"
+          },
+          {
+            "name": "pack.zip",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_25e0729cb786/pack.zip?expires=1792865743&sig=91d06707104b7174e7e01e5f7d686289"
+          }
+        ],
+        "caption": "IncuBrix connector certification 2a5c1633 please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+        "deep_link": "https://news.ycombinator.com/submitlink?u=&t=IncuBrix%20connector%20certification%202a5c1633%20please%20ignore",
+        "checklist": [
+          "Post from the official IncuBrix account on Hacker News (assisted).",
+          "Re-read the community rules before posting: https://news.ycombinator.com/newsguidelines.html",
+          "Frequency cap is 1/30d: check that IncuBrix has not posted here inside that window.",
+          "Self-promotion is limited: at most one promotional post in the window; lead with value.",
+          "Link policy: one_link.",
+          "Title must stay under 300 characters (it is 55).",
+          "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+          "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+        ],
+        "pack_id": "pack_25e0729cb786"
+      }
+    },
+    {
+      "step": "check_pack_files",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:15:43+00:00",
+      "result": {
+        "files": 4,
+        "checklist_items": 8,
+        "deep_link": "https://news.ycombinator.com/submitlink?u=&t=IncuBrix%20connector%20certification%202a5c1633%20please%20ignore"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 15,
+      "at": "2026-10-17T18:15:43+00:00",
+      "result": {
+        "deleted": true
+      }
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,104 @@
+{
+  "certification_id": "crt_3f828bfc6b844017",
+  "destination": {
+    "id": "dst_f8b398091e0246dc",
+    "name": "check assisted core",
+    "url": "https://assisted-core-ddd254.mock",
+    "normalized_url": "https://assisted-core-ddd254.mock",
+    "platform_key": "assisted",
+    "connector_key": "assisted",
+    "surface": null,
+    "category": null,
+    "audience_tags": [
+      "video",
+      "ai"
+    ],
+    "language": "en",
+    "geo": null,
+    "est_audience": null,
+    "rules_url": null,
+    "frequency_cap": null,
+    "self_promo_allowed": null,
+    "link_policy": null,
+    "disclosure_required": false,
+    "automation_allowed": true,
+    "relevance_score": null,
+    "relevance_reason": null,
+    "level": "L0",
+    "last_certified_at": null,
+    "status": "uncertified",
+    "rules_status": "confirmed",
+    "config": {
+      "submit_url": "https://assisted-core-ddd254.mock/submit"
+    },
+    "connection_id": null,
+    "created_at": "2026-10-17T18:16:06+00:00",
+    "updated_at": "2026-10-17T18:16:06+00:00"
+  },
+  "connector": "assisted",
+  "connector_version": "1.0.0",
+  "simulated": true,
+  "started_at": "2026-10-17T18:16:06+00:00",
+  "finished_at": "2026-10-17T18:16:06+00:00",
+  "duration_s": 0.031,
+  "passed": true,
+  "level": "L1",
+  "steps": [
+    {
+      "step": "build_assist_pack",
+      "ok": true,
+      "ms": 31,
+      "at": "2026-10-17T18:16:06+00:00",
+      "result": {
+        "files": [
+          {
+            "name": "post.md",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_486a8fa5a09d/post.md?expires=1792865766&sig=e7c9d6e842f84076baaaa6071253af16"
+          },
+          {
+            "name": "caption.txt",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_486a8fa5a09d/caption.txt?expires=1792865766&sig=7e02cada7a0eb295f22aebaaceae5ac0"
+          },
+          {
+            "name": "checklist.md",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_486a8fa5a09d/checklist.md?expires=1792865766&sig=e411699aec6356875b07f80cfb573f17"
+          },
+          {
+            "name": "pack.zip",
+            "url": "http://127.0.0.1:62148/api/v1/files/packs/pack_486a8fa5a09d/pack.zip?expires=1792865766&sig=68f863d041c860c8c3e7f6d3341e4b13"
+          }
+        ],
+        "caption": "IncuBrix connector certification 252aa93a please ignore\n\nAutomated certification post from the IncuBrix distribution service. It checks that publishing, status and deletion work, and it is deleted within minutes. Please ignore it.",
+        "deep_link": "https://assisted-core-ddd254.mock/submit",
+        "checklist": [
+          "Post from the official IncuBrix account on check assisted core.",
+          "Title must stay under 300 characters (it is 55).",
+          "After posting, paste the live URL back into IncuBrix (POST /api/v1/assist/{pack_id}/posted).",
+          "Answer comments within 24 hours; do not cross-post the same text to sibling communities."
+        ],
+        "pack_id": "pack_486a8fa5a09d"
+      }
+    },
+    {
+      "step": "check_pack_files",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:16:06+00:00",
+      "result": {
+        "files": 4,
+        "checklist_items": 4,
+        "deep_link": "https://assisted-core-ddd254.mock/submit"
+      }
+    },
+    {
+      "step": "delete",
+      "ok": true,
+      "ms": 0,
+      "at": "2026-10-17T18:16:06+00:00",
+      "result": {
+        "deleted": true
+      }
+    }
+  ],
+  "error": null
+}

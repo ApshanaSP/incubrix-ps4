@@ -1,0 +1,124 @@
+{
+  "api": "http://127.0.0.1:62148",
+  "cases": [
+    {
+      "name": "01_certify_and_publish_every_connector",
+      "ok": true,
+      "seconds": 3.125,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "02_timeout_then_retry_same_key",
+      "ok": true,
+      "seconds": 3.578,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "03_rate_limit_429_with_reset",
+      "ok": true,
+      "seconds": 0.356,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "04_rate_limit_short_backoff",
+      "ok": true,
+      "seconds": 2.556,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "05_expired_token",
+      "ok": true,
+      "seconds": 0.491,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "06_content_rejected",
+      "ok": true,
+      "seconds": 0.486,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "07_too_long_title_and_body",
+      "ok": true,
+      "seconds": 0.473,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "08_unsupported_media",
+      "ok": true,
+      "seconds": 0.442,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "09_second_post_inside_weekly_cap",
+      "ok": true,
+      "seconds": 0.462,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "10_promo_to_no_promotion_community",
+      "ok": true,
+      "seconds": 0.369,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "11_renamed_api_field",
+      "ok": true,
+      "seconds": 0.162,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "12_csv_duplicates_bad_urls_mixed_languages",
+      "ok": true,
+      "seconds": 1.382,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "13_partner_revokes_permission",
+      "ok": true,
+      "seconds": 0.524,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "14_non_english_community",
+      "ok": true,
+      "seconds": 0.911,
+      "last_http_status": 202,
+      "last_job_status": "succeeded"
+    },
+    {
+      "name": "15_ai_disclosure_required",
+      "ok": true,
+      "seconds": 0.481,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "16_rules_capture_needs_confirmation",
+      "ok": true,
+      "seconds": 0.514,
+      "last_http_status": 200,
+      "last_job_status": null
+    },
+    {
+      "name": "17_recommend_destinations",
+      "ok": true,
+      "seconds": 0.04,
+      "last_http_status": 200,
+      "last_job_status": null
+    }
+  ]
+}
