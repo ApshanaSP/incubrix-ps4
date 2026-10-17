@@ -38,6 +38,7 @@ Everything in the default path, and everything it outputs, may be used commercia
 | Built-in heuristic adapter (`mock`) | this repository | rules capture, relevance, tests | yes, default |
 | `openai/gpt-oss-120b` served by Groq | model: Apache-2.0; Groq API commercial terms | rules capture, relevance (`AI_PROVIDER=groq`) | opt-in |
 | `openai/gpt-oss-20b` served by Groq | model: Apache-2.0; Groq API commercial terms | real-catalogue build, after the 120b model's free daily token limit was used up (`GROQ_MODEL`); the model used is recorded per row | opt-in |
+| Gemini `gemini-3.1-flash-lite`, Google Gemini API | Google API terms (commercial use allowed on paid tier) | real-catalogue build (the model is recorded per row) | opt-in |
 | Gemini Flash (`gemini-flash-latest`), Google Gemini API | Google API terms (commercial use allowed on paid tier) | same tasks (`AI_PROVIDER=gemini`) | opt-in |
 
 All AI calls go through `app/ai/providers.py`, so a provider is changed by configuration only. AI-written outputs (rules proposals, relevance reasons) are marked in the result manifest, and rules proposals are not used until a person confirms them.
@@ -51,3 +52,5 @@ Discourse REST API, Lemmy HTTP API v3, Forem (Dev.to) API v1, Ghost Admin API v5
 - No third-party media is included or produced. Test posts are plain text written for this project.
 - `catalogue/real_catalogue.csv` lists public communities: their names, public URLs and posting rules. These are facts, read from public rules pages where `robots.txt` allows. Each AI-read rule keeps its source quote in `catalogue/real_catalogue_evidence.json`. Nothing was posted to any of these communities.
 - Mock platform behaviour in `app/mocks/server.py` was written for this project from the public API documentation of each platform.
+- Catalogue discovery (`tools/discover_destinations.py`) reads public APIs that robots.txt allows: Lemmy instances' `/api/v3/community/list`, the PeerTube instance index at instances.joinpeertube.org and each instance's `/api/v1/config/about`. Only names, URLs, descriptions and published rules are stored, as facts about the communities.
+- `tools/check_real_apis.py` reads public posts on meta.discourse.org, dev.to and lemmy.world (read-only) to check the connectors' field use.
