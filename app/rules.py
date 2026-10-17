@@ -31,11 +31,19 @@ WINDOW_UNITS = {"h": 3600, "hour": 3600, "d": 86400, "day": 86400, "w": 604800, 
 SHORTENERS = {"bit.ly", "tinyurl.com", "t.co", "goo.gl", "ow.ly", "buff.ly", "is.gd", "rebrand.ly", "cutt.ly",
               "shorturl.at", "lnkd.in", "rb.gy"}
 
+# any one of these makes a post promotional (unless negated: "no sign up needed")
 PROMO_PHRASES = [
-    "sign up", "signup", "free trial", "try it free", "try it now", "buy now", "discount", "promo code", "coupon",
-    "% off", "limited time", "subscribe now", "book a demo", "get started today", "check out our", "our product",
-    "our platform", "our new tool", "use code", "early access", "join our waitlist", "pricing", "upgrade now",
+    "sign up", "signup", "free trial", "try it free", "try it now", "buy now", "promo code", "coupon", "use code",
+    "limited time", "today only", "this week only", "subscribe now", "book a demo", "get started today",
+    "check out our", "check out my", "our product", "our platform", "our new tool", "our tool", "our app",
+    "our editor", "our service", "early access", "join our waitlist", "upgrade now", "link in bio",
+    "we just launched", "we launched", "we just shipped", "we shipped", "now available",
+    "affiliate", "commission", "referral link", "ref link", "sponsored",
 ]
+# these alone are a topic, not an ad ("why 50% off sales hurt creators"); they count only with a link or a phrase above
+WEAK_PROMO_PHRASES = ["discount", "% off", "pricing", "on sale", "deal"]
+AFFILIATE_LINK_RE = re.compile(r"(amzn\.to/|amazon\.[a-z.]+/.*[?&]tag=|[?&](ref|aff|affiliate|via)=|/ref/|/aff/)", re.I)
+NEGATION_RE = re.compile(r"\b(no|not|without|never|don't|doesn't|no need to)\W+(?:\w+\W+){0,2}$", re.I)
 
 DISCLOSURE_RE = re.compile(
     r"(ai[- ]generated|generated (with|by|using) ai|written (with|by) ai|ai[- ]assisted|created with the help of ai|"
@@ -69,12 +77,29 @@ def detect_promotional(rendition: Rendition) -> tuple[bool, list[str]]:
     if rendition.promotional is not None:
         return bool(rendition.promotional), (["marked promotional by the sender"] if rendition.promotional else [])
     text = f"{rendition.title}\n{rendition.body}".lower()
-    reasons = [f"phrase '{p}'" for p in PROMO_PHRASES if p in text]
+
+    def said(phrase: str) -> bool:
+        # the phrase appears and is not negated just before it ("no sign up needed", "without a free trial")
+        for m in re.finditer(r"(?<![a-z])" + re.escape(phrase), text):
+            if not NEGATION_RE.search(text[max(0, m.start() - 30):m.start()]):
+                return True
+        return False
+
+    reasons = [f"phrase '{p}'" for p in PROMO_PHRASES if said(p)]
+    links = URL_RE.findall(text) + ([rendition.link] if rendition.link else [])
     domains = own_domains()
-    for url in URL_RE.findall(text) + ([rendition.link] if rendition.link else []):
+    for url in links:
         host = (urlsplit(url).hostname or "").lower()
         if any(host == d or host.endswith("." + d) for d in domains):
             reasons.append(f"links to own site {host}")
+        if AFFILIATE_LINK_RE.search(url):
+            reasons.append(f"affiliate-style link {url[:60]}")
+    for d in domains:  # the own site named without a link ("find us at incubrix.com")
+        if re.search(r"(?<![\w.])" + re.escape(d) + r"(?![\w])", text) and not any(f"own site" in r for r in reasons):
+            reasons.append(f"names own site {d}")
+    weak = [p for p in WEAK_PROMO_PHRASES if said(p)]
+    if weak and (reasons or links):
+        reasons += [f"phrase '{p}'" for p in weak]
     return bool(reasons), reasons
 
 

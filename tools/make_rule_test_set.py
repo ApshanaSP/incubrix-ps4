@@ -80,6 +80,20 @@ def build() -> list[dict]:
         {"disclosure_required": True}, c("Five AI editing tips", ai_generated=True), False)
     add("ai_disclosure_not_required", "AI-generated post where disclosure is not required",
         {"disclosure_required": False}, c("Five AI editing tips", ai_generated=True), False)
+    # self-promotion: wording found by probing on 17 Oct (the first detector got the first four wrong)
+    no_promo = {"self_promo_allowed": "no"}
+    add("promo_subtle_launch", "launch post with no sales words: 'we just shipped', 'link in bio', own domain", no_promo,
+        c("We just shipped v2 of our editor", "Would love feedback, link in bio. incubrix.com"), True)
+    add("promo_affiliate", "affiliate link and commission", no_promo,
+        c("My honest review of 5 caption tools", "I earn a commission if you use my link: https://amzn.to/x"), True)
+    add("promo_negated_signup", "'no sign up needed' is not a call to action", no_promo,
+        c("Free and open-source caption aligner", "No sign up needed, MIT licence, download from GitHub."), False)
+    add("promo_discount_topic", "an essay about discounts is not an ad", no_promo,
+        c("Why 50% off sales hurt small creators", "An analysis of discount culture."), False)
+    add("promo_founder_story", "a founder's story with no pitch", no_promo,
+        c("How I grew my SaaS to 1k users", "Lessons from year one, no pitch."), False)
+    add("promo_discount_with_link", "discount words plus a link", no_promo,
+        c("Big discount this month", "See https://example.com/deal"), True)
     # automation
     add("automation_banned", "native posting where automation is banned", {"automation_allowed": False}, {**NEUTRAL}, True)
     add("automation_allowed", "native posting where automation is allowed", {"automation_allowed": True}, {**NEUTRAL}, False)

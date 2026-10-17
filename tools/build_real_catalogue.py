@@ -74,14 +74,23 @@ async def lemmy_info(client: httpx.AsyncClient, url: str, community: str) -> dic
     if r.status_code != 200:
         out["exists"] = False
         return out
-    view = r.json()["community_view"]
-    c = view["community"]
+    try:
+        view = r.json()["community_view"]
+        c = view["community"]
+    except (ValueError, KeyError):  # a bot-protection page or a non-Lemmy answer: the API cannot be read
+        out["exists"] = False
+        return out
     out.update(exists=True, members=view.get("counts", {}).get("subscribers"),
                posting_restricted=c.get("posting_restricted_to_mods"),
                text=f"Community '{c.get('title')}' description and rules:\n{c.get('description') or ''}")
     s = await client.get(f"{base}/api/v3/site")
+    site = {}
     if s.status_code == 200:
-        site = s.json().get("site_view", {})
+        try:
+            site = s.json().get("site_view", {})
+        except ValueError:
+            site = {}
+    if site:
         out["text"] += f"\n\nInstance sidebar:\n{(site.get('site') or {}).get('sidebar') or ''}"
         legal = (site.get("local_site") or {}).get("legal_information")
         if legal:

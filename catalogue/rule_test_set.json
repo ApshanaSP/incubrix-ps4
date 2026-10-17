@@ -568,6 +568,84 @@
       "expect_violation": false
     },
     {
+      "id": "promo_subtle_launch",
+      "why": "launch post with no sales words: 'we just shipped', 'link in bio', own domain",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "We just shipped v2 of our editor",
+        "body": "Would love feedback, link in bio. incubrix.com"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_affiliate",
+      "why": "affiliate link and commission",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "My honest review of 5 caption tools",
+        "body": "I earn a commission if you use my link: https://amzn.to/x"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
+      "id": "promo_negated_signup",
+      "why": "'no sign up needed' is not a call to action",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "Free and open-source caption aligner",
+        "body": "No sign up needed, MIT licence, download from GitHub."
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_discount_topic",
+      "why": "an essay about discounts is not an ad",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "Why 50% off sales hurt small creators",
+        "body": "An analysis of discount culture."
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_founder_story",
+      "why": "a founder's story with no pitch",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "How I grew my SaaS to 1k users",
+        "body": "Lessons from year one, no pitch."
+      },
+      "prior_posts": [],
+      "expect_violation": false
+    },
+    {
+      "id": "promo_discount_with_link",
+      "why": "discount words plus a link",
+      "destination": {
+        "self_promo_allowed": "no"
+      },
+      "content": {
+        "title": "Big discount this month",
+        "body": "See https://example.com/deal"
+      },
+      "prior_posts": [],
+      "expect_violation": true
+    },
+    {
       "id": "automation_banned",
       "why": "native posting where automation is banned",
       "destination": {
