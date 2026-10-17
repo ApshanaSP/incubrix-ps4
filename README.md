@@ -81,6 +81,19 @@ pip install -r requirements-dev.txt
 python -m app.serve                                   # http://localhost:8080/docs
 ```
 
+## Dashboard
+
+Open **http://localhost:8080/** in a browser (light mode: `start-light.ps1`, or `docker compose up`). One page, no build step (`app/static/dashboard.html`), using only the public API:
+
+| Tab | What you can do |
+|---|---|
+| Destinations | every destination with its level, status and posting rules; **Certify** runs a certification and shows each step (publish, live URL, status, metrics, delete, deletion confirmed) |
+| Publish | write a post, let the recommender pick destinations, publish or dry-run, and see per destination what was sent after tailoring and whether it was published, blocked or rescheduled, and why; send the same idempotency key again to see that nothing is posted twice |
+| Hard cases | runs the 17 batch inputs from `batch_inputs/` one by one or all at once, showing every step and check (each creates its own mock destination, so nothing real is touched) |
+| Catalogue | upload a CSV (or the messy sample) and see the row-by-row report: duplicates, invalid rows, reachability, relevance |
+
+API clients that call `/` without `Accept: text/html` still get the JSON list of links. On a protected demo, the page asks for the access token.
+
 ## Tests and the batch runner
 
 ```bash
@@ -163,6 +176,7 @@ Every setting is an environment variable (or a line in `.env`); [`.env.example`]
 | service | `PUBLIC_BASE_URL` | `http://localhost:8080` | base for download links and feed URLs |
 | service | `PORT` | `8080` |  |
 | service | `DATA_DIR` | `./data` | SQLite database and local files |
+| service | `BATCH_INPUTS_DIR` | `./batch_inputs` | batch runner inputs, also shown in the dashboard's Hard cases tab |
 | service | `DB_PATH` | (empty) | optional explicit SQLite path |
 | service | `LOG_LEVEL` | `INFO` |  |
 | service | `API_TOKEN` | (empty) | set for the live demo: send "Authorization: Bearer <token>" |

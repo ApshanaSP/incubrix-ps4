@@ -53,6 +53,7 @@ This is what makes "the same key never creates a second post, even after a timeo
 | Tailoring | Forum discussion-first (the question varies per post), canonical URL for articles, word-boundary truncation, tag and hashtag style (a trailing hashtag block is removed), mentions, localised AI disclosure | `tests/test_rules.py`, `tests/test_catalogue.py::test_tailoring_styles` |
 | Recommender, metrics, recertification, real catalogue | See sections 4 and 5 | |
 | Integration Standard 1-10 | All 10 | `tests/test_integration.py` |
+| Dashboard at `/` | Destinations and certification, publishing with tailoring and rule outcomes, the 17 hard cases run from the browser (17/17), catalogue import | `app/static/dashboard.html`, `tests/test_integration.py::test_dashboard_and_scenarios` |
 
 ## 3. What does not work yet, and why
 

@@ -19,7 +19,7 @@ from app.logs import correlation_id, log
 
 logger = logging.getLogger("http")
 OPEN_PATHS = ("/health", "/ready", "/docs", "/openapi.json", "/openapi.yaml", "/redoc", "/api/v1/files/",
-              "/api/v1/feeds/", "/favicon.ico", "/")
+              "/api/v1/feeds/", "/favicon.ico", "/ui/", "/")
 
 
 def _json_response(status: int, payload: dict[str, Any], extra_headers: list[tuple[bytes, bytes]] | None = None):

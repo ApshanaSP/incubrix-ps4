@@ -17,7 +17,7 @@ from typing import Any
 from urllib.parse import urlsplit
 
 import httpx
-from langdetect import DetectorFactory, LangDetectException, detect
+from langdetect import DetectorFactory, LangDetectException, detect_langs
 
 from app.catalogue import intel, store
 from app.config import get_settings
@@ -216,13 +216,16 @@ async def enrich_members(client: httpx.AsyncClient, data: dict[str, Any]) -> int
 
 
 def detect_language(text: str) -> str | None:
+    """The page's language, or None when unsure: names and short titles are too little text to tell
+    (a short English name can read as Afrikaans), so this needs 40+ letters and 90% confidence."""
     text = re.sub(r"https?://\S+", " ", text or "")
-    if len(text.strip()) < 12:
+    if len(re.sub(r"[\W\d_]+", "", text)) < 40:
         return None
     try:
-        return detect(text)
+        best = detect_langs(text)[0]
     except LangDetectException:
         return None
+    return best.lang if best.prob >= 0.90 else None
 
 
 async def import_catalogue(data: bytes, *, source: str, progress=lambda p: None, score_with_ai: bool = False,
@@ -283,6 +286,9 @@ async def import_catalogue(data: bytes, *, source: str, progress=lambda p: None,
             if not declared:
                 data_row["language"] = detected or "en"
                 entry["language_detected"] = detected
+                if not detected:
+                    warnings.append("no language given and too little page text to detect one: assumed 'en'; "
+                                    "set the language column if the community uses another")
             if not data_row.get("relevance_score"):
                 rel = await (intel.score_relevance(data_row) if score_with_ai else _heuristic(data_row))
                 data_row["relevance_score"] = rel["score"]

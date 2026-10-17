@@ -116,3 +116,16 @@ def test_openapi_file_matches_running_service(client):
     on_disk = yaml.safe_load(Path(__file__).resolve().parent.parent.joinpath("openapi.yaml").read_text(encoding="utf-8"))
     served = yaml.safe_load(client.get("/openapi.yaml").text)
     assert on_disk == served, "openapi.yaml is stale: run python -m tools.export_openapi"
+
+
+def test_dashboard_and_scenarios(client):
+    page = client.get("/", headers={"Accept": "text/html"})
+    assert page.status_code == 200 and "IncuBrix Long-Tail" in page.text and "<script>" in page.text
+    assert client.get("/", headers={"Accept": "application/json"}).json()["docs"] == "/docs"
+    names = [s["name"] for s in client.get("/ui/scenarios").json()["scenarios"]]
+    assert len(names) == 17 and "02_timeout_then_retry_same_key" in names
+    assert client.get("/ui/scenarios/02_timeout_then_retry_same_key").json()["steps"]
+    assert client.get("/ui/files/messy_destinations.csv").status_code == 200
+    for bad in ("/ui/scenarios/..%2Fpytest", "/ui/files/..%2F..%2Fapp%2Fconfig.py", "/ui/scenarios/nope"):
+        r = client.get(bad)
+        assert r.status_code == 404 and r.json()["error"]["code"] == "NOT_FOUND"

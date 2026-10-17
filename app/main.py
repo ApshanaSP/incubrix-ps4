@@ -19,7 +19,7 @@ import httpx
 import yaml
 from fastapi import Body, FastAPI, File, Form, Header, Query, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse, PlainTextResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, Response
 from pydantic import BaseModel, Field
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -322,10 +322,49 @@ async def ready() -> JSONResponse:
     return JSONResponse({"status": "ready" if ok else "not_ready", "checks": checks}, status_code=200 if ok else 503)
 
 
+UI_PAGE = Path(__file__).parent / "static" / "dashboard.html"
+
+
 @app.get("/", include_in_schema=False)
-async def root() -> dict[str, Any]:
-    return {"service": "IncuBrix Long-Tail Distribution", "docs": "/docs", "openapi": "/openapi.yaml",
-            "health": "/health", "ready": "/ready"}
+async def root(request: Request) -> Any:
+    """Browsers get the dashboard; API clients get the service links as JSON."""
+    if "text/html" in request.headers.get("accept", ""):
+        return FileResponse(UI_PAGE, media_type="text/html")
+    return {"service": "IncuBrix Long-Tail Distribution", "dashboard": "/", "docs": "/docs",
+            "openapi": "/openapi.yaml", "health": "/health", "ready": "/ready"}
+
+
+def _scenario_dir() -> Path:
+    return get_settings().batch_inputs_dir
+
+
+@app.get("/ui/scenarios", include_in_schema=False)
+async def ui_scenarios() -> dict[str, Any]:
+    """The batch runner's inputs, so the dashboard runs exactly the tested hard cases."""
+    out = []
+    for f in sorted(_scenario_dir().glob("*.json")):
+        if f.name.startswith("_"):
+            continue
+        case = json.loads(f.read_text(encoding="utf-8"))
+        out.append({"name": case.get("name") or f.stem, "description": case.get("description", ""),
+                    "steps": len(case.get("steps", []))})
+    return {"scenarios": out}
+
+
+@app.get("/ui/scenarios/{name}", include_in_schema=False)
+async def ui_scenario(name: str) -> dict[str, Any]:
+    f = _scenario_dir() / f"{name}.json"
+    if "/" in name or "\\" in name or ".." in name or not f.is_file():
+        raise ApiError("NOT_FOUND", f"scenario {name} not found")
+    return json.loads(f.read_text(encoding="utf-8"))
+
+
+@app.get("/ui/files/{name}", include_in_schema=False)
+async def ui_file(name: str) -> Response:
+    f = _scenario_dir() / "files" / name
+    if "/" in name or "\\" in name or ".." in name or not f.is_file():
+        raise ApiError("NOT_FOUND", f"file {name} not found")
+    return FileResponse(f)
 
 
 @app.get("/openapi.yaml", include_in_schema=False)

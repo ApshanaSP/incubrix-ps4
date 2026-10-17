@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IncuBrix Long-Tail</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --text: #1b1f24; --muted: #5d6673; --line: #dde1e6;
+  --accent: #2456d6; --accent-weak: #e8eefc;
+  --ok: #17803d; --ok-bg: #e6f4ea; --bad: #b3261e; --bad-bg: #fdecea; --warn: #8a5a00; --warn-bg: #fff4dc;
+  --info: #3b4a63; --info-bg: #eef1f6; --code: #f1f3f6;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111418; --panel: #191d23; --text: #e7eaee; --muted: #9aa4b1; --line: #2c333c;
+    --accent: #7aa2ff; --accent-weak: #1e2a44;
+    --ok: #6fd28f; --ok-bg: #16301f; --bad: #ff8a80; --bad-bg: #3a1a18; --warn: #f2c26b; --warn-bg: #33280f;
+    --info: #b9c4d6; --info-bg: #222934; --code: #20262e;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 12px 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+header h1 { font-size: 17px; margin: 0; }
+header .grow { flex: 1; }
+header a { color: var(--accent); text-decoration: none; margin-left: 12px; }
+nav { display: flex; gap: 4px; padding: 0 20px; background: var(--panel); border-bottom: 1px solid var(--line); overflow-x: auto; }
+nav button { border: 0; background: none; color: var(--muted); padding: 10px 14px; font: inherit; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+nav button.on { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+section { display: none; } section.on { display: block; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.panel h2 { font-size: 15px; margin: 0 0 4px; } .hint { color: var(--muted); margin: 0 0 12px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; }
+.tablewrap { overflow-x: auto; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.ok { color: var(--ok); background: var(--ok-bg); } .bad { color: var(--bad); background: var(--bad-bg); }
+.warn { color: var(--warn); background: var(--warn-bg); } .info { color: var(--info); background: var(--info-bg); }
+button.act, label.act { background: var(--accent); color: #fff; border: 0; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+button.ghost { background: var(--accent-weak); color: var(--accent); border: 0; border-radius: 6px; padding: 5px 10px; font: inherit; cursor: pointer; }
+button:disabled { opacity: .55; cursor: wait; }
+input[type=text], input[type=password], textarea, select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--text); font: inherit; }
+textarea { min-height: 90px; resize: vertical; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.field label { display: block; color: var(--muted); font-size: 12px; margin-bottom: 3px; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.small { font-size: 12px; color: var(--muted); }
+code, pre { background: var(--code); border-radius: 4px; font: 12px/1.45 Consolas, "Cascadia Mono", monospace; }
+code { padding: 1px 4px; } pre { padding: 10px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: 6px 0 0; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-top: 10px; }
+.card h3 { margin: 0 0 6px; font-size: 14px; }
+ul.plain { margin: 4px 0 0; padding-left: 18px; }
+details summary { cursor: pointer; color: var(--accent); }
+.dest-list { max-height: 220px; overflow: auto; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
+.dest-list label { display: block; padding: 2px 0; }
+.steps li { margin-bottom: 4px; }
+.err { color: var(--bad); }
+</style>
+</head>
+<body>
+<header>
+  <h1>IncuBrix Long-Tail Distribution</h1>
+  <span id="status" class="pill info">checking…</span>
+  <span class="grow"></span>
+  <span class="small" id="tokenbox" hidden>Access token <input type="password" id="token" style="width:180px" placeholder="Bearer token"></span>
+  <a href="/docs" target="_blank" rel="noopener">API docs</a>
+  <a href="/openapi.yaml" target="_blank" rel="noopener">openapi.yaml</a>
+</header>
+<nav>
+  <button data-tab="dest" class="on">Destinations</button>
+  <button data-tab="pub">Publish</button>
+  <button data-tab="hard">Hard cases</button>
+  <button data-tab="cat">Catalogue</button>
+</nav>
+<main>
+
+<section id="dest" class="on">
+  <div class="panel">
+    <div class="row"><h2 style="flex:1">Destinations</h2>
+      <input type="text" id="destFilter" placeholder="Filter by name or connector" style="max-width:260px">
+      <button class="ghost" id="destReload">Reload</button></div>
+    <p class="hint">Every place the service can post to. One connector serves many destinations (adding a forum is one row). A destination is used only after it is certified: a test post is published, its live URL checked, its status read and the post deleted.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Name</th><th>Connector</th><th>Level</th><th>Status</th><th>Posting rules</th><th>Last certified</th><th></th></tr></thead>
+      <tbody id="destRows"><tr><td colspan="7" class="small">Loading…</td></tr></tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="pub">
+  <div class="panel">
+    <h2>Publish a post</h2>
+    <p class="hint">The service tailors the post for each destination, checks its format limits and posting rules, then posts, or blocks or reschedules it with the reason. The same idempotency key never creates a second post.</p>
+    <div class="grid">
+      <div class="field"><label for="pTitle">Title</label><input type="text" id="pTitle" value="How we cut video editing time with AI captions"></div>
+      <div class="field"><label for="pLink">Link to the original (optional)</label><input type="text" id="pLink" placeholder="https://…"></div>
+      <div class="field"><label for="pTags">Tags (comma separated)</label><input type="text" id="pTags" value="ai, video"></div>
+      <div class="field"><label for="pLang">Language</label><select id="pLang"><option value="en">English (en)</option><option value="de">German (de)</option><option value="ta">Tamil (ta)</option><option value="ja">Japanese (ja)</option><option value="es">Spanish (es)</option></select></div>
+    </div>
+    <div class="field" style="margin-top:12px"><label for="pBody">Body</label><textarea id="pBody">We tested three captioning workflows for short videos and measured the time each one saved.</textarea></div>
+    <div class="row" style="margin-top:10px">
+      <label><input type="checkbox" id="pAi"> AI-generated content</label>
+      <label>Promotional: <select id="pPromo" style="width:auto"><option value="">detect automatically</option><option value="true">yes</option><option value="false">no</option></select></label>
+      <label><input type="checkbox" id="pDry"> Dry run (check only, post nothing)</label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="field" style="flex:1;min-width:240px"><label for="pKey">Idempotency key (send the same key again: no second post)</label><input type="text" id="pKey"></div>
+      <button class="ghost" id="pNewKey">New key</button>
+    </div>
+    <div class="field" style="margin-top:12px"><label>Destinations <button class="ghost" id="pRecommend" style="margin-left:8px">Recommend for this post</button></label>
+      <div class="dest-list" id="pDests"><span class="small">Loading…</span></div></div>
+    <div class="row" style="margin-top:12px"><button class="act" id="pGo">Publish</button><span class="small" id="pState"></span></div>
+  </div>
+  <div id="recoOut"></div>
+  <div id="pubOut"></div>
+</section>
+
+<section id="hard">
+  <div class="panel">
+    <div class="row"><h2 style="flex:1">Hard cases</h2><button class="act" id="hAll">Run all</button></div>
+    <p class="hint">These are the batch runner's inputs (<code>batch_inputs/</code>). Each one creates its own fresh destination on a mock platform, injects the fault (timeout, 429, expired token, renamed API field…) and checks what the service does. Nothing is posted anywhere real.</p>
+    <div id="hList" class="small">Loading…</div>
+  </div>
+</section>
+
+<section id="cat">
+  <div class="panel">
+    <h2>Import a catalogue CSV</h2>
+    <p class="hint">Rows are validated, de-duplicated (normalised URL + platform), checked for reachability (robots.txt respected), enriched and scored for relevance, with a row-by-row report. Columns: <code>name,url,platform_key,connector_key,language,audience_tags,…</code></p>
+    <div class="row">
+      <input type="file" id="cFile" accept=".csv,text/csv">
+      <label><input type="checkbox" id="cCommit"> Add the valid rows to the catalogue</label>
+      <button class="act" id="cGo">Import</button>
+      <button class="ghost" id="cSample">Try the messy sample CSV</button>
+      <button class="ghost" id="cExport">Download the catalogue CSV</button>
+    </div>
+    <div id="cOut"></div>
+  </div>
+</section>
+</main>
+
+<script>
+"use strict";
+// ---------------------------------------------------------------- helpers
+const $ = (id) => document.getElementById(id);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v; else if (k === "text") n.textContent = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else if (v !== undefined && v !== null) n.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) if (kid !== null && kid !== undefined) n.append(kid instanceof Node ? kid : String(kid));
+  return n;
+};
+// replaceChildren that skips empty parts (a plain call would print them as "null")
+const put = (node, ...kids) => node.replaceChildren(...kids.flat().filter((k) => k !== null && k !== undefined));
+const pill = (text, kind) => el("span", { class: "pill " + kind, text });
+const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+                set(k, v) { try { localStorage.setItem(k, v); } catch { /* storage may be blocked */ } } };
+const newKey = () => "ui-" + Math.random().toString(36).slice(2, 10);
+const short = (v, n = 160) => { const s = typeof v === "string" ? v : JSON.stringify(v); return s && s.length > n ? s.slice(0, n) + "…" : s; };
+
+async function api(method, path, opts = {}) {
+  const headers = Object.assign({}, opts.headers || {});
+  const token = $("token").value || store.get("ibx-token");
+  if (token) headers["Authorization"] = "Bearer " + token;
+  let body;
+  if (opts.form) body = opts.form;
+  else if (opts.json !== undefined) { body = JSON.stringify(opts.json); headers["Content-Type"] = "application/json"; }
+  if (method === "POST" && !headers["Idempotency-Key"]) headers["Idempotency-Key"] = newKey();
+  const url = path + (opts.params ? "?" + new URLSearchParams(opts.params) : "");
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const r = await fetch(url, { method, headers, body });
+    let data = null;
+    const text = await r.text();
+    try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+    if (r.status === 401) { $("tokenbox").hidden = false; }
+    if (r.status === 429 && data && data.error && data.error.code === "SERVICE_RATE_LIMIT") {
+      await new Promise((ok) => setTimeout(ok, 1000 * ((data.error.details || {}).retry_after_s || 3)));
+      continue;
+    }
+    return { status: r.status, data };
+  }
+  return { status: 429, data: { error: { code: "SERVICE_RATE_LIMIT", message: "rate limited" } } };
+}
+
+async function waitJob(resp) {
+  if (resp.status !== 202 || !resp.data || !resp.data.job_id) return resp.data;
+  for (let i = 0; i < 1200; i++) {
+    const j = (await api("GET", "/api/v1/jobs/" + resp.data.job_id)).data;
+    if (j && (j.status === "succeeded" || j.status === "failed")) return j;
+    await new Promise((ok) => setTimeout(ok, 300));
+  }
+  return { status: "timeout" };
+}
+
+const stateKind = (s) => ({ published: "ok", certified: "ok", passed: "ok", succeeded: "ok", live: "ok",
+  blocked: "bad", failed: "bad", demoted: "bad", excluded: "bad", rescheduled: "warn", paused: "warn",
+  awaiting_human: "info", dry_run: "info", uncertified: "info" }[s] || "info");
+
+// ---------------------------------------------------------------- tabs, status, token
+document.querySelectorAll("nav button").forEach((b) => b.addEventListener("click", () => {
+  document.querySelectorAll("nav button").forEach((x) => x.classList.toggle("on", x === b));
+  document.querySelectorAll("section").forEach((s) => s.classList.toggle("on", s.id === b.dataset.tab));
+}));
+$("token").value = store.get("ibx-token") || "";
+$("token").addEventListener("change", () => { store.set("ibx-token", $("token").value); loadDestinations(); });
+
+async function loadStatus() {
+  try {
+    const r = await api("GET", "/ready");
+    const c = (r.data && r.data.checks) || {};
+    const ok = r.status === 200;
+    $("status").className = "pill " + (ok ? "ok" : "bad");
+    $("status").textContent = (ok ? "ready" : "not ready") + " · " + (c.simulation_mode ? "simulation mode (mock platforms)" : "real mode")
+      + " · " + (c.connectors || "?") + " connectors · " + (c.storage || "");
+  } catch (e) { $("status").className = "pill bad"; $("status").textContent = "service unreachable"; }
+}
+
+// ---------------------------------------------------------------- destinations
+let destinations = [];
+const rulesText = (d) => [
+  d.frequency_cap ? "max " + d.frequency_cap : "no cap",
+  "promotion: " + (d.self_promo_allowed || "?"),
+  "links: " + (d.link_policy || "any"),
+  d.disclosure_required ? "AI label required" : null,
+  d.automation_allowed === false ? "no automation (a person posts)" : null,
+  d.language && d.language !== "en" ? "language: " + d.language : null,
+].filter(Boolean).join(" · ");
+
+async function loadDestinations() {
+  const r = await api("GET", "/api/v1/destinations");
+  destinations = (r.data && r.data.destinations) || [];
+  renderDestinations();
+  renderPublishDests();
+}
+
+function renderDestinations() {
+  const q = $("destFilter").value.toLowerCase();
+  const rows = destinations.filter((d) => !q || (d.name + " " + d.connector_key + " " + d.url).toLowerCase().includes(q));
+  const tb = $("destRows");
+  put(tb, );
+  if (!rows.length) { tb.append(el("tr", {}, el("td", { colspan: 7, class: "small", text: "No destinations." }))); return; }
+  for (const d of rows) {
+    const out = el("td", { colspan: 7 });
+    const detail = el("tr", { hidden: "" }, out);
+    const btn = el("button", { class: "ghost", text: "Certify" });
+    btn.addEventListener("click", () => certify(d, btn, detail, out));
+    tb.append(el("tr", {},
+      el("td", {}, el("div", { text: d.name }), el("div", { class: "small", text: d.url })),
+      el("td", {}, el("code", { text: d.connector_key })),
+      el("td", {}, pill(d.level || "L0", "info")),
+      el("td", {}, pill(d.status, stateKind(d.status))),
+      el("td", { class: "small", text: rulesText(d) }),
+      el("td", { class: "small", text: d.last_certified_at ? d.last_certified_at.replace("T", " ").slice(0, 16) : "never" }),
+      el("td", {}, btn)), detail);
+  }
+}
+
+async function certify(d, btn, detailRow, cell) {
+  btn.disabled = true; btn.textContent = "Certifying…";
+  detailRow.hidden = false; put(cell, el("span", { class: "small", text: "Running the certification job…" }));
+  const job = await waitJob(await api("POST", "/api/v1/destinations/" + d.id + "/certify", { json: {} }));
+  const res = (job && job.result) || {};
+  const steps = el("ol", { class: "steps" });
+  for (const s of res.steps || []) {
+    steps.append(el("li", {}, pill(s.ok ? "ok" : "failed", s.ok ? "ok" : "bad"), " ", el("b", { text: s.step }), " ",
+      el("span", { class: "small", text: short(s.result || s.error || "", 140) })));
+  }
+  put(cell, el("div", { class: "row" },
+      pill(res.passed ? "certified " + (res.level || "") : "FAILED", res.passed ? "ok" : "bad"),
+      el("span", { class: "small", text: (res.duration_s !== undefined ? res.duration_s + " s" : "") }),
+      res.error ? el("span", { class: "err", text: (res.error.code || "") + ": " + (res.error.message || "") }) : null),
+    steps,
+    res.evidence_url ? el("a", { href: res.evidence_url, target: "_blank", rel: "noopener", text: "Stored evidence (JSON)" }) : null);
+  btn.disabled = false; btn.textContent = "Certify";
+  const fresh = (await api("GET", "/api/v1/destinations/" + d.id)).data;
+  if (fresh && fresh.id) Object.assign(d, fresh);
+  const row = detailRow.previousElementSibling;
+  if (row) { put(row.children[2], pill(d.level || "L0", "info")); put(row.children[3], pill(d.status, stateKind(d.status)));
+             row.children[5].textContent = d.last_certified_at ? d.last_certified_at.replace("T", " ").slice(0, 16) : "never"; }
+}
+$("destReload").addEventListener("click", loadDestinations);
+$("destFilter").addEventListener("input", renderDestinations);
+
+// ---------------------------------------------------------------- publish
+function renderPublishDests(selected) {
+  const box = $("pDests");
+  const before = new Set([...box.querySelectorAll("input:checked")].map((i) => i.value));
+  put(box, );
+  for (const d of destinations) {
+    const checked = selected ? selected.has(d.id) : before.size ? before.has(d.id) : d.id === "dst_forum_aicreators";
+    const cb = el("input", { type: "checkbox", value: d.id });
+    cb.checked = checked;
+    box.append(el("label", {}, cb, " ", d.name, " ", el("span", { class: "small", text: "(" + d.connector_key + ", " + d.status + ")" })));
+  }
+}
+
+function contentFromForm() {
+  const promo = $("pPromo").value;
+  const c = { title: $("pTitle").value, body: $("pBody").value, language: $("pLang").value, ai_generated: $("pAi").checked,
+              tags: $("pTags").value.split(",").map((t) => t.trim()).filter(Boolean) };
+  if ($("pLink").value.trim()) c.link = $("pLink").value.trim();
+  if (promo) c.promotional = promo === "true";
+  return c;
+}
+
+const seenJobs = {};
+$("pNewKey").addEventListener("click", () => { $("pKey").value = newKey(); });
+$("pKey").value = newKey();
+
+$("pRecommend").addEventListener("click", async () => {
+  const r = await api("POST", "/api/v1/recommendations", { json: { content: contentFromForm(), top_k: 10 } });
+  const recs = (r.data && r.data.recommendations) || [];
+  const out = $("recoOut");
+  put(out, el("div", { class: "panel" }, el("h2", { text: "Recommended destinations" }),
+    el("p", { class: "hint", text: "Ranked by topic, audience, rules, past results and format. Destinations that would break a rule are excluded with the reason. The top ones are now ticked above." }),
+    el("ol", {}, recs.map((x) => el("li", {}, el("b", { text: x.name }), " ", pill("score " + x.score, "info"), " ",
+      x.route === "assisted" ? pill("a person posts", "warn") : null, el("div", { class: "small", text: x.reason })))),
+    (r.data && r.data.excluded && r.data.excluded.length) ? el("details", {}, el("summary", { text: r.data.excluded.length + " excluded" }),
+      el("ul", { class: "plain small" }, r.data.excluded.slice(0, 30).map((x) => el("li", { text: x.name + ": " + x.reason })))) : null));
+  renderPublishDests(new Set(recs.slice(0, 5).map((x) => x.destination_id)));
+});
+
+$("pGo").addEventListener("click", async () => {
+  const ids = [...$("pDests").querySelectorAll("input:checked")].map((i) => i.value);
+  if (!ids.length) { $("pState").textContent = "Pick at least one destination."; return; }
+  $("pGo").disabled = true; $("pState").textContent = "Publishing…";
+  const key = $("pKey").value || newKey();
+  const accepted = await api("POST", "/api/v1/publications", {
+    json: { content: contentFromForm(), destination_ids: ids, dry_run: $("pDry").checked },
+    headers: { "Idempotency-Key": key } });
+  const jobId = accepted.data && accepted.data.job_id;
+  const replay = jobId && seenJobs[key] === jobId;
+  if (jobId) seenJobs[key] = jobId;
+  const job = await waitJob(accepted);
+  $("pGo").disabled = false; $("pState").textContent = "";
+  const out = $("pubOut");
+  const res = (job && job.result) || {};
+  const panel = el("div", { class: "panel" }, el("div", { class: "row" }, el("h2", { style: "flex:1", text: "Result" }),
+    el("span", { class: "small", text: "key " + $("pKey").value + " · " + Object.entries(res.summary || {}).map(([k, v]) => v + " " + k).join(", ") })));
+  if (replay) panel.append(el("p", {}, pill("same Idempotency-Key", "info"),
+    " The service returned the same job as before: nothing was posted again. Click “New key” for a new publication."));
+  if (accepted.status >= 400) panel.append(el("p", { class: "err", text: short(accepted.data && accepted.data.error, 400) }));
+  if (job && job.status === "failed") panel.append(el("p", { class: "err", text: short(job.error, 400) }));
+  for (const r of res.results || []) {
+    const state = r.state === "failed" && r.post_state ? r.post_state : r.state;
+    const err = r.error || null;
+    const card = el("div", { class: "card" },
+      el("div", { class: "row" }, el("h3", { style: "flex:1", text: r.name }), pill(state, stateKind(state)),
+        r.replayed ? pill("same key: replayed, no second post", "info") : null),
+      r.reason ? el("div", {}, el("b", { text: (r.code || "") + " " }), r.reason) : null,
+      err ? el("div", { class: "err" }, el("b", { text: err.code + " " }), err.message, err.retryable ? " (will be retried)" : "") : null,
+      r.reschedule_at ? el("div", { class: "small", text: "rescheduled to " + r.reschedule_at }) : null,
+      r.live_url ? el("div", {}, "Live: ", el("a", { href: r.live_url, target: "_blank", rel: "noopener", text: r.live_url })) : null,
+      (r.warnings && r.warnings.length) ? el("ul", { class: "plain small" }, r.warnings.map((w) => el("li", { text: "⚠ " + w }))) : null,
+      (r.violations && r.violations.filter((v) => v.message !== r.reason).length) ? el("ul", { class: "plain small" },
+        r.violations.filter((v) => v.message !== r.reason).map((v) => el("li", { text: v.code + " (" + v.rule + "): " + v.message }))) : null,
+      r.assist_pack ? el("details", { open: "" }, el("summary", { text: "Ready-to-post pack for a person" }),
+        r.assist_pack.deep_link ? el("div", {}, "Post it here: ", el("a", { href: r.assist_pack.deep_link, target: "_blank", rel: "noopener", text: r.assist_pack.deep_link })) : null,
+        el("ul", { class: "plain small" }, (r.assist_pack.checklist || []).map((c) => el("li", { text: typeof c === "string" ? c : (c.item || JSON.stringify(c)) })))) : null,
+      r.rendition ? el("details", {}, el("summary", { text: "What was sent (after tailoring)" }),
+        el("ul", { class: "plain small" }, (r.tailoring_notes || []).map((n) => el("li", { text: n }))),
+        el("pre", { text: (r.rendition.title || "") + "\n\n" + (r.rendition.body || "") })) : null);
+    panel.append(card);
+  }
+  put(out, panel);
+  loadDestinations();
+});
+
+// ---------------------------------------------------------------- hard cases (the batch runner's inputs)
+const PH = /\{\{([^}]+)\}\}/g;
+const lookup = (ctx, dotted) => dotted.trim().split(".").reduce((cur, part) => {
+  if (cur === undefined || cur === null) throw new Error("missing " + dotted);
+  return Array.isArray(cur) ? cur[parseInt(part, 10)] : cur[part];
+}, ctx);
+function fill(v, ctx) {
+  if (typeof v === "string") {
+    const whole = v.match(/^\{\{([^}]+)\}\}$/);
+    if (whole) return lookup(ctx, whole[1]);
+    return v.replace(PH, (_, p) => String(lookup(ctx, p)));
+  }
+  if (Array.isArray(v)) return v.map((x) => fill(x, ctx));
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x, ctx)]));
+  return v;
+}
+function stepSummary(body) {
+  if (!body || typeof body !== "object") return short(body, 120);
+  const r = body.result || body;
+  if (body.pending_faults) return "fault armed: " + body.pending_faults.map((f) => f.kind + " on " + f.op).join(", ");
+  if (r.replayed !== undefined) return r.replayed ? "replayed: the same post came back, no second post" : "posted again (" + (r.state || "") + ")";
+  if (r.results && r.results[0]) { const x = r.results[0]; return [x.state, x.code, x.error && x.error.code, x.reason].filter(Boolean).join(" · "); }
+  if (r.passed !== undefined) return (r.passed ? "certified " + (r.level || "") : "certification failed") + (r.error ? " · " + (r.error.details && r.error.details.cause || r.error.code) : "");
+  if (r.summary) return Object.entries(r.summary).filter(([k]) => ["rows", "duplicates", "errors", "unreachable"].includes(k)).map(([k, v]) => k + " " + v).join(", ");
+  if (body.error) return body.error.code + ": " + body.error.message;
+  if (body.status && body.id) return "status " + body.status;
+  if (body.posts_live !== undefined) return "posts on the platform: " + body.posts_live;
+  return short(body, 120);
+}
+
+async function runScenario(name, box, btn) {
+  btn.disabled = true;
+  const sc = (await api("GET", "/ui/scenarios/" + encodeURIComponent(name))).data;
+  const ctx = { run: Math.random().toString(36).slice(2, 10) };
+  const list = el("ol", { class: "steps small" });
+  put(box, list);
+  let ok = true;
+  for (const raw of sc.steps || []) {
+    let step;
+    try { step = fill(raw, ctx); } catch (e) { list.append(el("li", { class: "err", text: "cannot fill this step from earlier steps: " + e.message })); ok = false; break; }
+    if (step.sleep) { await new Promise((r) => setTimeout(r, 1000 * step.sleep)); continue; }
+    const method = (step.method || "POST").toUpperCase();
+    let resp;
+    if (step.upload) {
+      const blob = await (await fetch("/ui/files/" + step.upload.split("/").pop())).blob();
+      const fd = new FormData();
+      fd.append("file", blob, step.upload.split("/").pop());
+      for (const [k, v] of Object.entries(step.form || {})) fd.append(k, String(v));
+      resp = await api(method, step.path, { form: fd, headers: step.headers || {} });
+    } else {
+      resp = await api(method, step.path, { json: method === "GET" ? undefined : step.body, params: step.params, headers: step.headers || {} });
+    }
+    let body = resp.data;
+    if (step.wait !== false && resp.status === 202 && body && body.job_id) body = await waitJob(resp);
+    let stepOk = !(step.expect_status && resp.status !== step.expect_status);
+    const checks = [];
+    for (const [dotted, want] of Object.entries(step.expect || {})) {
+      let got; try { got = lookup({ body }, "body." + dotted); } catch { got = "<missing>"; }
+      const good = JSON.stringify(got) === JSON.stringify(want);
+      stepOk = stepOk && good;
+      checks.push(el("span", { class: "pill " + (good ? "ok" : "bad"), text: dotted + " = " + short(got, 40) }));
+    }
+    ok = ok && stepOk;
+    list.append(el("li", {}, pill(stepOk ? "ok" : "not as expected", stepOk ? "ok" : "bad"), " ",
+      el("code", { text: method + " " + step.path.replace(/\?.*/, "") }), " ", el("span", { text: "HTTP " + resp.status + " · " + stepSummary(body) + " " }), checks));
+    if (step.save_as) ctx[step.save_as] = body;
+  }
+  box.prepend(el("div", {}, pill(ok ? "handled as expected" : "NOT as expected", ok ? "ok" : "bad")));
+  btn.disabled = false;
+  return ok;
+}
+
+async function loadScenarios() {
+  const r = await api("GET", "/ui/scenarios");
+  const host = $("hList");
+  put(host, );
+  for (const s of (r.data && r.data.scenarios) || []) {
+    const box = el("div", { style: "margin-top:6px" });
+    const btn = el("button", { class: "ghost", text: "Run" });
+    btn.addEventListener("click", () => runScenario(s.name, box, btn));
+    host.append(el("div", { class: "card", "data-name": s.name }, el("div", { class: "row" },
+      el("h3", { style: "flex:1", text: s.name.replace(/^\d+_/, "").replaceAll("_", " ") }), el("span", { class: "small", text: s.steps + " steps" }), btn),
+      el("div", { class: "small", text: s.description }), box));
+  }
+}
+$("hAll").addEventListener("click", async () => {
+  $("hAll").disabled = true;
+  let good = 0, all = 0;
+  for (const card of $("hList").children) {
+    const btn = card.querySelector("button"); const box = card.lastChild;
+    const name = card.dataset.name;
+    all++; if (await runScenario(name, box, btn)) good++;
+    $("hAll").textContent = "Running… " + all;
+  }
+  $("hAll").textContent = "Run all (" + good + "/" + all + " as expected)";
+  $("hAll").disabled = false;
+  loadDestinations();
+});
+
+// ---------------------------------------------------------------- catalogue
+async function importCsv(blob, filename) {
+  const fd = new FormData();
+  fd.append("file", blob, filename);
+  fd.append("commit", $("cCommit").checked ? "true" : "false");
+  $("cGo").disabled = true;
+  put($("cOut"), el("p", { class: "small", text: "Importing " + filename + "… (reachability is checked for real; this can take a little while)" }));
+  const job = await waitJob(await api("POST", "/api/v1/catalogue/imports/upload", { form: fd }));
+  $("cGo").disabled = false;
+  const res = (job && job.result) || {};
+  const s = res.summary || {};
+  if (!res.summary) { put($("cOut"), el("p", { class: "err", text: short(job && (job.error || job), 400) })); return; }
+  const rows = res.rows_preview || [];
+  put($("cOut"), 
+    el("div", { class: "row", style: "margin:12px 0" }, ["rows", "created", "updated", "duplicates", "errors", "unreachable", "with_warnings"]
+      .map((k) => pill(k.replace("_", " ") + ": " + (s[k] ?? 0), k === "errors" || k === "unreachable" ? (s[k] ? "bad" : "ok") : k === "duplicates" ? "warn" : "info")),
+      el("span", { class: "small", text: s.seconds + " s" })),
+    el("div", { class: "row" }, res.links && res.links.report_csv ? el("a", { href: res.links.report_csv, target: "_blank", rel: "noopener", text: "Row-by-row report (CSV)" }) : null,
+      res.links && res.links.report_json ? el("a", { href: res.links.report_json, target: "_blank", rel: "noopener", text: "Report (JSON)" }) : null),
+    el("div", { class: "tablewrap" }, el("table", {}, el("thead", {}, el("tr", {}, ["Row", "URL", "Status", "Problems", "Relevance"].map((h) => el("th", { text: h })))),
+      el("tbody", {}, rows.map((r) => el("tr", {}, el("td", { text: r.row }), el("td", { class: "small", text: r.url }),
+        el("td", {}, pill(r.status + (r.duplicate_of_row ? " of row " + r.duplicate_of_row : ""), r.status === "error" ? "bad" : r.status === "duplicate" ? "warn" : "ok")),
+        el("td", { class: "small", text: [...(r.errors || []), ...(r.warnings || [])].join("; ") }),
+        el("td", { class: "small", text: r.relevance_score ? r.relevance_score + "/5 " + (r.relevance_reason || "") : "" })))))),
+    rows.length < (s.rows || 0) ? el("p", { class: "small", text: "Showing the first " + rows.length + " rows; the report has all of them." }) : null);
+  if ($("cCommit").checked) loadDestinations();
+}
+$("cGo").addEventListener("click", () => {
+  const f = $("cFile").files[0];
+  if (!f) { put($("cOut"), el("p", { class: "small", text: "Choose a CSV file first, or try the sample." })); return; }
+  importCsv(f, f.name);
+});
+$("cSample").addEventListener("click", async () => importCsv(await (await fetch("/ui/files/messy_destinations.csv")).blob(), "messy_destinations.csv"));
+$("cExport").addEventListener("click", async () => {
+  const token = $("token").value || store.get("ibx-token");
+  const r = await fetch("/api/v1/catalogue/export.csv", { headers: token ? { Authorization: "Bearer " + token } : {} });
+  const url = URL.createObjectURL(await r.blob());
+  el("a", { href: url, download: "catalogue.csv" }).click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+});
+
+// ---------------------------------------------------------------- start
+loadStatus();
+loadDestinations();
+loadScenarios();
+</script>
+</body>
+</html>

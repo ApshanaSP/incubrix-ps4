@@ -87,6 +87,9 @@ class Settings:
     groq_model: str = field(default_factory=lambda: os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"))
     gemini_api_key: str = field(default_factory=lambda: os.getenv("GEMINI_API_KEY", ""))
     gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-flash-latest"))
+    # the batch runner's inputs, also served read-only to the dashboard's hard-case tab
+    batch_inputs_dir: Path = field(default_factory=lambda: Path(os.getenv(
+        "BATCH_INPUTS_DIR", str(Path(__file__).resolve().parent.parent / "batch_inputs"))))
     # catalogue import
     reachability_mode: str = field(default_factory=lambda: os.getenv("REACHABILITY_MODE", "online"))
     reachability_concurrency: int = field(default_factory=lambda: _int("REACHABILITY_CONCURRENCY", 50))
