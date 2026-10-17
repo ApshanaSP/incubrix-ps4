@@ -544,7 +544,8 @@ async def hashnode(ctx: Ctx) -> Response:
         pid = uuid.uuid4().hex[:24]
         slug = re.sub(r"[^a-z0-9]+", "-", inp.get("title", "").lower()).strip("-")[:50]
         post = {"id": pid, "slug": slug, "url": f"https://incubrix.hashnode.dev/{slug}", "title": inp.get("title"),
-                "views": 0, "reactionCount": 0, "responseCount": 0, "publishedAt": now_iso()}
+                "contentMarkdown": inp.get("contentMarkdown", ""), "views": 0, "reactionCount": 0, "responseCount": 0,
+                "publishedAt": now_iso()}
         inst.posts[pid] = post
         return await after(ctx, f, {"data": {"publishPost": {"post": {k: post[k] for k in ("id", "slug", "url", "title")}}}},
                            rename=lambda d: {"data": {"publishPost": {"article": d["data"]["publishPost"]["post"]}}})

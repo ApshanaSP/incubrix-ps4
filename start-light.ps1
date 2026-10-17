@@ -7,7 +7,8 @@ param([switch]$Test, [int]$Port = 8080)
 
 Set-Location $PSScriptRoot
 $env:SIMULATION_MODE = "true"
-$env:DATA_DIR = Join-Path $PSScriptRoot "data"
+# data folder: .\data unless DATA_DIR is already set (for example a second copy for testing)
+if (-not $env:DATA_DIR) { $env:DATA_DIR = Join-Path $PSScriptRoot "data" }
 $env:PORT = "$Port"
 # download links, feed URLs and evidence links must point at this port
 if (-not $env:PUBLIC_BASE_URL) { $env:PUBLIC_BASE_URL = "http://localhost:$Port" }
