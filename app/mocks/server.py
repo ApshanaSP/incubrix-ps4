@@ -152,7 +152,7 @@ async def dispatch(platform: str, host: str, path: str, request: Request) -> Res
     if inst.window_count > MOCK_LIMIT["requests"]:
         wait = int(MOCK_LIMIT["per_seconds"] - (t - inst.window_started)) + 1
         return JSONResponse({"errors": ["rate limited"]}, status_code=429, headers={"Retry-After": str(wait)})
-    handler = HANDLERS.get(platform)
+    handler = HANDLERS.get(platform) or (template_rest if _uses_template_mock(platform) else None)
     if handler is None:
         return JSONResponse({"error": f"no mock for {platform}"}, status_code=404)
     try:
@@ -643,6 +643,65 @@ async def site(ctx: Ctx) -> Response:
         )
         return Response(html, media_type="text/html")
     return Response("<html><head><title>Community</title></head><body>ok</body></html>", media_type="text/html")
+
+
+# ---------------------------------------------------------------- template REST platform
+async def template_rest(ctx: Ctx) -> Response:
+    """The REST API that connectors made with `python -m tools.new_connector` speak, so a new connector certifies
+    and runs every hard case before its real API is wired in:
+      GET    /api/me                          who am I (certification probe)
+      POST   /api/posts                       {title, body, link, tags} + Idempotency-Key -> 201 {id, url, status}
+      GET    /api/posts?idempotency_key=K     {posts: [...]}   (find a post after a timeout)
+      GET    /api/posts/{id}                  {id, url, status, stats: {views, likes, comments, shares, clicks}}
+      DELETE /api/posts/{id}                  {deleted: true}
+    Auth: Authorization: Bearer <api_key>; a token containing 'expired' or 'revoked' answers 401."""
+    inst, m, p = ctx.inst, ctx.method, ctx.path
+    token = (ctx.headers.get("authorization") or "").removeprefix("Bearer ").strip()
+    if not _token_ok(token) or inst.revoked:
+        return JSONResponse({"error": "unauthorized"}, status_code=401 if not inst.revoked else 403)
+    if p == "/api/me" and m == "GET":
+        return JSONResponse({"ok": True, "name": "incubrix_bot"})
+    if p == "/api/posts" and m == "POST":
+        f = ctx.fault("publish", {})
+        key = ctx.headers.get("idempotency-key", "")
+        existing = next((x for x in inst.posts.values() if key and x["idempotency_key"] == key and not x.get("deleted")), None)
+        if existing:
+            return JSONResponse({"id": existing["id"], "url": existing["url"], "status": "live"})
+        if len(ctx.body.get("title") or "") > 255:
+            return JSONResponse({"error": "title is too long"}, status_code=422)
+        pid = str(next(inst.ids))
+        post = {"id": pid, "url": f"https://{inst.host}/posts/{pid}", "status": "live", "idempotency_key": key,
+                "title": ctx.body.get("title"), "created_at": now_iso()}
+        inst.posts[pid] = post
+        return await after(ctx, f, {"id": pid, "url": post["url"], "status": "live"}, status=201,
+                           rename=lambda d: {"id": d["id"], "permalink": d["url"], "status": d["status"]})
+    if p == "/api/posts" and m == "GET":
+        key = ctx.query.get("idempotency_key")
+        rows = [x for x in inst.posts.values() if x["idempotency_key"] == key and not x.get("deleted")]
+        return JSONResponse({"posts": [{"id": x["id"], "url": x["url"], "status": x["status"]} for x in rows]})
+    mm = re.fullmatch(r"/api/posts/(\d+)", p)
+    if mm:
+        post = inst.posts.get(mm.group(1))
+        if not post or post.get("deleted"):
+            return JSONResponse({"error": "not found"}, status_code=404)
+        if m == "GET":
+            f = ctx.fault("status", {})
+            return await after(ctx, f, {"id": post["id"], "url": post["url"], "status": post["status"],
+                                        "stats": {"views": 12, "likes": 3, "comments": 1, "shares": 0, "clicks": 2}},
+                               rename=lambda d: {**{k: v for k, v in d.items() if k != "url"}, "permalink": d["url"]})
+        if m == "DELETE":
+            ctx.fault("delete", {})
+            post["deleted"] = True
+            return JSONResponse({"deleted": True})
+    return JSONResponse({"error": "not found"}, status_code=404)
+
+
+def _uses_template_mock(platform: str) -> bool:
+    """Connectors whose manifest says `mock: template_rest` are served by the template REST platform."""
+    from app.connectors.base import MANIFEST_DIR
+
+    f = MANIFEST_DIR / f"{platform}.yaml"
+    return f.exists() and "mock: template_rest" in f.read_text(encoding="utf-8")
 
 
 HANDLERS: dict[str, Callable[[Ctx], Any]] = {

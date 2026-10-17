@@ -24,6 +24,29 @@ _CLASSES: dict[str, type[Connector]] = {
     for c in (DiscourseConnector, LemmyConnector, DevtoConnector, GhostConnector, WebhookConnector, AssistedConnector,
               HashnodeConnector, SlackConnector, MrssConnector)
 }
+
+
+def _discover() -> None:
+    """Connectors added later (python -m tools.new_connector <key>) are picked up without editing this file:
+    any module in app/connectors with a Connector subclass and a manifest YAML is registered."""
+    import importlib
+    import pkgutil
+    from pathlib import Path
+
+    import app.connectors as package
+
+    skip = {"base", "http", "registry"}
+    for mod in pkgutil.iter_modules(package.__path__):
+        if mod.name in skip or mod.name.startswith("_"):
+            continue
+        module = importlib.import_module(f"app.connectors.{mod.name}")
+        for obj in vars(module).values():
+            if (isinstance(obj, type) and issubclass(obj, Connector) and obj is not Connector and obj.key
+                    and obj.key not in _CLASSES and (Path(package.__path__[0]) / "manifests" / f"{obj.key}.yaml").exists()):
+                _CLASSES[obj.key] = obj
+
+
+_discover()
 _INSTANCES: dict[str, Connector] = {}
 
 

@@ -94,6 +94,11 @@ Open **http://localhost:8080/** in a browser (light mode: `start-light.ps1`, or 
 
 API clients that call `/` without `Accept: text/html` still get the JSON list of links. On a protected demo, the page asks for the access token.
 
+## Extending it
+
+- **A new platform:** `python -m tools.new_connector <key> --name "Name"` writes a connector, its manifest and its tests from the template; they certify on the mock platforms at once. Guide: [docs/adding-a-connector.md](docs/adding-a-connector.md).
+- **A new posting rule:** one place, `check()` in `app/rules.py`, test first. Guide: [docs/adding-a-rule.md](docs/adding-a-rule.md).
+
 ## Tests and the batch runner
 
 ```bash
@@ -102,7 +107,7 @@ docker compose run --rm api python -m pytest              # the same inside the 
 python -m tools.batch_runner --api http://localhost:8080 --input batch_inputs --out outputs
 ```
 
-The 84 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
+The 88 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
 
 `batch_inputs/` holds 17 inputs: one for each hard case plus the Core and Advanced features. Each input creates its own destinations, so runs never collide. The runner writes one JSON file per input and a `summary.json` to `outputs/batch-<timestamp>/`. Regenerate the inputs with `python -m tools.make_batch_inputs`.
 
