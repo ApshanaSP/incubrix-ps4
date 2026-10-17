@@ -2,147 +2,107 @@
 
 ## 1. Approach and why
 
-**One service, contract first.** Every connector is a class implementing the Appendix A methods, plus one manifest YAML file. They are served exactly at `POST /connector/v1/{connector_key}/{method}` (mirrored under `/api/v1/connector/`), so IncuBrix's Connector Runtime can load them unchanged. Connector methods only return results and raise the eight shared codes. A test checks that no connector maps an error to any other code.
+**Contract first.** Each connector is one class with the Appendix A methods plus one manifest YAML, served at
+`POST /connector/v1/{connector_key}/{method}` so IncuBrix's Connector Runtime can load it unchanged. Connectors only
+return results and raise the eight shared codes (a test enforces it). `python -m tools.new_connector <key>` makes a
+new one from the template that certifies on the mock platforms at once.
 
-**The guarded publish path.** All safety decisions sit in one place, `app/publisher.py`, and not inside each connector:
-
-1. **Idempotency ledger.** A key that already produced a post returns that post.
-2. **Certification gate.** Only certified destinations are used. Demoted and paused ones are excluded.
-3. **Connection state.** An expired or revoked connection blocks the post.
-4. **Format limits and posting rules.** A breaking post is blocked or rescheduled, with the reason.
+**One guarded publish path** (`app/publisher.py`), not safety code in every connector:
+1. **Idempotency ledger:** a key that already produced a post returns that post.
+2. **Certification gate:** only certified destinations are used; demoted and paused ones are excluded.
+3. **Connection state:** an expired or revoked connection blocks the post.
+4. **Format limits and posting rules** (`app/rules.py`): block or reschedule, always with the reason.
 5. **The attempt is written as `in_flight` before the platform call.**
-6. **After a timeout, find out.** The connector's `find_existing` looks for the post (Slack message metadata, partner lookup by idempotency key, the account's recent posts by title on the other platforms). If the post exists, it is returned. If the lookup itself fails, the service refuses to post blind.
+6. **After a timeout, find out:** `find_existing` looks for the post before posting again; if it cannot tell, the
+   service refuses to post blind. This is what makes "the same key never posts twice" hold on platforms with no
+   idempotency support.
 
-This is what makes "the same key never creates a second post, even after a timeout" hold for platforms that have no idempotency support of their own.
+**Configuration, not code.** A destination row holds the instance parameters (`base_url`, `community`, `channel`,
+`publication_id`), so forum number 41 is one row. **Simulation exercises the real code:** connector HTTP calls are
+routed to mock platforms that follow each real API (paths, fields, errors, rate-limit headers), and fault injection
+reproduces every hard case on demand. Reading public pages (rules, reachability) is never simulated.
 
-**Configuration, not code.** The destination row holds the instance parameters: `base_url`, `community`, `channel`, `feed_key`, `publication_id`. A connector never knows which forum it talks to until it is called. The mock platforms follow the same idea: each host is its own mock instance, so any number of simulated forums need no code.
-
-**Simulation that exercises the real code.** In simulation mode the connector's real HTTP request is routed to mock platforms that follow each real API: same paths, field names, error bodies and rate-limit headers. The connector code is identical in both modes. Fault injection (`/api/v1/sim/faults`) reproduces every hard case on demand, so the hidden-test situations can be shown live.
-
-**Alternatives considered:**
-
-| Option | Why not |
+| Alternative | Why not |
 |---|---|
-| A queue plus separate workers (Celery or Redis) | More moving parts for a 10-day build. An in-process async job runner with SQLite persistence meets the Integration Standard (202 + job_id, progress, signed callbacks). The job interface is the seam for moving to SQS or Redis later. |
-| Postgres for the service | SQLite in WAL mode with a single writer is enough here and keeps compose small. The store is one module (`app/db.py`). |
-| Letting each connector enforce rules | Rules would drift between connectors, and the contract says connectors must not touch IncuBrix state. The rules engine is shared and runs before every post. |
-| AI for tailoring | Deterministic tailoring is predictable, cannot invent claims, and is easy to test. AI is used where judgement is needed (reading rules pages, relevance), always behind an adapter and with a person confirming the rules. |
+| Queue + workers (Celery/Redis) | More moving parts for 10 days; an in-process job runner with SQLite meets the standard (202 + job_id, progress, signed callbacks) and is the seam for SQS later |
+| Postgres | SQLite in WAL mode with one writer is enough and keeps compose small; the store is one module |
+| Rules inside each connector | They would drift, and connectors must not touch IncuBrix state |
+| AI-written tailoring | Deterministic tailoring cannot invent claims and is easy to test; AI is used where judgement is needed (reading rules, relevance), behind an adapter, with a person confirming rules |
 
 ## 2. What works
 
 | Area | Status | Proof |
 |---|---|---|
-| Contract (methods, manifest, error codes) | Done for all 9 connectors | `tests/test_contract.py`: manifest shape, methods, HTTP round trip per connector |
-| Core connectors: Discourse, Lemmy, Dev.to, Ghost, signed webhook, assisted | Certified in simulation (publish, confirm live URL, status, metrics, delete, confirm deletion) | `tests/test_certification.py`, batch input 01, evidence JSON per run |
-| Advanced connectors: Hashnode, Slack app, MRSS | Certified in simulation | the same |
-| Real local Lemmy 0.19.5 and Ghost 5 | `docker compose up` brings up api, mocks, S3, Lemmy (+UI, Postgres) and Ghost; bootstrap certifies all 14 destinations: local Lemmy at L4, local Ghost at L3 | `docker compose logs bootstrap`, `outputs/metrics/local_instances.json` |
-| Tests in the container | 84/84 pass: `docker compose run --rm api python -m pytest` (17 Oct, current code) | `test_pack/tests/` |
-| Batch runner against the compose stack (mocks as a separate service) | 17/17 inputs as expected (16 and 17 Oct) | `outputs/compose/batch-20261017-103850/` |
-| Reviewer-style check against the compose stack (real Lemmy and Ghost, S3 storage) | 38/38 (17 Oct) | `outputs/compose/reviewer_check/20261017-104442/` |
-| Light mode, no Docker (`start-light.ps1`: one process, mocks in-process, about 75 MB of RAM) | 84/84 tests pass; batch runner 17/17 inputs as expected | `outputs/light/batch-20261016-231014/` |
-| Reviewer-style check over HTTP (`tools/reviewer_check.py`): every must-have, Integration point and hard case with inputs that differ from the batch inputs | 38/38 checks pass | `outputs/reviewer_check/` |
-| Certification pack: one destination per connector, run record + evidence page + screenshot, plus the real Lemmy and Ghost runs | 9/9 connectors passed | `certification_pack/INDEX.md` |
-| Rules before every post | Frequency cap, self-promotion (explicit and detected), link policy, AI disclosure, automation, language | `tests/test_rules.py`; rule test set below |
-| Safe retries | Timeout-after-create recovered with 0 duplicates; Idempotency-Key replay on every POST | `tests/test_failures.py`, batch input 02 |
-| Hard cases 1-7 | All handled with explicit codes and reasons | batch inputs 02-15, README table |
-| Non-English communities | A post in another language is held with the reason unless the creator's translation is given (`content.translations`, then posted in that language) or the community accepts the language | `tests/test_rules.py`, batch input 14 |
-| Places that ban automation | No bot posts there: the post is routed to the assisted tier and a person gets the ready-to-post pack; every other rule still applies | `tests/test_rules.py::test_automation_not_allowed_makes_a_pack_for_a_person` |
-| Catalogue import | Validate, de-duplicate (normalised URL + platform), reachability, enrichment (Discourse/Lemmy member counts), language detection, relevance, row-by-row report | `tests/test_catalogue.py`, batch input 12 |
-| AI rules capture with human confirmation | Groq `gpt-oss-120b` proposes rules with quotes; posting is blocked until a person confirms | batch input 16 |
-| Relevance 1-5 with a reason | AI or heuristic | `/api/v1/relevance` |
-| Tailoring | Forum discussion-first (the question varies per post), canonical URL for articles, word-boundary truncation, tag and hashtag style (a trailing hashtag block is removed), mentions, localised AI disclosure | `tests/test_rules.py`, `tests/test_catalogue.py::test_tailoring_styles` |
-| Recommender, metrics, recertification, real catalogue | See sections 4 and 5 | |
+| Contract, 9 connectors (6 Core + Hashnode, Slack app, MRSS) | All methods, manifests and error codes | `tests/test_contract.py` |
+| Certification: publish, live URL, status, metrics, delete, deletion confirmed | All 9 certified on the mock platforms; real Lemmy 0.19.5 (L4) and Ghost 5 (L3) under `docker compose` | `certification_pack/INDEX.md`, `outputs/metrics/local_instances.json` |
+| Connectors against the real platforms (read-only) | Discourse, Dev.to and Lemmy read real public posts with their own code; Hashnode's API now needs a paid plan and the connector says so | `outputs/metrics/real_api_check.json` |
+| Rules before every post | Frequency cap, self-promotion (flagged or detected), links, AI disclosure, automation, language | `tests/test_rules.py`, rule test set |
+| Safe retries | 0 duplicates under timeouts; Idempotency-Key replay on every POST | `tests/test_failures.py`, batch input 02 |
+| Hard cases 1-7 | Each handled with an explicit code and reason | batch inputs 02-15 (17/17), README table |
+| Catalogue import, AI rules capture with confirmation, relevance, tailoring | Done | `tests/test_catalogue.py`, batch inputs 12 and 16 |
 | Integration Standard 1-10 | All 10 | `tests/test_integration.py` |
-| Dashboard at `/` | Destinations and certification, publishing with tailoring and rule outcomes, the 17 hard cases run from the browser (17/17), catalogue import | `app/static/dashboard.html`, `tests/test_integration.py::test_dashboard_and_scenarios` |
+| One command, no keys | 89 tests (`python -m pytest`, or `docker compose run --rm api python -m pytest`) | `test_pack/tests/` |
+| Independent reviewer-style check over HTTP | 38/38 in light mode and against `docker compose` | `test_pack/reviewer_check/`, `outputs/compose/reviewer_check/` |
+| Dashboard at `/` | Destinations and testing, publishing with outcomes in plain words, the 17 hard cases from the browser, CSV import | `app/static/dashboard.html` |
 
 ## 3. What does not work yet, and why
 
-- **First compose runs failed, and the fixes are in the history.** MinIO no longer publishes Docker Hub images, so storage moved to SeaweedFS's S3 gateway. Ghost rejected the first local owner password as insecure, wanted to email new-device codes (there is no mail server locally), and returned its admin key in an unexpected form. The bootstrap's failed Ghost certification is kept in the certification history. A first batch run against compose hit the API's own rate limit (120 requests a minute), and its partial output is kept in `outputs/compose/batch-20261016-202108/`.
-- **Dev.to has no delete API.** `delete` unpublishes the article, which removes it from all public pages. This is reported as `method: unpublished`.
-- **Reddit, Hacker News and most large communities do not allow automated posting.** They are assisted destinations: the service builds the pack and a person posts it. Reddit's `robots.txt` also forbids automated reading, so its rules are never fetched. Those rows carry strict defaults until a person pastes the rules (`rules_text`).
-- **Lemmy-UI and many forums render their rules with JavaScript.** Lemmy rules are read through its API instead. Some Discourse forums disallow `/guidelines` in `robots.txt`; those rows fall back to strict defaults, marked `rules_source=conservative_default`.
-- **Ghost's Admin API has no view counts**, so Ghost has no `fetch_metrics` and certifies at L3, not L4.
-- **Reconciliation after a timeout matches on title for platforms without metadata** (Discourse, Lemmy, Dev.to, Ghost, Hashnode). Two different posts with the same title inside the lookup window could be confused. Slack (message metadata) and the partner webhook (idempotency-key lookup) are exact.
-- **Antivirus inside Docker builds.** On the development PC, Avast re-signs HTTPS, so `pip install` inside the image build failed certificate checks. The Dockerfile accepts an optional build secret `extra_ca` (a no-op when absent, as on a clean machine); the PC passes Avast's root through a git-ignored `docker-compose.override.yml`.
-- **Import by URL of our own upload link failed inside compose** (the link's host, `localhost:8333`, is not the API container). Fixed on 17 Oct: such links are fetched from the internal S3 host with the signed `Host` header kept.
-- **The first real-catalogue builds read our own mock site instead of the real rules pages.** With simulation mode on (the default), rules-page fetching was routed to the built-in mock site for every URL, so 60 rows quoted the mock page's rules as if they were the community's. Found on 17 Oct by checking the evidence (identical quotes for different forums). Fixed: reading public pages is never simulated (only `*.mock` hosts go to the mock site), the builder refuses mock text, and every AI quote must be found on its page. The catalogue was rebuilt; the numbers above are after the fix.
-- **Self-promotion detection is rule-based.** Probing on 17 Oct found it missed a launch post with no sales words and an affiliate link, and blocked 'no sign up needed'; it now uses strong and weak signals, negation, affiliate patterns and the own domain named without a link. It will still miss cleverly worded promotion; an AI classifier behind the provider adapter is the next step.
-- **Connectors for Discourse, Dev.to, Hashnode, Slack and the partner webhook have only run against our mock platforms**, which follow each platform's public API documentation. Lemmy and Ghost ran against the real software. Real-API differences (field names, pagination, rate-limit headers) may show up on first use; certification is designed to catch them before any real post.
-- **Recommender labels are a first draft.** `catalogue/recommender_labels.csv` was drafted with AI help (see AI_USE.md) before 70 rows were added to the catalogue, so some good recommendations (for example the new launch sites for a launch post) count as misses. The precision below is measured on that draft.
-- **Antivirus that re-signs HTTPS** (Avast on the development PC) breaks certificate checks unless `USE_SYSTEM_CERTS=true`; light mode sets it.
-- **Single-instance job runner.** Jobs that were running when the process stopped are marked failed on restart (`retryable: true`), not resumed.
+- **Most Discourse forums' rules cannot be read automatically.** Discourse's default robots.txt line `Disallow: /g`
+  also covers `/guidelines` (and `/faq` redirects there); we respect it. Those rows keep strict defaults until a
+  person pastes the rules (`catalogue/pasted_rules/`, verified the same way). Reddit forbids automated reading too.
+- **The first catalogue builds read our own mock site instead of real rules pages** (simulation mode routed page
+  reads to the mock). Found on 17 Oct from identical quotes across forums; fixed so reading is never simulated,
+  the builder refuses mock text, and every AI quote must be found on its page. The catalogue was rebuilt.
+- **Only Lemmy and Ghost have been posted to on real software.** Discourse, Dev.to and Lemmy were checked
+  read-only on real platforms; Slack and the partner webhook only against mocks. Certification is the guard on
+  first real use. **Hashnode retired its free API on 13 May 2026**; posting there needs a Pro plan.
+- **Self-promotion detection is rule-based** (strong and weak signals, negation, affiliate patterns, own domain).
+  Probing found and fixed four mistakes; cleverly worded promotion can still pass. The rule test set is ours, so
+  its 0 misses show the rules work as designed, not on unseen wording.
+- **The recommender matches words, not meaning** (TF-IDF topic match + audience + rules + past results + format).
+  Its labels are a first draft made with AI help before rows were added (see AI_USE.md).
+- **Timeout recovery matches on title** on Discourse, Lemmy, Dev.to, Ghost and Hashnode (exact on Slack and the
+  partner webhook). **Dev.to has no delete API** (delete unpublishes). **Ghost has no view counts** (L3).
+- **Single-instance job runner:** jobs running at a restart are marked failed (retryable), not resumed.
 
 ## 4. Measured numbers
 
-Hardware: Dell Latitude E7470 laptop, Intel Core i7-6600U (2 cores, 4 threads, 2.6 GHz), 16 GB RAM, Windows 11, Python 3.11.5. Simulation mode with the mock platforms in-process. Command: `python -m tools.measure --runs 5 --publishes 300`. Raw output: `outputs/metrics/metrics.json`.
+Dell Latitude E7470 (i7-6600U, 2 cores, 16 GB), Windows 11, Python 3.11.5, simulation mode unless stated.
+`python -m tools.measure --runs 5 --publishes 300` → `outputs/metrics/metrics.json`.
 
-**Certification** (5 fresh destinations per connector, all passed):
+| Metric | Result |
+|---|---|
+| Certification | 9 connectors × 5 fresh destinations = **45/45**, 0.006-0.019 s per run on mocks; real Lemmy 1.2 s (L4), real Ghost 3.6 s (L3) |
+| Reliability (simulation) | 300 publishes, about 45% with injected faults (timeout after create, timeout, 429, 500, reject): **250/250 published** after same-key retries (30 rejections and 20 long-429 reschedules correctly not retried); **0 duplicate posts**, including 22 timeouts after the post was created |
+| Reliability (real local instances) | Lemmy 10/10 and Ghost 10/10 published, live (HTTP 200), same key returned the same post 10/10, all deleted |
+| Rule safety | 51 cases: **31/31 violations caught, 0 missed, 0 false blocks** |
+| Catalogue import | 1,000 rows online in **19.5 s** (50/50 duplicates, 10/10 bad URLs, 723 unreachable reported, slowest `/health` during the import 0.67 s); offline 1,002 rows in 3.2 s, 5,002 in 17.2 s |
+| Recommender | precision@10 **0.32** on the draft labels (0.17 before the topic match and the assisted route); per item 0.0-0.7 |
+| Cost | **$0 per 1,000 publications** (no AI on the publish path); AI rules reading about $0.0004-0.0006 per destination at Groq list prices; everything ran on free tiers, $0 spent |
 
-| Connector | Certified | Mean time per run | Max |
-|---|---|---|---|
-| discourse | 5/5 | 0.019 s | 0.047 s |
-| lemmy | 5/5 | 0.013 s | 0.016 s |
-| devto | 5/5 | 0.015 s | 0.016 s |
-| ghost | 5/5 | 0.013 s | 0.016 s |
-| webhook | 5/5 | 0.006 s | 0.015 s |
-| assisted | 5/5 | 0.009 s | 0.015 s |
-| hashnode | 5/5 | 0.006 s | 0.016 s |
-| slack | 5/5 | 0.012 s | 0.016 s |
-| mrss | 5/5 | 0.009 s | 0.016 s |
-
-Test posts are deleted in the same run, so the 10-minute cleanup limit is met with a wide margin.
-
-**Real local instances** (docker compose on the same laptop, Docker Engine 29.8, re-run on 17 Oct with the current code; bootstrap certified all 14 destinations; `python -m tools.measure_local --n 10`, raw output in `outputs/metrics/local_instances.json`):
-
-| Destination | Certification run | Publishes | Published | Same key again returns the same post | Live URL answered 200 | Deleted afterwards | Mean publish job |
-|---|---|---|---|---|---|---|---|
-| Local Lemmy c/incubrix_test | 1.2 s, L4 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.38 s |
-| Local Ghost blog | 3.6 s, L3 | 10 | 10 | 10/10 | 10/10 | 10/10 | 0.41 s |
-
-**Reliability:** 300 publishes across the 7 native connectors with random injected faults. About 45% of calls had a fault: timeout after the post was created, timeout before, 429 with a 1-second or 10-minute reset, 500, and rejection. Each failure was retried through `/posts/{id}/retry` with the same idempotency key.
-
-- 250 published; 30 rejected by the platform as injected (correct: not retried); 20 rescheduled to the 10-minute reset time (correct: not retried early).
-- Success rate on the rest: **100%** (250/250).
-- **Duplicate posts found on the platforms: 0**, including the 22 cases where the platform created the post and the answer never arrived.
-
-**Rule safety** (`catalogue/rule_test_set.json`, 51 labelled cases: 31 violations, 20 allowed posts; the set is ours, so it shows the rules work as designed, not how they do on unseen wording):
-
-- **31 caught, 0 missed.**
-- 0 false blocks.
-
-**Catalogue import** (offline reachability, to time the pipeline itself):
-
-- 1,002 rows (50 duplicates, 2 invalid): 3.2 s.
-- 5,002 rows: 17.2 s.
-
-**Catalogue import, online** (live reachability with robots.txt respected; `python -m tools.measure_import_online`, raw output in `outputs/metrics/catalogue_import_online.json`):
-
-| File | Rows | Time | Duplicates found | Errors | Unreachable | Slowest /health during the import |
-|---|---|---|---|---|---|---|
-| `catalogue/real_catalogue.csv` | 237 | 18.6 s | 0 | 0 | 19 | 0.64 s |
-| 1,000 rows: the real rows + 50 duplicates (other case, `www.`, trailing slash, tracking parameter) + 10 bad URLs + 703 rows on `.invalid` hosts | 1,000 | 19.5 s | 50 of 50 | 10 of 10 | 723 | 0.67 s |
-
-An earlier version froze the API for 10 s during an online import (a new TLS context per host for robots.txt, and charset guessing over whole pages); both were fixed and the numbers above are after the fix.
-
-**Recommender:** mean precision of the top 10 over 10 content items on the draft labelled set (`python -m tools.eval_recommender`, `outputs/metrics/recommender.json`): **0.35**. It was 0.17 before two fixes: a topic match (TF-IDF between the post and each destination's description) and recommending places that ban automation through the assisted pack instead of dropping them. Per item it ranges from 0.0 to 0.7; the weakest items need meaning, not shared words (a speech-to-text post whose labelled destinations never mention speech). See section 3 on the labels.
-
-**Cost:**
-
-- Publishing, tailoring and rule checks make no paid calls: **$0 per 1,000 publications**.
-- AI rules capture with Groq `openai/gpt-oss-120b` measured on real rules pages: about 840 input and 600 output tokens per page, about **$0.0006 per destination** at list prices ($0.15 / $0.75 per million tokens). Run on the free tier during development, so $0 actually spent.
-- The real-catalogue rebuild (17 Oct): Groq `openai/gpt-oss-20b` (61,181 input, 68,842 output tokens: **$0.025 at list prices**) and Gemini `gemini-3.1-flash-lite` (75,591 input, 9,008 output tokens) plus 19 calls to `gemini-flash-latest` whose totals were not saved because that run stopped on the free quota. The model is recorded per row. All on free tiers, so $0 spent; the free daily limits (Groq 200,000 tokens a day per model, Gemini Flash 20 requests a day) were the real constraint. Rows whose rules page could not be read make no AI call.
+**Real catalogue** (`catalogue/real_catalogue.csv`): 255 real destinations, **185 outside Reddit** (Reddit is a
+major platform, so it does not count toward the long tail), **139 relevant** (score 3+). 49 Discourse, 37 Lemmy,
+10 Dev.to tags, 5 Hashnode tags, 8 Slack communities, 76 assisted (launch sites, directories, Q&A, PeerTube,
+forums). **67 have rules read from their real rules page with every quote checked against it** (106 of 114 AI
+quotes found); the rest have strict defaults marked `conservative_default`. Every row has a relevance score with a
+reason and a connector type. Nothing was posted to any of them. `catalogue/pasted_rules/TODO.csv` lists the 92
+relevant destinations still waiting for rules.
 
 ## 5. Outstanding items
 
-- **Recommender.** Ranks by audience fit, rules fit (rule-breakers are excluded with the reason), past engagement from `fetch_metrics`, and format fit, with a reason for each destination.
-- **Metrics.** `fetch_metrics` works on Discourse, Lemmy, Dev.to, Hashnode, Slack and the partner webhook, normalised to views, likes, comments, shares, saves, watch time and clicks.
-- **Recertification.** A scheduler (`RECERT_INTERVAL_S`) re-tests destinations last certified more than `RECERT_AFTER_DAYS` (25) ago. A failure demotes the destination to L0, excludes it, opens a ticket and calls `ALERT_WEBHOOK_URL`.
-- **Real catalogue.** `catalogue/real_catalogue.csv`: 235 real destinations, **165 outside Reddit** (Reddit is one of the 15 major platforms, so it is not counted toward the long tail), 128 of them with relevance 3 or more. Outside Reddit: 49 Discourse, 23 Lemmy, 10 Dev.to tags, 5 Hashnode tags, 8 Slack communities, 70 assisted (launch sites, directories, Q&A, PeerTube, other forums). **55 have rules read from their real rules page, with every rule quote checked against that page** (90 of 96 AI quotes were found; `real_catalogue_evidence.json` keeps the verified quotes). The other 110 have strict conservative defaults, marked `rules_source=conservative_default`: 43 Discourse forums disallow automated reading of their guidelines in `robots.txt` (respected), 37 got AI answers whose quotes were not on the page (discarded), the rest have no readable rules page. A person can paste rules for any row (`rules_text`), which the AI then reads with the same checks. Every row has a relevance score with a reason and a connector type. Nothing was posted to any of them.
+- **Recommender:** ranked with a reason per destination; rule-breakers excluded with the reason; places that ban
+  automation are routed to a person's ready-to-post pack instead of dropped.
+- **Metrics:** `fetch_metrics` on Discourse, Lemmy, Dev.to, Hashnode, Slack and the webhook, normalised to views,
+  likes, comments, shares, saves, watch time and clicks.
+- **Recertification:** a scheduler re-tests destinations certified more than 25 days ago; a failure demotes and
+  excludes the destination, opens a ticket and calls `ALERT_WEBHOOK_URL`.
+- **Real catalogue:** see section 4. It is **partial** against "150 researched with rules": 139 relevant, 67 with
+  verified rules.
 
 ## 6. What I would do next
 
-1. Move jobs to SQS (IncuBrix already runs on AWS) and the store to Postgres or DynamoDB, so several API containers can run.
-2. Store an idempotency marker inside the post where the platform allows hidden metadata (Ghost `codeinjection_foot`, Discourse custom fields through a plugin), to make timeout recovery exact everywhere.
-3. A small reviewer UI for confirming AI-proposed rules in bulk, showing each quote next to the rule.
-4. PeerTube and Kit/Mailchimp connectors; OAuth flows for Slack app installation.
-5. Learn the recommender weights from real engagement once there is enough history.
+1. Paste and verify rules for the 92 relevant destinations in `TODO.csv`, then label the recommender set by hand.
+2. Jobs on SQS and the store on Postgres or DynamoDB, so several API containers can run.
+3. An exact idempotency marker inside posts where platforms allow hidden metadata.
+4. An AI promotion classifier behind the provider adapter, measured on wording we did not write.
+5. PeerTube and Kit/Mailchimp connectors from the template; OAuth for Slack installation.
