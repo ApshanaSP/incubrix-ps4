@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-17T11:20:12",
+  "generated_at": "2026-10-17T23:43:26",
   "provider": {
     "provider": "gemini",
     "model": "gemini-3.1-flash-lite",
-    "calls": 3,
-    "input_tokens": 4716,
-    "output_tokens": 582,
-    "seconds": 8.28,
+    "calls": 14,
+    "input_tokens": 23253,
+    "output_tokens": 2526,
+    "seconds": 158.95,
     "cost_usd": 0.0,
     "errors": []
   },
@@ -727,6 +727,23 @@
       "ai_error": "no AI quote was found on the rules page",
       "model": "groq/openai/gpt-oss-20b"
     },
+    "lemmy.dbzer0.com c/stable_diffusion": {
+      "url": "https://lemmy.dbzer0.com/c/stable_diffusion",
+      "rules_read_from": "https://lemmy.dbzer0.com/api/v3/community?name=stable_diffusion (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": "no AI quote was found on the rules page",
+      "model": "groq/openai/gpt-oss-20b"
+    },
     "sh.itjust.works c/technology": {
       "url": "https://sh.itjust.works/c/technology",
       "rules_read_from": "https://sh.itjust.works/api/v3/community?name=technology (+ /api/v3/site)",
@@ -1000,8 +1017,8 @@
     },
     "The Startup (Medium)": {
       "url": "https://medium.com/swlh",
-      "rules_read_from": "https://medium.com/swlh",
-      "rules_note": null,
+      "rules_read_from": null,
+      "rules_note": "https://medium.com/swlh answered 403",
       "ai_rules": {
         "frequency_cap": null,
         "self_promo_allowed": null,
@@ -1012,8 +1029,8 @@
       "evidence": [],
       "quotes_from_ai": 0,
       "quotes_found_on_page": 0,
-      "ai_error": "no AI quote was found on the rules page",
-      "model": "gemini/gemini-3.1-flash-lite"
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
     },
     "UX Collective": {
       "url": "https://uxdesign.cc",
@@ -1036,6 +1053,23 @@
       "url": "https://levelup.gitconnected.com",
       "rules_read_from": null,
       "rules_note": "https://levelup.gitconnected.com answered 403",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "Entrepreneur's Handbook": {
+      "url": "https://medium.com/entrepreneurs-handbook",
+      "rules_read_from": null,
+      "rules_note": "https://medium.com/entrepreneurs-handbook answered 403",
       "ai_rules": {
         "frequency_cap": null,
         "self_promo_allowed": null,
@@ -1214,55 +1248,37 @@
     },
     "AlternativeTo": {
       "url": "https://alternativeto.net",
-      "rules_read_from": "https://alternativeto.net/faq/",
-      "rules_note": null,
+      "rules_read_from": null,
+      "rules_note": "https://alternativeto.net/faq/ answered 403",
       "ai_rules": {
         "frequency_cap": null,
-        "self_promo_allowed": "yes",
-        "link_policy": "any",
-        "disclosure_required": null,
-        "automation_allowed": false
-      },
-      "evidence": [
-        {
-          "rule": "automation_allowed",
-          "quote": "You need to verify your email address before you can submit a new app — this is to discourage spammers and bots."
-        },
-        {
-          "rule": "self_promo_allowed",
-          "quote": "You can add your software by using the option \"Suggest new application\" that you can find clicking on the User icon in the top right corner."
-        }
-      ],
-      "quotes_from_ai": 2,
-      "quotes_found_on_page": 2,
-      "ai_error": null,
-      "model": "gemini/gemini-3.1-flash-lite"
-    },
-    "There's An AI For That": {
-      "url": "https://theresanaiforthat.com",
-      "rules_read_from": "https://theresanaiforthat.com/submit/",
-      "rules_note": null,
-      "ai_rules": {
-        "frequency_cap": null,
-        "self_promo_allowed": "yes",
-        "link_policy": "any",
+        "self_promo_allowed": null,
+        "link_policy": null,
         "disclosure_required": null,
         "automation_allowed": null
       },
-      "evidence": [
-        {
-          "rule": "self_promo_allowed",
-          "quote": "Launch your AI tool"
-        },
-        {
-          "rule": "link_policy",
-          "quote": "Tool URL: The URL above will be used to populate your tool page."
-        }
-      ],
-      "quotes_from_ai": 2,
-      "quotes_found_on_page": 2,
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
       "ai_error": null,
-      "model": "gemini/gemini-3.1-flash-lite"
+      "model": "heuristic (no rules text, no AI call)"
+    },
+    "There's An AI For That": {
+      "url": "https://theresanaiforthat.com",
+      "rules_read_from": null,
+      "rules_note": "https://theresanaiforthat.com/submit/ answered 403",
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": null,
+      "model": "heuristic (no rules text, no AI call)"
     },
     "Futurepedia": {
       "url": "https://www.futurepedia.io",
@@ -1734,29 +1750,20 @@
     },
     "Midjourney Discord": {
       "url": "https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines",
-      "rules_read_from": "https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines",
-      "rules_note": null,
+      "rules_read_from": null,
+      "rules_note": "https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines answered 403",
       "ai_rules": {
         "frequency_cap": null,
-        "self_promo_allowed": "no",
+        "self_promo_allowed": null,
         "link_policy": null,
         "disclosure_required": null,
-        "automation_allowed": false
+        "automation_allowed": null
       },
-      "evidence": [
-        {
-          "rule": "automation_allowed",
-          "quote": "Unauthorized automation & third party apps are not allowed"
-        },
-        {
-          "rule": "automation_allowed",
-          "quote": "Midjourney does not provide an API, nor provide third-party apps or scripts, and automating interactions with Midjourney service is strictly prohibited according to our Terms of Service."
-        }
-      ],
-      "quotes_from_ai": 2,
-      "quotes_found_on_page": 2,
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
       "ai_error": null,
-      "model": "gemini/gemini-3.1-flash-lite"
+      "model": "heuristic (no rules text, no AI call)"
     },
     "Runway Discord": {
       "url": "https://runwayml.com",
@@ -3970,23 +3977,6 @@
       "ai_error": null,
       "model": "gemini/gemini-3.1-flash-lite"
     },
-    "Peerlist Launchpad": {
-      "url": "https://peerlist.io/launchpad",
-      "rules_read_from": null,
-      "rules_note": "https://peerlist.io/launchpad answered 403",
-      "ai_rules": {
-        "frequency_cap": null,
-        "self_promo_allowed": null,
-        "link_policy": null,
-        "disclosure_required": null,
-        "automation_allowed": null
-      },
-      "evidence": [],
-      "quotes_from_ai": 0,
-      "quotes_found_on_page": 0,
-      "ai_error": null,
-      "model": "heuristic (no rules text, no AI call)"
-    },
     "Microlaunch": {
       "url": "https://microlaunch.net",
       "rules_read_from": "https://microlaunch.net",
@@ -4420,6 +4410,432 @@
       "quotes_found_on_page": 0,
       "ai_error": null,
       "model": "heuristic (no rules text, no AI call)"
+    },
+    "rankett.net (PeerTube)": {
+      "url": "https://rankett.net",
+      "rules_read_from": "https://rankett.net/api/v1/config/about",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": "no AI quote was found on the rules page",
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "tv.lumbung.space (PeerTube)": {
+      "url": "https://tv.lumbung.space",
+      "rules_read_from": "https://tv.lumbung.space/api/v1/config/about",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": "no AI quote was found on the rules page",
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "Hardlimit (PeerTube)": {
+      "url": "https://video.hardlimit.com",
+      "rules_read_from": "https://video.hardlimit.com/api/v1/config/about",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": "no AI quote was found on the rules page",
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "fairtube (PeerTube)": {
+      "url": "https://fair.tube",
+      "rules_read_from": "https://fair.tube/api/v1/config/about",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [],
+      "quotes_from_ai": 0,
+      "quotes_found_on_page": 0,
+      "ai_error": "no AI quote was found on the rules page",
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "GEEK Tube (PeerTube)": {
+      "url": "https://videos.maitregeek.eu",
+      "rules_read_from": "https://videos.maitregeek.eu/api/v1/config/about",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Spam or self-promotion unrelated to the content"
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "Video upload permissions are restricted to authorized users only"
+        }
+      ],
+      "quotes_from_ai": 2,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "My Sunshine Video (PeerTube)": {
+      "url": "https://my-sunshine.video",
+      "rules_read_from": "https://my-sunshine.video/api/v1/config/about",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "automation_allowed",
+          "quote": "Use, launch, develop, or distribute any automated system, including, without limitation, any spider, robot, cheat utility, scraper, offline reader, or any data mining or similar data gathering extraction tools to access the Instance, except in each case as may be the result of standard search engine or Internet browser and local caching or for human review and interaction with Content on the Instance;"
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "sh.itjust.works c/imageai": {
+      "url": "https://sh.itjust.works/c/imageai",
+      "rules_read_from": "https://sh.itjust.works/api/v3/community?name=imageai (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "any",
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "lemmy.ml c/photography": {
+      "url": "https://lemmy.ml/c/photography",
+      "rules_read_from": "https://lemmy.ml/api/v3/community?name=photography (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": "3/24h",
+        "self_promo_allowed": "limited",
+        "link_policy": "none",
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "frequency_cap",
+          "quote": "One post, one photo in the limit of 3 pictures in a 24 hours timespan."
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No spam or self-promotion"
+        }
+      ],
+      "quotes_from_ai": 4,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "groq/openai/gpt-oss-120b"
+    },
+    "programming.dev c/auai": {
+      "url": "https://programming.dev/c/auai",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=auai (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Anything the mods consider crypto/AI bro success porn sigma grindset blogspam"
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "lemmy.ml c/peertube": {
+      "url": "https://lemmy.ml/c/peertube",
+      "rules_read_from": "https://lemmy.ml/api/v3/community?name=peertube (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "No Ads / Spamming",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "sh.itjust.works c/musicproduction": {
+      "url": "https://sh.itjust.works/c/musicproduction",
+      "rules_read_from": "https://sh.itjust.works/api/v3/community?name=musicproduction (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Free plugins, presets and samplepacks. Giveaways and self-made stuff included!"
+        },
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "quotes_from_ai": 2,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "lemmy.zip c/vgartwork": {
+      "url": "https://lemmy.zip/c/vgartwork",
+      "rules_read_from": "https://lemmy.zip/api/v3/community?name=vgartwork (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": "any",
+        "disclosure_required": true,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "AI generated art is not allowed.",
+          "quote": "AI generated art is not allowed."
+        },
+        {
+          "rule": "Fan art must have the creator's name in the title and a source link in the description.",
+          "quote": "Fan art must have the creator's name in the title and a source link in the description."
+        }
+      ],
+      "quotes_from_ai": 2,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "sh.itjust.works c/youtubeclassics": {
+      "url": "https://sh.itjust.works/c/youtubeclassics",
+      "rules_read_from": "https://sh.itjust.works/api/v3/community?name=youtubeclassics (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": "one_link",
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No Ads / Spamming."
+        },
+        {
+          "rule": "link_policy",
+          "quote": "But you must post a link to a YouTube reupload, not to another website."
+        }
+      ],
+      "quotes_from_ai": 2,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "sh.itjust.works c/learnmachinelearning": {
+      "url": "https://sh.itjust.works/c/learnmachinelearning",
+      "rules_read_from": "https://sh.itjust.works/api/v3/community?name=learnmachinelearning (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "No Ads / Spamming",
+          "quote": "No Ads / Spamming."
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "lemmy.zip c/videogamesuggestions": {
+      "url": "https://lemmy.zip/c/videogamesuggestions",
+      "rules_read_from": "https://lemmy.zip/api/v3/community?name=videogamesuggestions (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Self-promotion isn't totally banned: if someone asked for an RPG where you can play a lich, and the game you worked on is an RPG where you can play a lich, you can definitely answer with your RPG."
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "programming.dev c/game_design": {
+      "url": "https://programming.dev/c/game_design",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=game_design (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": null,
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "Language requirement",
+          "quote": "Posts must be in english"
+        },
+        {
+          "rule": "Topic relevance",
+          "quote": "Only post things that are related to designing games."
+        }
+      ],
+      "quotes_from_ai": 2,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "programming.dev c/ddd": {
+      "url": "https://programming.dev/c/ddd",
+      "rules_read_from": "https://programming.dev/api/v3/community?name=ddd (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "No spam of tools/companies/advertisements. It’s OK to post your own stuff part of the time, but the primary use of the community should not be self-promotion."
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "lemmy.blahaj.zone c/AntiAI": {
+      "url": "https://lemmy.blahaj.zone/c/AntiAI",
+      "rules_read_from": "https://lemmy.blahaj.zone/api/v3/community?name=AntiAI (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "no",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": false
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Absolutely No LLM, ML etc regurgitated trash."
+        },
+        {
+          "rule": "automation_allowed",
+          "quote": "#NoBot #NoAI #NoBridge"
+        }
+      ],
+      "quotes_from_ai": 2,
+      "quotes_found_on_page": 2,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
+    },
+    "lemmy.sdf.org c/linux_video_editing": {
+      "url": "https://lemmy.sdf.org/c/linux_video_editing",
+      "rules_read_from": "https://lemmy.sdf.org/api/v3/community?name=linux_video_editing (+ /api/v3/site)",
+      "rules_note": null,
+      "ai_rules": {
+        "frequency_cap": null,
+        "self_promo_allowed": "limited",
+        "link_policy": null,
+        "disclosure_required": null,
+        "automation_allowed": null
+      },
+      "evidence": [
+        {
+          "rule": "self_promo_allowed",
+          "quote": "Don't make a post in an attempt to make a particular program seem superior."
+        }
+      ],
+      "quotes_from_ai": 1,
+      "quotes_found_on_page": 1,
+      "ai_error": null,
+      "model": "gemini/gemini-3.1-flash-lite"
     }
   }
 }

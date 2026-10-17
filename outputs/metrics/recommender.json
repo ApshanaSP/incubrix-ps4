@@ -1,28 +1,27 @@
 {
   "items": 10,
-  "catalogue_size": 235,
-  "mean_precision_at_10": 0.35,
+  "catalogue_size": 255,
+  "mean_precision_at_10": 0.32,
   "per_item": [
     {
       "id": "c01",
       "title": "How auto-captions changed our short-form video workflow",
-      "precision_at_10": 0.2,
+      "precision_at_10": 0.1,
       "labelled_relevant_in_catalogue": 19,
       "top10": [
         "Lemmy.world c/videos",
+        "lemmy.sdf.org c/linux_video_editing",
         "Runway Discord",
         "reddit r/aivideo",
         "NVIDIA Developer Forums",
         "VideoHelp Forum",
+        "There's An AI For That",
         "Spectra Video (PeerTube)",
-        "KDE Discuss (Kdenlive)",
-        "Diode Zone (PeerTube)",
         "Unity Discussions",
-        "GoPro Community"
+        "Civitai"
       ],
       "top10_hits": [
-        "reddit r/aivideo",
-        "KDE Discuss (Kdenlive)"
+        "reddit r/aivideo"
       ],
       "excluded_by_rules": 10
     },
@@ -30,18 +29,18 @@
       "id": "c02",
       "title": "Growing a SaaS newsletter to 10k readers by repurposing one video a week",
       "precision_at_10": 0.5,
-      "labelled_relevant_in_catalogue": 20,
+      "labelled_relevant_in_catalogue": 21,
       "top10": [
         "reddit r/Newsletters",
         "Ghost Forum",
         "Dev.to #saas",
         "Dev.to #marketing",
         "reddit r/SaaS",
-        "Future Tools",
         "sh.itjust.works c/technology",
-        "Uneed",
+        "Future Tools",
         "Product Hunt",
-        "Hashnode machine-learning tag"
+        "Hashnode machine-learning tag",
+        "HackerNoon"
       ],
       "top10_hits": [
         "reddit r/Newsletters",
@@ -63,11 +62,11 @@
         "Dev.to #opensource",
         "lemmy.ml c/opensource",
         "Level Up Coding",
-        "There's An AI For That",
         "SideProjectors",
         "n8n Community",
         "reddit r/AI_Agents",
-        "TopAI.tools"
+        "TopAI.tools",
+        "HackerNoon"
       ],
       "top10_hits": [
         "Level Up Coding"
@@ -81,44 +80,43 @@
       "labelled_relevant_in_catalogue": 15,
       "top10": [
         "Product Hunt",
-        "Uneed",
         "SideProjectors",
-        "OBS Forums",
+        "Uneed",
         "DevHunt",
-        "Peerlist Launchpad",
         "BetaList",
+        "OBS Forums",
         "Microlaunch",
         "Launching Next",
-        "OpenAlternative"
+        "OpenAlternative",
+        "Hashnode machine-learning tag"
       ],
       "top10_hits": [
         "Product Hunt",
         "BetaList"
       ],
-      "excluded_by_rules": 199
+      "excluded_by_rules": 214
     },
     {
       "id": "c05",
       "title": "Color grading with AI masks in DaVinci Resolve: a 10-minute tutorial",
-      "precision_at_10": 0.4,
+      "precision_at_10": 0.3,
       "labelled_relevant_in_catalogue": 15,
       "top10": [
         "Blackmagic Forum (DaVinci Resolve)",
         "Audacity Forum",
+        "lemmy.sdf.org c/linux_video_editing",
+        "GEEK Tube (PeerTube)",
         "Runway Discord",
         "reddit r/aivideo",
         "KDE Discuss (Kdenlive)",
-        "VideoHelp Forum",
-        "Lemmy.world c/videos",
         "Civitai",
-        "Future Tools",
-        "Video Production Stack Exchange"
+        "VideoHelp Forum",
+        "Lemmy.world c/videos"
       ],
       "top10_hits": [
         "Blackmagic Forum (DaVinci Resolve)",
         "VideoHelp Forum",
-        "Lemmy.world c/videos",
-        "Video Production Stack Exchange"
+        "Lemmy.world c/videos"
       ],
       "excluded_by_rules": 10
     },
@@ -130,14 +128,14 @@
       "top10": [
         "lemmy.world c/podcasts",
         "Ardour Discourse",
-        "There's An AI For That",
         "Hashnode machine-learning tag",
         "Runway Discord",
         "reddit r/aivideo",
         "TopAI.tools",
         "HackerNoon",
         "Future Tools",
-        "Dev.to #ai"
+        "Dev.to #ai",
+        "Civitai"
       ],
       "top10_hits": [
         "Dev.to #ai"
@@ -148,11 +146,11 @@
       "id": "c07",
       "title": "Bootstrapping an AI video startup from India: year one",
       "precision_at_10": 0.7,
-      "labelled_relevant_in_catalogue": 15,
+      "labelled_relevant_in_catalogue": 16,
       "top10": [
+        "The Startup (Medium)",
         "Lemmy.world c/startups",
         "reddit r/startup",
-        "The Startup (Medium)",
         "reddit r/startups",
         "Dev.to #startup",
         "Hashnode startups tag",
@@ -162,9 +160,9 @@
         "Launching Next"
       ],
       "top10_hits": [
+        "The Startup (Medium)",
         "Lemmy.world c/startups",
         "reddit r/startup",
-        "The Startup (Medium)",
         "reddit r/startups",
         "Dev.to #startup",
         "Hashnode startups tag",
@@ -176,16 +174,16 @@
       "id": "c08",
       "title": "A prompting guide for AI-generated B-roll",
       "precision_at_10": 0.4,
-      "labelled_relevant_in_catalogue": 16,
+      "labelled_relevant_in_catalogue": 17,
       "top10": [
         "Civitai",
         "Runway Discord",
+        "sh.itjust.works c/imageai",
+        "There's An AI For That",
         "reddit r/aivideo",
         "Lemmy.world c/videos",
-        "There's An AI For That",
         "NVIDIA Developer Forums",
         "Dev.to #ai",
-        "Future Tools",
         "reddit r/AI_Agents",
         "Generative AI publication"
       ],
@@ -200,25 +198,24 @@
     {
       "id": "c09",
       "title": "One video, ten platforms: a content distribution playbook",
-      "precision_at_10": 0.4,
+      "precision_at_10": 0.3,
       "labelled_relevant_in_catalogue": 18,
       "top10": [
         "reddit r/content_marketing",
         "Spectra Video (PeerTube)",
         "Blender Video (PeerTube)",
         "Lemmy.world c/videos",
+        "fairtube (PeerTube)",
         "RevGenius (Slack)",
         "TilVids (PeerTube)",
         "Superpath Community (Slack)",
         "Dev.to #startup",
-        "Webflow Forum",
-        "Dev.to #marketing"
+        "Webflow Forum"
       ],
       "top10_hits": [
         "reddit r/content_marketing",
         "RevGenius (Slack)",
-        "Superpath Community (Slack)",
-        "Dev.to #marketing"
+        "Superpath Community (Slack)"
       ],
       "excluded_by_rules": 10
     },
@@ -235,7 +232,7 @@
         "Dev.to #llm",
         "Runway Discord",
         "Zapier Community",
-        "There's An AI For That",
+        "fairtube (PeerTube)",
         "Level Up Coding",
         "Dev.to #machinelearning"
       ],
@@ -251,9 +248,7 @@
   ],
   "unknown_label_names": [
     "Descript Community",
-    "Entrepreneur's Handbook",
     "Lemmy.world c/artificial_intel",
-    "Lemmy.world c/marketing",
-    "lemmy.dbzer0.com c/stable_diffusion"
+    "Lemmy.world c/marketing"
   ]
 }

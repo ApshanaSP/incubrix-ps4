@@ -1,0 +1,93 @@
+name,rules_url,file_to_save,relevance_score,connector_key
+Civitai,https://civitai.com/content/tos,civitai.txt,5,assisted
+Fazier,https://fazier.com,fazier.txt,5,assisted
+HackerNoon,https://hackernoon.com/editorial-guidelines,hackernoon.txt,5,assisted
+Hugging Face Discord,https://huggingface.co/code-of-conduct,hugging-face-discord.txt,5,assisted
+Indie Worldwide (Slack),https://www.indieworldwide.co,indie-worldwide-slack.txt,5,slack
+Lemmy.world c/youtube,https://lemmy.world/c/youtube,lemmy-world-c-youtube.txt,5,lemmy
+Online Geniuses (Slack),https://onlinegeniuses.com,online-geniuses-slack.txt,5,slack
+Runway Discord,https://runwayml.com,runway-discord.txt,5,assisted
+Zapier Community,https://community.zapier.com/,zapier-community.txt,5,assisted
+n8n Community,https://community.n8n.io/guidelines,n8n-community.txt,5,discourse
+Adalo Forum,https://forum.adalo.com/guidelines,adalo-forum.txt,4,discourse
+Adobe Community Premiere Pro,https://community.adobe.com/t5/using-the-community/community-guidelines/ba-p/12224451,adobe-community-premiere-pro.txt,4,assisted
+Audacity Forum,https://forum.audacityteam.org,audacity-forum.txt,4,assisted
+Baserow Community,https://community.baserow.io/guidelines,baserow-community.txt,4,discourse
+BetaList,https://betalist.com/submit,betalist.txt,4,assisted
+Blackmagic Forum (DaVinci Resolve),https://forum.blackmagicdesign.com/app.php/rules,blackmagic-forum-davinci-resolve.txt,4,assisted
+Blender Artists,https://blenderartists.org/guidelines,blender-artists.txt,4,discourse
+Blender Developer Forum,https://devtalk.blender.org/guidelines,blender-developer-forum.txt,4,discourse
+Bubble Forum,https://forum.bubble.io/guidelines,bubble-forum.txt,4,discourse
+Cursor Community Forum,https://forum.cursor.com/guidelines,cursor-community-forum.txt,4,discourse
+DataTalks.Club (Slack),https://datatalks.club/slack.html,datatalks-club-slack.txt,4,slack
+Diode Zone (PeerTube),https://diode.zone/about/instance,diode-zone-peertube.txt,4,assisted
+Discourse Meta,https://meta.discourse.org/guidelines,discourse-meta.txt,4,discourse
+Figma Forum,https://forum.figma.com/guidelines,figma-forum.txt,4,discourse
+FlutterFlow Community,https://community.flutterflow.io/guidelines,flutterflow-community.txt,4,discourse
+Framatube (PeerTube),https://framatube.org/about/instance,framatube-peertube.txt,4,assisted
+Futurepedia,https://www.futurepedia.io/submit-tool,futurepedia.txt,4,assisted
+Generative AI publication,https://generativeai.pub,generative-ai-publication.txt,4,assisted
+Ghost Forum,https://forum.ghost.org/guidelines,ghost-forum.txt,4,discourse
+Glide Community,https://community.glideapps.com/guidelines,glide-community.txt,4,discourse
+GoPro Community,https://community.gopro.com/s/,gopro-community.txt,4,assisted
+Google AI Developers Forum,https://discuss.ai.google.dev/guidelines,google-ai-developers-forum.txt,4,discourse
+HubSpot Community,https://community.hubspot.com/t5/Community-Guidelines/bg-p/community_guidelines,hubspot-community.txt,4,assisted
+Indie Hackers,https://www.indiehackers.com/guidelines,indie-hackers.txt,4,assisted
+KDE Discuss (Kdenlive),https://discuss.kde.org/guidelines,kde-discuss-kdenlive.txt,4,discourse
+Lemmy.world c/startups,https://lemmy.world/c/startups,lemmy-world-c-startups.txt,4,lemmy
+LessWrong,https://www.lesswrong.com/faq,lesswrong.txt,4,assisted
+Level Up Coding,https://levelup.gitconnected.com,level-up-coding.txt,4,assisted
+Lobsters,https://lobste.rs/about,lobsters.txt,4,assisted
+MLOps Community (Slack),https://mlops.community,mlops-community-slack.txt,4,slack
+Make Community,https://community.make.com/guidelines,make-community.txt,4,discourse
+Matomo Forum,https://forum.matomo.org/guidelines,matomo-forum.txt,4,discourse
+Mautic Community Forum,https://forum.mautic.org/guidelines,mautic-community-forum.txt,4,discourse
+Midjourney Discord,https://docs.midjourney.com/hc/en-us/articles/32013696484109-Community-Guidelines,midjourney-discord.txt,4,assisted
+Mind the Product (Slack),https://www.mindtheproduct.com,mind-the-product-slack.txt,4,slack
+NVIDIA Developer Forums,https://forums.developer.nvidia.com/guidelines,nvidia-developer-forums.txt,4,discourse
+OpenAI Developer Community,https://community.openai.com/guidelines,openai-developer-community.txt,4,discourse
+OpenAlternative,https://openalternative.co,openalternative.txt,4,assisted
+Penpot Community,https://community.penpot.app/guidelines,penpot-community.txt,4,discourse
+Qiita,https://qiita.com/terms,qiita.txt,4,assisted
+RevGenius (Slack),https://www.revgenius.com,revgenius-slack.txt,4,slack
+Shopify Community,https://community.shopify.com/c/community-guidelines/,shopify-community.txt,4,assisted
+Shotcut Forum,https://forum.shotcut.org/guidelines,shotcut-forum.txt,4,discourse
+Softr Community,https://community.softr.io/guidelines,softr-community.txt,4,discourse
+Squarespace Forum,https://forum.squarespace.com/,squarespace-forum.txt,4,assisted
+Streamlit Community,https://discuss.streamlit.io/guidelines,streamlit-community.txt,4,discourse
+The Startup (Medium),https://medium.com/swlh,the-startup-medium.txt,4,assisted
+There's An AI For That,https://theresanaiforthat.com/submit/,there-s-an-ai-for-that.txt,4,assisted
+UX Collective,https://uxdesign.cc,ux-collective.txt,4,assisted
+Unity Discussions,https://discussions.unity.com/guidelines,unity-discussions.txt,4,discourse
+Vercel Community,https://community.vercel.com/guidelines,vercel-community.txt,4,discourse
+Zenn,https://zenn.dev/terms,zenn.txt,4,assisted
+daily.dev Squads,https://daily.dev,daily-dev-squads.txt,4,assisted
+fairtube (PeerTube),https://fair.tube/api/v1/config/about,fairtube-peertube.txt,4,assisted
+freeCodeCamp Forum,https://forum.freecodecamp.org/guidelines,freecodecamp-forum.txt,4,discourse
+lemmy.dbzer0.com c/stable_diffusion,https://lemmy.dbzer0.com/c/stable_diffusion,lemmy-dbzer0-com-c-stable-diffusion.txt,4,lemmy
+lemmy.world c/chatgpt,https://lemmy.world/c/chatgpt,lemmy-world-c-chatgpt.txt,4,lemmy
+rankett.net (PeerTube),https://rankett.net/api/v1/config/about,rankett-net-peertube.txt,4,assisted
+velog,https://velog.io,velog.txt,4,assisted
+Airtable Community,https://community.airtable.com/,airtable-community.txt,3,assisted
+AlternativeTo,https://alternativeto.net/faq/,alternativeto.txt,3,assisted
+Ardour Discourse,https://discourse.ardour.org/guidelines,ardour-discourse.txt,3,discourse
+Blender Video (PeerTube),https://video.blender.org/about/instance,blender-video-peertube.txt,3,assisted
+Entrepreneur's Handbook,https://medium.com/entrepreneurs-handbook,entrepreneur-s-handbook.txt,3,assisted
+Hardlimit (PeerTube),https://video.hardlimit.com/api/v1/config/about,hardlimit-peertube.txt,3,assisted
+Hugging Face Forums,https://discuss.huggingface.co/guidelines,hugging-face-forums.txt,3,discourse
+Journal du Hacker,https://www.journalduhacker.net/about,journal-du-hacker.txt,3,assisted
+MakerTube (PeerTube),https://makertube.net/about/instance,makertube-peertube.txt,3,assisted
+PyTorch Forums,https://discuss.pytorch.org/guidelines,pytorch-forums.txt,3,discourse
+Python Discuss,https://discuss.python.org/guidelines,python-discuss.txt,3,discourse
+Ray Forum,https://discuss.ray.io/guidelines,ray-forum.txt,3,discourse
+Spectra Video (PeerTube),https://spectra.video/about/instance,spectra-video-peertube.txt,3,assisted
+TilVids (PeerTube),https://tilvids.com/about/instance,tilvids-peertube.txt,3,assisted
+VideoHelp Forum,https://forum.videohelp.com/faq.php,videohelp-forum.txt,3,assisted
+Webflow Forum,https://forum.webflow.com/guidelines,webflow-forum.txt,3,discourse
+Weights & Biases Community,https://community.wandb.ai/guidelines,weights-biases-community.txt,3,discourse
+fast.ai Forums,https://forums.fast.ai/guidelines,fast-ai-forums.txt,3,discourse
+lemmy.world c/photography,https://lemmy.world/c/photography,lemmy-world-c-photography.txt,3,lemmy
+lemmy.world c/podcasts,https://lemmy.world/c/podcasts,lemmy-world-c-podcasts.txt,3,lemmy
+lemmy.zip c/technology,https://lemmy.zip/c/technology,lemmy-zip-c-technology.txt,3,lemmy
+programming.dev c/machine_learning,https://programming.dev/c/machine_learning,programming-dev-c-machine-learning.txt,3,lemmy
+tv.lumbung.space (PeerTube),https://tv.lumbung.space/api/v1/config/about,tv-lumbung-space-peertube.txt,3,assisted
