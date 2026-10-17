@@ -21,21 +21,22 @@ from bs4 import BeautifulSoup
 from app.ai.providers import Provider, get_provider
 from app.catalogue import store
 from app.config import get_settings
-from app.connectors.http import is_simulated
+from app.connectors.http import is_mock_host
 from app.db import get_db, new_id, now_iso
 from app.errors import ApiError
 
 # ---------------------------------------------------------------- fetching pages politely
 async def fetch_page_text(url: str, max_chars: int = 12000) -> tuple[str, str]:
-    """Return (title, visible text). Simulated hosts are served by the mock site."""
+    """Return (title, visible text). Real pages are fetched for real (robots.txt respected), also in simulation
+    mode: reading posts nothing. Only *.mock hosts are served by the mock site."""
     s = get_settings()
     transport = None
     target = url
-    if is_simulated(url) and not s.mock_base_url:
+    if is_mock_host(url) and not s.mock_base_url:
         from app.mocks.server import app as mock_app
 
         transport = httpx.ASGITransport(app=mock_app)
-    if is_simulated(url):
+    if is_mock_host(url):
         parts = urlsplit(url)
         target = f"{s.mock_base_url.rstrip('/') or 'http://mock.internal'}/sim/site/{parts.netloc}{parts.path or '/'}"
     elif not await robots_allows(url):
@@ -175,7 +176,7 @@ async def capture_rules(dest_id: str, provider: Provider | None = None, rules_ur
     provider = provider or get_provider()
     if rules_text:
         title, text, url = "pasted by a person", rules_text[:12000], url or "pasted"
-    elif row["connector_key"] == "lemmy" and not rules_url and not is_simulated((row.get("config") or {}).get("base_url", "")):
+    elif row["connector_key"] == "lemmy" and not rules_url and not is_mock_host((row.get("config") or {}).get("base_url", "")):
         title, text = await lemmy_rules_text(row)
         url = url or title
     elif not url:

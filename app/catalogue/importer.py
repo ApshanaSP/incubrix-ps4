@@ -21,6 +21,7 @@ from langdetect import DetectorFactory, LangDetectException, detect
 
 from app.catalogue import intel, store
 from app.config import get_settings
+from app.connectors.http import is_mock_host
 from app.db import get_db
 from app.errors import ApiError
 from app.rules import parse_window
@@ -162,7 +163,7 @@ def validate_row(raw: dict[str, str]) -> tuple[dict[str, Any] | None, list[str],
 def _mock_host(url: str) -> bool:
     # Reachability is a read, not a post: it checks real URLs even in simulation mode. Only .mock hosts
     # (the built-in mock platforms) are answered without the network.
-    return (urlsplit(url).hostname or "").endswith(".mock")
+    return is_mock_host(url)
 
 
 async def check_reachability(client: httpx.AsyncClient, url: str) -> dict[str, Any]:

@@ -28,8 +28,15 @@ logger = logging.getLogger("connector.http")
 
 
 def is_simulated(url: str) -> bool:
+    """For platform calls (posting, status, delete): in simulation mode every call goes to the mock platforms."""
     host = (urlsplit(url).hostname or "").lower()
     return get_settings().simulation_mode or host.endswith(".mock")
+
+
+def is_mock_host(url: str) -> bool:
+    """For reading public pages (rules pages, reachability, member counts): reading is never simulated, because
+    it posts nothing. Only the built-in mock hosts (*.mock) are answered by the mock site."""
+    return (urlsplit(url).hostname or "").lower().endswith(".mock")
 
 
 def _sim_url(connector_key: str, url: str) -> str:

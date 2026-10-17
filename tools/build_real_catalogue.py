@@ -41,6 +41,8 @@ OUT_CSV = ROOT / "real_catalogue.csv"
 OUT_EVIDENCE = ROOT / "real_catalogue_evidence.json"
 CACHE = ROOT / ".ai_cache.json"
 
+# a sentence only the built-in mock site's rules page contains; it must never appear in real research
+MOCK_RULES_MARKER = "Members may post at most one link post per week."
 CONSERVATIVE = {"frequency_cap": "1/30d", "self_promo_allowed": "no", "link_policy": "one_link;no_shorteners",
                 "disclosure_required": True, "automation_allowed": False}
 
@@ -134,6 +136,8 @@ async def gather_row(client: httpx.AsyncClient, row: dict[str, str]) -> dict[str
         if rules_url:
             try:
                 _, text = await fetch_page_text(rules_url, max_chars=7000)
+                if MOCK_RULES_MARKER in text:
+                    raise SystemExit(f"{row['name']}: the rules text came from the built-in mock site, not {rules_url}")
                 if len(text.strip()) > 200:
                     info["rules_text"], info["rules_from"] = text, rules_url
                 else:

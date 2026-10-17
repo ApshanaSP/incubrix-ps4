@@ -172,3 +172,31 @@ def test_assisted_pack_then_person_posts(client):
     done = client.post(f"/api/v1/assist/{pack['pack_id']}/posted",
                        json={"live_url": "https://news.ycombinator.com/item?id=1"}).json()
     assert done["status"] == "posted"
+
+
+def test_rules_pages_are_read_for_real_in_simulation_mode(monkeypatch):
+    """Simulation covers posting only: a real community's rules page must never be answered by the mock site."""
+    import asyncio
+
+    import httpx
+
+    from app.catalogue import intel
+
+    seen = {}
+
+    async def fake_get(self, url, *args, **kwargs):
+        seen["url"] = str(url)
+        seen["transport"] = type(self._transport).__name__
+        return httpx.Response(200, text="<html><title>Real</title><body>" + "Be kind. " * 40 + "</body></html>",
+                              headers={"content-type": "text/html"}, request=httpx.Request("GET", url))
+
+    async def allow(url, client=None):
+        return True
+
+    monkeypatch.setattr(httpx.AsyncClient, "get", fake_get)
+    monkeypatch.setattr(intel, "robots_allows", allow)
+    _, text = asyncio.run(intel.fetch_page_text("https://forum.example.org/guidelines"))
+    assert seen["url"] == "https://forum.example.org/guidelines" and seen["transport"] != "ASGITransport"
+    assert "Be kind." in text and "at most one link post per week" not in text
+    _, mock_text = asyncio.run(intel.fetch_page_text("https://forum.mock/guidelines"))
+    assert seen["transport"] == "ASGITransport"
