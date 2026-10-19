@@ -73,13 +73,13 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
     connector = registry.get(destination.connector_key)
     existing = db.one("SELECT * FROM posts WHERE idempotency_key=?", [key])
 
-    # 1. replay
+    # 1. replay (a key belongs to one destination: reusing it elsewhere must not return another destination's post)
+    if existing and existing["destination_id"] != destination.id:
+        raise ApiError("IDEMPOTENCY_KEY_CONFLICT", "this idempotency key was used for another destination",
+                       details={"post_id": existing["id"], "destination_id": existing["destination_id"]})
     if existing and existing["state"] in ("published", "awaiting_human", "deleted"):
         log(logger, logging.INFO, "idempotent replay", idempotency_key=key, post_id=existing["id"])
         return _post_result(existing, replayed=True)
-    if existing and existing["destination_id"] != destination.id:
-        raise ApiError("IDEMPOTENCY_KEY_CONFLICT", "this idempotency key was used for another destination",
-                       details={"post_id": existing["id"]})
 
     if connection is None:
         connection = store.load_connection(dest_row.get("connection_id"), destination.connector_key)
@@ -106,15 +106,26 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
                        code="DEST_NOT_CERTIFIED")
 
     # 3. connection
+    if connection.status == "active" and _past(connection.expires_at):
+        # the token's own expiry time has passed: do not spend a platform call to learn that
+        if connection.id:
+            store.set_connection_status(connection.id, "expired")
+        if not is_test and destination.id and db.one("SELECT id FROM destinations WHERE id=?", [destination.id]):
+            store.update_destination(destination.id, {"status": "paused"})
+            _ticket(destination.id, "connection", f"{destination.name}: the connection's token expired at "
+                                                  f"{connection.expires_at}. Ask the owner to reconnect.")
+        connection = connection.model_copy(update={"status": "expired"})
     if connection.status in ("expired", "revoked"):
         return _record(existing, destination, key, rendition, "blocked",
                        f"connection is {connection.status}; the owner must reconnect", is_test, publication_id,
                        code="CONNECTION_AUTH_EXPIRED")
 
-    # 4. format + rules
+    # 4. format + rules (this post's own earlier attempt does not count against the frequency cap)
+    own_id = existing["id"] if existing else None
     spec_check = await connector.validate(rendition, destination, connection)
     rule_check = rules.check(rendition, destination, use_ledger=not is_test,
-                             native=destination.connector_key != "assisted", rules_status=dest_row.get("rules_status"))
+                             native=destination.connector_key != "assisted", rules_status=dest_row.get("rules_status"),
+                             exclude_post_id=own_id)
     hard = [v for v in rule_check["violations"] if v["action"] != "reschedule"]
     if not is_test and destination.connector_key != "assisted" and hard and all(v["rule"] == "automation" for v in hard):
         # automation is not allowed here: no bot posts. A person gets the ready-to-post pack instead, and every
@@ -122,7 +133,7 @@ async def _publish_locked(rendition: Rendition, dest_row: dict[str, Any], key: s
         connector = registry.get("assisted")
         spec_check = await connector.validate(rendition, destination, connection)
         rule_check = rules.check(rendition, destination, use_ledger=True, native=False,
-                                 rules_status=dest_row.get("rules_status"))
+                                 rules_status=dest_row.get("rules_status"), exclude_post_id=own_id)
         warnings = warnings + ["automated posting is not allowed here, so nothing was posted by a bot: "
                                "a ready-to-post pack was made for a person to post (assisted)"]
     violations = spec_check["violations"] + rule_check["violations"]
@@ -264,3 +275,16 @@ async def delete_post(post_id: str) -> dict[str, Any]:
 
 def utcnow() -> datetime:
     return datetime.now(timezone.utc)
+
+
+def _past(when: str | None) -> bool:
+    """True when an ISO time (a connection's expires_at) has passed. Unreadable values count as not passed."""
+    if not when:
+        return False
+    try:
+        t = datetime.fromisoformat(when.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=timezone.utc)
+    return t <= utcnow()

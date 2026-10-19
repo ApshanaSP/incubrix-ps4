@@ -178,12 +178,13 @@ def set_connection_status(cid: str, status: str) -> None:
     get_db().update("connections", "id", cid, {"status": status, "updated_at": now_iso()})
 
 
-def update_connection_credentials(cid: str, credentials: dict[str, Any]) -> dict[str, Any]:
+def update_connection_credentials(cid: str, credentials: dict[str, Any], expires_at: str | None = None) -> dict[str, Any]:
     row = get_connection_row(cid)
     old = vault.decrypt_credentials(row.get("credentials_enc"))
     merged = {**old, **credentials}
+    # a new token has its own expiry (or none); the old token's expiry no longer applies
     get_db().update("connections", "id", cid, {"credentials_enc": vault.encrypt_credentials(merged), "status": "active",
-                                                "updated_at": now_iso()})
+                                                "expires_at": expires_at, "updated_at": now_iso()})
     # destinations paused because of this connection come back
     get_db().execute("UPDATE destinations SET status = CASE WHEN last_certified_at IS NULL THEN 'uncertified' "
                      "ELSE 'certified' END WHERE connection_id=? AND status='paused'", [cid])

@@ -146,3 +146,30 @@ def test_unaccepted_media_is_dropped_with_note(client):
     out = r["result"]["results"][0]
     assert out["state"] == "published"
     assert any("dropped video media" in n for n in out["tailoring_notes"])
+
+
+def test_link_allowlist_matches_whole_domains_only(client):
+    dest = make_destination(client, "discourse", link_policy="allowlist:example.com")
+    ok = publish(client, [dest["id"]], content={"title": "Links on the allowed domain only",
+                                                "body": "See https://docs.example.com/guide and https://example.com/a"})
+    assert ok["result"]["results"][0]["state"] == "published", ok
+    bad = publish(client, [dest["id"]], content={"title": "A look-alike domain is not allowed",
+                                                 "body": "See https://evilexample.com/guide for details here."})
+    res = bad["result"]["results"][0]
+    assert res["state"] == "blocked" and any(v["rule"] == "link_policy" for v in res["violations"])
+
+
+def test_links_in_the_title_count_for_the_link_policy(client):
+    dest = make_destination(client, "lemmy", link_policy="none")
+    res = publish(client, [dest["id"]], content={"title": "Read this https://example.org/post now",
+                                                 "body": "A body without any links in it at all."})
+    assert res["result"]["results"][0]["state"] == "blocked"
+
+
+def test_unreadable_limited_promotion_rule_falls_back_to_strict_default(client):
+    from app import rules
+    from app.connectors.base import Destination, Rendition
+
+    dest = Destination(id="dst_rule_fallback", connector_key="discourse", self_promo_allowed="limited:sometimes")
+    out = rules.check(Rendition(title="Try it now", body="Sign up today", promotional=True), dest)
+    assert any("using 1 promotional post per 30 days" in w for w in out["warnings"])

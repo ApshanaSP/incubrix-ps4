@@ -110,6 +110,21 @@ def test_api_token_and_rate_limit(client, monkeypatch):
     assert codes[-1] == 429
 
 
+def test_wrong_tokens_are_rate_limited_for_the_whole_service(client, monkeypatch):
+    """Token guessing is capped across all clients, so a client cannot dodge it with its own X-Forwarded-For."""
+    from app.config import get_settings
+
+    s = get_settings()
+    monkeypatch.setattr(s, "api_token", "the-right-token")
+    monkeypatch.setattr(s, "failed_auth_per_minute", 3)
+    codes = [client.get("/api/v1/connectors", headers={"Authorization": "Bearer guess",
+                                                       "X-Forwarded-For": f"10.0.0.{i}"}).status_code for i in range(5)]
+    # (an earlier test's wrong token may still be inside the minute, so only the first and last answers are fixed)
+    assert codes[0] == 401 and codes[-1] == 429
+    # the holder of the right token is not locked out
+    assert client.get("/api/v1/connectors", headers={"Authorization": "Bearer the-right-token"}).status_code == 200
+
+
 def test_openapi_file_matches_running_service(client):
     from pathlib import Path
 

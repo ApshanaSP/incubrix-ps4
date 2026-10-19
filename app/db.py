@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS breaker (
     connector_key TEXT,
     destination_id TEXT,
     consecutive_failures INTEGER DEFAULT 0,
+    last_failure_at REAL,
     PRIMARY KEY (connector_key, destination_id)
 );
 CREATE TABLE IF NOT EXISTS kill_switch (
@@ -159,6 +160,12 @@ CREATE TABLE IF NOT EXISTS kill_switch (
     reason TEXT
 );
 """
+
+# columns added after the first release: (table, column, type). CREATE TABLE IF NOT EXISTS does not add
+# columns to a database that already exists, so they are added here on start-up.
+MIGRATIONS = [
+    ("breaker", "last_failure_at", "REAL"),
+]
 
 JSON_COLUMNS = {
     "audience_tags", "config", "request", "result", "error", "response", "rendition", "steps",
@@ -183,6 +190,10 @@ class Database:
         self._conn.execute("PRAGMA journal_mode=WAL")
         self._conn.execute("PRAGMA busy_timeout=5000")
         self._conn.executescript(SCHEMA)
+        for table, column, kind in MIGRATIONS:
+            have = {r["name"] for r in self._conn.execute(f"PRAGMA table_info({table})").fetchall()}
+            if column not in have:
+                self._conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {kind}")
 
     @staticmethod
     def _decode(row: sqlite3.Row | None) -> dict[str, Any] | None:

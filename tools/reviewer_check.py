@@ -46,12 +46,17 @@ class Check:
     # ------------------------------------------------------------ http helpers
     def req(self, method: str, path: str, **kw: Any) -> httpx.Response:
         for _ in range(10):
-            r = self.c.request(method, path, **kw)
+            try:
+                r = self.c.request(method, path, **kw)
+            except httpx.RemoteProtocolError:
+                # after a long Retry-After wait the server may have closed the idle keep-alive connection; it sent
+                # no response, so the request was not handled and sending it again is safe
+                continue
             if r.status_code == 429 and "SERVICE_RATE_LIMIT" in r.text:
                 time.sleep(float(r.json()["error"]["details"].get("retry_after_s", 5)))
                 continue
             return r
-        return r
+        return self.c.request(method, path, **kw)
 
     def post(self, path: str, body: Any = None, key: str | None = None, **kw: Any) -> httpx.Response:
         headers = {"Idempotency-Key": key} if key else {}

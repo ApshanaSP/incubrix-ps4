@@ -108,7 +108,7 @@ docker compose run --rm api python -m pytest              # the same inside the 
 python -m tools.batch_runner --api http://localhost:8080 --input batch_inputs --out outputs
 ```
 
-The 88 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
+The 99 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
 
 `batch_inputs/` holds 17 inputs: one for each hard case plus the Core and Advanced features. Each input creates its own destinations, so runs never collide. The runner writes one JSON file per input and a `summary.json` to `outputs/batch-<timestamp>/`. Regenerate the inputs with `python -m tools.make_batch_inputs`.
 
@@ -147,8 +147,8 @@ The interactive API docs are at `/docs`. The contract is also served at `/connec
 | Situation | Behaviour |
 |---|---|
 | Publish times out, retried with the same key | The attempt is recorded as `in_flight` before the call. After a timeout the connector looks for the post (by title, idempotency metadata or partner lookup) and returns it, so there is never a second post. If the lookup cannot tell, it refuses to post blind. |
-| 429 with a reset time | Waits for the reset when it is under `MAX_BACKOFF_S`; otherwise returns `PLATFORM_RATE_LIMIT` with `reset_at` and reschedules the post |
-| Expired token | `CONNECTION_AUTH_EXPIRED`; the connection is marked expired, the destination paused and a ticket raised. `PATCH /connections/{id}` reconnects and resumes it. |
+| 429 with a reset time | Waits for the reset when it is under `MAX_BACKOFF_S`; otherwise returns `PLATFORM_RATE_LIMIT` with `reset_at` and reschedules the post. A 429 that says the daily quota is used up is `PLATFORM_QUOTA_EXHAUSTED`, never waited on, and rescheduled to the reset time |
+| Expired token | `CONNECTION_AUTH_EXPIRED`; the connection is marked expired, the destination paused and a ticket raised. A connection whose `expires_at` has passed is blocked before any platform call. `PATCH /connections/{id}` reconnects and resumes it. |
 | Content rejected | `PLATFORM_CONTENT_REJECTED` with the platform's message |
 | Too long / unsupported media | Tailoring cuts at a word boundary and drops unsupported media, with notes. `validate` reports field-level `DEST_SPEC_VIOLATION`s. |
 | Second post inside a cap; promotion to a no-promotion community | Rescheduled to when the window frees up; blocked with the reason |
@@ -157,7 +157,7 @@ The interactive API docs are at `/docs`. The contract is also served at `/connec
 | Partner revokes permission | 403 → connection `revoked`, destination paused, ticket raised |
 | Non-English community; AI disclosure required | The creator's translation is used when given (`content.translations`), with the disclosure line in the community's language; with no translation the post is held with the reason (unless the community lists the language in `config.accepted_languages`); a missing disclosure is blocked |
 
-Reproduce any of them on a mock-backed destination with `POST /api/v1/sim/faults` (`timeout_after_create`, `timeout`, `rate_limit`, `auth_expired`, `reject`, `rename_field`, `revoke`, `server_error`).
+Reproduce any of them on a mock-backed destination with `POST /api/v1/sim/faults` (`timeout_after_create`, `timeout`, `rate_limit`, `quota_exhausted`, `auth_expired`, `reject`, `rename_field`, `revoke`, `server_error`).
 
 ## Posting rules (catalogue columns)
 
@@ -187,6 +187,7 @@ Every setting is an environment variable (or a line in `.env`); [`.env.example`]
 | service | `LOG_LEVEL` | `INFO` |  |
 | service | `API_TOKEN` | (empty) | set for the live demo: send "Authorization: Bearer <token>" |
 | service | `RATE_LIMIT_PER_MINUTE` | `120` | per client IP; 0 = off |
+| service | `FAILED_AUTH_PER_MINUTE` | `30` | requests with a wrong token per minute across the whole service, then 429 (stops token guessing); 0 = off |
 | secrets | `SECRET_KEY` | `change-me` | encrypts stored connection credentials and signs download links |
 | secrets | `CALLBACK_SECRET` | (empty) | signs job callbacks (X-IncuBrix-Signature); defaults to SECRET_KEY |
 | simulation | `SIMULATION_MODE` | `true` | all platform calls go to the built-in mock platforms |
@@ -196,6 +197,7 @@ Every setting is an environment variable (or a line in `.env`); [`.env.example`]
 | outbound calls to platforms | `HTTP_TIMEOUT_S` | `15` |  |
 | outbound calls to platforms | `MAX_BACKOFF_S` | `60` | wait for a 429 reset up to this long, else reschedule |
 | outbound calls to platforms | `UNAVAILABLE_TRIP_AFTER` | `5` | stop calling a destination after N consecutive failures |
+| outbound calls to platforms | `BREAKER_COOLDOWN_S` | `300` | after this long, one trial call is let through; success closes the breaker |
 | outbound calls to platforms | `USER_AGENT` | `IncuBrixLongTail/1.0 (+https://incubrix.com)` |  |
 | outbound calls to platforms | `USE_SYSTEM_CERTS` | `false` | true = trust the OS certificate store (needs the truststore package) |
 | outbound calls to platforms | `OWN_DOMAINS` | `incubrix.com,incubrix.ai` | links to these count as self-promotion |
@@ -269,7 +271,7 @@ Every error is `{"error": {"code", "message", "retryable", "details"}}`. `GET /a
 | `SERVICE_RATE_LIMIT` | 429 | yes | Too many requests to this service. |
 | `INTERNAL_ERROR` | 500 | yes | Unexpected error; see logs with the correlation id. |
 
-`PLATFORM_UNAVAILABLE` details also say why: `timeout` (with `outcome_unknown` for writes), `breaker_open`, or `cause: SCHEMA_DRIFT` with the missing field.
+`PLATFORM_UNAVAILABLE` details also say why: `timeout` (with `outcome_unknown` for writes), `breaker_open` (with `retry_after_s` until the trial call), or `cause: SCHEMA_DRIFT` with the missing field.
 
 ## Never spam, never cheat
 

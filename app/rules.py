@@ -89,9 +89,8 @@ def detect_promotional(rendition: Rendition) -> tuple[bool, list[str]]:
     links = URL_RE.findall(text) + ([rendition.link] if rendition.link else [])
     domains = own_domains()
     for url in links:
-        host = (urlsplit(url).hostname or "").lower()
-        if any(host == d or host.endswith("." + d) for d in domains):
-            reasons.append(f"links to own site {host}")
+        if _host_in(url, domains):
+            reasons.append(f"links to own site {(urlsplit(url).hostname or '').lower()}")
         if AFFILIATE_LINK_RE.search(url):
             reasons.append(f"affiliate-style link {url[:60]}")
     for d in domains:  # the own site named without a link ("find us at incubrix.com")
@@ -104,20 +103,31 @@ def detect_promotional(rendition: Rendition) -> tuple[bool, list[str]]:
 
 
 def _links(rendition: Rendition) -> list[str]:
-    found = URL_RE.findall(rendition.body)
+    found = URL_RE.findall(f"{rendition.title}\n{rendition.body}")
     if rendition.link and rendition.link not in found:
         found.append(rendition.link)
     return found
 
 
-def _recent_posts(destination_id: str, since: datetime, promotional_only: bool = False) -> list[dict[str, Any]]:
+def _host_in(url: str, domains: set[str]) -> bool:
+    """The link's host is one of the domains or a subdomain of one ("evilexample.com" is not "example.com")."""
+    host = (urlsplit(url).hostname or "").lower()
+    return any(host == d or host.endswith("." + d) for d in domains)
+
+
+def _recent_posts(destination_id: str, since: datetime, promotional_only: bool = False,
+                  exclude_post_id: str | None = None) -> list[dict[str, Any]]:
     sql = (
         "SELECT published_at, created_at, state FROM posts WHERE destination_id=? AND is_test=0 "
         "AND state IN ('published','in_flight','awaiting_human') AND COALESCE(published_at, created_at) >= ?"
     )
+    params: list[Any] = [destination_id, since.isoformat(timespec="seconds")]
     if promotional_only:
         sql += " AND promotional=1"
-    return get_db().all(sql, [destination_id, since.isoformat(timespec="seconds")])
+    if exclude_post_id:
+        sql += " AND id != ?"
+        params.append(exclude_post_id)
+    return get_db().all(sql, params)
 
 
 def check(
@@ -128,8 +138,10 @@ def check(
     use_ledger: bool = True,
     native: bool = True,
     rules_status: str | None = None,
+    exclude_post_id: str | None = None,
 ) -> dict[str, Any]:
-    """Return {ok, violations[], warnings[], promotional}."""
+    """Return {ok, violations[], warnings[], promotional}. `exclude_post_id` is the post being retried, so its own
+    earlier attempt is not counted against the caps."""
     now = now or datetime.now(timezone.utc)
     violations: list[dict[str, Any]] = []
     warnings: list[str] = []
@@ -155,7 +167,7 @@ def check(
     if cap and use_ledger and destination.id:
         count, seconds = cap
         window_start = now - timedelta(seconds=seconds)
-        recent = _recent_posts(destination.id, window_start)
+        recent = _recent_posts(destination.id, window_start, exclude_post_id=exclude_post_id)
         if len(recent) >= count:
             times = sorted(datetime.fromisoformat(r["published_at"] or r["created_at"]) for r in recent)
             frees_at = times[len(recent) - count] + timedelta(seconds=seconds)
@@ -174,10 +186,16 @@ def check(
             block("self_promotion", "this community bans self-promotion and the post is promotional ("
                   + ", ".join(promo_reasons[:3]) + ")", evidence=promo_reasons)
         elif policy.startswith("limited"):
-            limit = parse_window(policy.split(":", 1)[1]) if ":" in policy else (1, 30 * 86400)
+            try:
+                limit = parse_window(policy.split(":", 1)[1]) if ":" in policy else (1, 30 * 86400)
+            except ValueError as exc:
+                # an unreadable limit must not let promotion through: fall back to the strict default
+                limit = (1, 30 * 86400)
+                warnings.append(f"self_promo_allowed: {exc}; using 1 promotional post per 30 days")
             if limit and use_ledger and destination.id:
                 count, seconds = limit
-                recent = _recent_posts(destination.id, now - timedelta(seconds=seconds), promotional_only=True)
+                recent = _recent_posts(destination.id, now - timedelta(seconds=seconds), promotional_only=True,
+                                       exclude_post_id=exclude_post_id)
                 if len(recent) >= count:
                     times = sorted(datetime.fromisoformat(r["published_at"] or r["created_at"]) for r in recent)
                     violations.append({
@@ -195,12 +213,12 @@ def check(
         elif t == "one_link" and len(links) > 1:
             block("link_policy", f"only one link is allowed here; the post has {len(links)}", links=links[:5])
         elif t == "no_shorteners":
-            short = [u for u in links if (urlsplit(u).hostname or "").lower() in SHORTENERS]
+            short = [u for u in links if _host_in(u, SHORTENERS)]
             if short:
                 block("link_policy", "link shorteners are not allowed here", links=short)
         elif t.startswith("allowlist:"):
-            allowed = {d.strip().lower() for d in t.split(":", 1)[1].split(",") if d.strip()}
-            bad = [u for u in links if not any((urlsplit(u).hostname or "").lower().endswith(d) for d in allowed)]
+            allowed = {d.strip().lower().removeprefix("www.") for d in t.split(":", 1)[1].split(",") if d.strip()}
+            bad = [u for u in links if not _host_in(u, allowed)]
             if bad:
                 block("link_policy", "links must point to " + ", ".join(sorted(allowed)), links=bad[:5])
         elif t == "canonical_only":

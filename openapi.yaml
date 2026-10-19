@@ -1534,6 +1534,12 @@ components:
           additionalProperties: true
           type: object
           title: Credentials
+        expires_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expires At
+          description: When the new token expires (ISO time); empty = no known expiry
       type: object
       required:
       - credentials
@@ -2218,6 +2224,7 @@ components:
           - timeout_after_create
           - timeout
           - rate_limit
+          - quota_exhausted
           - auth_expired
           - reject
           - rename_field

@@ -121,24 +121,30 @@ def reset_after_seconds(resp: httpx.Response) -> float | None:
 
 
 # ---------------------------------------------------------------- breaker
-def _breaker_get(connector_key: str, dest_scope: str) -> int:
+def _breaker_get(connector_key: str, dest_scope: str) -> tuple[int, float | None]:
+    """(consecutive failures, epoch time of the last failure)."""
     row = get_db().one(
-        "SELECT consecutive_failures FROM breaker WHERE connector_key=? AND destination_id=?",
+        "SELECT consecutive_failures, last_failure_at FROM breaker WHERE connector_key=? AND destination_id=?",
         [connector_key, dest_scope],
     )
-    return int(row["consecutive_failures"]) if row else 0
+    return (int(row["consecutive_failures"]), row["last_failure_at"]) if row else (0, None)
 
 
-def _breaker_set(connector_key: str, dest_scope: str, value: int) -> None:
+def _breaker_set(connector_key: str, dest_scope: str, value: int, failed_at: float | None = None) -> None:
     get_db().execute(
-        "INSERT INTO breaker(connector_key, destination_id, consecutive_failures) VALUES(?,?,?) "
-        "ON CONFLICT(connector_key, destination_id) DO UPDATE SET consecutive_failures=excluded.consecutive_failures",
-        [connector_key, dest_scope, value],
+        "INSERT INTO breaker(connector_key, destination_id, consecutive_failures, last_failure_at) VALUES(?,?,?,?) "
+        "ON CONFLICT(connector_key, destination_id) DO UPDATE SET consecutive_failures=excluded.consecutive_failures, "
+        "last_failure_at=excluded.last_failure_at",
+        [connector_key, dest_scope, value, failed_at],
     )
 
 
 def reset_breaker(connector_key: str, dest_scope: str) -> None:
     _breaker_set(connector_key, dest_scope, 0)
+
+
+# a 429 whose answer says the daily/monthly allowance is used up (not a short burst limit)
+QUOTA_WORDS = ("quota", "daily limit", "per day", "monthly limit")
 
 
 # ---------------------------------------------------------------- client
@@ -170,14 +176,20 @@ class PlatformHTTP:
         **kwargs: Any,
     ) -> httpx.Response:
         s = get_settings()
-        failures = _breaker_get(self.connector_key, self.scope)
+        failures, last_failure = _breaker_get(self.connector_key, self.scope)
         if failures >= s.unavailable_trip_after:
-            raise ConnectorError(
-                "PLATFORM_UNAVAILABLE",
-                f"stopped calling {self.scope} after {failures} consecutive failures",
-                details={"breaker_open": True, "consecutive_failures": failures},
-                retryable=False,
-            )
+            reopens_in = (last_failure or 0) + s.breaker_cooldown_s - time.time()
+            if reopens_in > 0:
+                raise ConnectorError(
+                    "PLATFORM_UNAVAILABLE",
+                    f"stopped calling {self.scope} after {failures} consecutive failures; one trial call is allowed "
+                    f"in {int(reopens_in) + 1} s",
+                    details={"breaker_open": True, "consecutive_failures": failures,
+                             "retry_after_s": int(reopens_in) + 1},
+                    retryable=False,
+                )
+            # half-open: this call is the trial. Success closes the breaker; a failure re-opens it for a cooldown.
+            log(logger, logging.INFO, "breaker half-open; trial call", connector=self.connector_key, scope=self.scope)
         target = _sim_url(self.connector_key, url) if is_simulated(url) else url
         headers = {"User-Agent": s.user_agent, **kwargs.pop("headers", {})}
         if is_simulated(url):
@@ -213,7 +225,8 @@ class PlatformHTTP:
             )
             if resp.status_code == 429:
                 wait = reset_after_seconds(resp)
-                if wait is not None and wait <= s.max_backoff_s and waits < self.max_429_waits:
+                quota = any(w in _platform_message(resp).lower() for w in QUOTA_WORDS)
+                if not quota and wait is not None and wait <= s.max_backoff_s and waits < self.max_429_waits:
                     waits += 1
                     log(logger, logging.WARNING, "rate limited; backing off", wait_s=round(wait, 2), attempt=waits)
                     await asyncio.sleep(wait)
@@ -246,7 +259,8 @@ class PlatformHTTP:
             raise self._mapped(resp)
 
     def _fail(self) -> None:
-        _breaker_set(self.connector_key, self.scope, _breaker_get(self.connector_key, self.scope) + 1)
+        failures, _ = _breaker_get(self.connector_key, self.scope)
+        _breaker_set(self.connector_key, self.scope, failures + 1, time.time())
 
     def _mapped(self, resp: httpx.Response, retry_after: float | None = None) -> ConnectorError:
         status = str(resp.status_code)
@@ -261,6 +275,9 @@ class PlatformHTTP:
             else:
                 code = "PLATFORM_UNAVAILABLE"
         platform_message = _platform_message(resp)
+        if code == "PLATFORM_RATE_LIMIT" and any(w in platform_message.lower() for w in QUOTA_WORDS):
+            # the daily allowance is used up: waiting a few seconds will not help, reschedule to the next window
+            code = "PLATFORM_QUOTA_EXHAUSTED"
         details: dict[str, Any] = {"http_status": resp.status_code, "platform_message": platform_message}
         if retry_after is not None:
             details["retry_after_s"] = round(retry_after, 2)

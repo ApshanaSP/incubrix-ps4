@@ -57,6 +57,8 @@ class Settings:
     # access control for the live demo (empty = open, for local use)
     api_token: str = field(default_factory=lambda: os.getenv("API_TOKEN", ""))
     rate_limit_per_minute: int = field(default_factory=lambda: _int("RATE_LIMIT_PER_MINUTE", 120))
+    # requests with a wrong API token per minute, counted for the whole service (stops token guessing)
+    failed_auth_per_minute: int = field(default_factory=lambda: _int("FAILED_AUTH_PER_MINUTE", 30))
     # secrets: key used to encrypt stored connection credentials
     secret_key: str = field(default_factory=lambda: os.getenv("SECRET_KEY", ""))
     # simulation: all platform calls go to the built-in mock platforms
@@ -67,6 +69,8 @@ class Settings:
     http_timeout_s: float = field(default_factory=lambda: _float("HTTP_TIMEOUT_S", 15.0))
     max_backoff_s: float = field(default_factory=lambda: _float("MAX_BACKOFF_S", 60.0))
     unavailable_trip_after: int = field(default_factory=lambda: _int("UNAVAILABLE_TRIP_AFTER", 5))
+    # after this long with the breaker open, one trial call is let through; success closes it again
+    breaker_cooldown_s: float = field(default_factory=lambda: _float("BREAKER_COOLDOWN_S", 300.0))
     user_agent: str = field(
         default_factory=lambda: os.getenv("USER_AGENT", "IncuBrixLongTail/1.0 (+https://incubrix.com)")
     )

@@ -41,7 +41,7 @@ reproduces every hard case on demand. Reading public pages (rules, reachability)
 | Hard cases 1-7 | Each handled with an explicit code and reason | batch inputs 02-15 (17/17), README table |
 | Catalogue import, AI rules capture with confirmation, relevance, tailoring | Done | `tests/test_catalogue.py`, batch inputs 12 and 16 |
 | Integration Standard 1-10 | All 10 | `tests/test_integration.py` |
-| One command, no keys | 89 tests (`python -m pytest`, or `docker compose run --rm api python -m pytest`) | `test_pack/tests/` |
+| One command, no keys | 99 tests (`python -m pytest`, or `docker compose run --rm api python -m pytest`) | `test_pack/tests/` |
 | Independent reviewer-style check over HTTP | 38/38 in light mode and against `docker compose` | `test_pack/reviewer_check/`, `outputs/compose/reviewer_check/` |
 | Dashboard at `/` | Destinations and testing, publishing with outcomes in plain words, the 17 hard cases from the browser, CSV import | `app/static/dashboard.html` |
 
@@ -65,6 +65,28 @@ reproduces every hard case on demand. Reading public pages (rules, reachability)
   partner webhook). **Dev.to has no delete API** (delete unpublishes). **Ghost has no view counts** (L3).
 - **Found by the final Docker run:** the API could start before the S3 gateway accepted connections (its health check tested the wrong port). Fixed in the compose health check, and the service now waits for S3 at start-up.
 - **Single-instance job runner:** jobs running at a restart are marked failed (retryable), not resumed.
+- **Found by a code review against the brief on 19 Oct, and fixed (each with a test):**
+  - The circuit breaker never closed again: after 5 failures it stopped all calls to that instance for good, so even
+    recertification could not pass. It now lets one trial call through after `BREAKER_COOLDOWN_S` (300 s); success
+    closes it, a failure re-opens it.
+  - `PLATFORM_QUOTA_EXHAUSTED` was listed but never produced. A 429 whose answer says a daily quota is used up now
+    gets that code, is not waited on, and is rescheduled to the reset time (mock fault `quota_exhausted`).
+  - Reusing an idempotency key for a second destination returned the first destination's post as a "replay"; it is
+    now `IDEMPOTENCY_KEY_CONFLICT`.
+  - Retrying a post whose earlier outcome was unknown counted that same attempt against the frequency cap, so the
+    retry could be rescheduled by itself.
+  - A link allowlist of `example.com` accepted `evilexample.com` (suffix match); hosts now match whole domains.
+    Links in titles now count for the link policy, and an unreadable `limited:` promotion rule falls back to the
+    strict default instead of failing the request.
+  - A connection's `expires_at` was stored but never checked; a past expiry now blocks the post before any platform
+    call, pauses the destination and raises a ticket. Reconnecting sets the new token's expiry.
+  - On the live demo, wrong tokens could be tried without limit (the rate limit used the client-supplied
+    `X-Forwarded-For`). Wrong-token requests are now capped for the whole service (`FAILED_AUTH_PER_MINUTE`) and
+    compared in constant time.
+  - Refreshing metrics for a post that was never published crashed the job; such posts are now skipped with a reason.
+  - Run against a rate-limited service (120 requests a minute), `tools/reviewer_check` scored 37/38: after waiting
+    out a 429 it reused a connection the server had already closed. It now resends a request the server never
+    answered; 38/38 with the rate limit on and off (`outputs/reviewer_check/20261019-*`).
 
 ## 4. Measured numbers
 

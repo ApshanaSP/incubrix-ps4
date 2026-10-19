@@ -1,0 +1,901 @@
+{
+  "api": "http://localhost:8092",
+  "passed": 38,
+  "total": 38,
+  "results": [
+    {
+      "area": "MH1 contract",
+      "check": "9 manifests have every Appendix A field and only shared error codes",
+      "ok": true,
+      "detail": {
+        "connectors": [
+          "discourse",
+          "lemmy",
+          "devto",
+          "ghost",
+          "webhook",
+          "assisted",
+          "hashnode",
+          "slack",
+          "mrss"
+        ],
+        "problems": {}
+      },
+      "seconds": 2.1
+    },
+    {
+      "area": "MH1 contract",
+      "check": "discourse: validate, publish, same key again, get_status, delete over /connector/v1",
+      "ok": true,
+      "detail": {
+        "publish": {
+          "platform_post_id": "1002|https://discourse-core-5ada88.mock",
+          "live_url": "https://discourse-core-5ada88.mock/t/contract-check-subtitles-for-short-videos/51002",
+          "status": "live"
+        },
+        "same_key_again": {
+          "platform_post_id": "1002|https://discourse-core-5ada88.mock",
+          "live_url": "https://discourse-core-5ada88.mock/t/contract-check-subtitles-for-short-videos/51002",
+          "status": "live",
+          "replayed": true
+        },
+        "status": {
+          "status": "live",
+          "live_url": "https://discourse-core-5ada88.mock/t/contract-check-subtitles-for-short-videos/51002"
+        },
+        "delete": {
+          "deleted": true
+        },
+        "status_after": {
+          "status": "deleted",
+          "live_url": null
+        }
+      },
+      "seconds": 0.22
+    },
+    {
+      "area": "MH1 contract",
+      "check": "lemmy: validate, publish, same key again, get_status, delete over /connector/v1",
+      "ok": true,
+      "detail": {
+        "publish": {
+          "platform_post_id": "1002|https://lemmy-core-5ada88.mock",
+          "live_url": "https://lemmy-core-5ada88.mock/post/1002",
+          "status": "live"
+        },
+        "same_key_again": {
+          "platform_post_id": "1002|https://lemmy-core-5ada88.mock",
+          "live_url": "https://lemmy-core-5ada88.mock/post/1002",
+          "status": "live",
+          "replayed": true
+        },
+        "status": {
+          "status": "live",
+          "live_url": "https://lemmy-core-5ada88.mock/post/1002"
+        },
+        "delete": {
+          "deleted": true
+        },
+        "status_after": {
+          "status": "deleted",
+          "live_url": null
+        }
+      },
+      "seconds": 0.18
+    },
+    {
+      "area": "MH1 contract",
+      "check": "devto: validate, publish, same key again, get_status, delete over /connector/v1",
+      "ok": true,
+      "detail": {
+        "publish": {
+          "platform_post_id": "1002|https://devto-core-5ada88.mock",
+          "live_url": "https://devto-core-5ada88.mock/incubrix/contract-check-subtitles-for-short-videos-3ea",
+          "status": "live"
+        },
+        "same_key_again": {
+          "platform_post_id": "1002|https://devto-core-5ada88.mock",
+          "live_url": "https://devto-core-5ada88.mock/incubrix/contract-check-subtitles-for-short-videos-3ea",
+          "status": "live",
+          "replayed": true
+        },
+        "status": {
+          "status": "live",
+          "live_url": "https://devto-core-5ada88.mock/incubrix/contract-check-subtitles-for-short-videos-3ea"
+        },
+        "delete": {
+          "deleted": true,
+          "method": "unpublished (Forem has no delete API)"
+        },
+        "status_after": {
+          "status": "deleted",
+          "live_url": null
+        }
+      },
+      "seconds": 0.11
+    },
+    {
+      "area": "MH1 contract",
+      "check": "ghost: validate, publish, same key again, get_status, delete over /connector/v1",
+      "ok": true,
+      "detail": {
+        "publish": {
+          "platform_post_id": "3b5aa47f29544b928876a193|https://ghost-core-5ada88.mock",
+          "live_url": "https://ghost-core-5ada88.mock/contract-check-subtitles-for-short-videos/",
+          "status": "live"
+        },
+        "same_key_again": {
+          "platform_post_id": "3b5aa47f29544b928876a193|https://ghost-core-5ada88.mock",
+          "live_url": "https://ghost-core-5ada88.mock/contract-check-subtitles-for-short-videos/",
+          "status": "live",
+          "replayed": true
+        },
+        "status": {
+          "status": "live",
+          "live_url": "https://ghost-core-5ada88.mock/contract-check-subtitles-for-short-videos/"
+        },
+        "delete": {
+          "deleted": true
+        },
+        "status_after": {
+          "status": "deleted",
+          "live_url": null
+        }
+      },
+      "seconds": 0.11
+    },
+    {
+      "area": "MH1 contract",
+      "check": "webhook: validate, publish, same key again, get_status, delete over /connector/v1",
+      "ok": true,
+      "detail": {
+        "publish": {
+          "platform_post_id": "wp1002|https://webhook-core-5ada88.mock",
+          "live_url": "https://webhook-core-5ada88.mock/news/wp1002",
+          "status": "live"
+        },
+        "same_key_again": {
+          "platform_post_id": "wp1002|https://webhook-core-5ada88.mock",
+          "live_url": "https://webhook-core-5ada88.mock/news/wp1002",
+          "status": "live",
+          "replayed": true
+        },
+        "status": {
+          "status": "live",
+          "live_url": "https://webhook-core-5ada88.mock/news/wp1002"
+        },
+        "delete": {
+          "deleted": true
+        },
+        "status_after": {
+          "status": "deleted",
+          "live_url": null
+        }
+      },
+      "seconds": 0.1
+    },
+    {
+      "area": "MH1 contract",
+      "check": "assisted: validate, publish, same key again, get_status, delete over /connector/v1",
+      "ok": true,
+      "detail": {
+        "validate": {
+          "ok": true,
+          "violations": [],
+          "warnings": []
+        },
+        "pack_keys": [
+          "caption",
+          "checklist",
+          "deep_link",
+          "files",
+          "pack_id"
+        ]
+      },
+      "seconds": 0.04
+    },
+    {
+      "area": "MH2 certified",
+      "check": "6 Core connectors pass a full certification run",
+      "ok": true,
+      "detail": {
+        "discourse": "L4",
+        "lemmy": "L4",
+        "devto": "L4",
+        "ghost": "L3",
+        "webhook": "L2",
+        "assisted": "L1"
+      },
+      "seconds": 0.0
+    },
+    {
+      "area": "MH2 certified",
+      "check": "certification stores evidence and leaves no test post behind",
+      "ok": true,
+      "detail": {
+        "keys": [
+          "certification_id",
+          "destination_id",
+          "duration_s",
+          "error",
+          "evidence_url",
+          "level",
+          "links",
+          "manifest",
+          "name",
+          "passed",
+          "steps"
+        ],
+        "posts_left_on_platform": 0
+      },
+      "seconds": 0.03
+    },
+    {
+      "area": "MH3 config",
+      "check": "a brand-new Discourse forum is one row and certifies with no code",
+      "ok": true,
+      "detail": {
+        "id": "dst_a28fd4d114f0460f",
+        "level": null
+      },
+      "seconds": 0.34
+    },
+    {
+      "area": "MH4 rules",
+      "check": "third post inside a 2-per-day cap is rescheduled with the time and reason",
+      "ok": true,
+      "detail": [
+        {
+          "state": "published",
+          "code": null,
+          "reason": null,
+          "reschedule_at": null
+        },
+        {
+          "state": "published",
+          "code": null,
+          "reason": null,
+          "reschedule_at": null
+        },
+        {
+          "state": "rescheduled",
+          "code": "DEST_RULE_FREQUENCY_CAP",
+          "reason": "2 post(s) already in the last 1 day; the cap is 2/1d",
+          "reschedule_at": "2026-10-20T11:00:41+00:00"
+        }
+      ],
+      "seconds": 0.52
+    },
+    {
+      "area": "MH4 rules",
+      "check": "promotional post with no 'promotional' flag is detected and blocked",
+      "ok": true,
+      "detail": {
+        "state": "blocked",
+        "code": "DEST_RULE_VIOLATION",
+        "reason": "this community bans self-promotion and the post is promotional (phrase 'buy now', phrase 'use code', phrase 'our editor')"
+      },
+      "seconds": 0.46
+    },
+    {
+      "area": "MH4 rules",
+      "check": "a link in the body is blocked where the link policy is 'none'",
+      "ok": true,
+      "detail": {
+        "state": "blocked",
+        "code": "DEST_RULE_VIOLATION",
+        "reason": "this community does not allow links"
+      },
+      "seconds": 0.41
+    },
+    {
+      "area": "MH4 rules",
+      "check": "AI-generated content gets a disclosure label where required; unlabelled fails validate",
+      "ok": true,
+      "detail": {
+        "pipeline": {
+          "state": "published",
+          "warnings": []
+        },
+        "contract_validate_without_label": [
+          {
+            "code": "DEST_RULE_VIOLATION",
+            "rule": "ai_disclosure",
+            "action": "block",
+            "message": "this destination requires AI-generated content to be disclosed and the post has no disclosure line (tailoring adds one automatically)"
+          }
+        ]
+      },
+      "seconds": 0.41
+    },
+    {
+      "area": "MH4 rules",
+      "check": "where automation is not allowed, a person gets a ready-to-post pack instead",
+      "ok": true,
+      "detail": {
+        "state": "awaiting_human",
+        "code": null,
+        "reason": null
+      },
+      "seconds": 0.15
+    },
+    {
+      "area": "MH5 / HC2",
+      "check": "429 with a 30-minute reset: not retried early, rescheduled to the reset time",
+      "ok": true,
+      "detail": {
+        "state": "failed",
+        "post_state": "rescheduled",
+        "error": {
+          "code": "PLATFORM_RATE_LIMIT",
+          "message": "platform answered 429: You've performed this action too many times.",
+          "retryable": true,
+          "details": {
+            "http_status": 429,
+            "platform_message": "You've performed this action too many times.",
+            "retry_after_s": 1800.0,
+            "reset_at": "2026-10-19T11:30:43Z"
+          }
+        },
+        "reschedule_at": "2026-10-19T11:30:43Z"
+      },
+      "seconds": 0.47
+    },
+    {
+      "area": "MH6 retries",
+      "check": "Ghost: post created but answer lost, retried with the same key: exactly 1 post",
+      "ok": true,
+      "detail": {
+        "first": {
+          "state": "published",
+          "error": null
+        },
+        "retry": {
+          "post_id": "pst_d68ed32c22c14bf0",
+          "destination_id": "dst_1ba87e7781454377",
+          "state": "published",
+          "platform_post_id": "502631486bf04e1ba8380eb3|https://ghost-timeout-5ada88.mock",
+          "live_url": "https://ghost-timeout-5ada88.mock/what-we-learned-shipping-subtitles-for-200-short-videos/",
+          "reason": "call timed out but the post was created; recovered it",
+          "reschedule_at": null,
+          "idempotency_key": "to-5ada88:dst_1ba87e7781454377",
+          "replayed": true,
+          "manifest": {
+            "manifest_version": "1.0",
+            "kind": "retry",
+            "service": {
+              "name": "incubrix-longtail",
+              "version": "1.0.0",
+              "python": "3.11.5"
+            },
+            "connectors": [
+              {
+                "key": "ghost",
+                "version": "1.0.0",
+                "tier": "native"
+              }
+            ],
+            "models": [
+              {
+                "provider": "none",
+                "note": "no AI model used for this result"
+              }
+            ],
+            "settings": {
+              "simulation_mode": true,
+              "ai_provider": "mock"
+            },
+            "seed": 0,
+            "timings": {},
+            "cost_estimate_usd": {
+              "total": 0,
+              "per_unit": null,
+              "units": null
+            },
+            "warnings": [],
+            "ai_generated": false,
+            "rights": {
+              "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+              "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+              "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+            }
+          }
+        },
+        "posts_on_platform": 1,
+        "same_key_publish_again": true
+      },
+      "seconds": 3.64
+    },
+    {
+      "area": "IS4 retries",
+      "check": "same Idempotency-Key twice returns the same job; other body with that key is answered",
+      "ok": true,
+      "detail": {
+        "first": "job_b3fc97c0ab7c4fd7",
+        "second": "job_b3fc97c0ab7c4fd7",
+        "same_key_other_body": 409
+      },
+      "seconds": 0.07
+    },
+    {
+      "area": "MH7 secrets",
+      "check": "a stored token never comes back from the API, the log or the repository",
+      "ok": true,
+      "detail": {
+        "secret_in_api_responses": false,
+        "secret_in_server_log": null,
+        "key_like_strings_in_repo": []
+      },
+      "seconds": 0.43
+    },
+    {
+      "area": "MH7 simulation",
+      "check": "simulation mode, or only mock and local test instances (no real accounts)",
+      "ok": true,
+      "detail": {
+        "status": "ready",
+        "checks": {
+          "database": "ok",
+          "storage": "ok (LocalStorage)",
+          "connectors": 9,
+          "simulation_mode": true
+        }
+      },
+      "seconds": 0.01
+    },
+    {
+      "area": "HC2",
+      "check": "expired API key (Ghost): CONNECTION_AUTH_EXPIRED and the destination is paused",
+      "ok": true,
+      "detail": {
+        "error": {
+          "code": "CONNECTION_AUTH_EXPIRED",
+          "message": "platform answered 401: Token expired",
+          "retryable": false,
+          "details": {
+            "http_status": 401,
+            "platform_message": "Token expired"
+          }
+        },
+        "destination_status": "paused"
+      },
+      "seconds": 0.51
+    },
+    {
+      "area": "HC2",
+      "check": "expired session (Lemmy, password login): logs in again once, posts, and says so",
+      "ok": true,
+      "detail": {
+        "state": "published",
+        "warnings": [
+          "Lemmy session token had expired; logged in again with the stored account and continued"
+        ],
+        "error": null
+      },
+      "seconds": 0.49
+    },
+    {
+      "area": "HC2",
+      "check": "content rejected: PLATFORM_CONTENT_REJECTED with the platform's message, not retried",
+      "ok": true,
+      "detail": {
+        "code": "PLATFORM_CONTENT_REJECTED",
+        "message": "Hashnode: Content violates guidelines",
+        "retryable": false,
+        "details": {
+          "graphql_code": "BAD_USER_INPUT",
+          "platform_message": "Content violates guidelines"
+        }
+      },
+      "seconds": 0.48
+    },
+    {
+      "area": "HC3",
+      "check": "title over the limit: field-level DEST_SPEC_VIOLATION; the pipeline truncates at a word with a warning",
+      "ok": true,
+      "detail": {
+        "validate_violations": [
+          {
+            "code": "DEST_SPEC_VIOLATION",
+            "rule": "format",
+            "field": "title",
+            "action": "block",
+            "message": "title is 600 characters; the limit is 255",
+            "limit": 255,
+            "actual": 600
+          }
+        ],
+        "pipeline": {
+          "state": "published",
+          "title_chars": 250,
+          "notes": [
+            "style: forum",
+            "discussion-first framing: added a question for the community",
+            "title cut from 599 to at most 255 characters at a word boundary"
+          ]
+        }
+      },
+      "seconds": 0.12
+    },
+    {
+      "area": "HC3",
+      "check": "media the destination does not accept is reported per item",
+      "ok": true,
+      "detail": [
+        {
+          "code": "DEST_SPEC_VIOLATION",
+          "rule": "format",
+          "field": "media[0]",
+          "action": "block",
+          "message": "file media is not accepted here (accepted: image, link, text, video_link)",
+          "media_url": "https://a/b.exe"
+        }
+      ],
+      "seconds": 0.03
+    },
+    {
+      "area": "HC5",
+      "check": "a renamed API field fails certification, demotes, excludes and opens a ticket",
+      "ok": true,
+      "detail": {
+        "cert_error": {
+          "code": "PLATFORM_UNAVAILABLE",
+          "message": "platform response is missing 'post_view' (API changed?)",
+          "retryable": false,
+          "details": {
+            "cause": "SCHEMA_DRIFT",
+            "missing_field": "post_view",
+            "orphan_cleaned_up": "1002|https://lemmy-drift-5ada88.mock"
+          }
+        },
+        "status": "demoted",
+        "publish_after": "DEST_NOT_CERTIFIED",
+        "ticket_opened": true
+      },
+      "seconds": 0.8
+    },
+    {
+      "area": "HC6",
+      "check": "CSV with a duplicate, a bad URL, mixed languages and a missing platform: row-by-row report",
+      "ok": true,
+      "detail": {
+        "summary": {
+          "source": "check.csv",
+          "rows": 6,
+          "created": 0,
+          "updated": 0,
+          "duplicates": 1,
+          "errors": 3,
+          "with_warnings": 1,
+          "unreachable": 0,
+          "seconds": 0.91,
+          "rows_per_second": 6.6
+        },
+        "links": {
+          "report_csv": "http://localhost:8092/api/v1/files/imports/20261019-163051/report.csv?expires=1793012451&sig=90ea401357734042ce57a25ec536655d",
+          "report_json": "http://localhost:8092/api/v1/files/imports/20261019-163051/report.json?expires=1793012451&sig=629bb83dabdb5b7cac983cf9ae1c27c6",
+          "catalogue_csv": "http://localhost:8092/api/v1/files/imports/20261019-163051/catalogue.csv?expires=1793012451&sig=918db2861d815ea2769f803139f1b38d",
+          "input": "http://localhost:8092/api/v1/files/imports/inputs/9cc6a5a8.csv?expires=1793012450&sig=44da8125c9311c1c10f14d951cf49428"
+        },
+        "rows_preview": [
+          {
+            "row": 2,
+            "url": "https://forum-a.example.com",
+            "platform_key": "discourse",
+            "status": "valid",
+            "errors": [],
+            "warnings": [],
+            "reachability": {
+              "reachable": null,
+              "note": "not checked (offline mode)"
+            },
+            "relevance_score": 2,
+            "relevance_reason": "Audience overlap: ai (ai).",
+            "language": "en",
+            "est_audience": null
+          },
+          {
+            "row": 3,
+            "url": "https://FORUM-A.example.com/?utm_source=x",
+            "platform_key": "discourse",
+            "status": "duplicate",
+            "errors": [],
+            "warnings": [],
+            "duplicate_of_row": 2
+          },
+          {
+            "row": 4,
+            "url": "not a url",
+            "platform_key": "discourse",
+            "status": "error",
+            "errors": [
+              "url contains spaces"
+            ],
+            "warnings": []
+          },
+          {
+            "row": 5,
+            "url": "https://video-fr.example.org",
+            "platform_key": "discourse",
+            "status": "valid",
+            "errors": [],
+            "warnings": [
+              "no language given and too little page text to detect one: assumed 'en'; set the language column if the community uses another"
+            ],
+            "reachability": {
+              "reachable": null,
+              "note": "not checked (offline mode)"
+            },
+            "language_detected": null,
+            "relevance_score": 2,
+            "relevance_reason": "Audience overlap: video (video).",
+            "language": "en",
+            "est_audience": null
+          },
+          {
+            "row": 6,
+            "url": "https://jp.example.net",
+            "platform_key": "lemmy",
+            "status": "error",
+            "errors": [
+              "lemmy rows need a community (column 'community' or a /c/<name> URL)"
+            ],
+            "warnings": []
+          },
+          {
+            "row": 7,
+            "url": "https://x.example.com",
+            "platform_key": "",
+            "status": "error",
+            "errors": [
+              "platform_key is missing"
+            ],
+            "warnings": []
+          }
+        ],
+        "manifest": {
+          "manifest_version": "1.0",
+          "kind": "catalogue_import",
+          "service": {
+            "name": "incubrix-longtail",
+            "version": "1.0.0",
+            "python": "3.11.5"
+          },
+          "connectors": [],
+          "models": [
+            {
+              "provider": "none",
+              "note": "no AI model used for this result"
+            }
+          ],
+          "settings": {
+            "simulation_mode": true,
+            "ai_provider": "mock",
+            "score_with_ai": false,
+            "commit": false,
+            "reachability_mode": "offline"
+          },
+          "seed": 0,
+          "timings": {
+            "total_s": 0.906
+          },
+          "cost_estimate_usd": {
+            "total": 0,
+            "per_unit": 0.0,
+            "units": 6
+          },
+          "warnings": [],
+          "ai_generated": false,
+          "rights": {
+            "content": "Content is supplied by the IncuBrix creator who requested distribution; IncuBrix posts it under that creator's licence. No third-party media is added by this service.",
+            "ai_generated_output": "AI-written text (rules proposals, relevance reasons) is marked with ai_generated=true.",
+            "service_licence": "Service code and its default-path dependencies are licensed for commercial use (see SOURCES.md); no AGPL code is shipped."
+          }
+        }
+      },
+      "seconds": 1.22
+    },
+    {
+      "area": "HC6",
+      "check": "partner revokes permission: posting stops and the owner is asked to reconnect",
+      "ok": true,
+      "detail": {
+        "error": {
+          "code": "CONNECTION_AUTH_EXPIRED",
+          "message": "platform answered 403: permission_revoked",
+          "retryable": false,
+          "details": {
+            "http_status": 403,
+            "platform_message": "permission_revoked"
+          }
+        },
+        "status": "paused"
+      },
+      "seconds": 0.46
+    },
+    {
+      "area": "HC7",
+      "check": "Japanese community: English post held with the reason; the creator's Japanese version posts",
+      "ok": true,
+      "detail": {
+        "no_translation": {
+          "state": "blocked",
+          "reason": "this community's language is 'ja' and the post is 'en'; add content.translations['ja'], or list 'en' in the destination's config.accepted_languages if the community accepts it"
+        },
+        "with_translation": {
+          "state": "published",
+          "title": "200本のショート動画に字幕を付けて学んだこと"
+        }
+      },
+      "seconds": 0.42
+    },
+    {
+      "area": "IS2 API",
+      "check": "openapi.yaml is OpenAPI 3.1, matches the running service, routes under /api/v1/",
+      "ok": true,
+      "detail": {
+        "openapi": "3.1.0",
+        "paths": 38,
+        "repo_file_matches_live": true,
+        "outside_api_v1": []
+      },
+      "seconds": 0.81
+    },
+    {
+      "area": "IS3 jobs",
+      "check": "slow work returns 202 + job_id; job has status, progress 0-100 and links",
+      "ok": true,
+      "detail": {
+        "status_code": 202,
+        "job_keys": [
+          "created_at",
+          "error",
+          "job_id",
+          "kind",
+          "links",
+          "progress",
+          "result",
+          "status",
+          "updated_at"
+        ]
+      },
+      "seconds": 0.03
+    },
+    {
+      "area": "IS5 errors",
+      "check": "errors are {error:{code,message,retryable,details}}, UPPER_SNAKE_CASE, listed",
+      "ok": true,
+      "detail": {
+        "404": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "destination dst_does_not_exist not found",
+            "retryable": false,
+            "details": {}
+          }
+        },
+        "422": "VALIDATION_ERROR"
+      },
+      "seconds": 0.05
+    },
+    {
+      "area": "IS7 files",
+      "check": "upload in, import by URL, results saved to storage and returned as links",
+      "ok": true,
+      "detail": {
+        "upload_url": "http://localhost:8092/api/v1/files/uploads/e8a382359278/in.csv?expires=1793012453&sig=cb9706482d90a60b22f3f2cc4dad0b8a",
+        "download_status": 200,
+        "import_by_url": "succeeded"
+      },
+      "seconds": 5.75
+    },
+    {
+      "area": "IS8 logs",
+      "check": "X-Correlation-Id echoed and logged as JSON; /health and /ready answer",
+      "ok": true,
+      "detail": {
+        "echoed": "check-5ada88",
+        "health": {
+          "status": "ok"
+        },
+        "json_log_line_has_fields": null
+      },
+      "seconds": 0.04
+    },
+    {
+      "area": "IS9 manifest",
+      "check": "results carry a manifest: providers and versions, settings, seed, timings, cost, warnings, licence",
+      "ok": true,
+      "detail": {
+        "manifest_keys": [
+          "ai_generated",
+          "connectors",
+          "cost_estimate_usd",
+          "kind",
+          "manifest_version",
+          "models",
+          "rights",
+          "seed",
+          "service",
+          "settings",
+          "timings",
+          "warnings"
+        ]
+      },
+      "seconds": 0.04
+    },
+    {
+      "area": "Outstanding",
+      "check": "recommender ranks destinations with a reason for each",
+      "ok": true,
+      "detail": [
+        {
+          "name": "AI Creators Forum",
+          "score": 0.8458,
+          "reason": "topic match: ai, video, tool; audience overlap: creators, video; relevance 5/5",
+          "reasons": null
+        },
+        {
+          "name": "check lemmy core",
+          "score": 0.8225,
+          "reason": "topic match: video, ai; audience overlap: video; relevance 4/5",
+          "reasons": null
+        },
+        {
+          "name": "IncuBrix CTV video feed (MRSS)",
+          "score": 0.7037,
+          "reason": "topic match: video; audience overlap: creators, video; relevance 4/5",
+          "reasons": null
+        }
+      ],
+      "seconds": 0.03
+    },
+    {
+      "area": "Outstanding",
+      "check": "fetch_metrics on 3 connectors returns views, likes, comments, shares, clicks",
+      "ok": true,
+      "detail": {
+        "discourse": [
+          "clicks",
+          "comments",
+          "likes",
+          "saves",
+          "shares",
+          "views",
+          "watch_time_s"
+        ],
+        "lemmy": [
+          "clicks",
+          "comments",
+          "likes",
+          "saves",
+          "shares",
+          "views",
+          "watch_time_s"
+        ],
+        "devto": [
+          "clicks",
+          "comments",
+          "likes",
+          "saves",
+          "shares",
+          "views",
+          "watch_time_s"
+        ]
+      },
+      "seconds": 0.2
+    },
+    {
+      "area": "Outstanding",
+      "check": "recertification run is a job and reports what it re-tested",
+      "ok": true,
+      "detail": {
+        "checked": 0,
+        "passed": 0,
+        "demoted": [],
+        "results": []
+      },
+      "seconds": 0.03
+    }
+  ]
+}

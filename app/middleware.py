@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
+import hmac
 import json
 import logging
 import time
@@ -40,6 +41,7 @@ class RequestContext:
     def __init__(self, app: ASGIApp) -> None:
         self.app = app
         self.windows: dict[str, list[float]] = {}
+        self.failed_auth: list[float] = []
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if scope["type"] != "http":
@@ -61,17 +63,30 @@ class RequestContext:
 
         try:
             s = get_settings()
+            now = time.time()
             is_open = path in ("/", "/health", "/ready") or any(path.startswith(p) for p in OPEN_PATHS if p != "/")
             if s.api_token and not is_open:
                 auth = headers.get("authorization", "")
                 given = auth[7:] if auth.lower().startswith("bearer ") else headers.get("x-api-key", "")
-                if given != s.api_token:
+                if not hmac.compare_digest(given.encode(), s.api_token.encode()):
+                    # wrong tokens are counted for the whole service, not per client: a client can choose its own
+                    # X-Forwarded-For, so per-client counting alone would let it guess tokens at full speed
+                    self.failed_auth = [t for t in self.failed_auth if now - t < 60]
+                    if s.failed_auth_per_minute and len(self.failed_auth) >= s.failed_auth_per_minute:
+                        retry = int(60 - (now - self.failed_auth[0])) + 1
+                        err = ApiError("SERVICE_RATE_LIMIT", "too many requests with a wrong token; try again later",
+                                       details={"retry_after_s": retry})
+                        await _send(send_wrapper, *_json_response(429, err.to_dict(),
+                                                                  [(b"retry-after", str(retry).encode())]))
+                        return
+                    self.failed_auth.append(now)
                     err = ApiError("UNAUTHORIZED", "send 'Authorization: Bearer <token>' or 'X-API-Key: <token>'")
                     await _send(send_wrapper, *_json_response(401, err.to_dict()))
                     return
             client = headers.get("x-forwarded-for", "").split(",")[0].strip() or (scope.get("client") or ("?",))[0]
             if s.rate_limit_per_minute and not path.startswith(("/health", "/ready")):
-                now = time.time()
+                if len(self.windows) > 10_000:  # forget idle clients so the table cannot grow without bound
+                    self.windows = {c: w for c, w in self.windows.items() if w and now - w[-1] < 60}
                 window = [t for t in self.windows.get(client, []) if now - t < 60]
                 if len(window) >= s.rate_limit_per_minute:
                     retry = int(60 - (now - window[0])) + 1

@@ -48,6 +48,7 @@ Or in the dashboard: the new destination appears on the Destinations tab; press 
 
 ## What the service does for every connector, without connector code
 
-Posting rules, tailoring, the idempotency ledger and timeout recovery, 429 back-off using the reset time, the
-circuit breaker after 5 failures, certification and recertification, demotion, tickets, metrics refresh and the
-kill switch are all outside the connector. A connector only talks to its platform and returns results.
+Posting rules, tailoring, the idempotency ledger and timeout recovery, 429 back-off using the reset time (and
+`PLATFORM_QUOTA_EXHAUSTED` when the answer says a daily quota is used up), the circuit breaker after 5 failures
+(with one trial call after `BREAKER_COOLDOWN_S`), token expiry from the connection's `expires_at`, certification and
+recertification, demotion, tickets, metrics refresh and the kill switch are all outside the connector. A connector only talks to its platform and returns results.

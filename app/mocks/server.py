@@ -9,6 +9,7 @@ Fault injection (POST /_control/faults) reproduces the hard cases on demand:
   timeout_after_create  the post is created, then the answer never arrives
   timeout               the call hangs before doing anything
   rate_limit            429 with a reset time (retry_after seconds)
+  quota_exhausted       429 saying the daily quota is used up (retry_after = seconds to the next window)
   auth_expired          401 / token_expired
   reject                the platform refuses the content (422 or equivalent)
   rename_field          the platform renamed a field in its response
@@ -189,6 +190,10 @@ class Ctx:
         if kind == "rate_limit":
             raise Fault(JSONResponse({"errors": ["You've performed this action too many times."],
                                       "extras": {"wait_seconds": f["retry_after"]}}, status_code=429,
+                                     headers={"Retry-After": str(int(f["retry_after"]))}))
+        if kind == "quota_exhausted":
+            # the daily allowance is used up; the reset is the next window, not a few seconds away
+            raise Fault(JSONResponse({"errors": ["daily quota exceeded for this account"]}, status_code=429,
                                      headers={"Retry-After": str(int(f["retry_after"]))}))
         if kind == "auth_expired":
             raise Fault(JSONResponse({"errors": ["token expired"]}, status_code=401))

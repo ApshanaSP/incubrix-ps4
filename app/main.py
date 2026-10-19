@@ -203,6 +203,7 @@ class ConnectionIn(BaseModel):
 
 class ConnectionPatch(BaseModel):
     credentials: dict[str, Any]
+    expires_at: str | None = Field(None, description="When the new token expires (ISO time); empty = no known expiry")
 
 
 class PublicationIn(BaseModel):
@@ -277,8 +278,8 @@ class SimFaultIn(BaseModel):
     destination_id: str | None = Field(None, description="Use this destination's mock instance")
     platform: str | None = None
     host: str | None = None
-    kind: Literal["timeout_after_create", "timeout", "rate_limit", "auth_expired", "reject", "rename_field",
-                  "revoke", "server_error"]
+    kind: Literal["timeout_after_create", "timeout", "rate_limit", "quota_exhausted", "auth_expired", "reject",
+                  "rename_field", "revoke", "server_error"]
     op: Literal["publish", "status", "delete", "list", "any"] = "publish"
     count: int = 1
     retry_after: float = 2
@@ -503,7 +504,7 @@ async def get_connection(connection_id: str) -> dict[str, Any]:
 @app.patch("/api/v1/connections/{connection_id}", tags=["connections"], responses=ERRORS)
 async def reconnect(connection_id: str, body: ConnectionPatch) -> dict[str, Any]:
     """Replace credentials (reconnect after an expired or revoked token). Paused destinations resume."""
-    return store.update_connection_credentials(connection_id, body.credentials)
+    return store.update_connection_credentials(connection_id, body.credentials, body.expires_at)
 
 
 # ---------------------------------------------------------------- destinations
@@ -882,7 +883,14 @@ async def refresh_metrics(body: MetricsIn) -> dict[str, Any]:
             posts = get_db().all("SELECT * FROM posts WHERE state='published' AND is_test=0")
         results = []
         for n, p in enumerate(posts):
-            connector = registry.get(p["connector_key"])
+            if p["state"] != "published" or not p.get("platform_post_id"):
+                results.append({"post_id": p["id"], "skipped": f"post is {p['state']}, not published"})
+                continue
+            try:
+                connector = registry.get(p["connector_key"])
+            except ConnectorError as exc:  # kill switch on
+                results.append({"post_id": p["id"], "error": exc.to_dict()["error"]})
+                continue
             if not connector.implements("fetch_metrics"):
                 results.append({"post_id": p["id"], "skipped": "connector has no metrics"})
                 continue
