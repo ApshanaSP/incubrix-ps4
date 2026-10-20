@@ -41,7 +41,7 @@ reproduces every hard case on demand. Reading public pages (rules, reachability)
 | Hard cases 1-7 | Each handled with an explicit code and reason | batch inputs 02-15 (17/17), README table |
 | Catalogue import, AI rules capture with confirmation, relevance, tailoring | Done | `tests/test_catalogue.py`, batch inputs 12 and 16 |
 | Integration Standard 1-10 | All 10 | `tests/test_integration.py` |
-| One command, no keys | 99 tests (`python -m pytest`, or `docker compose run --rm api python -m pytest`) | `test_pack/tests/` |
+| One command, no keys | 105 tests (`python -m pytest`, or `docker compose run --rm api python -m pytest`) | `test_pack/tests/` |
 | Independent reviewer-style check over HTTP | 38/38 in light mode and against `docker compose` | `test_pack/reviewer_check/`, `outputs/compose/reviewer_check/` |
 | Dashboard at `/` | Destinations and testing, publishing with outcomes in plain words, the 17 hard cases from the browser, CSV import | `app/static/dashboard.html` |
 

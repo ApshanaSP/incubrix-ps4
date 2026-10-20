@@ -111,7 +111,7 @@ docker compose run --rm api python -m pytest              # the same inside the 
 python -m tools.batch_runner --api http://localhost:8080 --input batch_inputs --out outputs
 ```
 
-The 99 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds and the Integration Standard. The end-to-end tests drive the full HTTP API.
+The 105 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds, the live post check and the Integration Standard. The end-to-end tests drive the full HTTP API.
 
 `batch_inputs/` holds 17 inputs: one for each hard case plus the Core and Advanced features. Each input creates its own destinations, so runs never collide. The runner writes one JSON file per input and a `summary.json` to `outputs/batch-<timestamp>/`. Regenerate the inputs with `python -m tools.make_batch_inputs`.
 
