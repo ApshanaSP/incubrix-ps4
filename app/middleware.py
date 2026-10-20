@@ -10,6 +10,7 @@ import logging
 import time
 import uuid
 from typing import Any
+from urllib.parse import quote
 
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
@@ -19,8 +20,51 @@ from app.errors import ApiError
 from app.logs import correlation_id, log
 
 logger = logging.getLogger("http")
-OPEN_PATHS = ("/health", "/ready", "/docs", "/openapi.json", "/openapi.yaml", "/redoc", "/api/v1/files/",
-              "/api/v1/feeds/", "/favicon.ico", "/ui/", "/")
+# Open even when API_TOKEN is set: health checks, the sign-in page, signed download links (their own signature
+# protects them) and the public video feeds. Everything else (the dashboard, /docs, /openapi.yaml, the API) needs
+# the token: a Bearer / X-API-Key header, or the session cookie the sign-in page sets.
+OPEN_EXACT = ("/health", "/ready", "/favicon.ico", "/login", "/logout")
+OPEN_PREFIXES = ("/api/v1/files/", "/api/v1/feeds/")
+SESSION_COOKIE = "ibx_session"
+SESSION_MAX_AGE_S = 30 * 24 * 3600
+_failed_auth: list[float] = []  # wrong-token times, for the whole service
+
+
+def session_value(api_token: str) -> str:
+    """The session cookie holds a value derived from the token, never the token itself; changing API_TOKEN signs
+    everyone out."""
+    return hmac.new(api_token.encode(), b"ibx-dashboard-session", hashlib.sha256).hexdigest()
+
+
+def _cookie(header: str, name: str) -> str:
+    for part in header.split(";"):
+        key, _, value = part.strip().partition("=")
+        if key == name:
+            return value
+    return ""
+
+
+def credentials_ok(headers: dict[str, str], api_token: str) -> tuple[bool, bool]:
+    """(accepted, something was presented): a Bearer / X-API-Key token or the session cookie."""
+    auth = headers.get("authorization", "")
+    given = auth[7:] if auth.lower().startswith("bearer ") else headers.get("x-api-key", "")
+    if given and hmac.compare_digest(given.encode(), api_token.encode()):
+        return True, True
+    cookie = _cookie(headers.get("cookie", ""), SESSION_COOKIE)
+    if cookie and hmac.compare_digest(cookie.encode(), session_value(api_token).encode()):
+        return True, True
+    return False, bool(given or cookie)
+
+
+def wrong_token_lockout(now: float, limit: int) -> int:
+    """Record one wrong token. Returns seconds to wait when the service-wide limit is reached, else 0. Wrong tokens
+    are counted for the whole service, not per client: a client can choose its own X-Forwarded-For, so per-client
+    counting alone would let it guess tokens at full speed."""
+    _failed_auth[:] = [t for t in _failed_auth if now - t < 60]
+    if limit and len(_failed_auth) >= limit:
+        return int(60 - (now - _failed_auth[0])) + 1
+    _failed_auth.append(now)
+    return 0
 
 
 def _json_response(status: int, payload: dict[str, Any], extra_headers: list[tuple[bytes, bytes]] | None = None):
@@ -41,7 +85,6 @@ class RequestContext:
     def __init__(self, app: ASGIApp) -> None:
         self.app = app
         self.windows: dict[str, list[float]] = {}
-        self.failed_auth: list[float] = []
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if scope["type"] != "http":
@@ -64,23 +107,25 @@ class RequestContext:
         try:
             s = get_settings()
             now = time.time()
-            is_open = path in ("/", "/health", "/ready") or any(path.startswith(p) for p in OPEN_PATHS if p != "/")
+            is_open = path in OPEN_EXACT or path.startswith(OPEN_PREFIXES)
             if s.api_token and not is_open:
-                auth = headers.get("authorization", "")
-                given = auth[7:] if auth.lower().startswith("bearer ") else headers.get("x-api-key", "")
-                if not hmac.compare_digest(given.encode(), s.api_token.encode()):
-                    # wrong tokens are counted for the whole service, not per client: a client can choose its own
-                    # X-Forwarded-For, so per-client counting alone would let it guess tokens at full speed
-                    self.failed_auth = [t for t in self.failed_auth if now - t < 60]
-                    if s.failed_auth_per_minute and len(self.failed_auth) >= s.failed_auth_per_minute:
-                        retry = int(60 - (now - self.failed_auth[0])) + 1
+                accepted, presented = credentials_ok(headers, s.api_token)
+                if not accepted:
+                    retry = wrong_token_lockout(now, s.failed_auth_per_minute) if presented else 0
+                    if retry:
                         err = ApiError("SERVICE_RATE_LIMIT", "too many requests with a wrong token; try again later",
                                        details={"retry_after_s": retry})
                         await _send(send_wrapper, *_json_response(429, err.to_dict(),
                                                                   [(b"retry-after", str(retry).encode())]))
                         return
-                    self.failed_auth.append(now)
-                    err = ApiError("UNAUTHORIZED", "send 'Authorization: Bearer <token>' or 'X-API-Key: <token>'")
+                    if scope.get("method") == "GET" and "text/html" in headers.get("accept", ""):
+                        # a person in a browser: send them to the sign-in page, then back here
+                        target = path + ("?" + scope["query_string"].decode() if scope.get("query_string") else "")
+                        await _send(send_wrapper, 303, [(b"location", ("/login?next=" + quote(target, safe="")).encode()),
+                                                        (b"content-length", b"0")], b"")
+                        return
+                    err = ApiError("UNAUTHORIZED", "send 'Authorization: Bearer <token>' or 'X-API-Key: <token>', "
+                                                   "or sign in at /login")
                     await _send(send_wrapper, *_json_response(401, err.to_dict()))
                     return
             client = headers.get("x-forwarded-for", "").split(",")[0].strip() or (scope.get("client") or ("?",))[0]

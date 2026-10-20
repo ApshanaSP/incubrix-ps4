@@ -7,19 +7,21 @@
 from __future__ import annotations
 
 import asyncio
+import hmac
 import json
+import time
 import logging
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Literal
-from urllib.parse import urlsplit
+from urllib.parse import quote, urlsplit
 
 import httpx
 import yaml
 from fastapi import Body, FastAPI, File, Form, Header, Query, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 from pydantic import BaseModel, Field
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -33,7 +35,8 @@ from app.connectors.mrss import render_feed
 from app.db import get_db, new_id, now_iso
 from app.errors import ALL_CODES, ApiError, ConnectorError
 from app.logs import log, setup_logging
-from app.middleware import Idempotency, RequestContext
+from app.middleware import (SESSION_COOKIE, SESSION_MAX_AGE_S, Idempotency, RequestContext, session_value,
+                            wrong_token_lockout)
 from app.storage import LocalStorage, get_storage, verify_link
 from app.tailoring import ContentItem, tailor, tailor_many
 
@@ -319,11 +322,52 @@ async def ready() -> JSONResponse:
         checks["storage"] = f"error: {type(exc).__name__}"
     checks["connectors"] = len(registry.keys())
     checks["simulation_mode"] = get_settings().simulation_mode
+    checks["access"] = "token" if get_settings().api_token else "open"
     ok = all(not str(v).startswith("error") for v in checks.values())
     return JSONResponse({"status": "ready" if ok else "not_ready", "checks": checks}, status_code=200 if ok else 503)
 
 
 UI_PAGE = Path(__file__).parent / "static" / "dashboard.html"
+LOGIN_PAGE = Path(__file__).parent / "static" / "login.html"
+
+
+def _safe_next(target: str | None) -> str:
+    """Only paths on this site: no other host, no protocol-relative '//' address."""
+    if not target or not target.startswith("/") or target.startswith(("//", "/\\")):
+        return "/"
+    return target
+
+
+@app.get("/login", include_in_schema=False)
+async def login_page() -> Any:
+    """With API_TOKEN set, every page needs the token; a browser signs in here once and gets a session cookie."""
+    if not get_settings().api_token:
+        return RedirectResponse("/", status_code=303)
+    return FileResponse(LOGIN_PAGE, media_type="text/html", headers={"Cache-Control": "no-cache"})
+
+
+@app.post("/login", include_in_schema=False)
+async def login(request: Request, token: str = Form(""), next: str = Form("/")) -> Any:  # noqa: A002
+    s = get_settings()
+    target = _safe_next(next)
+    if not s.api_token:
+        return RedirectResponse(target, status_code=303)
+    if not (token and hmac.compare_digest(token.strip().encode(), s.api_token.encode())):
+        locked = wrong_token_lockout(time.time(), s.failed_auth_per_minute)
+        return RedirectResponse(f"/login?error={'locked' if locked else 'wrong'}&next={quote(target, safe='')}",
+                                status_code=303)
+    resp = RedirectResponse(target, status_code=303)
+    https = request.url.scheme == "https" or request.headers.get("x-forwarded-proto", "") == "https"
+    resp.set_cookie(SESSION_COOKIE, session_value(s.api_token), max_age=SESSION_MAX_AGE_S, httponly=True,
+                    samesite="lax", secure=https, path="/")
+    return resp
+
+
+@app.get("/logout", include_in_schema=False)
+async def logout() -> Any:
+    resp = RedirectResponse("/login" if get_settings().api_token else "/", status_code=303)
+    resp.delete_cookie(SESSION_COOKIE, path="/")
+    return resp
 
 
 @app.get("/", include_in_schema=False)

@@ -96,7 +96,7 @@ A sidebar (bottom tabs on a phone) leads to five pages, each opening with one se
 | Safety checks | runs the 17 batch inputs from `batch_inputs/` one by one or all at once with a running score, showing every step (each creates its own throw-away place on a built-in test platform, so nothing real is touched) |
 | Add places | upload a CSV (or the messy sample) and see the row-by-row report: duplicates, invalid rows, reachability, relevance |
 
-API clients that call `/` without `Accept: text/html` still get the JSON list of links. On a protected demo, the page asks for the access token.
+API clients that call `/` without `Accept: text/html` still get the JSON list of links. With `API_TOKEN` set, the whole site is private: a browser is sent to a sign-in page (`/login`) and, after entering the token, gets an HttpOnly session cookie (derived from the token, never the token itself; changing the token signs everyone out). The dashboard, `/docs`, `/openapi.yaml` and the API all need it; scripts send `Authorization: Bearer <token>`. Only `/health`, `/ready`, signed download links and public feeds stay open.
 
 ## Extending it
 
@@ -111,7 +111,7 @@ docker compose run --rm api python -m pytest              # the same inside the 
 python -m tools.batch_runner --api http://localhost:8080 --input batch_inputs --out outputs
 ```
 
-The 105 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds, the live post check and the Integration Standard. The end-to-end tests drive the full HTTP API.
+The 113 tests cover the contract for every connector, certification and recertification, every rule, every hard case, catalogue import (including 1,000 rows), rules capture, tailoring, the recommender, metrics, feeds, the live post check and the Integration Standard. The end-to-end tests drive the full HTTP API.
 
 `batch_inputs/` holds 17 inputs: one for each hard case plus the Core and Advanced features. Each input creates its own destinations, so runs never collide. The runner writes one JSON file per input and a `summary.json` to `outputs/batch-<timestamp>/`. Regenerate the inputs with `python -m tools.make_batch_inputs`.
 
@@ -189,7 +189,7 @@ Every setting is an environment variable (or a line in `.env`); [`.env.example`]
 | service | `BATCH_INPUTS_DIR` | `./batch_inputs` | batch runner inputs, also shown in the dashboard's Hard cases tab |
 | service | `DB_PATH` | (empty) | optional explicit SQLite path |
 | service | `LOG_LEVEL` | `INFO` |  |
-| service | `API_TOKEN` | (empty) | set for the live demo: send "Authorization: Bearer <token>" |
+| service | `API_TOKEN` | (empty) | set for the live demo: makes the whole site private (sign in at `/login`, or send "Authorization: Bearer <token>") |
 | service | `RATE_LIMIT_PER_MINUTE` | `120` | per client IP; 0 = off |
 | service | `FAILED_AUTH_PER_MINUTE` | `30` | requests with a wrong token per minute across the whole service, then 429 (stops token guessing); 0 = off |
 | secrets | `SECRET_KEY` | `change-me` | encrypts stored connection credentials and signs download links |

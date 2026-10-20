@@ -22,6 +22,7 @@
   --mono: "Cascadia Mono", Consolas, "SFMono-Regular", monospace;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { color-scheme: light; scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 var(--font); -webkit-font-smoothing: antialiased; }
 a { color: var(--brand); text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -109,7 +110,6 @@ ul.list { margin: 6px 0 0; padding-left: 20px; } ul.list li { margin: 3px 0; }
 .banner { display: flex; gap: 12px; align-items: flex-start; border-radius: var(--r); padding: 14px 16px; font-size: 14px; border: 1px solid; }
 .banner.info { background: var(--brand-soft); border-color: #c7d2fe; color: var(--brand-ink); } .banner.ok { background: var(--ok-soft); border-color: var(--ok-line); color: #065f46; }
 .banner .grow > b { display: block; margin-bottom: 2px; }
-.tokenrow { display: none; margin-bottom: 18px; } .tokenrow.show { display: flex; align-items: center; flex-wrap: wrap; }
 .toggle { display: inline-flex; gap: 8px; align-items: center; font-size: 13.5px; color: var(--muted); cursor: pointer; } .toggle input { accent-color: var(--brand); }
 
 /* ---------------------------------------------------------------- overview */
@@ -267,14 +267,12 @@ th { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-s
   <div class="side-foot">
     <span class="mode" id="status">Checking…</span>
     <p class="mode-note" id="modeNote"></p>
-    <div class="side-links"><a href="/docs" target="_blank" rel="noopener">API docs</a><a href="/openapi.yaml" target="_blank" rel="noopener">OpenAPI</a></div>
+    <div class="side-links"><a href="/docs" target="_blank" rel="noopener">API docs</a><a href="/openapi.yaml" target="_blank" rel="noopener">OpenAPI</a><a href="/logout" id="signOut" hidden>Sign out</a></div>
   </div>
 </aside>
 <div>
-<header class="mtop"><div class="logo">IB</div><div class="name">Long-Tail</div><span class="mode" id="statusM">…</span></header>
+<header class="mtop"><div class="logo">IB</div><div class="name">Long-Tail</div><span class="mode" id="statusM">…</span><a href="/logout" id="signOutM" class="btn ghost sm" hidden>Sign out</a></header>
 <main>
-  <div class="banner info tokenrow" id="tokenrow"><div class="grow"><b>This demo is protected.</b>Enter the access token to continue.</div>
-    <input type="password" id="token" style="max-width:240px" aria-label="Access token"><button class="btn sm" id="tokenSave">Use token</button></div>
 
 <!-- ================================================================ overview -->
 <section id="home" class="on">
@@ -414,8 +412,6 @@ const el = (tag, attrs = {}, ...kids) => {
 };
 // replaceChildren that skips empty parts (a plain call would print them as "null")
 const put = (node, ...kids) => node.replaceChildren(...kids.flat(Infinity).filter((k) => k !== null && k !== undefined && k !== false));
-const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } },
-                set(k, v) { try { localStorage.setItem(k, v); } catch { /* storage may be blocked */ } } };
 const newKey = () => "ui-" + Math.random().toString(36).slice(2, 10);
 const short = (v, n = 160) => { const s = typeof v === "string" ? v : JSON.stringify(v); return s && s.length > n ? s.slice(0, n) + "…" : s; };
 const sleep = (ms) => new Promise((ok) => setTimeout(ok, ms));
@@ -441,9 +437,7 @@ const chip = (text, kind, ico) => el("span", { class: "chip " + kind }, ico ? ic
 const label = (node, ico, text) => put(node, icon(ico), text);  // a button's icon and words
 
 async function api(method, path, opts = {}) {
-  const headers = Object.assign({}, opts.headers || {});
-  const token = store.get("ibx-token");
-  if (token) headers["Authorization"] = "Bearer " + token;
+  const headers = Object.assign({}, opts.headers || {});  // signed in: the session cookie goes with every request
   let body;
   if (opts.form) body = opts.form;
   else if (opts.json !== undefined) { body = JSON.stringify(opts.json); headers["Content-Type"] = "application/json"; }
@@ -454,7 +448,7 @@ async function api(method, path, opts = {}) {
     const text = await r.text();
     let data = null;
     try { data = text ? JSON.parse(text) : null; } catch { data = text; }
-    if (r.status === 401) $("tokenrow").classList.add("show");
+    if (r.status === 401) { signIn(); return { status: 401, data }; }
     if (r.status === 429 && data && data.error && data.error.code === "SERVICE_RATE_LIMIT") {
       await sleep(1000 * ((data.error.details || {}).retry_after_s || 3));
       continue;
@@ -561,7 +555,8 @@ function go(page) {
   try { history.replaceState(null, "", "#" + page); } catch { /* sandboxed */ }
   window.scrollTo({ top: 0 });
 }
-$("tokenSave").addEventListener("click", () => { store.set("ibx-token", $("token").value.trim()); $("tokenrow").classList.remove("show"); loadAll(); });
+// the session ended (signed out elsewhere, or the token was changed): back to the sign-in page, then here again
+const signIn = () => { location.href = "/login?next=" + encodeURIComponent("/" + location.hash); };
 
 let readyInfo = {};
 async function loadStatus() {
@@ -570,6 +565,7 @@ async function loadStatus() {
     readyInfo = (r.data && r.data.checks) || {};
     const ok = r.status === 200;
     const text = !ok ? "Not ready" : readyInfo.simulation_mode ? "Safe test mode" : "Live mode";
+    $("signOut").hidden = $("signOutM").hidden = readyInfo.access !== "token";
     for (const id of ["status", "statusM"]) { $(id).className = "mode" + (ok ? "" : " bad"); label($(id), ok ? "shield" : "x", text); }
     $("modeNote").textContent = !ok ? "The service is starting or has a problem." : readyInfo.simulation_mode
       ? "Posts go to built-in test platforms that behave like the real ones. Nothing reaches a real community."
@@ -1190,8 +1186,8 @@ $("cGo").addEventListener("click", () => {
 });
 $("cSample").addEventListener("click", async () => importCsv(await (await fetch("/ui/files/messy_destinations.csv")).blob(), "messy_destinations.csv"));
 $("cExport").addEventListener("click", async () => {
-  const token = store.get("ibx-token");
-  const r = await fetch("/api/v1/catalogue/export.csv", { headers: token ? { Authorization: "Bearer " + token } : {} });
+  const r = await fetch("/api/v1/catalogue/export.csv");
+  if (r.status === 401) return signIn();
   const url = URL.createObjectURL(await r.blob());
   el("a", { href: url, download: "places.csv" }).click();
   setTimeout(() => URL.revokeObjectURL(url), 5000);
