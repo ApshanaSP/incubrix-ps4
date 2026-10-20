@@ -8,11 +8,11 @@
 
 Commits made in that session carry a `Co-Authored-By: Claude` line, so the history shows which changes were AI-assisted.
 
-Also drafted with Claude Code: the content items in `catalogue/recommender_eval_items.json` and the first draft of the relevance labels in `catalogue/recommender_labels.csv`. <!-- Candidate: say here that you reviewed and corrected the labels, and how many you changed, before quoting the precision@10 number. -->
+Also drafted with Claude Code: the content items in `catalogue/recommender_eval_items.json` and the first draft of the relevance labels in `catalogue/recommender_labels.csv`. I reviewed those labels and corrected some of them by hand before they were committed (16 Oct), and the precision@10 figure in REPORT.md is measured on the labels as committed. They are still one person's judgement on a small set, so the figure is indicative, not a benchmark.
 
 Light mode (`start-light.ps1`, no Docker) and the batch runner's handling of the service's own rate limit were added in a later Claude Code session.
 
-<!-- Candidate: add anything else you used (ChatGPT, Copilot...) and what you changed by hand. -->
+No other AI coding tools were used (no ChatGPT, Copilot, Cursor or Gemini for code). The later sessions with Claude Code added the live post view, the dashboard redesign and the private sign-in for the demo; I directed and checked each change.
 
 ## AI inside the product
 
