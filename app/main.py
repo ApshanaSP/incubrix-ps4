@@ -828,6 +828,14 @@ async def get_post(post_id: str) -> dict[str, Any]:
     return row
 
 
+@app.get("/api/v1/posts/{post_id}/live", tags=["publishing"], responses=ERRORS)
+async def post_live(post_id: str) -> dict[str, Any]:
+    """Check a post on its platform now: the platform's API is asked for the post, then its public page is loaded,
+    each timed. `browser_url` is the address a browser can open (see BROWSER_URL_MAP); `embeddable` is true when
+    that page answered, so it can be shown inside another page."""
+    return await publisher.live_check(post_id)
+
+
 @app.post("/api/v1/posts/{post_id}/delete", tags=["publishing"], status_code=202, response_model=JobAccepted,
           responses=ERRORS)
 async def delete_post(post_id: str, callback_url: str | None = Body(None, embed=True)) -> dict[str, Any]:

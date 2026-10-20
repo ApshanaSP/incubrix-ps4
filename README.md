@@ -180,6 +180,7 @@ Every setting is an environment variable (or a line in `.env`); [`.env.example`]
 |---|---|---|---|
 | service | `SERVICE_NAME` | `incubrix-longtail` |  |
 | service | `PUBLIC_BASE_URL` | `http://localhost:8080` | base for download links and feed URLs |
+| service | `BROWSER_URL_MAP` | (empty) | `inner=outer` pairs, comma-separated: live URLs on hosts only the service reaches (Docker names) rewritten to what a browser opens; set by `docker compose` for local Lemmy and Ghost |
 | service | `PORT` | `8080` |  |
 | service | `DATA_DIR` | `./data` | SQLite database and local files |
 | service | `BATCH_INPUTS_DIR` | `./batch_inputs` | batch runner inputs, also shown in the dashboard's Hard cases tab |

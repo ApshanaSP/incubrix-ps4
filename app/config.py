@@ -44,6 +44,16 @@ def _float(name: str, default: float) -> float:
     return float(raw) if raw not in (None, "") else default
 
 
+def _url_map(name: str) -> dict[str, str]:
+    """'http://ghost:2368=http://localhost:2368,...' -> {internal prefix: browser prefix}."""
+    out: dict[str, str] = {}
+    for pair in os.getenv(name, "").split(","):
+        inner, sep, outer = pair.partition("=")
+        if sep and inner.strip() and outer.strip():
+            out[inner.strip().rstrip("/")] = outer.strip().rstrip("/")
+    return out
+
+
 @dataclass
 class Settings:
     # service
@@ -54,6 +64,8 @@ class Settings:
     data_dir: Path = field(default_factory=lambda: Path(os.getenv("DATA_DIR", "./data")))
     db_path: str = field(default_factory=lambda: os.getenv("DB_PATH", ""))
     log_level: str = field(default_factory=lambda: os.getenv("LOG_LEVEL", "INFO"))
+    # live URLs on hosts only the service can reach (Docker service names) -> what a browser can open
+    browser_url_map: dict[str, str] = field(default_factory=lambda: _url_map("BROWSER_URL_MAP"))
     # access control for the live demo (empty = open, for local use)
     api_token: str = field(default_factory=lambda: os.getenv("API_TOKEN", ""))
     rate_limit_per_minute: int = field(default_factory=lambda: _int("RATE_LIMIT_PER_MINUTE", 120))

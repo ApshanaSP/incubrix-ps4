@@ -97,7 +97,7 @@ ul.list { margin: 6px 0 0; padding-left: 20px; } ul.list li { margin: 3px 0; }
 .step .k { font-size: 12px; font-weight: 700; color: var(--brand); letter-spacing: .06em; text-transform: uppercase; }
 .step p { margin: 4px 0 0; color: var(--muted); font-size: 13.5px; }
 .outcomes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.try { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; } @media (max-width: 860px) { .try { grid-template-columns: 1fr; } }
+.try { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .try .card { cursor: pointer; } .try .card:hover { border-color: #c7d2fe; box-shadow: var(--sh-3); transform: translateY(-1px); }
 .safe-note { display: flex; gap: 12px; align-items: flex-start; background: var(--ok-soft); border: 1px solid var(--ok-line); border-radius: var(--r); padding: 14px 16px; color: #065f46; font-size: 14px; margin-top: 16px; }
 
@@ -138,6 +138,38 @@ ul.list { margin: 6px 0 0; padding-left: 20px; } ul.list li { margin: 3px 0; }
 .res .t { font-weight: 700; } .res .where { margin-left: auto; color: var(--muted); font-size: 13px; }
 .why { margin-top: 8px; color: var(--text-2); font-size: 14px; } .why b { color: var(--text); font-weight: 650; }
 .viewer { margin-top: 10px; border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px; background: var(--soft); }
+
+/* ---------------------------------------------------------------- live view: the real post on the real platform */
+.live { border: 1px solid #c7d2fe; box-shadow: var(--sh-3); margin-top: 18px; scroll-margin-top: 120px; }
+.live + .live { margin-top: 14px; }
+.live-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; align-items: start; margin-top: 14px; }
+@media (max-width: 900px) { .live-grid { grid-template-columns: 1fr; } }
+.tl { list-style: none; margin: 0; padding: 0; position: relative; }
+.tl li { position: relative; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 0 0 16px; }
+.tl li:not(:last-child)::before { content: ""; position: absolute; left: 12px; top: 26px; bottom: 2px; width: 2px; background: var(--line); }
+.tl li.done:not(:last-child)::before { background: var(--ok-line); }
+.tl .mark { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--grey-soft); color: var(--muted); border: 2px solid var(--line); }
+.tl .mark svg.i { width: 14px; height: 14px; stroke-width: 2.4; }
+.tl li.run .mark { border-color: var(--brand-2); background: var(--brand-soft); color: var(--brand); }
+.tl li.done .mark { background: var(--ok); border-color: var(--ok); color: #fff; }
+.tl li.no .mark { background: var(--bad); border-color: var(--bad); color: #fff; }
+.tl li.gone .mark { background: var(--grey); border-color: var(--grey); color: #fff; }
+.tl .what { font-weight: 650; font-size: 14px; color: var(--text); } .tl li.wait .what { color: var(--muted); font-weight: 500; }
+.tl .detail { color: var(--muted); font-size: 12.5px; word-break: break-word; }
+.tl .ms { font: 11.5px var(--mono); color: var(--brand-ink); background: var(--brand-soft); border-radius: 5px; padding: 0 5px; margin-left: 6px; }
+.frame { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; box-shadow: var(--sh-2); }
+.frame .bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--grey-soft); border-bottom: 1px solid var(--line); }
+.frame .dots { display: flex; gap: 5px; flex: none; } .frame .dots i { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; display: block; }
+.frame .addr { flex: 1; min-width: 0; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; font: 12.5px var(--mono); color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.frame iframe { display: block; width: 100%; height: 540px; border: 0; background: #fff; }
+.frame .placeholder { height: 540px; display: grid; place-items: center; color: var(--muted); font-size: 14px; background: var(--soft); text-align: center; padding: 20px; }
+@media (max-width: 560px) { .frame iframe, .frame .placeholder { height: 420px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .tl li.run .mark { animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 5px rgba(99, 102, 241, .18); } }
+  .tl li.done .mark, .tl li.no .mark, .tl li.gone .mark { animation: pop .25s ease-out; }
+  @keyframes pop { from { transform: scale(.6); } to { transform: none; } }
+}
 
 /* ---------------------------------------------------------------- hard cases */
 .progress { height: 8px; border-radius: 999px; background: var(--grey-soft); overflow: hidden; margin: 4px 0 2px; }
@@ -255,6 +287,7 @@ th { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-s
       <div class="box" id="pubBox"><h2>Result</h2><p class="sub" id="pubHint">Press Publish to see what happens at each place.</p><div id="pubOut" style="margin-top:12px"></div></div>
     </div>
   </div>
+  <div id="liveOut"></div>
 </section>
 
 <!-- ================================================================ hard cases -->
@@ -329,6 +362,8 @@ const ICONS = {
   x: '<path d="M6 6l12 12M18 6L6 18"/>', search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>', bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
   repeat: '<path d="M4 9a8 8 0 0 1 14-3l2 2"/><path d="M20 4v4h-4"/><path d="M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M4 20v-4h4"/>',
   sparkle: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>', file: '<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/>',
+  eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>', ext: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v6H4V6h6"/>',
+  trash: '<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>',
 };
 const icon = (name) => { const s = document.createElementNS("http://www.w3.org/2000/svg", "svg"); s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("class", "i"); s.innerHTML = ICONS[name] || ""; return s; };
 const chip = (text, kind, ico) => el("span", { class: "chip " + kind }, ico ? icon(ico) : null, text);
@@ -425,8 +460,16 @@ const EXAMPLES = {
   link: { label: "A link where links are banned", icon: "x", note: "Reddit r/NewTubers allows no links in posts, so the post is held with the reason. The partner site accepts it.",
     title: "Our caption checklist for new YouTubers", body: "The full checklist is here: https://example.com/captions-checklist", tags: "video",
     dests: ["dst_assist_newtubers", "dst_partner_news"] },
+  real: { label: "To a real Lemmy and Ghost", icon: "eye", show: () => realPlaces().length > 0, dests: () => realPlaces().map((d) => d.id),
+    note: "Goes to the real Lemmy and the real Ghost that docker compose runs on this computer (not public, not federated). Below the result you watch each one go live: the platform confirms the post, its page loads, and the page itself appears. “Take it down” deletes it again. The local Lemmy allows 5 posts a day, so a sixth waits.",
+    title: "What we learned adding captions to 200 short videos",
+    body: "We tested three captioning workflows for short videos and measured the time each one saved.\n\nThe biggest win was fixing timing once in a template instead of in every video.",
+    tags: "video, captions" },
 };
 let activeExtra = null;
+const isRealHost = (u) => { try { return !readyInfo.simulation_mode && !new URL(u).hostname.endsWith(".mock"); } catch { return false; } };
+const realPlaces = () => destinations.filter((d) => ["lemmy", "ghost"].includes(d.connector_key) && d.status === "certified"
+  && !isTestPlace(d) && isRealHost((d.config || {}).base_url));
 
 // ---------------------------------------------------------------- tabs, status, token
 const TABS = { start: ["home", "Start here"], dest: ["places", "Destinations"], pub: ["send", "Publish"], hard: ["shield", "Hard cases"], cat: ["upload", "Import a list"] };
@@ -475,10 +518,11 @@ function renderStart() {
     p ? el("p", { text: p }) : el("div", { class: "outcomes" }, chip("Posted", "c-ok", "check"), chip("Later", "c-warn", "clock"),
       chip("A person posts", "c-person", "user"), chip("Blocked", "c-bad", "block")))));
   const tries = [
+    realPlaces().length ? ["eye", "Watch a real post go live", "Post to the real Lemmy and Ghost running on this computer, and watch each page appear.", () => { go("pub"); useExample("real", true); }] : null,
     ["block", "An advert, three places", "Allowed in one forum, blocked in another, handed to a person on Hacker News.", () => { go("pub"); useExample("advert", true); }],
     ["repeat", "A timeout, then a retry", "The platform made the post but the answer was lost. Watch the retry find it: still one post.", () => { go("hard"); runOne("02"); }],
     ["places", "Test a place end to end", "Make a test post on a forum, check it is live, delete it, and see every step.", () => { go("dest"); certifyFirst(); }]];
-  put($("tryCards"), tries.map(([ic, t, p, fn]) => {
+  put($("tryCards"), tries.filter(Boolean).map(([ic, t, p, fn]) => {
     const c = el("div", { class: "card", tabindex: "0", role: "button" },
       el("div", { class: "top-line" }, el("div", { class: "mono", style: "background:var(--brand-soft);color:var(--brand-ink)" }, icon(ic)), el("h3", { text: t })),
       el("div", { class: "muted small", text: p }), el("div", { class: "foot" }, el("span", { class: "small", style: "color:var(--brand);font-weight:650", text: "Run it →" })));
@@ -515,6 +559,7 @@ async function loadDestinations() {
   const r = await api("GET", "/api/v1/destinations");
   destinations = (r.data && r.data.destinations) || [];
   renderDestinations(); renderPicker(); renderStart();
+  if (!$("examples").querySelector(".on")) renderExamples(null);  // the real-platform example needs the destinations
 }
 function renderDestinations() {
   const shown = $("destTests").checked ? destinations : destinations.filter((d) => !isTestPlace(d));
@@ -577,7 +622,7 @@ function renderPicker(selected) {
 }
 let pendingPick = null;  // an example chosen before the destinations have loaded
 function renderExamples(activeKey) {
-  put($("examples"), Object.entries(EXAMPLES).map(([k, ex]) => {
+  put($("examples"), Object.entries(EXAMPLES).filter(([, ex]) => !ex.show || ex.show()).map(([k, ex]) => {
     const b = el("button", { class: "example" + (k === activeKey ? " on" : "") }, icon(ex.icon), ex.label);
     b.addEventListener("click", () => useExample(k));
     return b;
@@ -589,7 +634,7 @@ function useExample(key, autoPublish = false) {
   $("pLang").value = "en"; $("pPromo").value = ""; $("pAi").checked = !!ex.ai; $("pDry").checked = false;
   activeExtra = ex.extra || null;
   $("pKey").value = newKey();
-  pendingPick = new Set(ex.dests);
+  pendingPick = new Set(typeof ex.dests === "function" ? ex.dests() : ex.dests);
   renderPicker(pendingPick);
   renderExamples(key);
   $("exampleNote").textContent = ex.note; $("exampleNote").classList.add("show");
@@ -637,7 +682,8 @@ const isMockUrl = (u) => {
 };
 function liveLink(r) {
   if (!isMockUrl(r.live_url)) {
-    return el("div", { class: "why" }, el("b", { text: "Live at: " }), el("a", { href: r.live_url, target: "_blank", rel: "noopener", text: r.live_url }));
+    const url = r.browser_url || r.live_url;  // browser_url: the same post at an address this browser can open
+    return el("div", { class: "why" }, el("b", { text: "Live at: " }), el("a", { href: url, target: "_blank", rel: "noopener", text: url }));
   }
   const panel = el("div");
   const btn = el("button", { class: "btn light sm" }, icon("search"), "View it on the test platform");
@@ -688,6 +734,99 @@ function resultCard(r, dry) {
       err ? el("div", { class: "muted small", style: "margin-top:6px" }, "Code: ", el("code", { text: err.code }), err.retryable ? " (will be retried)" : "") : null,
       r.rendition ? el("pre", { text: (r.rendition.title || "") + "\n\n" + (r.rendition.body || "") }) : null) : null);
 }
+// ---------------------------------------------------------------- live view: the real post, on the real platform
+// For a post on a real platform (in docker compose: the local Lemmy and Ghost) the service asks the platform for the
+// post, loads its public page, and the page itself is shown here. Built-in test platforms keep the viewer above.
+const PLATFORM = { lemmy: "Lemmy", ghost: "Ghost", discourse: "Discourse", devto: "Dev.to", hashnode: "Hashnode", slack: "Slack", webhook: "the partner site" };
+const isLivePost = (r) => {
+  try { return r.state === "published" && !!r.post_id && !isMockUrl(r.live_url) && new URL(r.live_url).origin !== location.origin; } catch { return false; }
+};
+function tlStep(what) {
+  const mark = el("span", { class: "mark" }), whatEl = el("div", { class: "what", text: what }), detail = el("div", { class: "detail" });
+  const li = el("li", { class: "wait" }, mark, el("div", {}, whatEl, detail));
+  li.set = (state, text, ms, words) => {  // wait, run, done, no (failed) or gone (the post no longer exists)
+    li.className = state;
+    put(mark, state === "done" ? icon("check") : state === "no" || state === "gone" ? icon("x") : null);
+    if (words) whatEl.textContent = words;
+    put(detail, text || "", typeof ms === "number" ? el("span", { class: "ms", text: ms + " ms" }) : null);
+  };
+  return li;
+}
+function liveCard(r) {
+  const name = PLATFORM[r.connector_key] || r.connector_key;
+  const sent = tlStep("Sent to " + name), confirmed = tlStep(name + " confirms the post"), page = tlStep("Its public page loads"),
+    shown = tlStep("Shown here, as a reader sees it");
+  const addr = el("div", { class: "addr", text: "…" });
+  const view = el("div", { class: "placeholder", text: "Waiting for " + name + "…" });
+  const open = el("a", { class: "btn ghost sm", target: "_blank", rel: "noopener", style: "visibility:hidden" }, icon("ext"), "Open");
+  const again = el("button", { class: "btn light sm" }, icon("repeat"), "Check again");
+  const down = el("button", { class: "btn ghost sm" }, icon("trash"), "Take it down");
+  const frame = el("div", { class: "frame" }, el("div", { class: "bar" }, el("div", { class: "dots" }, el("i"), el("i"), el("i")), addr, open), view);
+  const showPage = (url) => {
+    const f = el("iframe", { src: url, title: "The post on " + name, referrerpolicy: "no-referrer",
+                             sandbox: "allow-scripts allow-same-origin allow-popups" });
+    frame.replaceChild(f, frame.lastChild);
+    return f;
+  };
+  const showText = (text) => frame.replaceChild(el("div", { class: "placeholder", text }), frame.lastChild);
+
+  async function check() {
+    again.disabled = down.disabled = true;
+    [confirmed, page, shown].forEach((s) => s.set("wait"));
+    confirmed.set("run", "Asking " + name + " for the post…");
+    const resp = await api("GET", "/api/v1/posts/" + r.post_id + "/live");
+    const L = resp.data || {};
+    again.disabled = false;
+    if (resp.status >= 400 || !L.post_id) { confirmed.set("no", short((L.error && L.error.message) || L, 200)); return; }
+    sent.set("done", "Post " + String(r.platform_post_id || "").split("|")[0] + " · " + when(L.published_at));
+    await sleep(250);
+    const P = L.platform;
+    if (!P || !P.ok) { confirmed.set("no", P ? P.error.message : "This post was not published.", P && P.ms); return; }
+    if (P.status !== "live") {
+      confirmed.set("gone", name + " answers: " + String(P.status).replaceAll("_", " "), P.ms, name + " no longer has the post");
+      page.set("gone", "Not checked: there is no post to load");
+      shown.set("gone", "Below: what a reader now sees at the old address", null, "The old address, now");
+      if (L.browser_url) showPage(L.browser_url);
+      return;
+    }
+    down.disabled = false;
+    confirmed.set("done", name + " answers through its API: live", P.ms);
+    await sleep(250);
+    const G = L.page || {};
+    page.set(G.ok ? "done" : "no", G.http_status ? "HTTP " + G.http_status + " · " + Math.max(1, Math.round(G.bytes / 1024)) + " KB"
+      + (G.title ? " · “" + G.title + "”" : "") : (G.error || "not loaded"), G.ms);
+    await sleep(250);
+    addr.textContent = L.browser_url; addr.title = L.live_url === L.browser_url ? L.live_url : "The service reaches it at " + L.live_url;
+    open.href = L.browser_url; open.style.visibility = "visible";
+    if (!L.embeddable) {
+      shown.set("no", G.ok ? "This site does not allow being shown inside another page" : "The page did not load");
+      showText(G.ok ? "This site does not allow being shown inside another page. Use “Open” to see it." : "The page did not load.");
+      return;
+    }
+    shown.set("run", "Loading the page…");
+    showPage(L.browser_url).addEventListener("load", () => shown.set("done", "This is " + name + "’s own page, not a copy"), { once: true });
+  }
+  again.addEventListener("click", check);
+  down.addEventListener("click", async () => {
+    again.disabled = down.disabled = true; put(down, icon("clock"), "Deleting…");
+    const job = await waitJob(await api("POST", "/api/v1/posts/" + r.post_id + "/delete", { json: {} }));
+    put(down, icon("trash"), "Take it down");
+    if (!(job && job.result && job.result.deleted)) { confirmed.set("no", "Delete failed: " + short((job && (job.error || job.result)) || "no answer", 200)); again.disabled = false; return; }
+    await check();
+  });
+  check();
+  return el("div", { class: "box live" },
+    el("div", { class: "head-row", style: "margin:0" }, mono(r.connector_key),
+      el("div", { class: "grow" }, el("h2", { text: "Live on " + r.name }),
+        el("p", { class: "sub", text: "The real " + name + ", not a test double. The service asks " + name + " for the post, loads its page, and shows that page here." })),
+      again, down),
+    el("div", { class: "live-grid" }, el("ol", { class: "tl" }, sent, confirmed, page, shown), frame));
+}
+function watchLive(results) {
+  put($("liveOut"), results.map(liveCard));
+  if ($("liveOut").firstChild) $("liveOut").firstChild.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 async function publish() {
   const ids = [...$("pDests").querySelectorAll("input:checked")].map((i) => i.value);
   if (!ids.length) { $("pState").textContent = destinations.length ? "Tick at least one place." : "Loading the places…"; if (!destinations.length) setTimeout(publish, 800); return; }
@@ -715,6 +854,7 @@ async function publish() {
     job && job.status === "failed" ? el("p", { class: "err", text: short(job.error, 300) }) : null,
     Object.keys(counts).length ? el("div", { class: "chips", style: "margin-bottom:12px" }, Object.entries(counts).map(([k, v]) => chip(v + " × " + k, "c-grey"))) : null,
     (res.results || []).map((r) => resultCard(r, dry)));
+  watchLive(dry ? [] : (res.results || []).filter(isLivePost));
   loadDestinations();
 }
 $("pGo").addEventListener("click", publish);

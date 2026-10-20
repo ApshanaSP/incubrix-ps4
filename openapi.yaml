@@ -1042,6 +1042,45 @@ paths:
                   message: destination dst_x not found
                   retryable: false
                   details: {}
+  /api/v1/posts/{post_id}/live:
+    get:
+      tags:
+      - publishing
+      summary: Post Live
+      description: 'Check a post on its platform now: the platform''s API is asked
+        for the post, then its public page is loaded,
+
+        each timed. `browser_url` is the address a browser can open (see BROWSER_URL_MAP);
+        `embeddable` is true when
+
+        that page answered, so it can be shown inside another page.'
+      operationId: post_live_api_v1_posts__post_id__live_get
+      parameters:
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Post Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Post Live Api V1 Posts  Post Id  Live Get
+        default:
+          description: Error
+          content:
+            application/json:
+              example:
+                error:
+                  code: NOT_FOUND
+                  message: destination dst_x not found
+                  retryable: false
+                  details: {}
   /api/v1/posts/{post_id}/delete:
     post:
       tags:

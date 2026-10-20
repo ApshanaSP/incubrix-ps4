@@ -34,6 +34,10 @@ x-app: &app
 services:
   api:
     <<: *app
+    environment:
+      <<: *app-env
+      # post URLs use Docker service names; the dashboard shows the real post at the address a browser can open
+      BROWSER_URL_MAP: http://lemmy-ui:1234=http://localhost:1236,http://ghost:2368=http://localhost:2368
     ports: ["8080:8080"]
     volumes: ["api-data:/data"]
     depends_on:

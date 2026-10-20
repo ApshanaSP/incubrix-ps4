@@ -14,14 +14,21 @@ even when the first call timed out after the platform had created it.
 from __future__ import annotations
 
 import asyncio
+import html
 import logging
+import re
+import time
 from datetime import datetime, timezone
 from typing import Any
 
+import httpx
+
 from app import rules
 from app.catalogue import store
+from app.config import get_settings
 from app.connectors import registry
 from app.connectors.base import Connection, Destination, Rendition, collect_notes, fingerprint
+from app.connectors.http import is_simulated
 from app.db import get_db, new_id, now_iso
 from app.errors import ApiError, ConnectorError
 from app.logs import log
@@ -42,6 +49,8 @@ def _post_result(post: dict[str, Any], *, replayed: bool = False) -> dict[str, A
         "platform_post_id": post.get("platform_post_id"), "live_url": post.get("live_url"),
         "reason": post.get("reason"), "reschedule_at": post.get("reschedule_at"), "idempotency_key": post["idempotency_key"],
     }
+    if browser_url(post.get("live_url")) != post.get("live_url"):  # only on hosts a browser cannot reach (Docker names)
+        out["browser_url"] = browser_url(post.get("live_url"))
     if replayed:
         out["replayed"] = True
     return out
@@ -271,6 +280,67 @@ async def delete_post(post_id: str) -> dict[str, Any]:
     if result.get("deleted"):
         db.update("posts", "id", post_id, {"state": "deleted", "deleted_at": now_iso()})
     return {"post_id": post_id, **result}
+
+
+def browser_url(url: str | None) -> str | None:
+    """The address a person's browser can open: BROWSER_URL_MAP rewrites hosts only the service can reach
+    (http://ghost:2368 inside Docker -> http://localhost:2368)."""
+    if not url:
+        return url
+    for inner, outer in get_settings().browser_url_map.items():
+        if url == inner or url.startswith(inner + "/"):
+            return outer + url[len(inner):]
+    return url
+
+
+async def _fetch_page(url: str) -> httpx.Response:
+    async with httpx.AsyncClient(timeout=10, follow_redirects=True) as client:
+        return await client.get(url)
+
+
+async def live_check(post_id: str) -> dict[str, Any]:
+    """Is this post on the platform right now? Asks the platform's API for the post, then loads its public page,
+    timing both. Nothing is written: it is the same evidence certification collects, for any published post."""
+    post = get_db().one("SELECT * FROM posts WHERE id=?", [post_id])
+    if not post:
+        raise ApiError("NOT_FOUND", f"post {post_id} not found")
+    out: dict[str, Any] = {"post_id": post_id, "connector_key": post["connector_key"], "state": post["state"],
+                           "title": post.get("title"), "published_at": post.get("published_at"),
+                           "live_url": post.get("live_url"), "browser_url": browser_url(post.get("live_url")),
+                           "simulated": bool(post.get("live_url")) and is_simulated(post["live_url"]),
+                           "checked_at": now_iso(), "platform": None, "page": None, "embeddable": False}
+    if not post.get("platform_post_id") or post["state"] not in ("published", "deleted"):
+        return out
+    dest_row = store.get_destination(post["destination_id"])
+    connection = store.load_connection(dest_row.get("connection_id"), post["connector_key"])
+    started = time.monotonic()
+    try:
+        status = await registry.get(post["connector_key"], check_kill_switch=False).get_status(
+            post["platform_post_id"], connection)
+        out["platform"] = {"ok": True, "status": status.get("status"), "ms": round(1000 * (time.monotonic() - started))}
+    except (ConnectorError, ApiError) as exc:
+        out["platform"] = {"ok": False, "error": exc.to_dict()["error"],
+                           "ms": round(1000 * (time.monotonic() - started))}
+        return out
+    live_url = status.get("live_url") or post.get("live_url")
+    if status.get("status") != "live" or not live_url or out["simulated"]:
+        return out
+    out["live_url"], out["browser_url"] = live_url, browser_url(live_url)
+    started = time.monotonic()
+    try:
+        resp = await _fetch_page(live_url)
+        title =re.search(r"<title[^>]*>(.*?)</title>", resp.text[:200_000], re.I | re.S)
+        out["page"] = {"ok": resp.status_code < 400, "http_status": resp.status_code, "bytes": len(resp.content),
+                       "title": html.unescape(title.group(1)).strip()[:200] if title else None,
+                       "ms": round(1000 * (time.monotonic() - started))}
+        # a site that forbids being framed would show an empty box, so say so instead
+        csp = resp.headers.get("content-security-policy", "")
+        framing_blocked = bool(resp.headers.get("x-frame-options")) or "frame-ancestors" in csp
+    except httpx.HTTPError as exc:
+        out["page"] = {"ok": False, "error": type(exc).__name__, "ms": round(1000 * (time.monotonic() - started))}
+        framing_blocked = False
+    out["embeddable"] = bool(out["page"]["ok"]) and not framing_blocked
+    return out
 
 
 def utcnow() -> datetime:
