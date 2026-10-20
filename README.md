@@ -86,12 +86,15 @@ python -m app.serve                                   # http://localhost:8080/do
 
 Open **http://localhost:8080/** in a browser (light mode: `start-light.ps1`, or `docker compose up`). One page, no build step (`app/static/dashboard.html`), using only the public API:
 
-| Tab | What you can do |
+A sidebar (bottom tabs on a phone) leads to five pages, each opening with one sentence on what it is for:
+
+| Page | What you can do |
 |---|---|
-| Destinations | every place with what kind it is, whether it is Ready, its level in plain words and its rules; **Test it now** runs a certification and shows each step (test post made, live, link works, stats read, deleted, deletion confirmed) |
-| Publish | write a post, let the recommender pick destinations, publish or dry-run, and see per destination what was sent after tailoring and whether it was published, blocked or rescheduled, and why; send the same idempotency key again to see that nothing is posted twice |
-| Hard cases | runs the 17 batch inputs from `batch_inputs/` one by one or all at once, showing every step and check (each creates its own mock destination, so nothing real is touched) |
-| Catalogue | upload a CSV (or the messy sample) and see the row-by-row report: duplicates, invalid rows, reachability, relevance |
+| Overview | what the service does in one picture (one post, five places, five different answers), how it works in four steps, and one-click demos of the three safety promises |
+| Publish | a three-step guide: **Write** (or pick one of six samples, each showing one rule), **Choose places** (grouped tiles; **Suggest the best places** ticks the recommender's top 5 and says why), **See what happened** (per place: posted, held for later, handed to a person or blocked, with the reason and what was sent after tailoring). A post on the real local Lemmy or Ghost opens a live view: the platform confirms it, its page loads, the page itself is shown, and **Take it down** deletes it. **Send the same post again** shows that the same retry key never posts twice |
+| Places | every place with its kind, whether it is Ready, how it posts in plain words and its rules; **Test it** runs a certification and shows each step (test post made, live, link works, stats read, deleted, deletion confirmed) |
+| Safety checks | runs the 17 batch inputs from `batch_inputs/` one by one or all at once with a running score, showing every step (each creates its own throw-away place on a built-in test platform, so nothing real is touched) |
+| Add places | upload a CSV (or the messy sample) and see the row-by-row report: duplicates, invalid rows, reachability, relevance |
 
 API clients that call `/` without `Accept: text/html` still get the JSON list of links. On a protected demo, the page asks for the access token.
 
